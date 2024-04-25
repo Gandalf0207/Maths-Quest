@@ -47,16 +47,16 @@ else:
     while L[-2][-1] != L[ordonne][abscisse] :
 
         photo_perso = PhotoImage(file="perso.png")
-        L[ordonne][abscisse] = canvas.create_image(15*abscisse, 15*ordonne, anchor=NW, image=photo_perso)
+        L[ordonne][abscisse] = canvas.create_image(50*abscisse, 50*ordonne, anchor=NW, image=photo_perso)
         L[ordonne][abscisse] = "○"
 
 
         #on affiche le terminal tkinter
-        photo = PhotoImage(file="arbre2.png")
+        photo = PhotoImage(file="newarbre3.png")
         for x in range(len(L)):
             for y in range(len(L[x])):
                 if L[y][x] == "■":
-                    canvas.create_image(15*x, 15*y, anchor=NW, image=photo)
+                    canvas.create_image(50*x, 50*y, anchor=NW, image=photo)
         canvas.pack()
 
         #on affiche le labyrinthe terminal
