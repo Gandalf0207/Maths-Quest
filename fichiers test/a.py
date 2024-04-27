@@ -1,15 +1,19 @@
-from tkinter import *
+print("ok")
+c = 0
+def bonjour(c):
+    print("bonjour")
 
-fenetre = Tk()
+    def ah(c):
+        c+= 1
+        print("ah")
+        bonjour(c)
+        return c
+
+    if c < 3:
+
+        c = ah(c)
+    return c
 
 
-def clavier(event):
-    touche = event.keysym
-    print(touche)
-canvas = Canvas(fenetre, width=500, height=500)
-canvas.focus_set()
-canvas.bind("<Key>", clavier)
-canvas.pack()
-
-
-fenetre.mainloop()
+ok = bonjour(c)
+print(ok)

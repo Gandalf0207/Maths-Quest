@@ -1,7 +1,4 @@
 import random
-import os
-import time
-from math import *
 
 def mapmaker(longueur, largeur):
 
