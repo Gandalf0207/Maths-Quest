@@ -340,7 +340,7 @@ def Gestion_Jouer(fenetre, Niveau):
                 Label_text_infos = Label(canva_discussion, text="Clique sur Suivant !", wraplength=180, justify="left")
                 Label_text_infos.pack(pady=20)
 
-
+ 
                 canva_discussion.create_window(350, 30, window=Label_text_infos)
 
                 btn_suivant = Button(second_window, text="Suivant", command=lambda: affiche_prog(pnj_, pnj_infos_, Niveau))
@@ -349,7 +349,7 @@ def Gestion_Jouer(fenetre, Niveau):
                 second_window.protocol("WM_DELETE_WINDOW", lambda: reset_second_window()) #code ia
     
     def reset_second_window(): #code ia
-        
+
         # global second_window, sorcier1_image, sorcier2_image, sorcier3_image, sorcier4_image #code ia
         # if sorcier1_image: #code ia
         #     canva_discussion.create_image(0, 0, anchor=NW, image=sorcier1_image) #code ia
