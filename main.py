@@ -14,25 +14,33 @@ import custom_labyrinthe
 # Cela signifie que cette partie du code n'a pas été réalisée uniquement par nous meme....
 
 
-# Variable pour suivre l'état de la deuxième fenêtre #code ia 
+# # Variable pour suivre l'état de la deuxième fenêtre #code ia 
 second_window = None #code ia
 
 # Déclarez les variables globales pour stocker les images
+global sorcier1_image, sorcier2_image, sorcier3_image, sorcier4_image
 sorcier1_image = None #code ia
 sorcier2_image = None #code ia
 sorcier3_image = None #code ia
 sorcier4_image = None #code ia
 
 def Gestion_Jouer(fenetre, Niveau):
-    
-
+    global second_window 
     #Pour cette comparaison, le "fenetre" correspond à la fenetre tk qui est en cours de loop
     # Le permir passage se sera la fenetre 'Lancement', puis les autres tours se sera les fenetres de 'Jeu'
     # Ce fonctionnement permet de faire tourner le programme pour le nombre de niveaux disponible !
     if Niveau ==0:
         #Nettoyage de la page
         fenetre.destroy()
-    else:
+    else:# 
+        # Variable pour suivre l'état de la deuxième fenêtre #code ia 
+        second_window = None #code ia
+        # Déclarez les variables globales pour stocker les images
+        global sorcier1_image, sorcier2_image, sorcier3_image, sorcier4_image
+        sorcier1_image = None #code ia
+        sorcier2_image = None #code ia
+        sorcier3_image = None #code ia
+        sorcier4_image = None #code ia
         fenetre.destroy()
 
     Jeu = Tk()
@@ -81,7 +89,7 @@ def Gestion_Jouer(fenetre, Niveau):
                 L[ordonne][abscisse] = canvas.create_image(16*abscisse, 16*ordonne, anchor=NW, image=carre)
 
                 #Si jamais les pnj sont sur la route
-                if (L[ordonne-1][abscisse] in pnj_liste) and (L[ordonne-2][abscisse] not in check):
+                if (L[ordonne-1][abscisse] in pnj_liste) and (L[ordonne-2][abscisse] not in check) and (L[ordonne-2][abscisse] not in pnj_liste):
                     ordonne-=2
                 elif L[ordonne-1][abscisse] in pnj_liste :
                     print("C'est un PNJ")
@@ -100,7 +108,7 @@ def Gestion_Jouer(fenetre, Niveau):
                 L[ordonne][abscisse] = canvas.create_image(16*abscisse, 16*ordonne, anchor=NW, image=carre)
 
                 #Si jamais les pnj sont sur la route
-                if (L[ordonne][abscisse-1] in pnj_liste) and (L[ordonne][abscisse-2] not in check):
+                if (L[ordonne][abscisse-1] in pnj_liste) and (L[ordonne][abscisse-2] not in check ) and (L[ordonne][abscisse-2] not in pnj_liste):
                     abscisse-=2
                 elif L[ordonne][abscisse-1] in pnj_liste :
                     print("C'est un PNJ")
@@ -119,7 +127,7 @@ def Gestion_Jouer(fenetre, Niveau):
                 L[ordonne][abscisse] = canvas.create_image(16*abscisse, 16*ordonne, anchor=NW, image=carre)
 
                 #Si jamais les pnj sont sur la route
-                if (L[ordonne+1][abscisse] in pnj_liste) and (L[ordonne+2][abscisse] not in check):
+                if (L[ordonne+1][abscisse] in pnj_liste) and (L[ordonne+2][abscisse] not in check) and (L[ordonne+2][abscisse] not in pnj_liste):
                     ordonne+=2
                 elif L[ordonne+1][abscisse] in pnj_liste :
                     print("C'est un PNJ")
@@ -138,7 +146,7 @@ def Gestion_Jouer(fenetre, Niveau):
                 L[ordonne][abscisse] = canvas.create_image(16*abscisse, 16*ordonne, anchor=NW, image=carre)
 
                 #Si jamais les pnj sont sur la route
-                if (L[ordonne][abscisse+1] in pnj_liste) and (L[ordonne][abscisse+2] not in check):
+                if (L[ordonne][abscisse+1] in pnj_liste) and (L[ordonne][abscisse+2] not in check) and (L[ordonne][abscisse+2] not in pnj_liste):
                     abscisse+=2
                 elif L[ordonne][abscisse+1] in pnj_liste :
                     print("C'est un PNJ")
@@ -341,15 +349,16 @@ def Gestion_Jouer(fenetre, Niveau):
                 second_window.protocol("WM_DELETE_WINDOW", lambda: reset_second_window()) #code ia
     
     def reset_second_window(): #code ia
-        global second_window, sorcier1_image, sorcier2_image, sorcier3_image, sorcier4_image #code ia
-        if sorcier1_image: #code ia
-            canva_discussion.create_image(0, 0, anchor=NW, image=sorcier1_image) #code ia
-        elif sorcier2_image: #code ia
-            canva_discussion.create_image(0, 0, anchor=NW, image=sorcier2_image) #code ia
-        elif sorcier3_image: #code ia
-            canva_discussion.create_image(0, 0, anchor=NW, image=sorcier3_image) #code ia   
-        elif sorcier4_image: #code ia
-            canva_discussion.create_image(0, 0, anchor=NW, image=sorcier4_image) #code ia
+        
+        # global second_window, sorcier1_image, sorcier2_image, sorcier3_image, sorcier4_image #code ia
+        # if sorcier1_image: #code ia
+        #     canva_discussion.create_image(0, 0, anchor=NW, image=sorcier1_image) #code ia
+        # elif sorcier2_image: #code ia
+        #     canva_discussion.create_image(0, 0, anchor=NW, image=sorcier2_image) #code ia
+        # elif sorcier3_image: #code ia
+        #     canva_discussion.create_image(0, 0, anchor=NW, image=sorcier3_image) #code ia   
+        # elif sorcier4_image: #code ia
+        #     canva_discussion.create_image(0, 0, anchor=NW, image=sorcier4_image) #code ia
 
         global second_window #code ia
         if second_window: #code ia
