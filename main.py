@@ -6,14 +6,22 @@ import time
 import labyrinthe
 import custom_labyrinthe
 
+### Pour avoir une certaine sécurité lors de la récupération des fragements de clé; il a fallut faire en sorte
+# de ne pourvoir ouvrir qu'une seule fenetre à la fois pour eviter de donner plus de fragments de clé que prévus
+# nous avons donc utilisé l'ia pour apprendre et comprendre comment fonctionne le protocole utilisé... ###
 
-# Variable pour suivre l'état de la deuxième fenêtre ################################### CODE IA
-second_window = None ################################### CODE IA
+### C'est pourquoi il est possible de voir des commentaires : #code ia
+# Cela signifie que cette partie du code n'a pas été réalisée uniquement par nous meme....
+
+
+# Variable pour suivre l'état de la deuxième fenêtre #code ia 
+second_window = None #code ia
+
 # Déclarez les variables globales pour stocker les images
-sorcier1_image = None
-sorcier2_image = None
-sorcier3_image = None
-sorcier4_image = None
+sorcier1_image = None #code ia
+sorcier2_image = None #code ia
+sorcier3_image = None #code ia
+sorcier4_image = None #code ia
 
 def Gestion_Jouer(fenetre, Niveau):
     
@@ -172,6 +180,8 @@ def Gestion_Jouer(fenetre, Niveau):
 
         def affiche_prog(pnj, pnj_infos, Niveau):
             global c
+            global nb_frag_cle
+
             c += 1
             text_complet = ""
             # comme cette partie est commune; on l'affiche au debut si c'est le bon tour
@@ -193,7 +203,6 @@ def Gestion_Jouer(fenetre, Niveau):
                             global pnj1_infos
                             pnj1_infos = True
 
-                            global nb_frag_cle
                             nb_frag_cle +=1
                             load_inv(nb_frag_cle)
 
@@ -203,8 +212,12 @@ def Gestion_Jouer(fenetre, Niveau):
                             text_complet = "insérer le cours !"
                         elif c == 4:
                             second_window.destroy()
+
                             global pnj2_infos
                             pnj2_infos = True
+
+                            nb_frag_cle +=1
+                            load_inv(nb_frag_cle)
 
                 elif pnj == "pnj3":
                     if Niveau == 0:
@@ -212,8 +225,12 @@ def Gestion_Jouer(fenetre, Niveau):
                             text_complet = "insérer le cours !"
                         elif c == 4:
                             second_window.destroy()
+
                             global pnj3_infos
                             pnj3_infos = True
+
+                            nb_frag_cle +=1
+                            load_inv(nb_frag_cle)
 
                 elif pnj == "pnj4":
                     if Niveau == 0:
@@ -221,8 +238,13 @@ def Gestion_Jouer(fenetre, Niveau):
                             text_complet = "insérer le cours !"
                         elif c == 4:
                             second_window.destroy()
+
                             global pnj4_infos
                             pnj4_infos = True
+
+                            nb_frag_cle +=1
+                            load_inv(nb_frag_cle)
+
 
 
             #de nouveau une partie commune mais cette fois quand on a déjà vu le pnj
@@ -255,17 +277,20 @@ def Gestion_Jouer(fenetre, Niveau):
         global c
         c = 0
 
-        global sorcier1_image, sorcier2_image, sorcier3_image, sorcier4_image
+
+#### DEBUT PARTIE IA / HUMAIN ###
+
+        global sorcier1_image, sorcier2_image, sorcier3_image, sorcier4_image #code ia
 
 
         # check avant de lancer la fenetre si jamais un sorcier n'est pas présent quand la touche 'a' est pressée   
-        if   (L[ordonne-1][abscisse] in pnj_List or L[ordonne+1][abscisse] in pnj_List or L[ordonne][abscisse-1] in pnj_List or L[ordonne][abscisse+1] in pnj_List ):
+        if (L[ordonne-1][abscisse] in pnj_List or L[ordonne+1][abscisse] in pnj_List or L[ordonne][abscisse-1] in pnj_List or L[ordonne][abscisse+1] in pnj_List ):
             
 
 
-            global second_window################################### CODE IA
+            global second_window#code ia
 
-            if not second_window or not second_window.winfo_exists():  # Vérifie si la deuxième fenêtre existe################################### CODE IA
+            if not second_window or not second_window.winfo_exists():#code ia  # Vérifie si la deuxième fenêtre existe
                 #PNJ 1
                 if (L[ordonne-1][abscisse] == pnj_List[0] or L[ordonne+1][abscisse]== pnj_List[0] or L[ordonne][abscisse-1]== pnj_List[0] or L[ordonne][abscisse+1]== pnj_List[0]):
                     pnj_ = "pnj1"
@@ -287,7 +312,7 @@ def Gestion_Jouer(fenetre, Niveau):
                     pnj_infos_ = pnj4_infos
                 
 
-                second_window = Toplevel()  
+                second_window = Toplevel() #code ia 
                 canva_discussion = Canvas(second_window, width=450, height=260, bg="white")
                 canva_discussion.pack()
 
@@ -313,25 +338,25 @@ def Gestion_Jouer(fenetre, Niveau):
                 btn_suivant = Button(second_window, text="Suivant", command=lambda: affiche_prog(pnj_, pnj_infos_, Niveau))
                 btn_suivant.pack()
 
-                second_window.protocol("WM_DELETE_WINDOW", lambda: reset_second_window())
+                second_window.protocol("WM_DELETE_WINDOW", lambda: reset_second_window()) #code ia
     
-    def reset_second_window(): #code i
-        global second_window, sorcier1_image, sorcier2_image, sorcier3_image, sorcier4_image
-        if sorcier1_image:
-            canva_discussion.create_image(0, 0, anchor=NW, image=sorcier1_image)
-        elif sorcier2_image:
-            canva_discussion.create_image(0, 0, anchor=NW, image=sorcier2_image)
-        elif sorcier3_image:
-            canva_discussion.create_image(0, 0, anchor=NW, image=sorcier3_image)       
-        elif sorcier4_image:
-            canva_discussion.create_image(0, 0, anchor=NW, image=sorcier4_image)
+    def reset_second_window(): #code ia
+        global second_window, sorcier1_image, sorcier2_image, sorcier3_image, sorcier4_image #code ia
+        if sorcier1_image: #code ia
+            canva_discussion.create_image(0, 0, anchor=NW, image=sorcier1_image) #code ia
+        elif sorcier2_image: #code ia
+            canva_discussion.create_image(0, 0, anchor=NW, image=sorcier2_image) #code ia
+        elif sorcier3_image: #code ia
+            canva_discussion.create_image(0, 0, anchor=NW, image=sorcier3_image) #code ia   
+        elif sorcier4_image: #code ia
+            canva_discussion.create_image(0, 0, anchor=NW, image=sorcier4_image) #code ia
 
-        global second_window
-        if second_window:
+        global second_window #code ia
+        if second_window: #code ia
             second_window.destroy()  # Détruit la fenêtre
-        second_window = None
+        second_window = None #code ia
 
-
+#### FIN PARTIE IA / HUMAIN ###
 
 
 
