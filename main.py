@@ -6,6 +6,15 @@ import time
 import labyrinthe
 import custom_labyrinthe
 
+
+# Variable pour suivre l'état de la deuxième fenêtre ################################### CODE IA
+second_window = None ################################### CODE IA
+# Déclarez les variables globales pour stocker les images
+sorcier1_image = None
+sorcier2_image = None
+sorcier3_image = None
+sorcier4_image = None
+
 def Gestion_Jouer(fenetre, Niveau):
     
 
@@ -179,11 +188,12 @@ def Gestion_Jouer(fenetre, Niveau):
                         if c == 3 : 
                             text_complet = "insérer le cours !"
                         elif c == 4:
-                            ok.destroy()
-                            
+                            second_window.destroy()
+
                             global pnj1_infos
                             pnj1_infos = True
 
+                            global nb_frag_cle
                             nb_frag_cle +=1
                             load_inv(nb_frag_cle)
 
@@ -192,7 +202,7 @@ def Gestion_Jouer(fenetre, Niveau):
                         if c == 3 : 
                             text_complet = "insérer le cours !"
                         elif c == 4:
-                            ok.destroy()
+                            second_window.destroy()
                             global pnj2_infos
                             pnj2_infos = True
 
@@ -201,7 +211,7 @@ def Gestion_Jouer(fenetre, Niveau):
                         if c == 3 : 
                             text_complet = "insérer le cours !"
                         elif c == 4:
-                            ok.destroy()
+                            second_window.destroy()
                             global pnj3_infos
                             pnj3_infos = True
 
@@ -210,7 +220,7 @@ def Gestion_Jouer(fenetre, Niveau):
                         if c == 3 : 
                             text_complet = "insérer le cours !"
                         elif c == 4:
-                            ok.destroy()
+                            second_window.destroy()
                             global pnj4_infos
                             pnj4_infos = True
 
@@ -222,7 +232,7 @@ def Gestion_Jouer(fenetre, Niveau):
                 elif c == 2 :
                     text_complet = "Vous pouvez consulter la partie du cours obtenue dans la page 'cours'.'"
                 elif c == 3 : 
-                    ok.destroy()
+                    second_window.destroy()
 
 
 
@@ -231,7 +241,7 @@ def Gestion_Jouer(fenetre, Niveau):
                 for i in range(len(text_complet)):
                     text_partiel = text_complet[:i+1]
                     Label_text_infos.configure(text = text_partiel)
-                    ok.update()
+                    second_window.update()
                     time.sleep(0.1)
 
         global pnj1_infos
@@ -245,47 +255,82 @@ def Gestion_Jouer(fenetre, Niveau):
         global c
         c = 0
 
-        #PNJ 1
-        if (L[ordonne-1][abscisse] == pnj_List[0] or L[ordonne+1][abscisse]== pnj_List[0] or L[ordonne][abscisse-1]== pnj_List[0] or L[ordonne][abscisse+1]== pnj_List[0]):
-            pnj_ = "pnj1"
-            pnj_infos_ = pnj1_infos
-            sorcier_ = PhotoImage(file = "image/sorcier1.png")
+        global sorcier1_image, sorcier2_image, sorcier3_image, sorcier4_image
 
-        #PNJ 2
-        elif (L[ordonne-1][abscisse] == pnj_List[1] or L[ordonne+1][abscisse]== pnj_List[1] or L[ordonne][abscisse-1]== pnj_List[1] or L[ordonne][abscisse+1]== pnj_List[1]):
-            pnj_ = "pnj2"
-            pnj_infos_ = pnj2_infos
-            sorcier_ = PhotoImage(file = "image/sorcier2.png")
-
-        #PNJ3
-        elif (L[ordonne-1][abscisse] == pnj_List[2] or L[ordonne+1][abscisse]== pnj_List[2] or L[ordonne][abscisse-1]== pnj_List[2] or L[ordonne][abscisse+1]== pnj_List[2]):
-            pnj_ = "pnj3"
-            pnj_infos_ = pnj3_infos
-            sorcier_ = PhotoImage(file = "image/sorcier3.png")
-
-        #PNJ4
-        elif (L[ordonne-1][abscisse] == pnj_List[3] or L[ordonne+1][abscisse]== pnj_List[3] or L[ordonne][abscisse-1]== pnj_List[3] or L[ordonne][abscisse+1]== pnj_List[3]):
-            pnj_ = "pnj4"
-            pnj_infos_ = pnj4_infos
-            sorcier_ = PhotoImage(file = "image/sorcier4.png") 
 
         # check avant de lancer la fenetre si jamais un sorcier n'est pas présent quand la touche 'a' est pressée   
         if   (L[ordonne-1][abscisse] in pnj_List or L[ordonne+1][abscisse] in pnj_List or L[ordonne][abscisse-1] in pnj_List or L[ordonne][abscisse+1] in pnj_List ):
-            ok = Toplevel()
-            canva_discussion = Canvas(ok, width=450, height=260,bg ="white" )
-            canva_discussion.create_image(0,0,anchor=NW, image = sorcier_)
-            canva_discussion.pack()
-
-            Label_text_infos = Label(canva_discussion, text="Clique sur Suivant !",wraplength=180, justify="left")
-            Label_text_infos.pack(pady=20)
             
-            # on insert le label sur le canvas
-            canva_discussion.create_window(350, 30, window=Label_text_infos)
 
-            btn_suivant = Button(ok, text="Suivant", command=lambda:affiche_prog(pnj_, pnj_infos_, Niveau))
-            btn_suivant.pack()
-            
-            ok.mainloop()
+
+            global second_window################################### CODE IA
+
+            if not second_window or not second_window.winfo_exists():  # Vérifie si la deuxième fenêtre existe################################### CODE IA
+                #PNJ 1
+                if (L[ordonne-1][abscisse] == pnj_List[0] or L[ordonne+1][abscisse]== pnj_List[0] or L[ordonne][abscisse-1]== pnj_List[0] or L[ordonne][abscisse+1]== pnj_List[0]):
+                    pnj_ = "pnj1"
+                    pnj_infos_ = pnj1_infos
+
+                #PNJ 2
+                elif (L[ordonne-1][abscisse] == pnj_List[1] or L[ordonne+1][abscisse]== pnj_List[1] or L[ordonne][abscisse-1]== pnj_List[1] or L[ordonne][abscisse+1]== pnj_List[1]):
+                    pnj_ = "pnj2"
+                    pnj_infos_ = pnj2_infos
+
+                #PNJ3
+                elif (L[ordonne-1][abscisse] == pnj_List[2] or L[ordonne+1][abscisse]== pnj_List[2] or L[ordonne][abscisse-1]== pnj_List[2] or L[ordonne][abscisse+1]== pnj_List[2]):
+                    pnj_ = "pnj3"
+                    pnj_infos_ = pnj3_infos
+
+                #PNJ4
+                elif (L[ordonne-1][abscisse] == pnj_List[3] or L[ordonne+1][abscisse]== pnj_List[3] or L[ordonne][abscisse-1]== pnj_List[3] or L[ordonne][abscisse+1]== pnj_List[3]):
+                    pnj_ = "pnj4"
+                    pnj_infos_ = pnj4_infos
+                
+
+                second_window = Toplevel()  
+                canva_discussion = Canvas(second_window, width=450, height=260, bg="white")
+                canva_discussion.pack()
+
+                if pnj_ == "pnj1":
+                    sorcier1_image = PhotoImage(file="image/sorcier1.png")
+                    canva_discussion.create_image(0, 0, anchor=NW, image=sorcier1_image)
+                elif pnj_ == "pnj2":
+                    sorcier2_image = PhotoImage(file="image/sorcier2.png")
+                    canva_discussion.create_image(0, 0, anchor=NW, image=sorcier2_image)
+                elif pnj_ == "pnj3":
+                    sorcier3_image = PhotoImage(file="image/sorcier3.png")
+                    canva_discussion.create_image(0, 0, anchor=NW, image=sorcier3_image)
+                elif pnj_ == "pnj4":
+                    sorcier4_image = PhotoImage(file="image/sorcier4.png")
+                    canva_discussion.create_image(0, 0, anchor=NW, image=sorcier4_image)
+                                
+                Label_text_infos = Label(canva_discussion, text="Clique sur Suivant !", wraplength=180, justify="left")
+                Label_text_infos.pack(pady=20)
+
+
+                canva_discussion.create_window(350, 30, window=Label_text_infos)
+
+                btn_suivant = Button(second_window, text="Suivant", command=lambda: affiche_prog(pnj_, pnj_infos_, Niveau))
+                btn_suivant.pack()
+
+                second_window.protocol("WM_DELETE_WINDOW", lambda: reset_second_window())
+    
+    def reset_second_window(): #code i
+        global second_window, sorcier1_image, sorcier2_image, sorcier3_image, sorcier4_image
+        if sorcier1_image:
+            canva_discussion.create_image(0, 0, anchor=NW, image=sorcier1_image)
+        elif sorcier2_image:
+            canva_discussion.create_image(0, 0, anchor=NW, image=sorcier2_image)
+        elif sorcier3_image:
+            canva_discussion.create_image(0, 0, anchor=NW, image=sorcier3_image)       
+        elif sorcier4_image:
+            canva_discussion.create_image(0, 0, anchor=NW, image=sorcier4_image)
+
+        global second_window
+        if second_window:
+            second_window.destroy()  # Détruit la fenêtre
+        second_window = None
+
 
 
 
