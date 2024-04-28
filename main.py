@@ -142,7 +142,7 @@ def Gestion_Jouer(fenetre, Niveau):
 
 
     #Fonction de MAJ et affichage de l'inventaire du joueur ### pas terminé , manque les crafts possible !
-    def load_inv(nb_frag_cle, craft):
+    def load_inv(nb_frag_cle):
         if nb_frag_cle == 0:
             canvas_inv.create_image(0,0, anchor = NW, image=Frag_cle)
             canvas_inv.create_image(60,0, anchor = NW, image=Frag_cle)
@@ -161,6 +161,79 @@ def Gestion_Jouer(fenetre, Niveau):
 
     def parler_pnj(event):
 
+        def affiche_prog(pnj, pnj_infos, Niveau):
+            global c
+            c += 1
+            text_complet = ""
+            # comme cette partie est commune; on l'affiche au debut si c'est le bon tour
+            if pnj_infos == False:
+                if c == 1:
+                    text_complet = "Bravo ! Vous avez obtenu 1 fragment de clé !" 
+                elif c == 2 :
+                    text_complet = "Vous obtenez également une partie du cours !"
+
+                # on fait en fonction du pnj parce que le cours est unique à chaque pnj
+                elif pnj == "pnj1":
+                    # et le cours est différent en fonction du niveau (map qui change)
+                    if Niveau == 0:
+                        if c == 3 : 
+                            text_complet = "insérer le cours !"
+                        elif c == 4:
+                            ok.destroy()
+                            
+                            global pnj1_infos
+                            pnj1_infos = True
+
+                            nb_frag_cle +=1
+                            load_inv(nb_frag_cle)
+
+                elif pnj == "pnj2":
+                    if Niveau == 0:
+                        if c == 3 : 
+                            text_complet = "insérer le cours !"
+                        elif c == 4:
+                            ok.destroy()
+                            global pnj2_infos
+                            pnj2_infos = True
+
+                elif pnj == "pnj3":
+                    if Niveau == 0:
+                        if c == 3 : 
+                            text_complet = "insérer le cours !"
+                        elif c == 4:
+                            ok.destroy()
+                            global pnj3_infos
+                            pnj3_infos = True
+
+                elif pnj == "pnj4":
+                    if Niveau == 0:
+                        if c == 3 : 
+                            text_complet = "insérer le cours !"
+                        elif c == 4:
+                            ok.destroy()
+                            global pnj4_infos
+                            pnj4_infos = True
+
+
+            #de nouveau une partie commune mais cette fois quand on a déjà vu le pnj
+            else:
+                if c ==1:
+                    text_complet = "Vous avez déjà obtenu le fragment de clé de ce sorcier !" 
+                elif c == 2 :
+                    text_complet = "Vous pouvez consulter la partie du cours obtenue dans la page 'cours'.'"
+                elif c == 3 : 
+                    ok.destroy()
+
+
+
+            if (c < 4 and pnj_infos == False) or (c < 3 and pnj_infos == True):
+
+                for i in range(len(text_complet)):
+                    text_partiel = text_complet[:i+1]
+                    Label_text_infos.configure(text = text_partiel)
+                    ok.update()
+                    time.sleep(0.1)
+
         global pnj1_infos
         global pnj2_infos
         global pnj3_infos
@@ -169,74 +242,50 @@ def Gestion_Jouer(fenetre, Niveau):
 
         pnj_List = ["pnj1" , "pnj2" ,"pnj3" ,"pnj4"]
 
+        global c
+        c = 0
+
         #PNJ 1
         if (L[ordonne-1][abscisse] == pnj_List[0] or L[ordonne+1][abscisse]== pnj_List[0] or L[ordonne][abscisse-1]== pnj_List[0] or L[ordonne][abscisse+1]== pnj_List[0]):
-            if pnj1_infos == True:
-                ok = Tk()
-                Label_titre_fenete=Label(ok, text="Vous avez déjà récupéré le fragment de clé de ce sorcier").pack()
-                ok.after(2000,lambda:ok.destroy())
-                ok.mainloop()
-                # set up la verif et la fenetre d'infos comme ,quoi deja recup 
-            else:
-
-                ok = Tk()
-                Label_titre_fenete=Label(ok, text="Voici 1 fragment de clé !").pack()
-                Label_titre_fenete=Label(ok, text="Vous récuperez une partie du cours ! !").pack()
-
-                nb_frag_cle +=1
-                load_inv(nb_frag_cle, craft)
-                pnj1_infos = True
-                ok.after(4000,lambda:ok.destroy())
-                ok.mainloop()
-
-
+            pnj_ = "pnj1"
+            pnj_infos_ = pnj1_infos
+            sorcier_ = PhotoImage(file = "image/sorcier1.png")
 
         #PNJ 2
-        if (L[ordonne-1][abscisse] == pnj_List[0] or L[ordonne+1][abscisse]== pnj_List[0] or L[ordonne][abscisse-1]== pnj_List[0] or L[ordonne][abscisse+1]== pnj_List[0]):
-            if pnj1_infos == True:
-                ok = Tk()
-                Label_titre_fenete=Label(ok, text="Vous avez déjà récupéré le fragment de clé de ce sorcier").pack()
-                ok.mainloop()
-                # set up la verif et la fenetre d'infos comme ,quoi deja recup 
-            else:
-                ok = Tk()
-                Label_titre_fenete=Label(ok, text="Voici 1 fragment de clé !").pack()
-                nb_frag_cle +=1
-                load_inv(nb_frag_cle, craft)
-                pnj1_infos = True
-                ok.mainloop()
-
+        elif (L[ordonne-1][abscisse] == pnj_List[1] or L[ordonne+1][abscisse]== pnj_List[1] or L[ordonne][abscisse-1]== pnj_List[1] or L[ordonne][abscisse+1]== pnj_List[1]):
+            pnj_ = "pnj2"
+            pnj_infos_ = pnj2_infos
+            sorcier_ = PhotoImage(file = "image/sorcier2.png")
 
         #PNJ3
-        if (L[ordonne-1][abscisse] == pnj_List[0] or L[ordonne+1][abscisse]== pnj_List[0] or L[ordonne][abscisse-1]== pnj_List[0] or L[ordonne][abscisse+1]== pnj_List[0]):
-            if pnj1_infos == True:
-                ok = Tk()
-                Label_titre_fenete=Label(ok, text="Vous avez déjà récupéré le fragment de clé de ce sorcier").pack()
-                ok.mainloop()
-                # set up la verif et la fenetre d'infos comme ,quoi deja recup 
-            else:
-                ok = Tk()
-                Label_titre_fenete=Label(ok, text="Voici 1 fragment de clé !").pack()
-                nb_frag_cle +=1
-                load_inv(nb_frag_cle, craft)
-                pnj1_infos = True
-                ok.mainloop()
-
+        elif (L[ordonne-1][abscisse] == pnj_List[2] or L[ordonne+1][abscisse]== pnj_List[2] or L[ordonne][abscisse-1]== pnj_List[2] or L[ordonne][abscisse+1]== pnj_List[2]):
+            pnj_ = "pnj3"
+            pnj_infos_ = pnj3_infos
+            sorcier_ = PhotoImage(file = "image/sorcier3.png")
 
         #PNJ4
-        if (L[ordonne-1][abscisse] == pnj_List[0] or L[ordonne+1][abscisse]== pnj_List[0] or L[ordonne][abscisse-1]== pnj_List[0] or L[ordonne][abscisse+1]== pnj_List[0]):
-            if pnj1_infos == True:
-                ok = Tk()
-                Label_titre_fenete=Label(ok, text="Vous avez déjà récupéré le fragment de clé de ce sorcier").pack()
-                ok.mainloop()
-                # set up la verif et la fenetre d'infos comme ,quoi deja recup 
-            else:
-                ok = Tk()
-                Label_titre_fenete=Label(ok, text="Voici 1 fragment de clé !").pack()
-                nb_frag_cle +=1
-                load_inv(nb_frag_cle, craft)
-                pnj1_infos = True
-                ok.mainloop()
+        elif (L[ordonne-1][abscisse] == pnj_List[3] or L[ordonne+1][abscisse]== pnj_List[3] or L[ordonne][abscisse-1]== pnj_List[3] or L[ordonne][abscisse+1]== pnj_List[3]):
+            pnj_ = "pnj4"
+            pnj_infos_ = pnj4_infos
+            sorcier_ = PhotoImage(file = "image/sorcier4.png") 
+
+        # check avant de lancer la fenetre si jamais un sorcier n'est pas présent quand la touche 'a' est pressée   
+        if   (L[ordonne-1][abscisse] in pnj_List or L[ordonne+1][abscisse] in pnj_List or L[ordonne][abscisse-1] in pnj_List or L[ordonne][abscisse+1] in pnj_List ):
+            ok = Toplevel()
+            canva_discussion = Canvas(ok, width=450, height=260,bg ="white" )
+            canva_discussion.create_image(0,0,anchor=NW, image = sorcier_)
+            canva_discussion.pack()
+
+            Label_text_infos = Label(canva_discussion, text="Clique sur Suivant !",wraplength=180, justify="left")
+            Label_text_infos.pack(pady=20)
+            
+            # on insert le label sur le canvas
+            canva_discussion.create_window(350, 30, window=Label_text_infos)
+
+            btn_suivant = Button(ok, text="Suivant", command=lambda:affiche_prog(pnj_, pnj_infos_, Niveau))
+            btn_suivant.pack()
+            
+            ok.mainloop()
 
 
 
