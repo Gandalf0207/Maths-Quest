@@ -67,6 +67,8 @@ def Gestion_Jouer(fenetre, Niveau):
     Frag_cle = PhotoImage(file="image/frag_cle.png")
     glue2 = PhotoImage(file="image/glue.png")
     glue = PhotoImage(file="image/glue0.png")
+    craft_table_ = PhotoImage(file="image/craft.png")
+    Cle_full = PhotoImage(file="image/cle.png")
 
 
 
@@ -81,7 +83,7 @@ def Gestion_Jouer(fenetre, Niveau):
         global abscisse
 
         touche = event.keysym
-        check = ["■" ,"\U0001F6AA"]
+        check = ["■" ,"\U0001F6AA", "¤"]
         pnj_liste = ["pnj1", "pnj2", "pnj3", "pnj4"]
 
 
@@ -169,8 +171,27 @@ def Gestion_Jouer(fenetre, Niveau):
 
 
     #Fonction de MAJ et affichage de l'inventaire du joueur ### pas terminé , manque les crafts possible !
-    def load_inv(nb_frag_cle, nb_glue):
-        if nb_frag_cle == 0:
+    def load_inv():
+        global nb_frag_cle, nb_glue, nb_cle, craft
+        if craft ==1:
+            if nb_frag_cle !=0:
+                canvas_inv.delete("all")
+                nb_frag_cle = 0
+                nb_glue = 0
+                nb_cle += 1
+
+            text_nb_cle.set(f"Clé : {nb_cle}/1")
+
+
+            if Niveau == 0:
+                canvas_inv.create_image(60,0, anchor = NW, image = Cle_full)
+
+            elif Niveau == 1 :
+                canvas_inv.create_image(110,0, anchor = NW, image = Cle_full)
+                text_nb_glue.destroy()
+
+
+        elif nb_frag_cle == 0:
             canvas_inv.create_image(0,0, anchor = NW, image=Frag_cle)
             canvas_inv.create_image(60,0, anchor = NW, image=Frag_cle)
             canvas_inv.create_image(120,0, anchor = NW, image=Frag_cle)
@@ -185,10 +206,31 @@ def Gestion_Jouer(fenetre, Niveau):
             canvas_inv.create_image(120,0, anchor = NW, image=Frag2)
             text_nb_cle.set(f"Fragments de clé {nb_frag_cle}/3")
 
-        if Niveau == 1:
+        if Niveau == 1 and craft != 1:
             if nb_glue==1:
                 canvas_inv.create_image(180,0, anchor = NW, image=glue2)
                 Label_glue_nv2.set(f"Stick de colle {nb_glue}/1")
+
+
+    def table_craft(event):
+        global craft, nb_frag_cle, nb_glue
+        
+        if L[ordonne][abscisse-1] == "¤":
+            if Niveau ==0:
+                if nb_frag_cle ==3:
+                    craft +=1
+                    load_inv()
+                else:
+                    print("vous n'avez pas assez de frags clé !")
+
+            elif Niveau == 1:
+                if nb_frag_cle ==3 and nb_glue ==1:
+                    craft+=1
+                    load_inv()
+                else:
+                    print("vous n'avez pas assez de colle ou de frags de clé !")
+        else:
+            print("Il n'y a pas de tableau de craft près de vous pour fabriquer votre objet !")
 
 
     def parler_pnj(event):
@@ -197,6 +239,7 @@ def Gestion_Jouer(fenetre, Niveau):
             global c
             global nb_frag_cle
             global nb_glue
+            global craft
 
             c += 1
             text_complet = ""
@@ -227,7 +270,7 @@ def Gestion_Jouer(fenetre, Niveau):
                         pnj1_infos = True
 
                         nb_frag_cle +=1
-                        load_inv(nb_frag_cle, nb_glue)
+                        load_inv()
 
                 elif pnj == "pnj2":
                     if c == 3 :
@@ -243,7 +286,7 @@ def Gestion_Jouer(fenetre, Niveau):
                         pnj2_infos = True
 
                         nb_frag_cle +=1
-                        load_inv(nb_frag_cle, nb_glue)
+                        load_inv()
 
                 elif pnj == "pnj3":
                     if c == 3 :
@@ -259,7 +302,7 @@ def Gestion_Jouer(fenetre, Niveau):
                         pnj3_infos = True
 
                         nb_frag_cle +=1
-                        load_inv(nb_frag_cle, nb_glue)
+                        load_inv()
 
                 elif pnj == "pnj4":
                     if c == 3 :
@@ -273,7 +316,7 @@ def Gestion_Jouer(fenetre, Niveau):
                         pnj4_infos = True
 
                         nb_glue +=1
-                        load_inv(nb_frag_cle, nb_glue)
+                        load_inv()
 
 
 
@@ -414,6 +457,7 @@ def Gestion_Jouer(fenetre, Niveau):
     global nb_frag_cle
     global nb_glue
     global craft
+    global nb_cle
     global pnj1_infos
     global pnj2_infos
     global pnj3_infos
@@ -423,6 +467,7 @@ def Gestion_Jouer(fenetre, Niveau):
     ordonne = 1
     nb_frag_cle = 0
     nb_glue = 0
+    nb_cle = 0
     craft = 0
     pnj1_infos = False
     pnj2_infos = False
@@ -451,10 +496,13 @@ def Gestion_Jouer(fenetre, Niveau):
                 canvas.create_image(16*y, 16*x, anchor=NW, image=pnj4)
             elif L[x][y] == "\U0001F6AA":
                 canvas.create_image(16*y, 16*x, anchor=NW, image=porte)
-    
-    #On affiche le joueur
-    canvas.create_image(16*abscisse, 16*ordonne, anchor=NW, image=Perso)
-    L[1][1] = "○"
+            elif L[x][y] == "○":
+                canvas.create_image(16*y, 16*x, anchor=NW, image=Perso)
+            elif L[x][y] == "¤":
+                canvas.create_image(16*y, 16*x, anchor=NW, image=craft_table_)
+
+
+
 
     Jeu.focus_set()
     Jeu.bind("<KeyPress-z>", deplacement)
@@ -463,7 +511,7 @@ def Gestion_Jouer(fenetre, Niveau):
     Jeu.bind("<KeyPress-d>", deplacement)
     Jeu.bind("<KeyPress-a>", parler_pnj)
     Jeu.bind("<KeyPress-b>", porte_enigme)
-
+    Jeu.bind("<KeyPress-c>", table_craft)
     canvas.pack()
 
     #On load l'inventaire de base 
@@ -475,7 +523,8 @@ def Gestion_Jouer(fenetre, Niveau):
     if Niveau == 1:
         Label_glue_nv2 = StringVar()
         Label_glue_nv2.set(f"Stick de colle {nb_glue}/1")
-        text_nb_glue = Label(Jeu, textvariable=Label_glue_nv2 ).pack()
+        text_nb_glue = Label(Jeu, textvariable=Label_glue_nv2 )
+        text_nb_glue.pack()
         long_canvas_inv = 230
 
     canvas_inv = Canvas(Jeu, width=long_canvas_inv, height=50, bg = "white")

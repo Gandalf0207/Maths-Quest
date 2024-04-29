@@ -34,5 +34,11 @@ def Custom_Map(Map, longueur, largeur, Niveau):
 
     Map[x][y] = "\U0001F6AA"
 
+    #On place le joueur
+    Map[1][1] = "○"
+
+    #On place la table de craft
+    Map[1][0] = "¤"
+
 
     return Map
