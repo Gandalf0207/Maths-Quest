@@ -65,6 +65,8 @@ def Gestion_Jouer(fenetre, Niveau):
     carre = PhotoImage(file="image/CARRE.png")
     Frag2 = PhotoImage(file="image/frag_cle2.png")
     Frag_cle = PhotoImage(file="image/frag_cle.png")
+    glue2 = PhotoImage(file="image/glue.png")
+    glue = PhotoImage(file="image/glue0.png")
 
 
 
@@ -185,7 +187,7 @@ def Gestion_Jouer(fenetre, Niveau):
 
         if Niveau == 1:
             if nb_glue==1:
-                canvas_inv.create_image(180,0, anchor = NW, image=Frag2)
+                canvas_inv.create_image(180,0, anchor = NW, image=glue2)
                 Label_glue_nv2.set(f"Stick de colle {nb_glue}/1")
 
 
@@ -200,66 +202,78 @@ def Gestion_Jouer(fenetre, Niveau):
             text_complet = ""
             # comme cette partie est commune; on l'affiche au debut si c'est le bon tour
             if pnj_infos == False:
-                if c == 1 and pnj!= "pnj4":
-                    text_complet = "Bravo ! Vous avez obtenu 1 fragment de clé !" 
+                if c == 1 :
+                    if pnj!= "pnj4":
+                        text_complet = "Bravo ! Vous avez obtenu 1 fragment de clé !" 
+                    else:
+                        text_complet = "Bravo ! Vous avez obtenue un bâton de colle !"
+
                 elif c == 2:
                     text_complet = "Vous obtenez également une partie du cours !"
 
                 # on fait en fonction du pnj parce que le cours est unique à chaque pnj
                 elif pnj == "pnj1":
                     # et le cours est différent en fonction du niveau (map qui change)
-                    if Niveau == 0:
-                        if c == 3 : 
+                    if c == 3 :
+                        if Niveau == 0: 
                             text_complet = "insérer le cours !"
-                        elif c == 4:
-                            second_window.destroy()
+                        elif Niveau == 1:
+                            text_complet = "insérer le cours !"
 
-                            global pnj1_infos
-                            pnj1_infos = True
+                    elif c == 4:
+                        second_window.destroy()
 
-                            nb_frag_cle +=1
-                            load_inv(nb_frag_cle, nb_glue)
+                        global pnj1_infos
+                        pnj1_infos = True
+
+                        nb_frag_cle +=1
+                        load_inv(nb_frag_cle, nb_glue)
 
                 elif pnj == "pnj2":
-                    if Niveau == 0:
-                        if c == 3 : 
+                    if c == 3 :
+                        if Niveau == 0: 
                             text_complet = "insérer le cours !"
-                        elif c == 4:
-                            second_window.destroy()
+                        elif Niveau == 1:
+                            text_complet = "insérer le cours !"
 
-                            global pnj2_infos
-                            pnj2_infos = True
+                    elif c == 4:
+                        second_window.destroy()
 
-                            nb_frag_cle +=1
-                            load_inv(nb_frag_cle, nb_glue)
+                        global pnj2_infos
+                        pnj2_infos = True
+
+                        nb_frag_cle +=1
+                        load_inv(nb_frag_cle, nb_glue)
 
                 elif pnj == "pnj3":
-                    if Niveau == 0:
-                        if c == 3 : 
+                    if c == 3 :
+                        if Niveau == 0: 
                             text_complet = "insérer le cours !"
-                        elif c == 4:
-                            second_window.destroy()
+                        elif Niveau == 1:
+                            text_complet = "insérer le cours !"
 
-                            global pnj3_infos
-                            pnj3_infos = True
+                    elif c == 4:
+                        second_window.destroy()
 
-                            nb_frag_cle +=1
-                            load_inv(nb_frag_cle, nb_glue)
+                        global pnj3_infos
+                        pnj3_infos = True
+
+                        nb_frag_cle +=1
+                        load_inv(nb_frag_cle, nb_glue)
 
                 elif pnj == "pnj4":
-                    if Niveau == 1:
-                        if  c == 1:
-                            text_complet = "Bravo ! Vous avez obtenue un bâton de colle !"
-                        elif c == 3 : 
+                    if c == 3 :
+                        if Niveau == 1:
                             text_complet = "insérer le cours !"
-                        elif c == 4:
-                            second_window.destroy()
 
-                            global pnj4_infos
-                            pnj4_infos = True
+                    elif c == 4:
+                        second_window.destroy()
 
-                            nb_glue +=1
-                            load_inv(nb_frag_cle, nb_glue)
+                        global pnj4_infos
+                        pnj4_infos = True
+
+                        nb_glue +=1
+                        load_inv(nb_frag_cle, nb_glue)
 
 
 
@@ -457,17 +471,19 @@ def Gestion_Jouer(fenetre, Niveau):
     text_nb_cle = StringVar()
     text_nb_cle.set(f"Fragments de clé {nb_frag_cle}/3")
     Label_Titre_Cle = Label(Jeu, textvariable=text_nb_cle).pack(pady=20)
+    long_canvas_inv = 170
     if Niveau == 1:
         Label_glue_nv2 = StringVar()
         Label_glue_nv2.set(f"Stick de colle {nb_glue}/1")
         text_nb_glue = Label(Jeu, textvariable=Label_glue_nv2 ).pack()
+        long_canvas_inv = 230
 
-    canvas_inv = Canvas(Jeu, width=230, height=60, bg = "black")
+    canvas_inv = Canvas(Jeu, width=long_canvas_inv, height=50, bg = "white")
     canvas_inv.create_image(0,0,anchor=NW, image = Frag_cle)
     canvas_inv.create_image(60,0,anchor=NW, image = Frag_cle)
     canvas_inv.create_image(120,0,anchor=NW, image = Frag_cle)
     if Niveau == 1:
-        canvas_inv.create_image(180,0,anchor=NW, image = Frag_cle)
+        canvas_inv.create_image(180,0,anchor=NW, image = glue)
 
     
 
