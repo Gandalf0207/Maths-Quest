@@ -167,13 +167,13 @@ def Gestion_Jouer(fenetre, Niveau):
 
 
     #Fonction de MAJ et affichage de l'inventaire du joueur ### pas terminé , manque les crafts possible !
-    def load_inv(nb_frag_cle):
+    def load_inv(nb_frag_cle, nb_glue):
         if nb_frag_cle == 0:
             canvas_inv.create_image(0,0, anchor = NW, image=Frag_cle)
             canvas_inv.create_image(60,0, anchor = NW, image=Frag_cle)
             canvas_inv.create_image(120,0, anchor = NW, image=Frag_cle)
             text_nb_cle.set(f"Fragments de clé {nb_frag_cle}/3")
-        if nb_frag_cle == 1:
+        elif nb_frag_cle == 1:
             canvas_inv.create_image(0,0, anchor = NW, image=Frag2)
             text_nb_cle.set(f"Fragments de clé {nb_frag_cle}/3")
         elif nb_frag_cle == 2:
@@ -183,20 +183,26 @@ def Gestion_Jouer(fenetre, Niveau):
             canvas_inv.create_image(120,0, anchor = NW, image=Frag2)
             text_nb_cle.set(f"Fragments de clé {nb_frag_cle}/3")
 
+        if Niveau == 1:
+            if nb_glue==1:
+                canvas_inv.create_image(180,0, anchor = NW, image=Frag2)
+                Label_glue_nv2.set(f"Stick de colle {nb_glue}/1")
+
 
     def parler_pnj(event):
 
         def affiche_prog(pnj, pnj_infos, Niveau):
             global c
             global nb_frag_cle
+            global nb_glue
 
             c += 1
             text_complet = ""
             # comme cette partie est commune; on l'affiche au debut si c'est le bon tour
             if pnj_infos == False:
-                if c == 1:
+                if c == 1 and pnj!= "pnj4":
                     text_complet = "Bravo ! Vous avez obtenu 1 fragment de clé !" 
-                elif c == 2 :
+                elif c == 2:
                     text_complet = "Vous obtenez également une partie du cours !"
 
                 # on fait en fonction du pnj parce que le cours est unique à chaque pnj
@@ -212,7 +218,7 @@ def Gestion_Jouer(fenetre, Niveau):
                             pnj1_infos = True
 
                             nb_frag_cle +=1
-                            load_inv(nb_frag_cle)
+                            load_inv(nb_frag_cle, nb_glue)
 
                 elif pnj == "pnj2":
                     if Niveau == 0:
@@ -225,7 +231,7 @@ def Gestion_Jouer(fenetre, Niveau):
                             pnj2_infos = True
 
                             nb_frag_cle +=1
-                            load_inv(nb_frag_cle)
+                            load_inv(nb_frag_cle, nb_glue)
 
                 elif pnj == "pnj3":
                     if Niveau == 0:
@@ -238,11 +244,13 @@ def Gestion_Jouer(fenetre, Niveau):
                             pnj3_infos = True
 
                             nb_frag_cle +=1
-                            load_inv(nb_frag_cle)
+                            load_inv(nb_frag_cle, nb_glue)
 
                 elif pnj == "pnj4":
-                    if Niveau == 0:
-                        if c == 3 : 
+                    if Niveau == 1:
+                        if  c == 1:
+                            text_complet = "Bravo ! Vous avez obtenue un bâton de colle !"
+                        elif c == 3 : 
                             text_complet = "insérer le cours !"
                         elif c == 4:
                             second_window.destroy()
@@ -250,15 +258,18 @@ def Gestion_Jouer(fenetre, Niveau):
                             global pnj4_infos
                             pnj4_infos = True
 
-                            nb_frag_cle +=1
-                            load_inv(nb_frag_cle)
+                            nb_glue +=1
+                            load_inv(nb_frag_cle, nb_glue)
 
 
 
             #de nouveau une partie commune mais cette fois quand on a déjà vu le pnj
             else:
                 if c ==1:
-                    text_complet = "Vous avez déjà obtenu le fragment de clé de ce sorcier !" 
+                    if pnj=="pnj4":
+                        text_complet = "Vous avez déjà obtenu le bâton de colle de ce sorcier !" 
+                    else:
+                        text_complet = "Vous avez déjà obtenu le fragment de clé de ce sorcier !" 
                 elif c == 2 :
                     text_complet = "Vous pouvez consulter la partie du cours obtenue dans la page 'cours'.'"
                 elif c == 3 : 
@@ -278,7 +289,6 @@ def Gestion_Jouer(fenetre, Niveau):
         global pnj2_infos
         global pnj3_infos
         global pnj4_infos  
-        global nb_frag_cle
 
         pnj_List = ["pnj1" , "pnj2" ,"pnj3" ,"pnj4"]
 
@@ -388,6 +398,7 @@ def Gestion_Jouer(fenetre, Niveau):
     global ordonne
     global abscisse
     global nb_frag_cle
+    global nb_glue
     global craft
     global pnj1_infos
     global pnj2_infos
@@ -397,6 +408,7 @@ def Gestion_Jouer(fenetre, Niveau):
     abscisse = 1
     ordonne = 1
     nb_frag_cle = 0
+    nb_glue = 0
     craft = 0
     pnj1_infos = False
     pnj2_infos = False
@@ -445,11 +457,19 @@ def Gestion_Jouer(fenetre, Niveau):
     text_nb_cle = StringVar()
     text_nb_cle.set(f"Fragments de clé {nb_frag_cle}/3")
     Label_Titre_Cle = Label(Jeu, textvariable=text_nb_cle).pack(pady=20)
+    if Niveau == 1:
+        Label_glue_nv2 = StringVar()
+        Label_glue_nv2.set(f"Stick de colle {nb_glue}/1")
+        text_nb_glue = Label(Jeu, textvariable=Label_glue_nv2 ).pack()
 
-    canvas_inv = Canvas(Jeu, width=170, height=60, bg = "black")
+    canvas_inv = Canvas(Jeu, width=230, height=60, bg = "black")
     canvas_inv.create_image(0,0,anchor=NW, image = Frag_cle)
     canvas_inv.create_image(60,0,anchor=NW, image = Frag_cle)
     canvas_inv.create_image(120,0,anchor=NW, image = Frag_cle)
+    if Niveau == 1:
+        canvas_inv.create_image(180,0,anchor=NW, image = Frag_cle)
+
+    
 
     canvas_inv.pack()
 
