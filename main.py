@@ -26,8 +26,8 @@ def Gestion_Jouer(fenetre, Niveau):
     Jeu = Tk()
 
     #On crée la map 
-    longueur = 35
-    largeur = 25
+    longueur = 38
+    largeur = 22
     L = labyrinthe.mapmaker(longueur,largeur) 
 
     #On custom la map avec les pnj, portes et joueur....
