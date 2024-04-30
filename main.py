@@ -513,15 +513,15 @@ def Gestion_Jouer(fenetre, Niveau):
     canvas.pack(side="top",padx=5, pady=5)
 
     ###Frame gauche bas pour clé + pouvoir parler infos
-    Label_Frame_pnj_Text = Frame(Label_Frame_Jeu_Inv, bg="red")
-    Label_Frame_pnj_Text.pack(side=BOTTOM, expand=True, fill='both',padx=5, pady=5)
+    Label_Frame_pnj_Text = Frame(Label_Frame_Jeu_Inv, bg="red", height=150)
+    Label_Frame_pnj_Text.pack(side=BOTTOM, fill='x',padx=5, pady=5)
 
     ##Frame affiche le texte si on peut parler à un pnj ou faire un action
-    Label_Frame_Text_Info_Discussion_pnj = Frame(Label_Frame_pnj_Text, bg="blue")
+    Label_Frame_Text_Info_Discussion_pnj = Frame(Label_Frame_pnj_Text, bg="blue",height=150)
     Label_Frame_Text_Info_Discussion_pnj.pack(expand=True, fill=BOTH, padx=5, pady=5, side='left')
 
     ## Frame de box de discussion avec les pnj
-    Label_Frame_Discussion_pnj = Frame(Label_Frame_pnj_Text, bg="blue")
+    Label_Frame_Discussion_pnj = Frame(Label_Frame_pnj_Text, bg="blue",height=150)
     Label_Frame_Discussion_pnj.pack(expand=True, fill=BOTH, padx=5, pady=5, side='right')
 
 
@@ -535,7 +535,7 @@ def Gestion_Jouer(fenetre, Niveau):
     Label_Frame_Cours_Affiche.pack(side='top', expand=True, fill="both", padx=5, pady=5)
     
     ##Frame affiche l'inventaire (clé(s))
-    Label_Frame_Inv_Cle = Frame(Label_Frame_Cours_cle, bg='white', height=100)
+    Label_Frame_Inv_Cle = Frame(Label_Frame_Cours_cle, bg='white', height=150)
     Label_Frame_Inv_Cle.pack(side='bottom', padx=5, pady=5, fill='x')
 
 
