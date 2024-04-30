@@ -10,14 +10,30 @@ def Custom_Map(Map, longueur, largeur, Niveau):
 
 
     # On place les pnj
-    for i in range(len(L_pnj)):      
-        x = random.randint(1,largeur-2)
-        y = random.randint(1,longueur-2)
+    comp = 0
+    for i in range(len(L_pnj)):
+        comp +=1
+        if comp <=2:      
+            x = random.randint(1,(largeur//2 -2))
+        else:
+            x = random.randint((largeur//2 +2),largeur-2)
+
+        if comp %2 ==1:
+            y = random.randint(1,(longueur//2 -2))
+        else:
+            y = random.randint((longueur//2 +2),longueur-2)
 
         # si jamais les coordonnées ne sont pas un mur / le mur est entre 4murs donc inaccessible
         while Map[x][y] != "■" or (Map[x+1][y] == "■" and Map[x-1][y] == "■" and Map[x][y+1] == "■" and Map[x][y-1] == "■"):
-            x = random.randint(1,largeur-2)
-            y = random.randint(1,longueur-2)
+            if comp <=2:      
+                x = random.randint(1,(largeur//2 -2))
+            else:
+                x = random.randint((largeur//2 +2),largeur-2)
+
+            if comp %2 ==1:
+                y = random.randint(1,(longueur//2 -2))
+            else:
+                y = random.randint((longueur//2 +2),longueur-2)
         
         Map[x][y] = L_pnj[i]
 

@@ -27,7 +27,7 @@ def Gestion_Jouer(fenetre, Niveau):
 
     #On crée la map 
     longueur = 38
-    largeur = 22
+    largeur = 20
     L = labyrinthe.mapmaker(longueur,largeur) 
 
     #On custom la map avec les pnj, portes et joueur....
@@ -469,7 +469,7 @@ def Gestion_Jouer(fenetre, Niveau):
 
 
 
-    Jeu.geometry("1200x600")
+    Jeu.geometry("1200x700")
     ######On place tout les elements sur la fenetre#####
 
     #####Frame global qui contient les deux partie du jeu
