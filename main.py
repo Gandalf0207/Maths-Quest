@@ -26,8 +26,8 @@ def Gestion_Jouer(fenetre, Niveau):
     Jeu = Tk()
 
     #On crée la map 
-    longueur = int(Label_Longueur_Map.get())
-    largeur = int(Label_Largeur_Map.get())
+    longueur = 35
+    largeur = 25
     L = labyrinthe.mapmaker(longueur,largeur) 
 
     #On custom la map avec les pnj, portes et joueur....
@@ -513,31 +513,30 @@ def Gestion_Jouer(fenetre, Niveau):
     canvas.pack(side="top",padx=5, pady=5)
 
     ###Frame gauche bas pour clé + pouvoir parler infos
-    Label_Frame_Inv_Text = Frame(Label_Frame_Jeu_Inv, bg="red")
-    Label_Frame_Inv_Text.pack(side=BOTTOM, expand=True, fill='both',padx=5, pady=5)
+    Label_Frame_pnj_Text = Frame(Label_Frame_Jeu_Inv, bg="red")
+    Label_Frame_pnj_Text.pack(side=BOTTOM, expand=True, fill='both',padx=5, pady=5)
 
     ##Frame affiche le texte si on peut parler à un pnj ou faire un action
-    Label_Frame_Text_Info_Discussion_pnj = Frame(Label_Frame_Inv_Text, bg="blue")
+    Label_Frame_Text_Info_Discussion_pnj = Frame(Label_Frame_pnj_Text, bg="blue")
     Label_Frame_Text_Info_Discussion_pnj.pack(expand=True, fill=BOTH, padx=5, pady=5, side='left')
 
-    ##Frame affiche l'inventaire (clé(s))
-    Label_Frame_Inv_Cle = Frame(Label_Frame_Inv_Text, bg="blue")
-    Label_Frame_Inv_Cle.pack(expand=True, fill=BOTH, padx=5, pady=5, side='right')
-
+    ## Frame de box de discussion avec les pnj
+    Label_Frame_Discussion_pnj = Frame(Label_Frame_pnj_Text, bg="blue")
+    Label_Frame_Discussion_pnj.pack(expand=True, fill=BOTH, padx=5, pady=5, side='right')
 
 
 
     ####Partie Droite : 
-    Label_Frame_Cours_Discussion = Frame(Label_Frame_Global, bg="#000000")
-    Label_Frame_Cours_Discussion.pack(side='right', expand=True, fill="both", padx=5, pady=5)
+    Label_Frame_Cours_cle = Frame(Label_Frame_Global, bg="#000000")
+    Label_Frame_Cours_cle.pack(side='right', expand=True, fill="both", padx=5, pady=5)
 
     ##Frame qui affiche le cours actuel
-    Label_Frame_Cours_Affiche = Frame(Label_Frame_Cours_Discussion,bg='white')
+    Label_Frame_Cours_Affiche = Frame(Label_Frame_Cours_cle,bg='white')
     Label_Frame_Cours_Affiche.pack(side='top', expand=True, fill="both", padx=5, pady=5)
-
-    ## Frame de box de discussion avec les pnj
-    Label_Frame_Dscussion_pnj = Frame(Label_Frame_Cours_Discussion, bg='white', height=100)
-    Label_Frame_Dscussion_pnj.pack(side='bottom', padx=5, pady=5, fill='x')
+    
+    ##Frame affiche l'inventaire (clé(s))
+    Label_Frame_Inv_Cle = Frame(Label_Frame_Cours_cle, bg='white', height=100)
+    Label_Frame_Inv_Cle.pack(side='bottom', padx=5, pady=5, fill='x')
 
 
 
@@ -617,13 +616,6 @@ Lancement.geometry("350x400")
 
 Frame_ = ttk.Frame(Lancement, bg = None)
 
-Label_Longueur_Map = StringVar()
-Label_Longueur_Map.set(45)
-Lmap = Scale(Frame_, variable=Label_Longueur_Map, orient=HORIZONTAL, from_=30, to=70).pack()
-
-Label_Largeur_Map = StringVar()
-Label_Largeur_Map.set(20)
-lmap = Scale(Frame_, variable=Label_Largeur_Map, from_=10, to=30).pack()
 
 btn = ttk.Button(Frame_, text="Jouer !",command=lambda:Gestion_Jouer(Lancement, Niveau)).pack( pady=20)
 Frame_.pack()
