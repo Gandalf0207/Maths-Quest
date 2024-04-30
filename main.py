@@ -2,6 +2,7 @@
 
 from tkinter import *
 from tkinter import ttk
+import random
 import time 
 import labyrinthe
 import custom_labyrinthe
@@ -14,34 +15,13 @@ import custom_labyrinthe
 # Cela signifie que cette partie du code n'a pas été réalisée uniquement par nous meme....
 
 
-# # Variable pour suivre l'état de la deuxième fenêtre #code ia 
-second_window = None #code ia
-
-# Déclarez les variables globales pour stocker les images
-global sorcier1_image, sorcier2_image, sorcier3_image, sorcier4_image
-sorcier1_image = None #code ia
-sorcier2_image = None #code ia
-sorcier3_image = None #code ia
-sorcier4_image = None #code ia
-
 def Gestion_Jouer(fenetre, Niveau):
-    global second_window 
-    #Pour cette comparaison, le "fenetre" correspond à la fenetre tk qui est en cours de loop
+
+    #le "fenetre" correspond à la fenetre tk qui est en cours de loop
     # Le permir passage se sera la fenetre 'Lancement', puis les autres tours se sera les fenetres de 'Jeu'
     # Ce fonctionnement permet de faire tourner le programme pour le nombre de niveaux disponible !
-    if Niveau ==0:
-        #Nettoyage de la page
-        fenetre.destroy()
-    else:# 
-        # Variable pour suivre l'état de la deuxième fenêtre #code ia 
-        second_window = None #code ia
-        # Déclarez les variables globales pour stocker les images
-        global sorcier1_image, sorcier2_image, sorcier3_image, sorcier4_image
-        sorcier1_image = None #code ia
-        sorcier2_image = None #code ia
-        sorcier3_image = None #code ia
-        sorcier4_image = None #code ia
-        fenetre.destroy()
+    fenetre.destroy()
+
 
     Jeu = Tk()
 
@@ -69,6 +49,13 @@ def Gestion_Jouer(fenetre, Niveau):
     glue = PhotoImage(file="image/glue0.png")
     craft_table_ = PhotoImage(file="image/craft.png")
     Cle_full = PhotoImage(file="image/cle.png")
+    clepnj1 = PhotoImage(file="image/clepnj1.png")
+    clepnj2 = PhotoImage(file="image/clepnj2.png")
+    clepnj3 = PhotoImage(file="image/clepnj3.png")
+
+    mur1 = PhotoImage(file="image/Wall1.png")
+    mur2 = PhotoImage(file="image/Wall2.png")
+    mur3 = PhotoImage(file="image/Wall3.gif")
 
 
 
@@ -90,7 +77,7 @@ def Gestion_Jouer(fenetre, Niveau):
         if touche == "z":
             if ordonne-1 > 0 and L[ordonne-1][abscisse] not in check :
                 L[ordonne][abscisse] = " "
-                L[ordonne][abscisse] = canvas.create_image(16*abscisse, 16*ordonne, anchor=NW, image=carre)
+                L[ordonne][abscisse] = canvas.create_image(24*abscisse, 24*ordonne, anchor=NW, image=carre)
 
                 #Si jamais les pnj sont sur la route
                 if (L[ordonne-1][abscisse] in pnj_liste) and (L[ordonne-2][abscisse] not in check) and (L[ordonne-2][abscisse] not in pnj_liste):
@@ -101,7 +88,7 @@ def Gestion_Jouer(fenetre, Niveau):
                     ordonne-=1
                 
                 L[ordonne][abscisse] = "○"
-                L[ordonne][abscisse] = canvas.create_image(16*abscisse, 16*ordonne, anchor=NW, image=Perso)
+                L[ordonne][abscisse] = canvas.create_image(24*abscisse, 24*ordonne, anchor=NW, image=Perso)
             else :
                 print("C'est un mur !")
 
@@ -109,7 +96,7 @@ def Gestion_Jouer(fenetre, Niveau):
         elif touche=="q" :
             if abscisse-1 > 0 and L[ordonne][abscisse-1] not in check :
                 L[ordonne][abscisse] = " "
-                L[ordonne][abscisse] = canvas.create_image(16*abscisse, 16*ordonne, anchor=NW, image=carre)
+                L[ordonne][abscisse] = canvas.create_image(24*abscisse, 24*ordonne, anchor=NW, image=carre)
 
                 #Si jamais les pnj sont sur la route
                 if (L[ordonne][abscisse-1] in pnj_liste) and (L[ordonne][abscisse-2] not in check ) and (L[ordonne][abscisse-2] not in pnj_liste):
@@ -120,7 +107,7 @@ def Gestion_Jouer(fenetre, Niveau):
                     abscisse-=1
 
                 L[ordonne][abscisse] = "○"
-                L[ordonne][abscisse] = canvas.create_image(16*abscisse, 16*ordonne, anchor=NW, image=Perso)
+                L[ordonne][abscisse] = canvas.create_image(24*abscisse, 24*ordonne, anchor=NW, image=Perso)
             else :
                 print("C'est un mur !")
 
@@ -128,7 +115,7 @@ def Gestion_Jouer(fenetre, Niveau):
         elif touche=="s" :
             if ordonne+1 < len(L) and L[ordonne+1][abscisse] not in check :
                 L[ordonne][abscisse] = " "
-                L[ordonne][abscisse] = canvas.create_image(16*abscisse, 16*ordonne, anchor=NW, image=carre)
+                L[ordonne][abscisse] = canvas.create_image(24*abscisse, 24*ordonne, anchor=NW, image=carre)
 
                 #Si jamais les pnj sont sur la route
                 if (L[ordonne+1][abscisse] in pnj_liste) and (L[ordonne+2][abscisse] not in check) and (L[ordonne+2][abscisse] not in pnj_liste):
@@ -139,7 +126,7 @@ def Gestion_Jouer(fenetre, Niveau):
                     ordonne+=1
 
                 L[ordonne][abscisse] = "○"
-                L[ordonne][abscisse] = canvas.create_image(16*abscisse, 16*ordonne, anchor=NW, image=Perso)
+                L[ordonne][abscisse] = canvas.create_image(24*abscisse, 24*ordonne, anchor=NW, image=Perso)
             else :
                 print("C'est un mur !")
 
@@ -147,7 +134,7 @@ def Gestion_Jouer(fenetre, Niveau):
         elif touche=="d" :
             if abscisse+1 < len(L[ordonne]) and L[ordonne][abscisse +1] not in check :
                 L[ordonne][abscisse] = " "
-                L[ordonne][abscisse] = canvas.create_image(16*abscisse, 16*ordonne, anchor=NW, image=carre)
+                L[ordonne][abscisse] = canvas.create_image(24*abscisse, 24*ordonne, anchor=NW, image=carre)
 
                 #Si jamais les pnj sont sur la route
                 if (L[ordonne][abscisse+1] in pnj_liste) and (L[ordonne][abscisse+2] not in check) and (L[ordonne][abscisse+2] not in pnj_liste):
@@ -158,21 +145,21 @@ def Gestion_Jouer(fenetre, Niveau):
                     abscisse+=1
 
                 L[ordonne][abscisse] = "○"
-                L[ordonne][abscisse] = canvas.create_image(16*abscisse, 16*ordonne, anchor=NW, image=Perso)
+                L[ordonne][abscisse] = canvas.create_image(24*abscisse, 24*ordonne, anchor=NW, image=Perso)
 
             else :
                 print("C'est un mur !")
 
-        else:
-            print("suite des fonctionnalités pas encore faites")
 
         print("Abscisse : ", abscisse)
         print("Ordonne : ", ordonne)
 
 
+
     #Fonction de MAJ et affichage de l'inventaire du joueur ### pas terminé , manque les crafts possible !
     def load_inv():
         global nb_frag_cle, nb_glue, nb_cle, craft
+
         if craft ==1:
             if nb_frag_cle !=0:
                 canvas_inv.delete("all")
@@ -454,17 +441,22 @@ def Gestion_Jouer(fenetre, Niveau):
 
     global ordonne
     global abscisse
+    abscisse = 1
+    ordonne = 1
+
+
+    # 
     global nb_frag_cle
     global nb_glue
     global craft
     global nb_cle
+
     global pnj1_infos
     global pnj2_infos
     global pnj3_infos
     global pnj4_infos    
 
-    abscisse = 1
-    ordonne = 1
+
     nb_frag_cle = 0
     nb_glue = 0
     nb_cle = 0
@@ -473,37 +465,120 @@ def Gestion_Jouer(fenetre, Niveau):
     pnj2_infos = False
     pnj3_infos = False
     pnj4_infos = False
-    
+    # 
 
 
-    long_c = len(L[0])*16
-    larg_c = len(L)*16
 
-    canvas = Canvas(Jeu, width=long_c, height=larg_c, bg= "white")
+    Jeu.geometry("1200x600")
+    ######On place tout les elements sur la fenetre#####
+
+    #####Frame global qui contient les deux partie du jeu
+    Label_Frame_Global = Frame(Jeu, bg='yellow')
+    Label_Frame_Global.pack(expand=True, fill="both")
+
+    ####Partie Gauche : 
+    Label_Frame_Jeu_Inv = Frame(Label_Frame_Global, bg='#000000') 
+    Label_Frame_Jeu_Inv.pack(side = 'left', fill='y', padx=5, pady=5)
+
+    #Jeu partie Gauche haut : 
+    long_c = len(L[0])*24
+    larg_c = len(L)*24
+    canvas = Canvas(Label_Frame_Jeu_Inv, width=long_c, height=larg_c)
 
     #On affiche dans tkinter
     for x in range(len(L)):
         for y in range(len(L[x])):
             if L[x][y] == "■":
-                canvas.create_image(16*y, 16*x, anchor=NW, image=Arbre)
+                choice_mur = random.randint(1,20)
+                if choice_mur <=12:
+                    canvas.create_image(24*y, 24*x, anchor=NW, image=mur1)
+                elif 12 < choice_mur < 18:
+                    canvas.create_image(24*y, 24*x, anchor=NW, image=mur2)
+                else:
+                    canvas.create_image(24*y, 24*x, anchor=NW, image=mur3)
             elif L[x][y] == "pnj1":
-                canvas.create_image(16*y, 16*x, anchor=NW, image=pnj1)
+                canvas.create_image(24*y, 24*x, anchor=NW, image=pnj1)
             elif L[x][y] == "pnj2":
-                canvas.create_image(16*y, 16*x, anchor=NW, image=pnj2)
+                canvas.create_image(24*y, 24*x, anchor=NW, image=pnj2)
             elif L[x][y] == "pnj3":
-                canvas.create_image(16*y, 16*x, anchor=NW, image=pnj3)
+                canvas.create_image(24*y, 24*x, anchor=NW, image=pnj3)
             elif L[x][y] == "pnj4":
-                canvas.create_image(16*y, 16*x, anchor=NW, image=pnj4)
+                canvas.create_image(24*y, 24*x, anchor=NW, image=pnj4)
             elif L[x][y] == "\U0001F6AA":
-                canvas.create_image(16*y, 16*x, anchor=NW, image=porte)
+                canvas.create_image(24*y, 24*x, anchor=NW, image=porte)
             elif L[x][y] == "○":
-                canvas.create_image(16*y, 16*x, anchor=NW, image=Perso)
+                canvas.create_image(24*y, 24*x, anchor=NW, image=Perso)
             elif L[x][y] == "¤":
-                canvas.create_image(16*y, 16*x, anchor=NW, image=craft_table_)
+                canvas.create_image(24*y, 24*x, anchor=NW, image=craft_table_)
+    canvas.pack(side="top",padx=5, pady=5)
+
+    ###Frame gauche bas pour clé + pouvoir parler infos
+    Label_Frame_Inv_Text = Frame(Label_Frame_Jeu_Inv, bg="red")
+    Label_Frame_Inv_Text.pack(side=BOTTOM, expand=True, fill='both',padx=5, pady=5)
+
+    ##Frame affiche le texte si on peut parler à un pnj ou faire un action
+    Label_Frame_Text_Info_Discussion_pnj = Frame(Label_Frame_Inv_Text, bg="blue")
+    Label_Frame_Text_Info_Discussion_pnj.pack(expand=True, fill=BOTH, padx=5, pady=5, side='left')
+
+    ##Frame affiche l'inventaire (clé(s))
+    Label_Frame_Inv_Cle = Frame(Label_Frame_Inv_Text, bg="blue")
+    Label_Frame_Inv_Cle.pack(expand=True, fill=BOTH, padx=5, pady=5, side='right')
 
 
 
 
+    ####Partie Droite : 
+    Label_Frame_Cours_Discussion = Frame(Label_Frame_Global, bg="#000000")
+    Label_Frame_Cours_Discussion.pack(side='right', expand=True, fill="both", padx=5, pady=5)
+
+    ##Frame qui affiche le cours actuel
+    Label_Frame_Cours_Affiche = Frame(Label_Frame_Cours_Discussion,bg='white')
+    Label_Frame_Cours_Affiche.pack(side='top', expand=True, fill="both", padx=5, pady=5)
+
+    ## Frame de box de discussion avec les pnj
+    Label_Frame_Dscussion_pnj = Frame(Label_Frame_Cours_Discussion, bg='white', height=100)
+    Label_Frame_Dscussion_pnj.pack(side='bottom', padx=5, pady=5, fill='x')
+
+
+
+
+
+
+
+
+
+
+
+
+    #On load l'inventaire de base 
+    # Label_Titre = Label(Jeu, text="Inventaire").pack()
+    # text_nb_cle = StringVar()
+    # text_nb_cle.set(f"Fragments de clé {nb_frag_cle}/3")
+    # Label_Titre_Cle = Label(Jeu, textvariable=text_nb_cle).pack(pady=20)
+    # long_canvas_inv = 170
+    # if Niveau == 1:
+    #     Label_glue_nv2 = StringVar()
+    #     Label_glue_nv2.set(f"Stick de colle {nb_glue}/1")
+    #     text_nb_glue = Label(Jeu, textvariable=Label_glue_nv2 )
+    #     text_nb_glue.pack()
+    #     long_canvas_inv = 230
+
+    # canvas_inv = Canvas(Jeu, width=long_canvas_inv, height=50, bg = "white")
+    # canvas_inv.create_image(0,0,anchor=NW, image = Frag_cle)
+    # canvas_inv.create_image(60,0,anchor=NW, image = Frag_cle)
+    # canvas_inv.create_image(120,0,anchor=NW, image = Frag_cle)
+    # if Niveau == 1:
+    #     canvas_inv.create_image(180,0,anchor=NW, image = glue)
+
+    
+
+    # canvas_inv.pack()
+
+
+
+
+
+#deplacement
     Jeu.focus_set()
     Jeu.bind("<KeyPress-z>", deplacement)
     Jeu.bind("<KeyPress-q>", deplacement)
@@ -512,31 +587,7 @@ def Gestion_Jouer(fenetre, Niveau):
     Jeu.bind("<KeyPress-a>", parler_pnj)
     Jeu.bind("<KeyPress-b>", porte_enigme)
     Jeu.bind("<KeyPress-c>", table_craft)
-    canvas.pack()
 
-    #On load l'inventaire de base 
-    Label_Titre = Label(Jeu, text="Inventaire").pack()
-    text_nb_cle = StringVar()
-    text_nb_cle.set(f"Fragments de clé {nb_frag_cle}/3")
-    Label_Titre_Cle = Label(Jeu, textvariable=text_nb_cle).pack(pady=20)
-    long_canvas_inv = 170
-    if Niveau == 1:
-        Label_glue_nv2 = StringVar()
-        Label_glue_nv2.set(f"Stick de colle {nb_glue}/1")
-        text_nb_glue = Label(Jeu, textvariable=Label_glue_nv2 )
-        text_nb_glue.pack()
-        long_canvas_inv = 230
-
-    canvas_inv = Canvas(Jeu, width=long_canvas_inv, height=50, bg = "white")
-    canvas_inv.create_image(0,0,anchor=NW, image = Frag_cle)
-    canvas_inv.create_image(60,0,anchor=NW, image = Frag_cle)
-    canvas_inv.create_image(120,0,anchor=NW, image = Frag_cle)
-    if Niveau == 1:
-        canvas_inv.create_image(180,0,anchor=NW, image = glue)
-
-    
-
-    canvas_inv.pack()
 
     Jeu.mainloop()
 
@@ -564,18 +615,18 @@ Lancement.title("RPG : Lanncement  Théo | Quentin")
 
 Lancement.geometry("350x400")
 
-Frame = ttk.Frame(Lancement, bg = None)
+Frame_ = ttk.Frame(Lancement, bg = None)
 
 Label_Longueur_Map = StringVar()
 Label_Longueur_Map.set(45)
-Lmap = Scale(Frame, variable=Label_Longueur_Map, orient=HORIZONTAL, from_=30, to=70).pack()
+Lmap = Scale(Frame_, variable=Label_Longueur_Map, orient=HORIZONTAL, from_=30, to=70).pack()
 
 Label_Largeur_Map = StringVar()
 Label_Largeur_Map.set(20)
-lmap = Scale(Frame, variable=Label_Largeur_Map, from_=10, to=30).pack()
+lmap = Scale(Frame_, variable=Label_Largeur_Map, from_=10, to=30).pack()
 
-btn = ttk.Button(Frame, text="Jouer !",command=lambda:Gestion_Jouer(Lancement, Niveau)).pack( pady=20)
-Frame.pack()
+btn = ttk.Button(Frame_, text="Jouer !",command=lambda:Gestion_Jouer(Lancement, Niveau)).pack( pady=20)
+Frame_.pack()
 
 Lancement.mainloop()
 ##################################################################################################
