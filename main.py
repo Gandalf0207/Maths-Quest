@@ -4,8 +4,16 @@ from tkinter import *
 from tkinter import ttk
 import random
 import time 
+
+import tkinter as tk
+from matplotlib.figure import Figure
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+import matplotlib.pyplot as plt
+
+
 import labyrinthe
 import custom_labyrinthe
+import py_maths_exo
 
 ### Pour avoir une certaine sécurité lors de la récupération des fragements de clé; il a fallut faire en sorte
 # de ne pourvoir ouvrir qu'une seule fenetre à la fois pour eviter de donner plus de fragments de clé que prévus
@@ -16,11 +24,18 @@ import custom_labyrinthe
 global Label_btn_suivant_discussion_pnj
 Label_btn_suivant_discussion_pnj = None
 
+# Variable pour suivre l'état de la deuxième fenêtre pour les problèmes de la porte
+second_window_probleme= None
+
 
 def Gestion_Jouer(fenetre, Niveau):
 
     global Label_btn_suivant_discussion_pnj
     Label_btn_suivant_discussion_pnj = None
+
+    # Variable pour suivre l'état de la deuxième fenêtre pour les problèmes de la porte
+    second_window_probleme= None
+
     #le "fenetre" correspond à la fenetre tk qui est en cours de loop
     # Le permir passage se sera la fenetre 'Lancement', puis les autres tours se sera les fenetres de 'Jeu'
     # Ce fonctionnement permet de faire tourner le programme pour le nombre de niveaux disponible !
@@ -42,10 +57,6 @@ def Gestion_Jouer(fenetre, Niveau):
 
     porte = PhotoImage(file="image/porte.png")
     carre = PhotoImage(file="image/CARRE.png")
-    Frag2 = PhotoImage(file="image/frag_cle2.png")
-    Frag_cle = PhotoImage(file="image/frag_cle.png")
-    glue2 = PhotoImage(file="image/glue.png")
-    glue = PhotoImage(file="image/glue0.png")
     craft_table_ = PhotoImage(file="image/craft.png")
 
     Perso = PhotoImage(file="image/perso.png")
@@ -60,14 +71,19 @@ def Gestion_Jouer(fenetre, Niveau):
     pnj3_grand = PhotoImage(file="image/sorcier3.png")
     pnj4_grand = PhotoImage(file="image/sorcier4.png")
 
-    Cle_full = PhotoImage(file="image/cle.png")
     clepnj1 = PhotoImage(file="image/clepnj1.png")
     clepnj2 = PhotoImage(file="image/clepnj2.png")
     clepnj3 = PhotoImage(file="image/clepnj3.png")
+    clepnj1_ = PhotoImage(file="image/clepnj1_.png")
+    clepnj2_ = PhotoImage(file="image/clepnj2_.png")
+    clepnj3_ = PhotoImage(file="image/clepnj3_.png")
+
+    glue2 = PhotoImage(file="image/glue.png")
+    glue = PhotoImage(file="image/glue0.png")
 
     mur1 = PhotoImage(file="image/Wall1.png")
     mur2 = PhotoImage(file="image/Wall2.png")
-    mur3 = PhotoImage(file="image/Wall3.gif")
+    mur3 = PhotoImage(file="image/Wall3.png")
 
 
 
@@ -165,9 +181,19 @@ def Gestion_Jouer(fenetre, Niveau):
 
         print("Abscisse : ", abscisse)
         print("Ordonne : ", ordonne)
+        #verif si table de craft dispo et si oui on affiche le msg d'information
+        if L[ordonne][abscisse-1] == "¤":
+            Label_text_possibilite_strvar.set("Appuie sur 'C' pour fabriquer la grande Clé !")
+            canvas_infos_possibilite_discussion.create_image(0,0,anchor=NW, image=craft_table_)
+
+        #check si c'est la porte et on met à jour les infos dans le cadre e bas à gauche
+        elif (L[ordonne-1][abscisse] == "\U0001F6AA" or L[ordonne+1][abscisse]== "\U0001F6AA" or L[ordonne][abscisse-1]== "\U0001F6AA" or L[ordonne][abscisse+1]== "\U0001F6AA"):
+            Label_text_possibilite_strvar.set("Appuie sur 'E' pour ouvrir la porte !")
+            canvas_infos_possibilite_discussion.create_image(0,0,anchor=NW, image=porte)
+
 
         #Script permettant d'afficher si une discution est possible avec les pnj ou non
-        if (L[ordonne-1][abscisse] in pnj_liste or L[ordonne+1][abscisse] in pnj_liste or L[ordonne][abscisse-1] in pnj_liste or L[ordonne][abscisse+1] in pnj_liste):
+        elif (L[ordonne-1][abscisse] in pnj_liste or L[ordonne+1][abscisse] in pnj_liste or L[ordonne][abscisse-1] in pnj_liste or L[ordonne][abscisse+1] in pnj_liste):
             #PNJ 1
             if (L[ordonne-1][abscisse] == pnj_liste[0] or L[ordonne+1][abscisse]== pnj_liste[0] or L[ordonne][abscisse-1]== pnj_liste[0] or L[ordonne][abscisse+1]== pnj_liste[0]):
                 Label_text_possibilite_strvar.set("Appuie sur 'E' pour me parler !")
@@ -210,62 +236,78 @@ def Gestion_Jouer(fenetre, Niveau):
         global pnj3_infos
         global pnj4_infos
 
-        # if craft ==1:
-        #     if nb_frag_cle !=0:
-        #         canvas_inv.delete("all")
-        #         nb_frag_cle = 0
-        #         nb_glue = 0
-        #         nb_cle += 1
+        global assemble_cle
 
-        #     text_nb_cle.set(f"Clé : {nb_cle}/1")
+        if assemble_cle == True:
+            canvas_inv.delete("all")
 
+            if Niveau == 0:
+                canvas_inv.create_image(10,0, anchor = NW, image=clepnj1)
+                canvas_inv.create_image(60,0, anchor = NW, image=clepnj2)
+                canvas_inv.create_image(110,0, anchor = NW, image=clepnj3)
 
-        #     if Niveau == 0:
-        #         canvas_inv.create_image(60,0, anchor = NW, image = Cle_full)
-
-        #     elif Niveau == 1 :
-        #         canvas_inv.create_image(110,0, anchor = NW, image = Cle_full)
-        #         text_nb_glue.destroy()
+            elif Niveau == 1 :
+                canvas_inv.create_image(30,0, anchor = NW, image=clepnj1)
+                canvas_inv.create_image(80,0, anchor = NW, image=clepnj2)
+                canvas_inv.create_image(130,0, anchor = NW, image=clepnj3)
 
 
-        if pnj1_infos == False and pnj2_infos == False and pnj3_infos == False and pnj4_infos == False :
-            canvas_inv.create_image(0,0, anchor = NW, image=clepnj1)
-            canvas_inv.create_image(60,0, anchor = NW, image=clepnj2)
-            canvas_inv.create_image(120,0, anchor = NW, image=clepnj3)
-            if Niveau == 1:
-                canvas_inv.create_image(170,0, anchor = NW, image=glue)
+        else:
+            if pnj1_infos == False and pnj2_infos == False and pnj3_infos == False and pnj4_infos == False :
+                canvas_inv.create_image(0,0, anchor = NW, image=clepnj1)
+                canvas_inv.create_image(60,0, anchor = NW, image=clepnj2)
+                canvas_inv.create_image(120,0, anchor = NW, image=clepnj3)
+                if Niveau == 1:
+                    canvas_inv.create_image(170,0, anchor = NW, image=glue)
 
-        if pnj1_infos == True:
-            canvas_inv.create_image(0,0, anchor = NW, image=Cle_full)
+            if pnj1_infos == True:
+                canvas_inv.create_image(0,0, anchor = NW, image=clepnj1)
 
-        if pnj2_infos == True:
-            canvas_inv.create_image(60,0, anchor = NW, image=Cle_full)
+            if pnj2_infos == True:
+                canvas_inv.create_image(60,0, anchor = NW, image=clepnj2)
 
-        if pnj3_infos == True:
-            canvas_inv.create_image(120,0, anchor = NW, image=Cle_full)
-        
-        if pnj4_infos == True:
-            canvas_inv.create_image(180,0, anchor = NW, image=glue2)
+            if pnj3_infos == True:
+                canvas_inv.create_image(120,0, anchor = NW, image=clepnj3)
+            
+            if pnj4_infos == True:
+                canvas_inv.create_image(180,0, anchor = NW, image=glue2)
 
 
 
     def table_craft(event):
-        global craft, nb_frag_cle, nb_glue
-        
-        if L[ordonne][abscisse-1] == "¤":
-            if Niveau ==0:
-                if nb_frag_cle ==3:
-                    craft +=1
-                    load_inv()
-                else:
-                    print("vous n'avez pas assez de frags clé !")
+        global pnj1_infos
+        global pnj2_infos
+        global pnj3_infos
+        global pnj4_infos
 
-            elif Niveau == 1:
-                if nb_frag_cle ==3 and nb_glue ==1:
-                    craft+=1
-                    load_inv()
-                else:
-                    print("vous n'avez pas assez de colle ou de frags de clé !")
+        global assemble_cle
+
+        if L[ordonne][abscisse-1] == "¤":
+            if assemble_cle == False:
+
+                if Niveau ==0:
+                    if pnj1_infos == True and pnj2_infos == True and pnj3_infos == True:
+                        assemble_cle = True
+                        load_inv(Niveau)
+                        Label_text_possibilite_strvar.set("Vous avez fabriqué la grande Clé !")
+
+                    else:
+                        Label_text_possibilite_strvar.set("Vous n'avez pas collecté toutes les clés !")
+
+
+                elif Niveau == 1:
+                    if pnj1_infos == True and pnj2_infos == True and pnj3_infos == True and pnj4_infos == True:
+                        assemble_cle = True
+                        load_inv(Niveau)
+                        Label_text_possibilite_strvar.set("Vous avez fabriqué la grande Clé !")
+                    else:
+                        if pnj4_infos == False:
+                            Label_text_possibilite_strvar.set("Vous n'avez pas collecté le bâton de colle !")
+                        else:
+                            Label_text_possibilite_strvar.set("Vous n'avez pas collecté toutes les clés !")
+            else:
+                Label_text_possibilite_strvar.set("Vous avez déjà fabriqué la Grande Clé ! !")
+
         else:
             print("Il n'y a pas de tableau de craft près de vous pour fabriquer votre objet !")
 
@@ -276,11 +318,8 @@ def Gestion_Jouer(fenetre, Niveau):
 
         def affiche_prog(pnj, pnj_infos, Niveau):
             global c
-            # global nb_frag_cle
-            # global nb_glue
-            # global craft
-
             c += 1
+
             text_complet = ""
             # comme cette partie est commune; on l'affiche au debut si c'est le bon tour
             if pnj_infos == False:
@@ -444,6 +483,19 @@ def Gestion_Jouer(fenetre, Niveau):
                 Label_texte_parole_discussion_pnj_strvar.set("Salut ! Clique sur suivant !")
                 Label_btn_suivant_discussion_pnj = Button(Label_Frame_Discussion_pnj, text="Suivant", command=lambda: affiche_prog(pnj_, pnj_infos_, Niveau))
                 Label_btn_suivant_discussion_pnj.pack(side=BOTTOM, anchor="e", pady=5)
+        
+        # check si autour il y a la porte ou non
+        elif (L[ordonne-1][abscisse] == "\U0001F6AA" or L[ordonne+1][abscisse]== "\U0001F6AA" or L[ordonne][abscisse-1]== "\U0001F6AA" or L[ordonne][abscisse+1]== "\U0001F6AA"):
+            global assemble_cle
+            print(assemble_cle)
+            if assemble_cle == True:
+                porte_enigme(Niveau)
+            else:
+                Label_text_possibilite_strvar.set("Vous devez d'abord assemblé votre Clé pour pouvoir ouvrir la porte !")
+                canvas_infos_possibilite_discussion.create_image(0,0,anchor=NW, image=porte)
+
+
+
         else:
             #on clear si jamais la personne s'en va
             canvas_tete_pnj_grand.delete("all")
@@ -456,16 +508,163 @@ def Gestion_Jouer(fenetre, Niveau):
 
 
 
-    #Fonction de boucle pour les niveaux, il faut faire les conditions pour la boucle dcp
-    def porte_enigme(event):
+    #Fonction de la porte avec verif nb fenetre et gestion de l'exo
+    def porte_enigme(Niveau):
+        global second_window_probleme
 
-        global Niveau
-        touche = event.keysym
-        if touche == "b":
-            question = int(input("cc"))
-            if question == 1:
-                Niveau +=1
-                Gestion_Jouer(Jeu, Niveau)
+        if not second_window_probleme or not second_window_probleme.winfo_exists():  # Vérifie si la deuxième fenêtre existe
+            def affiche_consigne(Niveau):
+                global erreur
+                global c_sw
+                c_sw  += 1
+
+                text_complet_consignes = ""
+                
+                if c_sw==1:
+                    text_complet_consignes = "Pour pouvoir tourner la clé et ainsi dévérouiller la porte, vous devez résoudre cette exercice ! "
+                elif c_sw==2:
+                    text_complet_consignes = "Toutes les partie du cours que vous avez collectées vous seviront pour répondre ! Vous pouvez les consulter "
+                elif c_sw==3:
+                    if Niveau ==0:
+                        text_complet_consignes = "Vous devez résoudre cette équation du premier degré en trouvant la valeur de x. Apres avoir résolu cette equation; selectionnez la bonne case et faites valider"
+                elif c_sw==4:
+                    Label_btn_suivant_second_window ['state'] = DISABLED
+                    # on affcihe les btns de réponses
+                    Label_btn_result_possible_1 = Button(Label_Frame_Reponse_Verif, text=value_btn_1, command=lambda:verif_reponse_sw(value_btn_1,Exo_correction[1],Label_btn_result_possible_1,Label_btn_result_possible_2,Label_btn_result_possible_3))
+                    Label_btn_result_possible_1.pack()
+
+                    Label_btn_result_possible_2 = Button(Label_Frame_Reponse_Verif, text=value_btn_2, command=lambda:verif_reponse_sw(value_btn_2,Exo_correction[1],Label_btn_result_possible_1,Label_btn_result_possible_2,Label_btn_result_possible_3))
+                    Label_btn_result_possible_2.pack()
+
+                    Label_btn_result_possible_3 = Button(Label_Frame_Reponse_Verif, text=value_btn_3, command=lambda:verif_reponse_sw(value_btn_3,Exo_correction[1],Label_btn_result_possible_1,Label_btn_result_possible_2,Label_btn_result_possible_3))
+                    Label_btn_result_possible_3.pack()
+                elif c_sw==5:
+                    if Niveau ==0:
+                        if erreur == 0:
+                            text_complet_consignes = "Bravo ! Vous avez trouvé la bonne valeur de x, la porte est ouverte !"
+                        else:
+                            text_complet_consignes = "Vous n'avez pas trouvé la bonne valeur de x, cliquez sur suivant pour recomencer !"
+
+                elif c_sw==6:
+                    if erreur == 0:
+                        text_complet_consignes ="Vous obtenez un indice ! Cliquez sur suivant pour passez au niveau suppérieur !"
+                    else:
+                        second_window_probleme.destroy()
+
+                else:
+                    Niveau +=1
+                    Gestion_Jouer(Jeu, Niveau)
+                    second_window_probleme.destroy()
+
+
+
+                
+                if  4 > c_sw  or 5 <= c_sw <7:
+
+                    Label_btn_suivant_second_window ['state'] = DISABLED
+                    for i in range(len(text_complet_consignes)):
+                        text_partiel_second_window = text_complet_consignes[:i+1]
+                        Label_Text_Explication_Exercice_strvar.set(f"{text_partiel_second_window}")
+                        Label_Text_Explication_Exercice_widget.update()
+                        time.sleep(0.03)
+                    Label_btn_suivant_second_window ['state'] = NORMAL
+ 
+            def verif_reponse_sw(reponse, correction,Label_btn_result_possible_1,Label_btn_result_possible_2,Label_btn_result_possible_3):
+                Label_btn_result_possible_1.destroy()
+                Label_btn_result_possible_2.destroy()
+                Label_btn_result_possible_3.destroy()
+                global erreur
+                erreur = 0
+                if reponse == correction:
+                    affiche_consigne(Niveau)
+                else:
+                    erreur = 1
+                    affiche_consigne(Niveau)
+
+                ok = 1
+            
+            global c_sw
+            c_sw = 0
+
+            second_window_probleme = Toplevel()  # Utiliser Toplevel au lieu de Tk pour une nouvelle fenêtre indépendante
+            # second_window_probleme.geometry("400x600") 
+            # on recupère la formule et la correction
+            Exo_correction = py_maths_exo.choix_exo_niveau(Niveau)
+            print(Exo_correction)
+
+            ####frame global de la fenetre
+            Label_Frame_global_second_window = Frame(second_window_probleme, bg = "yellow")
+            Label_Frame_global_second_window.pack(expand=True, fill="both")
+
+            ###frame qui conteintdra toutes les consignes / explications et le btn suivant
+            Label_Frame_Canvas_consignes_explication_btn = Frame(Label_Frame_global_second_window, bg="#000000")
+            Label_Frame_Canvas_consignes_explication_btn.pack(side=TOP, fill='x', pady= 5, padx=5)
+
+            #on load les element de consignes
+            Label_Text_Explication_Exercice_strvar = StringVar()
+            Label_Text_Explication_Exercice_strvar.set("Cliquez sur suivant !")
+            Label_Text_Explication_Exercice_widget = Label(Label_Frame_Canvas_consignes_explication_btn,wraplength=300, textvariable = Label_Text_Explication_Exercice_strvar, justify="left"  )
+            Label_Text_Explication_Exercice_widget.pack(fill='x',side = LEFT, padx= 5, pady=5)
+            Label_btn_suivant_second_window = Button(Label_Frame_Canvas_consignes_explication_btn, text="Suivant !", command=lambda:affiche_consigne(Niveau))
+            Label_btn_suivant_second_window.pack(side=TOP, anchor="e", pady=5, padx=5)
+
+            ### frame qui contient le canvas qui affichera la formule
+            Label_Frame_Canvas_formule_exo = Frame(Label_Frame_global_second_window, bg="#000000")
+            Label_Frame_Canvas_formule_exo.pack(side=TOP, fill='y', pady= 5, padx=5)
+
+            #On load le canvas avec sa formule qu'on a recup depuis le ficheir py-math_exo
+            #Code Ia /Internet # Formater la formule avec les nombres aléatoires
+            formule = Exo_correction[0]
+            # Créer une figure matplotlib sans légendes et sans box
+            fig = Figure(figsize=(5, 2), dpi=100, frameon=False)  # Taille initiale de la figure sans boîte englobante
+            # Ajouter un sous-graphique
+            ax = fig.add_subplot(111)
+            # Supprimer les légendes et la boîte englobante
+            ax.axis('off')
+            # Ajouter la formule mathématique
+            ax.text(0.5, 0.5, formule, fontsize=20, ha='center')
+            # Obtenir les limites de la boîte englobante de la formule
+            bbox = ax.get_window_extent().transformed(fig.dpi_scale_trans.inverted())
+            # Redimensionner la figure en fonction de la taille de la formule
+            fig.set_size_inches(5, bbox.height)
+            # Créer un canvas Tkinter
+            canvas_formule_exo_sw = FigureCanvasTkAgg(fig, master=Label_Frame_Canvas_formule_exo)
+            canvas_formule_exo_sw.draw()
+            # Afficher le canvas
+            canvas_formule_exo_sw.get_tk_widget().pack(padx=5, pady=5)
+
+            ## Frame qui contient les trois valeur de réponse avec les cases à cocher et le bouton valider
+            Label_Frame_Reponse_Verif = Frame(Label_Frame_global_second_window, bg= "#000000")
+            Label_Frame_Reponse_Verif.pack(side=TOP, fill='x', pady= 5, padx=5)
+
+            #On load tout les elements de réponse et les boutons qui servent à la validation
+            v1 = random.randint(-3,3)
+            v2 = random.randint(-3,3)
+            while v1 ==0 or v2== 0:
+                v1 = random.randint(-7,7)
+                v2 = random.randint(-7,7)
+
+            L_result_possible = []
+            L_result_possible.append(Exo_correction[1])
+            L_result_possible.append(Exo_correction[1]+v1)
+            L_result_possible.append(Exo_correction[1]+v2)
+            random.shuffle(L_result_possible)
+
+            value_btn_1 = L_result_possible[0]
+            value_btn_2 = L_result_possible[1]
+            value_btn_3 = L_result_possible[2]
+
+
+            # Lie la fermeture de la fenêtre à la réinitialisation de second_window_probleme
+            second_window_probleme.protocol("WM_DELETE_WINDOW", lambda: reset_second_window())
+
+
+    def reset_second_window():
+        global second_window_probleme
+        if second_window_probleme:
+            second_window_probleme.destroy()  # Détruit la fenêtre
+        second_window_probleme= None
+
         
 
 
@@ -481,20 +680,17 @@ def Gestion_Jouer(fenetre, Niveau):
     global pnj2_infos
     global pnj3_infos
     global pnj4_infos
-    pnj1_infos = False
-    pnj2_infos = False
-    pnj3_infos = False
-    pnj4_infos = False   
+    pnj1_infos = True
+    pnj2_infos = True
+    pnj3_infos = True
+    pnj4_infos = True  
 
-    # 
+    # quad un elment est fabriqué, pour l'afficher correctement
 
-    global craft
-    global nb_cle
+    global assemble_cle
+    assemble_cle = False
 
-    nb_cle = 0
-    craft = 0
-
-    # 
+ 
 
 
 
@@ -587,10 +783,10 @@ def Gestion_Jouer(fenetre, Niveau):
     if Niveau ==1:
         long_canvas_inv = 230
 
-    canvas_inv = Canvas(Label_Frame_Inv_Cle, width=long_canvas_inv, height=50, bg = "black")
-    canvas_inv.create_image(0,0,anchor=NW, image = clepnj1)
-    canvas_inv.create_image(60,0,anchor=NW, image = clepnj2)
-    canvas_inv.create_image(120,0,anchor=NW, image = clepnj3)
+    canvas_inv = Canvas(Label_Frame_Inv_Cle, width=long_canvas_inv, height=50, bg = "blue")
+    canvas_inv.create_image(0,0,anchor=NW, image = clepnj1_)
+    canvas_inv.create_image(60,0,anchor=NW, image = clepnj2_)
+    canvas_inv.create_image(120,0,anchor=NW, image = clepnj3_)
     if Niveau == 1:
         canvas_inv.create_image(180,0,anchor=NW, image = glue)
 
@@ -606,7 +802,9 @@ def Gestion_Jouer(fenetre, Niveau):
     Jeu.bind("<KeyPress-q>", deplacement)
     Jeu.bind("<KeyPress-s>", deplacement)
     Jeu.bind("<KeyPress-d>", deplacement)
-    Jeu.bind("<KeyPress-a>", parler_pnj)
+    Jeu.bind("<KeyPress-e>", parler_pnj)
+
+    
     Jeu.bind("<KeyPress-b>", porte_enigme)
     Jeu.bind("<KeyPress-c>", table_craft)
 
@@ -637,9 +835,4 @@ Frame_.pack()
 
 Lancement.mainloop()
 ##################################################################################################
-
-
-
-
-
 
