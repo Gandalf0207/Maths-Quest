@@ -1,45 +1,45 @@
-import matplotlib
+import tkinter as tk
+from matplotlib.figure import Figure
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import matplotlib.pyplot as plt
 
-from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
-matplotlib.use('TkAgg')
+import random
 
-try:
-    import Tkinter as tk
-except ImportError:
-    import tkinter as tk
+def afficher_formule_math():
+    nb1 = random.randint(2, 20)
+    nb2 = random.randint(2, 20)
+    nb3 = random.randint(2, 20)
+    nb4 = random.randint(2, 20)
 
-def graph(event=None):
-    tmptext = entry.get()
-    tmptext = "$"+tmptext+"$"
+    # Formater la formule avec les nombres aléatoires
+    formule = r'$\Leftrightarrow %sx - %s = %s + %sx$' % (nb1, nb2, nb3, nb4)
 
-    ax.clear()
-    ax.text(0.2, 0.6, tmptext, fontsize=50)  
+    # Créer une figure matplotlib sans légendes et sans box
+    fig = Figure(figsize=(5, 2), dpi=100, frameon=False)  # Taille initiale de la figure sans boîte englobante
+    # Ajouter un sous-graphique
+    ax = fig.add_subplot(111)
+    # Supprimer les légendes et la boîte englobante
+    ax.axis('off')
+    # Ajouter la formule mathématique
+    ax.text(0.5, 0.5, formule, fontsize=20, ha='center')
+    # Obtenir les limites de la boîte englobante de la formule
+    bbox = ax.get_window_extent().transformed(fig.dpi_scale_trans.inverted())
+    # Redimensionner la figure en fonction de la taille de la formule
+    fig.set_size_inches(5, bbox.height)
+    # Créer un canvas Tkinter
+    canvas = FigureCanvasTkAgg(fig, master=window)
     canvas.draw()
+    # Afficher le canvas
+    canvas.get_tk_widget().pack(padx=5, pady=5)
+    
+    
+# Créer une fenêtre Tkinter
+window = tk.Tk()
+window.title("Affichage d'une formule mathématique")
 
-root = tk.Tk()
+# Ajouter un bouton pour afficher la formule mathématique
+btn_afficher = tk.Button(window, text="Afficher la formule mathématique", command=afficher_formule_math)
+btn_afficher.pack()
 
-mainframe = tk.Frame(root)
-mainframe.pack()
-
-entry = tk.Entry(mainframe, width=70)
-entry.pack()
-
-label = tk.Label(mainframe)
-label.pack()
-
-fig = matplotlib.figure.Figure(figsize=(5, 4), dpi=100)
-ax = fig.add_subplot(111)
-
-canvas = FigureCanvasTkAgg(fig, master=label)
-canvas.get_tk_widget().pack(side="top", fill="both", expand=True)
-canvas._tkcanvas.pack(side="top", fill="both", expand=True)
-
-ax.get_xaxis().set_visible(False)
-ax.get_yaxis().set_visible(False)
-
-entry.insert(0, r"\sum_{i=0}^\infty x_i \frac{y_i}{z_i}")
-graph()
-
-root.bind("<Return>", graph)
-root.mainloop()
+# Lancer la boucle principale Tkinter
+window.mainloop()

@@ -1,46 +1,31 @@
 from tkinter import *
 
-# Variable pour suivre l'état de la deuxième fenêtre
-second_window = None
 
-def parler_pnj(event):
-    global ordonne, abscisse, second_window
+def Gestion_Jouer(fenetre):
+    fenetre.destroy()
+    jeu = Tk()
 
-    # Listes des PNJ et des images correspondantes
-    pnj_List = ["pnj1", "pnj2", "pnj3", "pnj4"]
-    sorciers = {
-        "pnj1": "image/sorcier1.png",
-        "pnj2": "image/sorcier2.png",
-        "pnj3": "image/sorcier3.png",
-        "pnj4": "image/sorcier4.png"
-    }
+    # Création du cadre global pour le jeu
+    Label_Frame_Global = Frame(jeu, width=300, height=300, relief=GROOVE,bg="#000000")
+    Label_Frame_Global.pack(fill="both")
 
-    # Vérifie si un PNJ est présent autour du joueur
-    if any(L[ordonne + i][abscisse + j] in pnj_List for i in [-1, 0, 1] for j in [-1, 0, 1]):
-        for i in [-1, 0, 1]:
-            for j in [-1, 0, 1]:
-                if L[ordonne + i][abscisse + j] in pnj_List:
-                    pnj_ = L[ordonne + i][abscisse + j]
-                    pnj_infos_ = globals()[f"{pnj_}_infos"]
-                    sorcier_ = PhotoImage(file=sorciers[pnj_])
+    # Partie Gauche :
+    Label_Frame_Jeu_Inv = Frame(Label_Frame_Global, width=150, height=300, bg="#000000", relief=GROOVE)
+    Label_Frame_Jeu_Inv.pack(side='left', fill="y")
 
-                    if not second_window or not second_window.winfo_exists():
-                        second_window = Toplevel()
-                        canva_discussion = Canvas(second_window, width=450, height=260, bg="white")
-                        canva_discussion.pack()
-                        canva_discussion.create_image(0, 0, anchor=NW, image=sorcier_)
+    # Création d'une étiquette dans la frame de gauche
+    L = Label(Label_Frame_Jeu_Inv, text="bonjour", fg="white", relief=GROOVE)
+    L.pack(side=TOP)  # Ajustement de l'étiquette à la taille de la frame
 
-                        Label_text_infos = Label(canva_discussion, text="Clique sur Suivant !", wraplength=180, justify="left")
-                        Label_text_infos.pack(pady=20)
-                        canva_discussion.create_window(350, 30, window=Label_text_infos)
+    jeu.mainloop()
 
-                        btn_suivant = Button(second_window, text="Suivant", command=lambda: affiche_prog(pnj_, pnj_infos_, Niveau))
-                        btn_suivant.pack()
 
-                        second_window.protocol("WM_DELETE_WINDOW", reset_second_window)
+Lancement = Tk()
 
-def reset_second_window():
-    global second_window
-    if second_window:
-        second_window.destroy()
-    second_window = None
+Frame_y = Frame(Lancement, bg="black", width=150, height=145, relief=GROOVE)
+
+btn = Button(Frame_y, text="Jouer !", command=lambda: Gestion_Jouer(Lancement))
+btn.pack(pady=20)
+Frame_y.pack()
+
+Lancement.mainloop()
