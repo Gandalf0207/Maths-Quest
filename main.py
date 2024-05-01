@@ -372,7 +372,7 @@ def Gestion_Jouer(fenetre, Niveau):
                     else:
                         text_complet = "Vous avez déjà obtenu le fragment de clé de ce sorcier !" 
                 elif c == 2 :
-                    text_complet = "Vous pouvez consulter la partie du cours obtenue dans la page 'cours'.'"
+                    text_complet = "Vous pouvez consulter la partie du cours obtenue dans la page 'cours'. bla bla vlblslki sd f  g d d s gsd ds s df d dg'"
                 elif c == 3 : 
                     #on clear si jamais la personne s'en va
                     canvas_tete_pnj_grand.delete("all")
@@ -387,13 +387,13 @@ def Gestion_Jouer(fenetre, Niveau):
 
             if (c < 4 and pnj_infos == False) or (c < 3 and pnj_infos == True):
 
+                Label_btn_suivant_discussion_pnj['state'] = DISABLED
                 for i in range(len(text_complet)):
                     text_partiel = text_complet[:i+1]
                     Label_texte_parole_discussion_pnj_strvar.set(f"{text_partiel}")
                     Label_texte_parole_discussion_pnj_widget.update()
                     time.sleep(0.03)
-
-
+                Label_btn_suivant_discussion_pnj['state'] = NORMAL
 
         global pnj1_infos
         global pnj2_infos
@@ -443,7 +443,7 @@ def Gestion_Jouer(fenetre, Niveau):
                 #On crée le bouton pour faire discuter le pnj avec l'utilisateur et on set le texte de bienvenue          
                 Label_texte_parole_discussion_pnj_strvar.set("Salut ! Clique sur suivant !")
                 Label_btn_suivant_discussion_pnj = Button(Label_Frame_Discussion_pnj, text="Suivant", command=lambda: affiche_prog(pnj_, pnj_infos_, Niveau))
-                Label_btn_suivant_discussion_pnj.pack(side=BOTTOM, anchor="c", pady=5)
+                Label_btn_suivant_discussion_pnj.pack(side=BOTTOM, anchor="e", pady=5)
         else:
             #on clear si jamais la personne s'en va
             canvas_tete_pnj_grand.delete("all")
@@ -557,7 +557,7 @@ def Gestion_Jouer(fenetre, Niveau):
     Label_text_possibilite_widget = Label(Label_Frame_Text_Info_Discussion_pnj, textvariable=Label_text_possibilite_strvar, wraplength=200, justify="left")
     Label_text_possibilite_widget.pack(side="left", pady=5, padx=5)
    
-    ## Frame de box de discussion avec les pnj
+    ## Frame de box de discussion avec les pnj 
     Label_Frame_Discussion_pnj = Frame(Label_Frame_pnj_Text, bg="blue")
     Label_Frame_Discussion_pnj.pack(expand=True, fill=BOTH, padx=5, pady=5, side='right')
 
@@ -565,7 +565,7 @@ def Gestion_Jouer(fenetre, Niveau):
     canvas_tete_pnj_grand = Canvas(Label_Frame_Discussion_pnj, bg='white', height=100, width=200)
     canvas_tete_pnj_grand.pack(anchor="c", padx=10,pady=5, side=LEFT)
     Label_texte_parole_discussion_pnj_strvar = StringVar()
-    Label_texte_parole_discussion_pnj_widget = Label(Label_Frame_Discussion_pnj, textvariable=Label_texte_parole_discussion_pnj_strvar, wraplength=500, justify="left")
+    Label_texte_parole_discussion_pnj_widget = Label(Label_Frame_Discussion_pnj, textvariable=Label_texte_parole_discussion_pnj_strvar, wraplength=350, justify="left")
     Label_texte_parole_discussion_pnj_widget.pack(side=LEFT, padx=5, pady=5)
 
 
