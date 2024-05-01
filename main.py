@@ -13,10 +13,14 @@ import custom_labyrinthe
 
 ### C'est pourquoi il est possible de voir des commentaires : #code ia
 # Cela signifie que cette partie du code n'a pas été réalisée uniquement par nous meme....
+global Label_btn_suivant_discussion_pnj
+Label_btn_suivant_discussion_pnj = None
 
 
 def Gestion_Jouer(fenetre, Niveau):
 
+    global Label_btn_suivant_discussion_pnj
+    Label_btn_suivant_discussion_pnj = None
     #le "fenetre" correspond à la fenetre tk qui est en cours de loop
     # Le permir passage se sera la fenetre 'Lancement', puis les autres tours se sera les fenetres de 'Jeu'
     # Ce fonctionnement permet de faire tourner le programme pour le nombre de niveaux disponible !
@@ -35,12 +39,7 @@ def Gestion_Jouer(fenetre, Niveau):
 
 
     #On load les img pour pouvoir les afficher
-    Perso = PhotoImage(file="image/perso.png")
-    Arbre = PhotoImage(file="image/okok.png")
-    pnj1 = PhotoImage(file = "image/pnj1.png")
-    pnj2 = PhotoImage(file = "image/pnj2.png")
-    pnj3 = PhotoImage(file = "image/pnj3.png")
-    pnj4 = PhotoImage(file = "image/pnj4.png")
+
     porte = PhotoImage(file="image/porte.png")
     carre = PhotoImage(file="image/CARRE.png")
     Frag2 = PhotoImage(file="image/frag_cle2.png")
@@ -48,6 +47,19 @@ def Gestion_Jouer(fenetre, Niveau):
     glue2 = PhotoImage(file="image/glue.png")
     glue = PhotoImage(file="image/glue0.png")
     craft_table_ = PhotoImage(file="image/craft.png")
+
+    Perso = PhotoImage(file="image/perso.png")
+
+    pnj1 = PhotoImage(file = "image/pnj1.png")
+    pnj2 = PhotoImage(file = "image/pnj2.png")
+    pnj3 = PhotoImage(file = "image/pnj3.png")
+    pnj4 = PhotoImage(file = "image/pnj4.png")
+
+    pnj1_grand = PhotoImage(file="image/sorcier1.png")
+    pnj2_grand = PhotoImage(file="image/sorcier2.png")
+    pnj3_grand = PhotoImage(file="image/sorcier3.png")
+    pnj4_grand = PhotoImage(file="image/sorcier4.png")
+
     Cle_full = PhotoImage(file="image/cle.png")
     clepnj1 = PhotoImage(file="image/clepnj1.png")
     clepnj2 = PhotoImage(file="image/clepnj2.png")
@@ -154,49 +166,87 @@ def Gestion_Jouer(fenetre, Niveau):
         print("Abscisse : ", abscisse)
         print("Ordonne : ", ordonne)
 
+        #Script permettant d'afficher si une discution est possible avec les pnj ou non
+        if (L[ordonne-1][abscisse] in pnj_liste or L[ordonne+1][abscisse] in pnj_liste or L[ordonne][abscisse-1] in pnj_liste or L[ordonne][abscisse+1] in pnj_liste):
+            #PNJ 1
+            if (L[ordonne-1][abscisse] == pnj_liste[0] or L[ordonne+1][abscisse]== pnj_liste[0] or L[ordonne][abscisse-1]== pnj_liste[0] or L[ordonne][abscisse+1]== pnj_liste[0]):
+                Label_text_possibilite_strvar.set("Appuie sur 'E' pour me parler !")
+                canvas_infos_possibilite_discussion.create_image(0,0,anchor=NW, image=pnj1)
+
+            #PNJ 2
+            elif (L[ordonne-1][abscisse] == pnj_liste[1] or L[ordonne+1][abscisse]== pnj_liste[1] or L[ordonne][abscisse-1]== pnj_liste[1] or L[ordonne][abscisse+1]== pnj_liste[1]):
+                Label_text_possibilite_strvar.set("Appuie sur 'E' pour me parler !")
+                canvas_infos_possibilite_discussion.create_image(0,0,anchor=NW, image=pnj2)
+
+            #PNJ3
+            elif (L[ordonne-1][abscisse] == pnj_liste[2] or L[ordonne+1][abscisse]== pnj_liste[2] or L[ordonne][abscisse-1]== pnj_liste[2] or L[ordonne][abscisse+1]== pnj_liste[2]):
+                Label_text_possibilite_strvar.set("Appuie sur 'E' pour me parler !")
+                canvas_infos_possibilite_discussion.create_image(0,0,anchor=NW, image=pnj3)
+
+            #PNJ4
+            elif (L[ordonne-1][abscisse] == pnj_liste[3] or L[ordonne+1][abscisse]== pnj_liste[3] or L[ordonne][abscisse-1]== pnj_liste[3] or L[ordonne][abscisse+1]== pnj_liste[3]):
+                Label_text_possibilite_strvar.set("Appuie sur 'E' pour me parler !")
+                canvas_infos_possibilite_discussion.create_image(0,0,anchor=NW, image=pnj4)
+
+        else:
+            Label_text_possibilite_strvar.set("Aucun personnage n'est présent aux alentours ! ")
+            canvas_infos_possibilite_discussion.create_image(0,0,anchor=NW, image=carre)
+            #on clear si jamais la personne s'en va
+            canvas_tete_pnj_grand.delete("all")
+            Label_texte_parole_discussion_pnj_strvar.set("")
+            #fonction de check pour delete btn (winfo : true/false) et première ligne pour eviter les erreurs (double verif)
+            if Label_btn_suivant_discussion_pnj is not None:
+                if Label_btn_suivant_discussion_pnj.winfo_exists():
+                    Label_btn_suivant_discussion_pnj.destroy()
+            c = 0
+
+
 
 
     #Fonction de MAJ et affichage de l'inventaire du joueur ### pas terminé , manque les crafts possible !
-    def load_inv():
-        global nb_frag_cle, nb_glue, nb_cle, craft
+    def load_inv(Niveau):
+        global pnj1_infos
+        global pnj2_infos
+        global pnj3_infos
+        global pnj4_infos
 
-        if craft ==1:
-            if nb_frag_cle !=0:
-                canvas_inv.delete("all")
-                nb_frag_cle = 0
-                nb_glue = 0
-                nb_cle += 1
+        # if craft ==1:
+        #     if nb_frag_cle !=0:
+        #         canvas_inv.delete("all")
+        #         nb_frag_cle = 0
+        #         nb_glue = 0
+        #         nb_cle += 1
 
-            text_nb_cle.set(f"Clé : {nb_cle}/1")
-
-
-            if Niveau == 0:
-                canvas_inv.create_image(60,0, anchor = NW, image = Cle_full)
-
-            elif Niveau == 1 :
-                canvas_inv.create_image(110,0, anchor = NW, image = Cle_full)
-                text_nb_glue.destroy()
+        #     text_nb_cle.set(f"Clé : {nb_cle}/1")
 
 
-        elif nb_frag_cle == 0:
-            canvas_inv.create_image(0,0, anchor = NW, image=Frag_cle)
-            canvas_inv.create_image(60,0, anchor = NW, image=Frag_cle)
-            canvas_inv.create_image(120,0, anchor = NW, image=Frag_cle)
-            text_nb_cle.set(f"Fragments de clé {nb_frag_cle}/3")
-        elif nb_frag_cle == 1:
-            canvas_inv.create_image(0,0, anchor = NW, image=Frag2)
-            text_nb_cle.set(f"Fragments de clé {nb_frag_cle}/3")
-        elif nb_frag_cle == 2:
-            canvas_inv.create_image(60,0, anchor = NW, image=Frag2)
-            text_nb_cle.set(f"Fragments de clé {nb_frag_cle}/3")
-        elif nb_frag_cle == 3:
-            canvas_inv.create_image(120,0, anchor = NW, image=Frag2)
-            text_nb_cle.set(f"Fragments de clé {nb_frag_cle}/3")
+        #     if Niveau == 0:
+        #         canvas_inv.create_image(60,0, anchor = NW, image = Cle_full)
 
-        if Niveau == 1 and craft != 1:
-            if nb_glue==1:
-                canvas_inv.create_image(180,0, anchor = NW, image=glue2)
-                Label_glue_nv2.set(f"Stick de colle {nb_glue}/1")
+        #     elif Niveau == 1 :
+        #         canvas_inv.create_image(110,0, anchor = NW, image = Cle_full)
+        #         text_nb_glue.destroy()
+
+
+        if pnj1_infos == False and pnj2_infos == False and pnj3_infos == False and pnj4_infos == False :
+            canvas_inv.create_image(0,0, anchor = NW, image=clepnj1)
+            canvas_inv.create_image(60,0, anchor = NW, image=clepnj2)
+            canvas_inv.create_image(120,0, anchor = NW, image=clepnj3)
+            if Niveau == 1:
+                canvas_inv.create_image(170,0, anchor = NW, image=glue)
+
+        if pnj1_infos == True:
+            canvas_inv.create_image(0,0, anchor = NW, image=Cle_full)
+
+        if pnj2_infos == True:
+            canvas_inv.create_image(60,0, anchor = NW, image=Cle_full)
+
+        if pnj3_infos == True:
+            canvas_inv.create_image(120,0, anchor = NW, image=Cle_full)
+        
+        if pnj4_infos == True:
+            canvas_inv.create_image(180,0, anchor = NW, image=glue2)
+
 
 
     def table_craft(event):
@@ -220,20 +270,22 @@ def Gestion_Jouer(fenetre, Niveau):
             print("Il n'y a pas de tableau de craft près de vous pour fabriquer votre objet !")
 
 
+
+
     def parler_pnj(event):
 
         def affiche_prog(pnj, pnj_infos, Niveau):
             global c
-            global nb_frag_cle
-            global nb_glue
-            global craft
+            # global nb_frag_cle
+            # global nb_glue
+            # global craft
 
             c += 1
             text_complet = ""
             # comme cette partie est commune; on l'affiche au debut si c'est le bon tour
             if pnj_infos == False:
                 if c == 1 :
-                    if pnj!= "pnj4":
+                    if pnj != "pnj4":
                         text_complet = "Bravo ! Vous avez obtenu 1 fragment de clé !" 
                     else:
                         text_complet = "Bravo ! Vous avez obtenue un bâton de colle !"
@@ -251,13 +303,14 @@ def Gestion_Jouer(fenetre, Niveau):
                             text_complet = "insérer le cours !"
 
                     elif c == 4:
-                        second_window.destroy()
+                        canvas_tete_pnj_grand.delete("all")
+                        Label_texte_parole_discussion_pnj_strvar.set("")
+                        Label_btn_suivant_discussion_pnj.destroy()
 
                         global pnj1_infos
                         pnj1_infos = True
 
-                        nb_frag_cle +=1
-                        load_inv()
+                        load_inv(Niveau)
 
                 elif pnj == "pnj2":
                     if c == 3 :
@@ -267,13 +320,15 @@ def Gestion_Jouer(fenetre, Niveau):
                             text_complet = "insérer le cours !"
 
                     elif c == 4:
-                        second_window.destroy()
+                        canvas_tete_pnj_grand.delete("all")
+                        Label_texte_parole_discussion_pnj_strvar.set("")
+                        Label_btn_suivant_discussion_pnj.destroy()
+
 
                         global pnj2_infos
                         pnj2_infos = True
 
-                        nb_frag_cle +=1
-                        load_inv()
+                        load_inv(Niveau)
 
                 elif pnj == "pnj3":
                     if c == 3 :
@@ -283,13 +338,14 @@ def Gestion_Jouer(fenetre, Niveau):
                             text_complet = "insérer le cours !"
 
                     elif c == 4:
-                        second_window.destroy()
+                        canvas_tete_pnj_grand.delete("all")
+                        Label_texte_parole_discussion_pnj_strvar.set("")
+                        Label_btn_suivant_discussion_pnj.destroy()
 
                         global pnj3_infos
                         pnj3_infos = True
 
-                        nb_frag_cle +=1
-                        load_inv()
+                        load_inv(Niveau)
 
                 elif pnj == "pnj4":
                     if c == 3 :
@@ -297,13 +353,14 @@ def Gestion_Jouer(fenetre, Niveau):
                             text_complet = "insérer le cours !"
 
                     elif c == 4:
-                        second_window.destroy()
+                        canvas_tete_pnj_grand.delete("all")
+                        Label_texte_parole_discussion_pnj_strvar.set("")
+                        Label_btn_suivant_discussion_pnj.destroy()
 
                         global pnj4_infos
                         pnj4_infos = True
 
-                        nb_glue +=1
-                        load_inv()
+                        load_inv(Niveau)
 
 
 
@@ -317,7 +374,14 @@ def Gestion_Jouer(fenetre, Niveau):
                 elif c == 2 :
                     text_complet = "Vous pouvez consulter la partie du cours obtenue dans la page 'cours'.'"
                 elif c == 3 : 
-                    second_window.destroy()
+                    #on clear si jamais la personne s'en va
+                    canvas_tete_pnj_grand.delete("all")
+                    Label_texte_parole_discussion_pnj_strvar.set("")
+                    #fonction de check pour delete btn (winfo : true/false) et première ligne pour eviter les erreurs (double verif)
+                    if Label_btn_suivant_discussion_pnj is not None:
+                        if Label_btn_suivant_discussion_pnj.winfo_exists():
+                            Label_btn_suivant_discussion_pnj.destroy()
+                    c = 0
 
 
 
@@ -325,9 +389,11 @@ def Gestion_Jouer(fenetre, Niveau):
 
                 for i in range(len(text_complet)):
                     text_partiel = text_complet[:i+1]
-                    Label_text_infos.configure(text = text_partiel)
-                    second_window.update()
-                    time.sleep(0.1)
+                    Label_texte_parole_discussion_pnj_strvar.set(f"{text_partiel}")
+                    Label_texte_parole_discussion_pnj_widget.update()
+                    time.sleep(0.03)
+
+
 
         global pnj1_infos
         global pnj2_infos
@@ -339,88 +405,54 @@ def Gestion_Jouer(fenetre, Niveau):
         global c
         c = 0
 
-
-#### DEBUT PARTIE IA / HUMAIN ###
-
-        global sorcier1_image, sorcier2_image, sorcier3_image, sorcier4_image #code ia
-
-
-        # check avant de lancer la fenetre si jamais un sorcier n'est pas présent quand la touche 'a' est pressée   
+        # check si on se trouve bien dans une zone avec pnj quand la fonction est chargée  
         if (L[ordonne-1][abscisse] in pnj_List or L[ordonne+1][abscisse] in pnj_List or L[ordonne][abscisse-1] in pnj_List or L[ordonne][abscisse+1] in pnj_List ):
-            
-
-
-            global second_window#code ia
-
-            if not second_window or not second_window.winfo_exists():#code ia  # Vérifie si la deuxième fenêtre existe
+                
                 #PNJ 1
                 if (L[ordonne-1][abscisse] == pnj_List[0] or L[ordonne+1][abscisse]== pnj_List[0] or L[ordonne][abscisse-1]== pnj_List[0] or L[ordonne][abscisse+1]== pnj_List[0]):
                     pnj_ = "pnj1"
                     pnj_infos_ = pnj1_infos
+                    canvas_tete_pnj_grand.create_image(0, 0, anchor=NW, image=pnj1_grand)
 
                 #PNJ 2
                 elif (L[ordonne-1][abscisse] == pnj_List[1] or L[ordonne+1][abscisse]== pnj_List[1] or L[ordonne][abscisse-1]== pnj_List[1] or L[ordonne][abscisse+1]== pnj_List[1]):
                     pnj_ = "pnj2"
                     pnj_infos_ = pnj2_infos
+                    canvas_tete_pnj_grand.create_image(0, 0, anchor=NW, image=pnj2_grand)
+
 
                 #PNJ3
                 elif (L[ordonne-1][abscisse] == pnj_List[2] or L[ordonne+1][abscisse]== pnj_List[2] or L[ordonne][abscisse-1]== pnj_List[2] or L[ordonne][abscisse+1]== pnj_List[2]):
                     pnj_ = "pnj3"
                     pnj_infos_ = pnj3_infos
+                    canvas_tete_pnj_grand.create_image(0, 0, anchor=NW, image=pnj3_grand)
+
 
                 #PNJ4
                 elif (L[ordonne-1][abscisse] == pnj_List[3] or L[ordonne+1][abscisse]== pnj_List[3] or L[ordonne][abscisse-1]== pnj_List[3] or L[ordonne][abscisse+1]== pnj_List[3]):
                     pnj_ = "pnj4"
                     pnj_infos_ = pnj4_infos
-                
+                    canvas_tete_pnj_grand.create_image(0, 0, anchor=NW, image=pnj1_grand)
 
-                second_window = Toplevel() #code ia 
-                canva_discussion = Canvas(second_window, width=450, height=260, bg="white")
-                canva_discussion.pack()
+            
+                global Label_btn_suivant_discussion_pnj
 
-                if pnj_ == "pnj1":
-                    sorcier1_image = PhotoImage(file="image/sorcier1.png")
-                    canva_discussion.create_image(0, 0, anchor=NW, image=sorcier1_image)
-                elif pnj_ == "pnj2":
-                    sorcier2_image = PhotoImage(file="image/sorcier2.png")
-                    canva_discussion.create_image(0, 0, anchor=NW, image=sorcier2_image)
-                elif pnj_ == "pnj3":
-                    sorcier3_image = PhotoImage(file="image/sorcier3.png")
-                    canva_discussion.create_image(0, 0, anchor=NW, image=sorcier3_image)
-                elif pnj_ == "pnj4":
-                    sorcier4_image = PhotoImage(file="image/sorcier4.png")
-                    canva_discussion.create_image(0, 0, anchor=NW, image=sorcier4_image)
-                                
-                Label_text_infos = Label(canva_discussion, text="Clique sur Suivant !", wraplength=180, justify="left")
-                Label_text_infos.pack(pady=20)
-
- 
-                canva_discussion.create_window(350, 30, window=Label_text_infos)
-
-                btn_suivant = Button(second_window, text="Suivant", command=lambda: affiche_prog(pnj_, pnj_infos_, Niveau))
-                btn_suivant.pack()
-
-                second_window.protocol("WM_DELETE_WINDOW", lambda: reset_second_window()) #code ia
-    
-    def reset_second_window(): #code ia
-
-        # global second_window, sorcier1_image, sorcier2_image, sorcier3_image, sorcier4_image #code ia
-        # if sorcier1_image: #code ia
-        #     canva_discussion.create_image(0, 0, anchor=NW, image=sorcier1_image) #code ia
-        # elif sorcier2_image: #code ia
-        #     canva_discussion.create_image(0, 0, anchor=NW, image=sorcier2_image) #code ia
-        # elif sorcier3_image: #code ia
-        #     canva_discussion.create_image(0, 0, anchor=NW, image=sorcier3_image) #code ia   
-        # elif sorcier4_image: #code ia
-        #     canva_discussion.create_image(0, 0, anchor=NW, image=sorcier4_image) #code ia
-
-        global second_window #code ia
-        if second_window: #code ia
-            second_window.destroy()  # Détruit la fenêtre
-        second_window = None #code ia
-
-#### FIN PARTIE IA / HUMAIN ###
-
+                if Label_btn_suivant_discussion_pnj is not None:
+                    if Label_btn_suivant_discussion_pnj.winfo_exists():
+                        Label_btn_suivant_discussion_pnj.destroy()
+                #On crée le bouton pour faire discuter le pnj avec l'utilisateur et on set le texte de bienvenue          
+                Label_texte_parole_discussion_pnj_strvar.set("Salut ! Clique sur suivant !")
+                Label_btn_suivant_discussion_pnj = Button(Label_Frame_Discussion_pnj, text="Suivant", command=lambda: affiche_prog(pnj_, pnj_infos_, Niveau))
+                Label_btn_suivant_discussion_pnj.pack(side=BOTTOM, anchor="c", pady=5)
+        else:
+            #on clear si jamais la personne s'en va
+            canvas_tete_pnj_grand.delete("all")
+            Label_texte_parole_discussion_pnj_strvar.set("")
+            #fonction de check pour delete btn (winfo : true/false) et première ligne pour eviter les erreurs (double verif)
+            if Label_btn_suivant_discussion_pnj is not None:
+                if Label_btn_suivant_discussion_pnj.winfo_exists():
+                    Label_btn_suivant_discussion_pnj.destroy()
+            c = 0
 
 
 
@@ -438,38 +470,35 @@ def Gestion_Jouer(fenetre, Niveau):
 
 
 
-
+    # coordonnées
     global ordonne
     global abscisse
     abscisse = 1
     ordonne = 1
 
-
-    # 
-    global nb_frag_cle
-    global nb_glue
-    global craft
-    global nb_cle
-
+    # état de visite des pnj  : donner ou non les elements
     global pnj1_infos
     global pnj2_infos
     global pnj3_infos
-    global pnj4_infos    
-
-
-    nb_frag_cle = 0
-    nb_glue = 0
-    nb_cle = 0
-    craft = 0
+    global pnj4_infos
     pnj1_infos = False
     pnj2_infos = False
     pnj3_infos = False
-    pnj4_infos = False
+    pnj4_infos = False   
+
+    # 
+
+    global craft
+    global nb_cle
+
+    nb_cle = 0
+    craft = 0
+
     # 
 
 
 
-    Jeu.geometry("1200x700")
+    Jeu.geometry("1300x700")
     ######On place tout les elements sur la fenetre#####
 
     #####Frame global qui contient les deux partie du jeu
@@ -513,16 +542,31 @@ def Gestion_Jouer(fenetre, Niveau):
     canvas.pack(side="top",padx=5, pady=5)
 
     ###Frame gauche bas pour clé + pouvoir parler infos
-    Label_Frame_pnj_Text = Frame(Label_Frame_Jeu_Inv, bg="red", height=150)
-    Label_Frame_pnj_Text.pack(side=BOTTOM, fill='x',padx=5, pady=5)
+    Label_Frame_pnj_Text = Frame(Label_Frame_Jeu_Inv, bg="red")
+    Label_Frame_pnj_Text.pack(side=TOP, fill='x',padx=5, pady=5)
 
     ##Frame affiche le texte si on peut parler à un pnj ou faire un action
-    Label_Frame_Text_Info_Discussion_pnj = Frame(Label_Frame_pnj_Text, bg="blue",height=150)
-    Label_Frame_Text_Info_Discussion_pnj.pack(expand=True, fill=BOTH, padx=5, pady=5, side='left')
+    Label_Frame_Text_Info_Discussion_pnj = Frame(Label_Frame_pnj_Text, bg="blue")
+    Label_Frame_Text_Info_Discussion_pnj.pack(fill='y', padx=5, pady=5, side='left')
 
+    #On load les elements pour afficher les msg de possibilité de discution 
+    canvas_infos_possibilite_discussion = Canvas(Label_Frame_Text_Info_Discussion_pnj, bg='white', height=50, width=50)
+    canvas_infos_possibilite_discussion.pack(anchor="c", side=LEFT, padx=15)
+    Label_text_possibilite_strvar = StringVar()
+    Label_text_possibilite_strvar.set("Aucun personnage n'est présent aux alentours ! ")
+    Label_text_possibilite_widget = Label(Label_Frame_Text_Info_Discussion_pnj, textvariable=Label_text_possibilite_strvar, wraplength=200, justify="left")
+    Label_text_possibilite_widget.pack(side="left", pady=5, padx=5)
+   
     ## Frame de box de discussion avec les pnj
-    Label_Frame_Discussion_pnj = Frame(Label_Frame_pnj_Text, bg="blue",height=150)
+    Label_Frame_Discussion_pnj = Frame(Label_Frame_pnj_Text, bg="blue")
     Label_Frame_Discussion_pnj.pack(expand=True, fill=BOTH, padx=5, pady=5, side='right')
+
+    #On load les element qui serviron aux boites de discussion des pnjs
+    canvas_tete_pnj_grand = Canvas(Label_Frame_Discussion_pnj, bg='white', height=100, width=200)
+    canvas_tete_pnj_grand.pack(anchor="c", padx=10,pady=5, side=LEFT)
+    Label_texte_parole_discussion_pnj_strvar = StringVar()
+    Label_texte_parole_discussion_pnj_widget = Label(Label_Frame_Discussion_pnj, textvariable=Label_texte_parole_discussion_pnj_strvar, wraplength=500, justify="left")
+    Label_texte_parole_discussion_pnj_widget.pack(side=LEFT, padx=5, pady=5)
 
 
 
@@ -535,43 +579,22 @@ def Gestion_Jouer(fenetre, Niveau):
     Label_Frame_Cours_Affiche.pack(side='top', expand=True, fill="both", padx=5, pady=5)
     
     ##Frame affiche l'inventaire (clé(s))
-    Label_Frame_Inv_Cle = Frame(Label_Frame_Cours_cle, bg='white', height=150)
+    Label_Frame_Inv_Cle = Frame(Label_Frame_Cours_cle, bg='white')
     Label_Frame_Inv_Cle.pack(side='bottom', padx=5, pady=5, fill='x')
 
-
-
-
-
-
-
-
-
-
-
-
     #On load l'inventaire de base 
-    # Label_Titre = Label(Jeu, text="Inventaire").pack()
-    # text_nb_cle = StringVar()
-    # text_nb_cle.set(f"Fragments de clé {nb_frag_cle}/3")
-    # Label_Titre_Cle = Label(Jeu, textvariable=text_nb_cle).pack(pady=20)
-    # long_canvas_inv = 170
-    # if Niveau == 1:
-    #     Label_glue_nv2 = StringVar()
-    #     Label_glue_nv2.set(f"Stick de colle {nb_glue}/1")
-    #     text_nb_glue = Label(Jeu, textvariable=Label_glue_nv2 )
-    #     text_nb_glue.pack()
-    #     long_canvas_inv = 230
+    long_canvas_inv = 170
+    if Niveau ==1:
+        long_canvas_inv = 230
 
-    # canvas_inv = Canvas(Jeu, width=long_canvas_inv, height=50, bg = "white")
-    # canvas_inv.create_image(0,0,anchor=NW, image = Frag_cle)
-    # canvas_inv.create_image(60,0,anchor=NW, image = Frag_cle)
-    # canvas_inv.create_image(120,0,anchor=NW, image = Frag_cle)
-    # if Niveau == 1:
-    #     canvas_inv.create_image(180,0,anchor=NW, image = glue)
+    canvas_inv = Canvas(Label_Frame_Inv_Cle, width=long_canvas_inv, height=50, bg = "black")
+    canvas_inv.create_image(0,0,anchor=NW, image = clepnj1)
+    canvas_inv.create_image(60,0,anchor=NW, image = clepnj2)
+    canvas_inv.create_image(120,0,anchor=NW, image = clepnj3)
+    if Niveau == 1:
+        canvas_inv.create_image(180,0,anchor=NW, image = glue)
 
-    
-
-    # canvas_inv.pack()
+    canvas_inv.pack(pady=10)
 
 
 
@@ -590,14 +613,6 @@ def Gestion_Jouer(fenetre, Niveau):
 
     Jeu.mainloop()
 
-
-    
-    
-
-
-
-
-    
 
 
 
