@@ -15,6 +15,9 @@ import labyrinthe
 import custom_labyrinthe
 import py_maths_exo
 
+plt.rcParams['text.usetex'] = True
+
+
 ### Pour avoir une certaine sécurité lors de la récupération des fragements de clé; il a fallut faire en sorte
 # de ne pourvoir ouvrir qu'une seule fenetre à la fois pour eviter de donner plus de fragments de clé que prévus
 # nous avons donc utilisé l'ia pour apprendre et comprendre comment fonctionne le protocole utilisé... ###
@@ -25,6 +28,7 @@ global Label_btn_suivant_discussion_pnj
 Label_btn_suivant_discussion_pnj = None
 
 # Variable pour suivre l'état de la deuxième fenêtre pour les problèmes de la porte
+global second_window_probleme
 second_window_probleme= None
 
 
@@ -34,6 +38,7 @@ def Gestion_Jouer(fenetre, Niveau):
     Label_btn_suivant_discussion_pnj = None
 
     # Variable pour suivre l'état de la deuxième fenêtre pour les problèmes de la porte
+    global second_window_probleme
     second_window_probleme= None
 
     #le "fenetre" correspond à la fenetre tk qui est en cours de loop
@@ -553,8 +558,8 @@ def Gestion_Jouer(fenetre, Niveau):
 
                 else:
                     Niveau +=1
-                    Gestion_Jouer(Jeu, Niveau)
                     second_window_probleme.destroy()
+                    Gestion_Jouer(Jeu, Niveau)
 
 
 
@@ -680,15 +685,15 @@ def Gestion_Jouer(fenetre, Niveau):
     global pnj2_infos
     global pnj3_infos
     global pnj4_infos
-    pnj1_infos = False
-    pnj2_infos = False
-    pnj3_infos = False
-    pnj4_infos = False  
+    pnj1_infos = True
+    pnj2_infos = True
+    pnj3_infos = True
+    pnj4_infos = True  
 
     # quad un elment est fabriqué, pour l'afficher correctement
 
     global assemble_cle
-    assemble_cle = False
+    assemble_cle = True
 
  
 
