@@ -188,7 +188,7 @@ def Gestion_Jouer(fenetre, Niveau):
         print("Ordonne : ", ordonne)
         #verif si table de craft dispo et si oui on affiche le msg d'information
         if L[ordonne][abscisse-1] == "¤":
-            Label_text_possibilite_strvar.set("Appuie sur 'C' pour fabriquer la grande Clé !")
+            Label_text_possibilite_strvar.set("Appuie sur 'C' pour assembler la grande Clé !")
             canvas_infos_possibilite_discussion.create_image(0,0,anchor=NW, image=craft_table_)
 
         #check si c'est la porte et on met à jour les infos dans le cadre e bas à gauche
@@ -220,7 +220,23 @@ def Gestion_Jouer(fenetre, Niveau):
                 canvas_infos_possibilite_discussion.create_image(0,0,anchor=NW, image=pnj4)
 
         else:
-            Label_text_possibilite_strvar.set("Aucun personnage n'est présent aux alentours ! ")
+            if Niveau ==0:
+                if pnj1_infos == False or pnj2_infos == False or pnj3_infos == False:
+                    Label_text_possibilite_strvar.set("Objectif : Récupérer tous les fragments de clés !")
+                elif assemble_cle == False:
+                    Label_text_possibilite_strvar.set("Objectif : Assembler la clé à la table de fabrication !")
+                elif assemble_cle == True:
+                    Label_text_possibilite_strvar.set("Objectif : Ouvrir la porte !")
+            elif Niveau ==1:
+                if pnj1_infos == False or pnj2_infos == False or pnj3_infos == False or pnj3_infos == False:
+                    Label_text_possibilite_strvar.set("Objectif : Récupérer tous les fragments de clés et le tube de colle !")
+                elif assemble_cle == False:
+                    Label_text_possibilite_strvar.set("Objectif : Assembler la clé à la table de fabrication !")
+
+                elif assemble_cle == True:
+                    Label_text_possibilite_strvar.set("Objectif : Ouvrir la porte !")
+
+
             canvas_infos_possibilite_discussion.create_image(0,0,anchor=NW, image=carre)
             #on clear si jamais la personne s'en va
             canvas_tete_pnj_grand.delete("all")
@@ -314,7 +330,8 @@ def Gestion_Jouer(fenetre, Niveau):
                 Label_text_possibilite_strvar.set("Vous avez déjà fabriqué la Grande Clé ! !")
 
         else:
-            print("Il n'y a pas de tableau de craft près de vous pour fabriquer votre objet !")
+            Label_text_possibilite_strvar.set("Vous devez vous trouver à coté de la table de fabrication pour fabriquer quelque chose !")
+
 
 
 
@@ -355,6 +372,8 @@ def Gestion_Jouer(fenetre, Niveau):
                         pnj1_infos = True
 
                         load_inv(Niveau)
+                        Label_text_possibilite_strvar.set("Vous venez d'obtenir un fragment de clé !")
+
 
                 elif pnj == "pnj2":
                     if c == 3 :
@@ -373,6 +392,8 @@ def Gestion_Jouer(fenetre, Niveau):
                         pnj2_infos = True
 
                         load_inv(Niveau)
+                        Label_text_possibilite_strvar.set("Vous venez d'obtenir un fragment de clé !")
+
 
                 elif pnj == "pnj3":
                     if c == 3 :
@@ -390,6 +411,7 @@ def Gestion_Jouer(fenetre, Niveau):
                         pnj3_infos = True
 
                         load_inv(Niveau)
+                        Label_text_possibilite_strvar.set("Vous venez d'obtenir un fragment de clé !")
 
                 elif pnj == "pnj4":
                     if c == 3 :
@@ -405,6 +427,8 @@ def Gestion_Jouer(fenetre, Niveau):
                         pnj4_infos = True
 
                         load_inv(Niveau)
+                        Label_text_possibilite_strvar.set("Vous venez d'obtenir le tube de colle !")
+
 
 
 
@@ -502,6 +526,7 @@ def Gestion_Jouer(fenetre, Niveau):
 
 
         else:
+            Label_text_possibilite_strvar.set("Il n'y a personne autour de vous avec qui discuter !")
             #on clear si jamais la personne s'en va
             canvas_tete_pnj_grand.delete("all")
             Label_texte_parole_discussion_pnj_strvar.set("")
@@ -539,13 +564,13 @@ def Gestion_Jouer(fenetre, Niveau):
                     Label_btn_suivant_second_window ['state'] = DISABLED
                     # on affcihe les btns de réponses
                     Label_btn_result_possible_1 = Button(Label_Frame_Reponse_Verif, text=value_btn_1, command=lambda:verif_reponse_sw(value_btn_1,Exo_correction[1],Label_btn_result_possible_1,Label_btn_result_possible_2,Label_btn_result_possible_3))
-                    Label_btn_result_possible_1.pack(side=LEFT, padx = 5, pady = 5)
+                    Label_btn_result_possible_1.pack(side="left", padx = 5, pady = 5)
 
                     Label_btn_result_possible_2 = Button(Label_Frame_Reponse_Verif, text=value_btn_2, command=lambda:verif_reponse_sw(value_btn_2,Exo_correction[1],Label_btn_result_possible_1,Label_btn_result_possible_2,Label_btn_result_possible_3))
-                    Label_btn_result_possible_2.pack(anchor=LEFT, padx = 5, pady = 5)
+                    Label_btn_result_possible_2.pack(side ='left', padx = 5, pady = 5)
 
                     Label_btn_result_possible_3 = Button(Label_Frame_Reponse_Verif, text=value_btn_3, command=lambda:verif_reponse_sw(value_btn_3,Exo_correction[1],Label_btn_result_possible_1,Label_btn_result_possible_2,Label_btn_result_possible_3))
-                    Label_btn_result_possible_3.pack(side= LEFT, padx= 5, pady = 5)
+                    Label_btn_result_possible_3.pack(side='left', padx= 5, pady = 5)
                 elif c_sw==5:
                     if erreur == 0:
                         text_complet_consignes = "Bravo ! Vous avez trouvé la bonne solution !"
@@ -744,7 +769,11 @@ def Gestion_Jouer(fenetre, Niveau):
     canvas_infos_possibilite_discussion = Canvas(Label_Frame_Text_Info_Discussion_pnj, bg='white', height=50, width=50)
     canvas_infos_possibilite_discussion.pack(anchor="c", side=LEFT, padx=15)
     Label_text_possibilite_strvar = StringVar()
-    Label_text_possibilite_strvar.set("Aucun personnage n'est présent aux alentours ! ")
+    if Niveau ==0:
+        Label_text_possibilite_strvar.set("Objectif : Récupérer tous les fragments de clés !")
+    elif Niveau ==1:
+        Label_text_possibilite_strvar.set("Objectif : Récupérer tous les fragments de clés et le tube de colle !")
+
     Label_text_possibilite_widget = Label(Label_Frame_Text_Info_Discussion_pnj, textvariable=Label_text_possibilite_strvar, wraplength=200, justify="left")
     Label_text_possibilite_widget.pack(side="left", pady=5, padx=5)
    
@@ -798,9 +827,6 @@ def Gestion_Jouer(fenetre, Niveau):
     Jeu.bind("<KeyPress-s>", deplacement)
     Jeu.bind("<KeyPress-d>", deplacement)
     Jeu.bind("<space>", parler_pnj)
-
-    
-    Jeu.bind("<KeyPress-b>", porte_enigme)
     Jeu.bind("<KeyPress-c>", table_craft)
 
 
