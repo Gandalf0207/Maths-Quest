@@ -107,7 +107,7 @@ def Gestion_Jouer(fenetre, Niveau):
         pnj_liste = ["pnj1", "pnj2", "pnj3", "pnj4"]
 
 
-        if touche == "z":
+        if touche == "Up":
             if ordonne-1 > 0 and L[ordonne-1][abscisse] not in check :
                 L[ordonne][abscisse] = " "
                 L[ordonne][abscisse] = canvas.create_image(24*abscisse, 24*ordonne, anchor=NW, image=carre)
@@ -126,7 +126,7 @@ def Gestion_Jouer(fenetre, Niveau):
                 print("C'est un mur !")
 
 
-        elif touche=="q" :
+        elif touche=="Left" :
             if abscisse-1 > 0 and L[ordonne][abscisse-1] not in check :
                 L[ordonne][abscisse] = " "
                 L[ordonne][abscisse] = canvas.create_image(24*abscisse, 24*ordonne, anchor=NW, image=carre)
@@ -145,7 +145,7 @@ def Gestion_Jouer(fenetre, Niveau):
                 print("C'est un mur !")
 
 
-        elif touche=="s" :
+        elif touche=="Down" :
             if ordonne+1 < len(L) and L[ordonne+1][abscisse] not in check :
                 L[ordonne][abscisse] = " "
                 L[ordonne][abscisse] = canvas.create_image(24*abscisse, 24*ordonne, anchor=NW, image=carre)
@@ -164,7 +164,7 @@ def Gestion_Jouer(fenetre, Niveau):
                 print("C'est un mur !")
 
 
-        elif touche=="d" :
+        elif touche=="Right" :
             if abscisse+1 < len(L[ordonne]) and L[ordonne][abscisse +1] not in check :
                 L[ordonne][abscisse] = " "
                 L[ordonne][abscisse] = canvas.create_image(24*abscisse, 24*ordonne, anchor=NW, image=carre)
@@ -686,7 +686,23 @@ def Gestion_Jouer(fenetre, Niveau):
         second_window_probleme= None
 
         
+    def regle_infos_jeu(event):
+        Regle = Toplevel()
+        Regle.geometry("600x400")
+        Label_titre_regle = Label(Regle, text="Maze-Thon : Règles").pack(pady=5)
 
+        Label_Frame_Touche = Frame(Regle, bg = "#000000")
+        Label_Frame_Touche.pack(expand=True, fill="both")
+
+        Label_frame_1 = Frame(Label_Frame_Touche, bg = "blue", width=250)
+        Label_frame_1.pack(fill='y', side=LEFT, pady=5, padx=5)
+
+        Label_touche_box = Frame(Label_frame_1, height=200, bg="white", width=250)
+        Label_touche_box.pack(fill='x', padx=5, pady=5, side = TOP)
+
+
+        close_btn = Button(Regle, command=Regle.destroy, text="Fermer").pack(side=BOTTOM)
+        Regle.mainloop()
 
 
     # coordonnées
@@ -822,12 +838,13 @@ def Gestion_Jouer(fenetre, Niveau):
 
 #deplacement
     Jeu.focus_set()
-    Jeu.bind("<KeyPress-z>", deplacement)
-    Jeu.bind("<KeyPress-q>", deplacement)
-    Jeu.bind("<KeyPress-s>", deplacement)
-    Jeu.bind("<KeyPress-d>", deplacement)
+    Jeu.bind("<KeyPress-Up>", deplacement)
+    Jeu.bind("<KeyPress-Down>", deplacement)
+    Jeu.bind("<KeyPress-Left>", deplacement)
+    Jeu.bind("<KeyPress-Right>", deplacement)
     Jeu.bind("<space>", parler_pnj)
     Jeu.bind("<KeyPress-c>", table_craft)
+    Jeu.bind("<Escape>", regle_infos_jeu)
 
 
     Jeu.mainloop()
