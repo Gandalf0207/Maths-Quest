@@ -14,12 +14,12 @@ def Custom_Map(Map, longueur, largeur, Niveau):
     for i in range(len(L_pnj)):
         comp +=1
         if comp <=2:      
-            x = random.randint(1,(largeur//2 -2))
+            x = random.randint(2,(largeur//2 -2))
         else:
             x = random.randint((largeur//2 +2),largeur-2)
 
         if comp %2 ==1:
-            y = random.randint(1,(longueur//2 -2))
+            y = random.randint(2,(longueur//2 -2))
         else:
             y = random.randint((longueur//2 +2),longueur-2)
 
@@ -44,7 +44,7 @@ def Custom_Map(Map, longueur, largeur, Niveau):
     x = random.randint(new_largeur,largeur-2)
     y = random.randint(new_longueur,longueur-2)
     
-    while Map[x][y] != "■" or (Map[x+1][y] == "■" and Map[x-1][y] == "■" and Map[x][y+1] == "■" and Map[x][y-1] == "■"):
+    while Map[x][y] != "■" or (Map[x+1][y] == "■" and Map[x-1][y] == "■" and Map[x][y+1] == "■" and Map[x][y-1] == "■") or (Map[x+1][y] in L_pnj or Map[x+2][y] in L_pnj or Map[x-1][y] in L_pnj or Map[x-2][y] in L_pnj or Map[x][y+1] in L_pnj or Map[x][y+2] in L_pnj or Map[x][y-1] in L_pnj or Map[x][y-2] in L_pnj or Map[x-1][y-1] in L_pnj or Map[x+1][y-1] in L_pnj or Map[x-1][y+1] in L_pnj or Map[x+1][y+1] in L_pnj) :
         x = random.randint(new_largeur,largeur-2)
         y = random.randint(new_longueur,longueur-2)
 
