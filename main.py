@@ -193,7 +193,7 @@ def Gestion_Jouer(fenetre, Niveau):
 
         #check si c'est la porte et on met à jour les infos dans le cadre e bas à gauche
         elif (L[ordonne-1][abscisse] == "\U0001F6AA" or L[ordonne+1][abscisse]== "\U0001F6AA" or L[ordonne][abscisse-1]== "\U0001F6AA" or L[ordonne][abscisse+1]== "\U0001F6AA"):
-            Label_text_possibilite_strvar.set("Appuie sur 'E' pour ouvrir la porte !")
+            Label_text_possibilite_strvar.set("Appuie sur 'espace' pour ouvrir la porte !")
             canvas_infos_possibilite_discussion.create_image(0,0,anchor=NW, image=porte)
 
 
@@ -201,22 +201,22 @@ def Gestion_Jouer(fenetre, Niveau):
         elif (L[ordonne-1][abscisse] in pnj_liste or L[ordonne+1][abscisse] in pnj_liste or L[ordonne][abscisse-1] in pnj_liste or L[ordonne][abscisse+1] in pnj_liste):
             #PNJ 1
             if (L[ordonne-1][abscisse] == pnj_liste[0] or L[ordonne+1][abscisse]== pnj_liste[0] or L[ordonne][abscisse-1]== pnj_liste[0] or L[ordonne][abscisse+1]== pnj_liste[0]):
-                Label_text_possibilite_strvar.set("Appuie sur 'E' pour me parler !")
+                Label_text_possibilite_strvar.set("Appuie sur 'espace' pour me parler !")
                 canvas_infos_possibilite_discussion.create_image(0,0,anchor=NW, image=pnj1)
 
             #PNJ 2
             elif (L[ordonne-1][abscisse] == pnj_liste[1] or L[ordonne+1][abscisse]== pnj_liste[1] or L[ordonne][abscisse-1]== pnj_liste[1] or L[ordonne][abscisse+1]== pnj_liste[1]):
-                Label_text_possibilite_strvar.set("Appuie sur 'E' pour me parler !")
+                Label_text_possibilite_strvar.set("Appuie sur 'espace' pour me parler !")
                 canvas_infos_possibilite_discussion.create_image(0,0,anchor=NW, image=pnj2)
 
             #PNJ3
             elif (L[ordonne-1][abscisse] == pnj_liste[2] or L[ordonne+1][abscisse]== pnj_liste[2] or L[ordonne][abscisse-1]== pnj_liste[2] or L[ordonne][abscisse+1]== pnj_liste[2]):
-                Label_text_possibilite_strvar.set("Appuie sur 'E' pour me parler !")
+                Label_text_possibilite_strvar.set("Appuie sur 'espace' pour me parler !")
                 canvas_infos_possibilite_discussion.create_image(0,0,anchor=NW, image=pnj3)
 
             #PNJ4
             elif (L[ordonne-1][abscisse] == pnj_liste[3] or L[ordonne+1][abscisse]== pnj_liste[3] or L[ordonne][abscisse-1]== pnj_liste[3] or L[ordonne][abscisse+1]== pnj_liste[3]):
-                Label_text_possibilite_strvar.set("Appuie sur 'E' pour me parler !")
+                Label_text_possibilite_strvar.set("Appuie sur 'escpace' pour me parler !")
                 canvas_infos_possibilite_discussion.create_image(0,0,anchor=NW, image=pnj4)
 
         else:
@@ -517,6 +517,7 @@ def Gestion_Jouer(fenetre, Niveau):
     def porte_enigme(Niveau):
         global second_window_probleme
 
+
         if not second_window_probleme or not second_window_probleme.winfo_exists():  # Vérifie si la deuxième fenêtre existe
             def affiche_consigne(Niveau):
                 global erreur
@@ -528,27 +529,28 @@ def Gestion_Jouer(fenetre, Niveau):
                 if c_sw==1:
                     text_complet_consignes = "Pour pouvoir tourner la clé et ainsi dévérouiller la porte, vous devez résoudre cette exercice ! "
                 elif c_sw==2:
-                    text_complet_consignes = "Toutes les partie du cours que vous avez collectées vous seviront pour répondre ! Vous pouvez les consulter "
+                    text_complet_consignes = "Toutes les parties du cours que vous avez collectées vous serviront pour répondre ! Vous pouvez les consulter "
                 elif c_sw==3:
                     if Niveau ==0:
                         text_complet_consignes = "Vous devez résoudre cette équation du premier degré en trouvant la valeur de x. Apres avoir résolu cette equation; selectionnez la bonne case et faites valider"
+                    elif Niveau ==1:
+                        text_complet_consignes = "Vous devez résoudre cette equation à deux inconnues n trouvant l valeur de y et y. Apres avoir résolu cette equation; selectionnez la bonne case et faites valider"
                 elif c_sw==4:
                     Label_btn_suivant_second_window ['state'] = DISABLED
                     # on affcihe les btns de réponses
                     Label_btn_result_possible_1 = Button(Label_Frame_Reponse_Verif, text=value_btn_1, command=lambda:verif_reponse_sw(value_btn_1,Exo_correction[1],Label_btn_result_possible_1,Label_btn_result_possible_2,Label_btn_result_possible_3))
-                    Label_btn_result_possible_1.pack()
+                    Label_btn_result_possible_1.pack(side=LEFT, padx = 5, pady = 5)
 
                     Label_btn_result_possible_2 = Button(Label_Frame_Reponse_Verif, text=value_btn_2, command=lambda:verif_reponse_sw(value_btn_2,Exo_correction[1],Label_btn_result_possible_1,Label_btn_result_possible_2,Label_btn_result_possible_3))
-                    Label_btn_result_possible_2.pack()
+                    Label_btn_result_possible_2.pack(anchor=LEFT, padx = 5, pady = 5)
 
                     Label_btn_result_possible_3 = Button(Label_Frame_Reponse_Verif, text=value_btn_3, command=lambda:verif_reponse_sw(value_btn_3,Exo_correction[1],Label_btn_result_possible_1,Label_btn_result_possible_2,Label_btn_result_possible_3))
-                    Label_btn_result_possible_3.pack()
+                    Label_btn_result_possible_3.pack(side= LEFT, padx= 5, pady = 5)
                 elif c_sw==5:
-                    if Niveau ==0:
-                        if erreur == 0:
-                            text_complet_consignes = "Bravo ! Vous avez trouvé la bonne valeur de x, la porte est ouverte !"
-                        else:
-                            text_complet_consignes = "Vous n'avez pas trouvé la bonne valeur de x, cliquez sur suivant pour recomencer !"
+                    if erreur == 0:
+                        text_complet_consignes = "Bravo ! Vous avez trouvé la bonne solution !"
+                    else:
+                        text_complet_consignes = "Vous n'avez pas trouvé la bonne solution, cliquez sur suivant pour recommencer !"
 
                 elif c_sw==6:
                     if erreur == 0:
@@ -642,22 +644,10 @@ def Gestion_Jouer(fenetre, Niveau):
             Label_Frame_Reponse_Verif = Frame(Label_Frame_global_second_window, bg= "#000000")
             Label_Frame_Reponse_Verif.pack(side=TOP, fill='x', pady= 5, padx=5)
 
-            #On load tout les elements de réponse et les boutons qui servent à la validation
-            v1 = random.randint(-3,3)
-            v2 = random.randint(-3,3)
-            while v1 ==0 or v2== 0:
-                v1 = random.randint(-7,7)
-                v2 = random.randint(-7,7)
-
-            L_result_possible = []
-            L_result_possible.append(Exo_correction[1])
-            L_result_possible.append(Exo_correction[1]+v1)
-            L_result_possible.append(Exo_correction[1]+v2)
-            random.shuffle(L_result_possible)
-
-            value_btn_1 = L_result_possible[0]
-            value_btn_2 = L_result_possible[1]
-            value_btn_3 = L_result_possible[2]
+            # on définit les trois valeur qui vont s'afficher dans les boutons
+            value_btn_1 = Exo_correction[2]
+            value_btn_2 = Exo_correction[3]
+            value_btn_3 = Exo_correction[4]
 
 
             # Lie la fermeture de la fenêtre à la réinitialisation de second_window_probleme
@@ -685,15 +675,15 @@ def Gestion_Jouer(fenetre, Niveau):
     global pnj2_infos
     global pnj3_infos
     global pnj4_infos
-    pnj1_infos = True
-    pnj2_infos = True
-    pnj3_infos = True
-    pnj4_infos = True  
+    pnj1_infos = False
+    pnj2_infos = False
+    pnj3_infos = False
+    pnj4_infos = False  
 
     # quad un elment est fabriqué, pour l'afficher correctement
 
     global assemble_cle
-    assemble_cle = True
+    assemble_cle = False
 
  
 
@@ -807,7 +797,7 @@ def Gestion_Jouer(fenetre, Niveau):
     Jeu.bind("<KeyPress-q>", deplacement)
     Jeu.bind("<KeyPress-s>", deplacement)
     Jeu.bind("<KeyPress-d>", deplacement)
-    Jeu.bind("<KeyPress-e>", parler_pnj)
+    Jeu.bind("<space>", parler_pnj)
 
     
     Jeu.bind("<KeyPress-b>", porte_enigme)
