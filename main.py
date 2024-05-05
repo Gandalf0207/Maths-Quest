@@ -70,11 +70,13 @@ def Gestion_Jouer(fenetre, Niveau):
     pnj2 = PhotoImage(file = "image/pnj2.png")
     pnj3 = PhotoImage(file = "image/pnj3.png")
     pnj4 = PhotoImage(file = "image/pnj4.png")
+    pnj5 = PhotoImage(file = "image/pnj4.png")
 
     pnj1_grand = PhotoImage(file="image/sorcier1.png")
     pnj2_grand = PhotoImage(file="image/sorcier2.png")
     pnj3_grand = PhotoImage(file="image/sorcier3.png")
     pnj4_grand = PhotoImage(file="image/sorcier4.png")
+    pnj5_grand = PhotoImage(file = "image/pnj4.png")
 
     clepnj1 = PhotoImage(file="image/clepnj1.png")
     clepnj2 = PhotoImage(file="image/clepnj2.png")
@@ -104,7 +106,7 @@ def Gestion_Jouer(fenetre, Niveau):
 
         touche = event.keysym
         check = ["■" ,"\U0001F6AA", "¤"]
-        pnj_liste = ["pnj1", "pnj2", "pnj3", "pnj4"]
+        pnj_liste = ["pnj1", "pnj2", "pnj3", "pnj4", "pnj5"]
 
 
         if touche == "Up":
@@ -219,6 +221,11 @@ def Gestion_Jouer(fenetre, Niveau):
                 Label_text_possibilite_strvar.set("Appuie sur 'escpace' pour me parler !")
                 canvas_infos_possibilite_discussion.create_image(0,0,anchor=NW, image=pnj4)
 
+            #PNJ5
+            elif (L[ordonne-1][abscisse] == pnj_liste[4] or L[ordonne+1][abscisse]== pnj_liste[4] or L[ordonne][abscisse-1]== pnj_liste[4] or L[ordonne][abscisse+1]== pnj_liste[4]):
+                Label_text_possibilite_strvar.set("Appuie sur 'escpace' pour me parler !")
+                canvas_infos_possibilite_discussion.create_image(0,0,anchor=NW, image=pnj5)
+
         else:
             if Niveau ==0:
                 if pnj1_infos == False or pnj2_infos == False or pnj3_infos == False:
@@ -232,7 +239,13 @@ def Gestion_Jouer(fenetre, Niveau):
                     Label_text_possibilite_strvar.set("Objectif : Récupérer tous les fragments de clés et le tube de colle !")
                 elif assemble_cle == False:
                     Label_text_possibilite_strvar.set("Objectif : Assembler la clé à la table de fabrication !")
-
+                elif assemble_cle == True:
+                    Label_text_possibilite_strvar.set("Objectif : Ouvrir la porte !")
+            elif Niveau ==2:
+                if pnj1_infos == False or pnj2_infos == False or pnj3_infos == False or pnj3_infos == False and pnj5_infos == False:
+                    Label_text_possibilite_strvar.set("Objectif : Récupérer tous les fragments de clés, le tube de colle et le kit de nettoyage !")
+                elif assemble_cle == False:
+                    Label_text_possibilite_strvar.set("Objectif : Assembler la clé à la table de fabrication !")
                 elif assemble_cle == True:
                     Label_text_possibilite_strvar.set("Objectif : Ouvrir la porte !")
 
@@ -256,6 +269,7 @@ def Gestion_Jouer(fenetre, Niveau):
         global pnj2_infos
         global pnj3_infos
         global pnj4_infos
+        global pnj5_infos
 
         global assemble_cle
 
@@ -272,14 +286,23 @@ def Gestion_Jouer(fenetre, Niveau):
                 canvas_inv.create_image(80,0, anchor = NW, image=clepnj2)
                 canvas_inv.create_image(130,0, anchor = NW, image=clepnj3)
 
+            elif Niveau ==2:
+
+                canvas_inv.create_image(30,0, anchor = NW, image=clepnj1)
+                canvas_inv.create_image(80,0, anchor = NW, image=clepnj2)
+                canvas_inv.create_image(130,0, anchor = NW, image=clepnj3)
 
         else:
-            if pnj1_infos == False and pnj2_infos == False and pnj3_infos == False and pnj4_infos == False :
+            if pnj1_infos == False and pnj2_infos == False and pnj3_infos == False and pnj4_infos == False and pnj5_infos == False:
                 canvas_inv.create_image(0,0, anchor = NW, image=clepnj1)
                 canvas_inv.create_image(60,0, anchor = NW, image=clepnj2)
                 canvas_inv.create_image(120,0, anchor = NW, image=clepnj3)
                 if Niveau == 1:
-                    canvas_inv.create_image(170,0, anchor = NW, image=glue)
+                    canvas_inv.create_image(180,0, anchor = NW, image=glue)
+                elif Niveau ==2:
+                    canvas_inv.create_image(180,0, anchor = NW, image=glue)
+                    canvas_inv.create_image(240,0, anchor = NW, image=glue)
+
 
             if pnj1_infos == True:
                 canvas_inv.create_image(0,0, anchor = NW, image=clepnj1)
@@ -293,6 +316,9 @@ def Gestion_Jouer(fenetre, Niveau):
             if pnj4_infos == True:
                 canvas_inv.create_image(180,0, anchor = NW, image=glue2)
 
+            if pnj5_infos == True:
+                canvas_inv.create_image(240,0, anchor = NW, image=glue2)
+
 
 
     def table_craft(event):
@@ -300,6 +326,7 @@ def Gestion_Jouer(fenetre, Niveau):
         global pnj2_infos
         global pnj3_infos
         global pnj4_infos
+        global pnj5_infos
 
         global assemble_cle
 
@@ -326,6 +353,21 @@ def Gestion_Jouer(fenetre, Niveau):
                             Label_text_possibilite_strvar.set("Vous n'avez pas collecté le bâton de colle !")
                         else:
                             Label_text_possibilite_strvar.set("Vous n'avez pas collecté toutes les clés !")
+           
+                elif Niveau == 2:
+                    if pnj1_infos == True and pnj2_infos == True and pnj3_infos == True and pnj4_infos == True and pnj5_infos == True:
+                        assemble_cle = True
+                        load_inv(Niveau)
+                        Label_text_possibilite_strvar.set("Vous avez fabriqué et nettoyé la grande Clé !")
+                    else:
+                        if pnj4_infos == False:
+                            Label_text_possibilite_strvar.set("Vous n'avez pas collecté le bâton de colle !")
+                        elif pnj5_infos == False:
+                            Label_text_possibilite_strvar.set("Vous n'avez pas collecté le kit de nettoyage !")
+                        else:
+                            Label_text_possibilite_strvar.set("Vous n'avez pas collecté toutes les clés !")
+           
+           
             else:
                 Label_text_possibilite_strvar.set("Vous avez déjà fabriqué la Grande Clé ! !")
 
@@ -346,10 +388,12 @@ def Gestion_Jouer(fenetre, Niveau):
             # comme cette partie est commune; on l'affiche au debut si c'est le bon tour
             if pnj_infos == False:
                 if c == 1 :
-                    if pnj != "pnj4":
-                        text_complet = "Bravo ! Vous avez obtenu 1 fragment de clé !" 
-                    else:
+                    if pnj == "pnj4":
                         text_complet = "Bravo ! Vous avez obtenue un bâton de colle !"
+                    elif pnj =="pnj5":
+                        text_complet = "Voici un kit de nettoyage ! Il vous sera utile pour que votre clé fonctionne ! "   
+                    else:
+                        text_complet = "Bravo ! Vous avez obtenu 1 fragment de clé !" 
 
                 elif c == 2:
                     text_complet = "Vous obtenez également une partie du cours !"
@@ -361,6 +405,8 @@ def Gestion_Jouer(fenetre, Niveau):
                         if Niveau == 0: 
                             text_complet = "insérer le cours !"
                         elif Niveau == 1:
+                            text_complet = "insérer le cours !"
+                        elif Niveau == 2:
                             text_complet = "insérer le cours !"
 
                     elif c == 4:
@@ -380,6 +426,8 @@ def Gestion_Jouer(fenetre, Niveau):
                         if Niveau == 0: 
                             text_complet = "insérer le cours !"
                         elif Niveau == 1:
+                            text_complet = "insérer le cours !"
+                        elif Niveau == 2:
                             text_complet = "insérer le cours !"
 
                     elif c == 4:
@@ -401,6 +449,8 @@ def Gestion_Jouer(fenetre, Niveau):
                             text_complet = "insérer le cours !"
                         elif Niveau == 1:
                             text_complet = "insérer le cours !"
+                        elif Niveau == 2:
+                            text_complet = "insérer le cours !"
 
                     elif c == 4:
                         canvas_tete_pnj_grand.delete("all")
@@ -417,6 +467,8 @@ def Gestion_Jouer(fenetre, Niveau):
                     if c == 3 :
                         if Niveau == 1:
                             text_complet = "insérer le cours !"
+                        elif Niveau == 2:
+                            text_complet = "insérer le cours !"
 
                     elif c == 4:
                         canvas_tete_pnj_grand.delete("all")
@@ -429,6 +481,21 @@ def Gestion_Jouer(fenetre, Niveau):
                         load_inv(Niveau)
                         Label_text_possibilite_strvar.set("Vous venez d'obtenir le tube de colle !")
 
+                elif pnj == "pnj5":
+                    if c == 3 :
+                        if Niveau == 2:
+                            text_complet = "insérer le cours !"
+
+                    elif c == 4:
+                        canvas_tete_pnj_grand.delete("all")
+                        Label_texte_parole_discussion_pnj_strvar.set("")
+                        Label_btn_suivant_discussion_pnj.destroy()
+
+                        global pnj5_infos
+                        pnj5_infos = True
+
+                        load_inv(Niveau)
+                        Label_text_possibilite_strvar.set("Vous venez d'obtenir un kit de nettoyage !")
 
 
 
@@ -437,6 +504,8 @@ def Gestion_Jouer(fenetre, Niveau):
                 if c ==1:
                     if pnj=="pnj4":
                         text_complet = "Vous avez déjà obtenu le bâton de colle de ce sorcier !" 
+                    elif pnj == "pnj5":
+                        text_complet = "Vous avez déjà obtenu le kit de nettoyage ! !" 
                     else:
                         text_complet = "Vous avez déjà obtenu le fragment de clé de ce sorcier !" 
                 elif c == 2 :
@@ -467,8 +536,9 @@ def Gestion_Jouer(fenetre, Niveau):
         global pnj2_infos
         global pnj3_infos
         global pnj4_infos  
+        global pnj5_infos
 
-        pnj_List = ["pnj1" , "pnj2" ,"pnj3" ,"pnj4"]
+        pnj_List = ["pnj1" , "pnj2" ,"pnj3" ,"pnj4", "pnj5"]
 
         global c
         c = 0
@@ -500,8 +570,13 @@ def Gestion_Jouer(fenetre, Niveau):
                 elif (L[ordonne-1][abscisse] == pnj_List[3] or L[ordonne+1][abscisse]== pnj_List[3] or L[ordonne][abscisse-1]== pnj_List[3] or L[ordonne][abscisse+1]== pnj_List[3]):
                     pnj_ = "pnj4"
                     pnj_infos_ = pnj4_infos
-                    canvas_tete_pnj_grand.create_image(0, 0, anchor=NW, image=pnj1_grand)
+                    canvas_tete_pnj_grand.create_image(0, 0, anchor=NW, image=pnj4_grand)
 
+                #PNJ5
+                elif (L[ordonne-1][abscisse] == pnj_List[4] or L[ordonne+1][abscisse]== pnj_List[4] or L[ordonne][abscisse-1]== pnj_List[4] or L[ordonne][abscisse+1]== pnj_List[4]):
+                    pnj_ = "pnj5"
+                    pnj_infos_ = pnj5_infos
+                    canvas_tete_pnj_grand.create_image(0, 0, anchor=NW, image=pnj1_grand)
             
                 global Label_btn_suivant_discussion_pnj
 
@@ -560,6 +635,8 @@ def Gestion_Jouer(fenetre, Niveau):
                         text_complet_consignes = "Vous devez résoudre cette équation du premier degré en trouvant la valeur de x. Apres avoir résolu cette equation; selectionnez la bonne case et faites valider"
                     elif Niveau ==1:
                         text_complet_consignes = "Vous devez résoudre cette equation à deux inconnues n trouvant l valeur de y et y. Apres avoir résolu cette equation; selectionnez la bonne case et faites valider"
+                    elif Niveau ==2:
+                        text_complet_consinges = "Vous devez résoudre cette exo pas encore fait"
                 elif c_sw==4:
                     Label_btn_suivant_second_window ['state'] = DISABLED
                     # on affcihe les btns de réponses
@@ -716,10 +793,12 @@ def Gestion_Jouer(fenetre, Niveau):
     global pnj2_infos
     global pnj3_infos
     global pnj4_infos
+    global pnj5_infos
     pnj1_infos = False
     pnj2_infos = False
     pnj3_infos = False
     pnj4_infos = False  
+    pnj5_infos = False
 
     # quad un elment est fabriqué, pour l'afficher correctement
 
@@ -765,6 +844,8 @@ def Gestion_Jouer(fenetre, Niveau):
                 canvas.create_image(24*y, 24*x, anchor=NW, image=pnj3)
             elif L[x][y] == "pnj4":
                 canvas.create_image(24*y, 24*x, anchor=NW, image=pnj4)
+            elif L[x][y] == "pnj5":
+                canvas.create_image(24*y, 24*x, anchor=NW, image=pnj4)
             elif L[x][y] == "\U0001F6AA":
                 canvas.create_image(24*y, 24*x, anchor=NW, image=porte)
             elif L[x][y] == "○":
@@ -789,6 +870,8 @@ def Gestion_Jouer(fenetre, Niveau):
         Label_text_possibilite_strvar.set("Objectif : Récupérer tous les fragments de clés !")
     elif Niveau ==1:
         Label_text_possibilite_strvar.set("Objectif : Récupérer tous les fragments de clés et le tube de colle !")
+    elif Niveau ==2:
+        Label_text_possibilite_strvar.set("Objectif : Récupérer tous les fragments de clés,le tube de colle et le kit de nettoyage !")
 
     Label_text_possibilite_widget = Label(Label_Frame_Text_Info_Discussion_pnj, textvariable=Label_text_possibilite_strvar, wraplength=200, justify="left")
     Label_text_possibilite_widget.pack(side="left", pady=5, padx=5)
@@ -819,9 +902,11 @@ def Gestion_Jouer(fenetre, Niveau):
     Label_Frame_Inv_Cle.pack(side='bottom', padx=5, pady=5, fill='x')
 
     #On load l'inventaire de base 
-    long_canvas_inv = 170
+    long_canvas_inv = 180
     if Niveau ==1:
-        long_canvas_inv = 230
+        long_canvas_inv = 240
+    elif Niveau == 2:
+        long_canvas_inv = 300
 
     canvas_inv = Canvas(Label_Frame_Inv_Cle, width=long_canvas_inv, height=50, bg = "blue")
     canvas_inv.create_image(0,0,anchor=NW, image = clepnj1_)
@@ -829,6 +914,9 @@ def Gestion_Jouer(fenetre, Niveau):
     canvas_inv.create_image(120,0,anchor=NW, image = clepnj3_)
     if Niveau == 1:
         canvas_inv.create_image(180,0,anchor=NW, image = glue)
+    elif Niveau ==2:
+        canvas_inv.create_image(180,0,anchor=NW, image = glue)
+        canvas_inv.create_image(240,0,anchor=NW, image = glue)
 
     canvas_inv.pack(pady=10)
 

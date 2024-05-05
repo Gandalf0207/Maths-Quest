@@ -7,6 +7,8 @@ def Custom_Map(Map, longueur, largeur, Niveau):
         L_pnj = ["pnj1","pnj2","pnj3"]
     elif Niveau ==1:
         L_pnj = ["pnj1","pnj2","pnj3", "pnj4"]
+    elif Niveau ==2:
+        L_pnj = ["pnj1","pnj2","pnj3", "pnj4", "pnj5"]
 
 
     # On place les pnj
@@ -24,7 +26,7 @@ def Custom_Map(Map, longueur, largeur, Niveau):
             y = random.randint((longueur//2 +2),longueur-2)
 
         # si jamais les coordonnées ne sont pas un mur / le mur est entre 4murs donc inaccessible
-        while Map[x][y] != "■" or (Map[x+1][y] == "■" and Map[x-1][y] == "■" and Map[x][y+1] == "■" and Map[x][y-1] == "■"):
+        while Map[x][y] != "■" or (Map[x+1][y] == "■" and Map[x-1][y] == "■" and Map[x][y+1] == "■" and Map[x][y-1] == "■") or (Map[x+1][y] in L_pnj or Map[x+2][y] in L_pnj or Map[x-1][y] in L_pnj or Map[x-2][y] in L_pnj or Map[x][y+1] in L_pnj or Map[x][y+2] in L_pnj or Map[x][y-1] in L_pnj or Map[x][y-2] in L_pnj or Map[x-1][y-1] in L_pnj or Map[x+1][y-1] in L_pnj or Map[x-1][y+1] in L_pnj or Map[x+1][y+1] in L_pnj) :
             if comp <=2:      
                 x = random.randint(1,(largeur//2 -2))
             else:
