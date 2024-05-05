@@ -45,32 +45,38 @@ def choix_exo_niveau(Niveau):
                 resultat = nb
           
 
-    elif Niveau ==1: # CODE DE GENERATION DE L'EXO, GENERE PAR IA POUR LE NV 2 (nv1 dans python)
+    elif Niveau ==1: 
+        value_x = 0
+        value_y = 0
 
-        # Génération de valeurs aléatoires pour les coefficients du système
-        a = random.randint(1, 10)
-        b = random.randint(1, 10)
-        c = random.randint(1, 10)
-        d = random.randint(1, 10)
-        while (a*d - c*b) ==0:
-            a = random.randint(1, 10)
-            b = random.randint(1, 10)
-            c = random.randint(1, 10)
-            d = random.randint(1, 10) 
-        
-        # Création des équations du système
-        eq1_constant = random.randint(1, 100)
-        eq2_constant = random.randint(1, 100)
+        go = True
+        while go == True:
+            nb1 = random.randint(1,3)
+            nb2 = random.randint(1,3)
+            nb3 = random.randint(-50,50)
+            nb4 = random.randint(1,3)
+            nb5 = random.randint(1,3)
+            nb6 = random.randint(-50,50)
+            eqt = r"$\left\{ \begin{array}{lr} %sx + %sy & = %s \\ %sx - %sy & = %s \end{array} \right.$"%(nb1,nb2,nb3,nb4,nb5,nb6)
+            for x in range(-50,50):
+                for y in range(-50,50):
+                    if x*nb1 + y*nb2 == nb3 and x*nb4 - nb5*y == nb6:
+                        print(f"{nb1}x + {nb2}y = {nb3}")
+                        print(f"{nb4}x - {nb5}y = {nb6}")
+                        value_x = x
+                        value_y = y
+                        print(f"x = {x}, y = {y}")
+                        go = False
+                
 
-        eqt = r"$\left\{ \begin{array}{lr} %sx + %sy & = %s \\ %sx - %sy & = %s \end{array} \right.$"%(a,b,c,d,eq1_constant,eq2_constant)
-        determinant = (a*d - c*b)
-        x_val_num, x_val_denom = eq1_constant * d - b * eq2_constant, determinant
-        y_val_num, y_val_denom = a * eq2_constant - eq1_constant * c, determinant
-        
+
+
         # Formatage des résultats en chaînes de caractères
-        resultat = f"x = {x_val_num}/{x_val_denom} | y = {y_val_num}/{y_val_denom}"
-        resultat2 = f"x = {x_val_num-1}/{x_val_denom+2} | y = {y_val_num+4}/{y_val_denom-3}"
-        resultat3 = f"x = {x_val_num+1}/{x_val_denom-3} | y = {y_val_num-2}/{y_val_denom+4}"
+        resultat = f"x = {value_x} | y = {value_y}"
+        print(resultat)
+        resultat2 = f"x = {value_x+nb1} | y = {value_y-nb2}"
+        resultat3 = f"x = {value_x-nb4} | y = {value_y+nb5}"
+
 
 
         
