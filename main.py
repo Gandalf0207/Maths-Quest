@@ -716,15 +716,15 @@ def Gestion_Jouer(fenetre, Niveau):
     global pnj2_infos
     global pnj3_infos
     global pnj4_infos
-    pnj1_infos = True
-    pnj2_infos = True
-    pnj3_infos = True
-    pnj4_infos = True  
+    pnj1_infos = False
+    pnj2_infos = False
+    pnj3_infos = False
+    pnj4_infos = False  
 
     # quad un elment est fabriqué, pour l'afficher correctement
 
     global assemble_cle
-    assemble_cle = True
+    assemble_cle = False
 
  
 
@@ -858,7 +858,7 @@ def Gestion_Jouer(fenetre, Niveau):
 #ACCUEIL#
 
 global Niveau
-Niveau = 1
+Niveau = 0
 
 Lancement = Tk()
 Lancement.title("RPG : Lanncement  Théo | Quentin")
