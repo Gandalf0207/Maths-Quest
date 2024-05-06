@@ -319,6 +319,83 @@ def Gestion_Jouer(fenetre, Niveau):
             if pnj5_infos == True:
                 canvas_inv.create_image(240,0, anchor = NW, image=glue2)
 
+    def load_cours(Niveau, num_pnj):
+        Liste_cours = [
+        "Pour résoudre une équation du 1er degré il faut bien faire gaffe à respecter l’égalité partout. Oublie pas surtout ! Et tiens voilà pour m’avoir écouté.",
+        "Quand tu résous une équation s’il y a des x des deux côtés essaie de tout mettre du même ce sera plus simple tu verras ! T’aurais pas des croquettes contre mon os doré ?”)",
+        "Il faut toujours annuler l’opération qui est venu en dernier lors du calcul, pour te souhaiter bon courage je te passe ce bidule, il appartient à mon mari redonne lui si tu le vois en ville.", 
+        
+        "cours 1 nv2",
+        "cours 2 nv2",
+        "cours 3 nv2",
+        "cours 4 nv2",
+        
+        "cours 1 nv3",
+        "cours 2 nv3",
+        "cours 3 nv3",
+        "cours 4 nv3",
+        "cours 5 nv3",
+        ]
+
+        def ajouter_element(Texte): #Une partie de la gestion du code de la liste box provient d'internet
+            element = Texte.strip()
+            if element:
+                listbox.insert(END, element + "\n")
+            listbox.insert(END, "\n")
+
+
+        listbox = Text(Label_Frame_Cours_Affiche, width =50,wrap="word")
+        listbox.pack(side=LEFT, fill=BOTH)
+
+        scrollbar = Scrollbar(Label_Frame_Cours_Affiche, orient=VERTICAL, command=listbox.yview, bg="#000000")
+        scrollbar.pack(side=RIGHT, fill=Y)
+
+        listbox.config(yscrollcommand=scrollbar.set)
+
+        if Niveau ==0:
+            listbox.insert(END, "--Equation du 1er degré--" + "\n")
+            listbox.insert(END, "\n")
+
+        if Niveau ==1:
+            listbox.insert(END, "--Equation du 1er degré--" + "\n")
+            listbox.insert(END, "\n")
+
+            for i in range(3):
+                ajouter_element(Liste_cours[i])
+            listbox.insert(END, "\n")
+
+        elif Niveau ==2:
+            listbox.insert(END, "--Equation du 1er degré--" + "\n")
+            listbox.insert(END, "\n")
+            for i in range(3):
+                ajouter_element(Liste_cours[i])
+            listbox.insert(END, "\n")
+
+            listbox.insert(END, "--Equation à deux inconnues--" + "\n")
+            listbox.insert(END, "\n")
+            for i in range(3,7):
+                ajouter_element(Liste_cours[i])
+            listbox.insert(END, "\n")
+
+        elif Niveau ==3:
+            listbox.insert(END, "--Equation du 1er degré--" + "\n")
+            listbox.insert(END, "\n")
+            for i in range(3):
+                ajouter_element(Liste_cours[i])
+            listbox.insert(END, "\n")
+
+            listbox.insert(END, "--Equation à deux inconnues--" + "\n")
+            listbox.insert(END, "\n")
+            for i in range(3,7):
+                ajouter_element(Liste_cours[i])
+            listbox.insert(END, "\n")
+
+            listbox.insert(END, "--Exos à définir--" + "\n")
+            for i in range(7,12):
+                ajouter_element(Liste_cours[i])
+            listbox.insert(END, "\n")
+
+
 
 
     def table_craft(event):
@@ -387,50 +464,75 @@ def Gestion_Jouer(fenetre, Niveau):
             text_complet = ""
             # comme cette partie est commune; on l'affiche au debut si c'est le bon tour
             if pnj_infos == False:
-                if c == 1 :
-                    if pnj == "pnj4":
-                        text_complet = "Bravo ! Vous avez obtenue un bâton de colle !"
-                    elif pnj =="pnj5":
-                        text_complet = "Voici un kit de nettoyage ! Il vous sera utile pour que votre clé fonctionne ! "   
-                    else:
-                        text_complet = "Bravo ! Vous avez obtenu 1 fragment de clé !" 
-
-                elif c == 2:
-                    text_complet = "Vous obtenez également une partie du cours !"
 
                 # on fait en fonction du pnj parce que le cours est unique à chaque pnj
-                elif pnj == "pnj1":
+                if pnj == "pnj1":
                     # et le cours est différent en fonction du niveau (map qui change)
-                    if c == 3 :
-                        if Niveau == 0: 
-                            text_complet = "insérer le cours !"
-                        elif Niveau == 1:
-                            text_complet = "insérer le cours !"
-                        elif Niveau == 2:
-                            text_complet = "insérer le cours !"
+                    if Niveau ==0:
+                        if c==1:
+                            text_complet = "Leilégalité : B’jour jeune aventurier, je pense que j’pourrais bien t’apprendre un truc aujourd’hui. "
+                        elif c==2:
+                            text_complet = "Leilégalité : Pour résoudre une équation du 1er degré il faut bien faire gaffe à respecter l’égalité partout. Oublie pas surtout ! Et tiens voilà pour m’avoir écouté."
+                        elif c==3:
+                            text_complet = "Leilégalité : Bravo ! Vous avez obtenu 1 fragment de clé !"
 
-                    elif c == 4:
+                    elif Niveau ==1:
+                        if c==1:
+                            text_complet = ""
+                        elif c==2:
+                            text_complet = ""
+                        elif c==3:
+                            text_complet = ""
+
+                    elif Niveau ==2:
+                        if c==1:
+                            text_complet = ""
+                        elif c==2:
+                            text_complet = ""
+                        elif c==3:
+                            text_complet = ""
+
+                    if c == 4:
                         canvas_tete_pnj_grand.delete("all")
                         Label_texte_parole_discussion_pnj_strvar.set("")
                         Label_btn_suivant_discussion_pnj.destroy()
 
                         global pnj1_infos
                         pnj1_infos = True
+                        num_pnj = "pnj1"
 
                         load_inv(Niveau)
+                        load_cours(Niveau, num_pnj)
                         Label_text_possibilite_strvar.set("Vous venez d'obtenir un fragment de clé !")
 
 
                 elif pnj == "pnj2":
-                    if c == 3 :
-                        if Niveau == 0: 
-                            text_complet = "insérer le cours !"
-                        elif Niveau == 1:
-                            text_complet = "insérer le cours !"
-                        elif Niveau == 2:
-                            text_complet = "insérer le cours !"
+                    # et le cours est différent en fonction du niveau (map qui change)
+                    if Niveau ==0:
+                        if c==1:
+                            text_complet = "Iggy : Wouf Wouf, Wouf Wouf Wouf, Wouf Wouf Woaf ! Wouf ?(Votre chien est un peu rouillé mais vous comprenez : “Salut moi c’est Iggy, retiens bien ce que je vais te dire !"
+                        elif c==2:
+                            text_complet = "Iggy : Quand tu résous une équation s’il y a des x des deux côtés essaie de tout mettre du même ce sera plus simple tu verras ! T’aurais pas des croquettes contre mon os doré ?”)"
+                        elif c==3:
+                            text_complet = "Iggy : Bravo ! Vous avez obtenu 1 fragment de clé !"
 
-                    elif c == 4:
+                    elif Niveau ==1:
+                        if c==1:
+                            text_complet = ""
+                        elif c==2:
+                            text_complet = ""
+                        elif c==3:
+                            text_complet = ""
+
+                    elif Niveau ==2:
+                        if c==1:
+                            text_complet = ""
+                        elif c==2:
+                            text_complet = ""
+                        elif c==3:
+                            text_complet = ""
+
+                    if c == 4:
                         canvas_tete_pnj_grand.delete("all")
                         Label_texte_parole_discussion_pnj_strvar.set("")
                         Label_btn_suivant_discussion_pnj.destroy()
@@ -438,63 +540,106 @@ def Gestion_Jouer(fenetre, Niveau):
 
                         global pnj2_infos
                         pnj2_infos = True
+                        num_pnj = "pnj2"
 
                         load_inv(Niveau)
+                        load_cours(Niveau, num_pnj)
                         Label_text_possibilite_strvar.set("Vous venez d'obtenir un fragment de clé !")
 
 
                 elif pnj == "pnj3":
-                    if c == 3 :
-                        if Niveau == 0: 
-                            text_complet = "insérer le cours !"
-                        elif Niveau == 1:
-                            text_complet = "insérer le cours !"
-                        elif Niveau == 2:
-                            text_complet = "insérer le cours !"
+                    # et le cours est différent en fonction du niveau (map qui change)
+                    if Niveau ==0:
+                        if c==1:
+                            text_complet = "Mathémami : Qu’est ce tu dis ?! Que tu n’as pas parlé ? Autant pour moi mon petit mes oreilles ne fonctionnent plus aussi bien qu’avant, j’ai l’impression que t’essais d’aller en ville pour passer il te faudra savoir que pour progresser dans une équation."
+                        elif c==2:
+                            text_complet = "Mathémami : Il faut toujours annuler l’opération qui est venu en dernier lors du calcul, pour te souhaiter bon courage je te passe ce bidule, il appartient à mon mari redonne lui si tu le vois en ville. "
+                        elif c==3:
+                            text_complet = "Mathémami : Bravo ! Vous avez obtenu 1 fragment de clé !"
 
-                    elif c == 4:
+                    elif Niveau ==1:
+                        if c==1:
+                            text_complet = ""
+                        elif c==2:
+                            text_complet = ""
+                        elif c==3:
+                            text_complet = ""
+
+                    elif Niveau ==2:
+                        if c==1:
+                            text_complet = ""
+                        elif c==2:
+                            text_complet = ""
+                        elif c==3:
+                            text_complet = ""
+
+
+                    if c == 4:
                         canvas_tete_pnj_grand.delete("all")
                         Label_texte_parole_discussion_pnj_strvar.set("")
                         Label_btn_suivant_discussion_pnj.destroy()
 
                         global pnj3_infos
                         pnj3_infos = True
+                        num_pnj = "pnj3"
 
                         load_inv(Niveau)
+                        load_cours(Niveau, num_pnj)
                         Label_text_possibilite_strvar.set("Vous venez d'obtenir un fragment de clé !")
 
                 elif pnj == "pnj4":
-                    if c == 3 :
-                        if Niveau == 1:
-                            text_complet = "insérer le cours !"
-                        elif Niveau == 2:
-                            text_complet = "insérer le cours !"
+                    # et le cours est différent en fonction du niveau (map qui change)
+                    if Niveau ==1:
+                        if c==1:
+                            text_complet = ""
+                        elif c==2:
+                            text_complet = ""
+                        elif c==3:
+                            text_complet = "Bravo ! Vous avez obtenue un bâton de colle !"
 
-                    elif c == 4:
+                    elif Niveau ==2:
+                        if c==1:
+                            text_complet = ""
+                        elif c==2:
+                            text_complet = ""
+                        elif c==3:
+                            text_complet = ""
+
+                    if c == 4:
                         canvas_tete_pnj_grand.delete("all")
                         Label_texte_parole_discussion_pnj_strvar.set("")
                         Label_btn_suivant_discussion_pnj.destroy()
 
                         global pnj4_infos
                         pnj4_infos = True
+                        num_pnj = "pnj4"
 
                         load_inv(Niveau)
+                        load_cours(Niveau,num_pnj)
+
                         Label_text_possibilite_strvar.set("Vous venez d'obtenir le tube de colle !")
 
                 elif pnj == "pnj5":
-                    if c == 3 :
-                        if Niveau == 2:
-                            text_complet = "insérer le cours !"
+                    # et le cours est différent en fonction du niveau (map qui change)
+                    if Niveau ==2:
+                        if c==1:
+                            text_complet = ""
+                        elif c==2:
+                            text_complet = ""
+                        elif c==3:
+                            text_complet = "Voici un kit de nettoyage ! Il vous sera utile pour que votre clé fonctionne ! "
 
-                    elif c == 4:
+                    if c == 4:
                         canvas_tete_pnj_grand.delete("all")
                         Label_texte_parole_discussion_pnj_strvar.set("")
                         Label_btn_suivant_discussion_pnj.destroy()
 
                         global pnj5_infos
                         pnj5_infos = True
+                        num_pnj = "pnj5"
 
                         load_inv(Niveau)
+                        load_cours(Niveau, num_pnj)
                         Label_text_possibilite_strvar.set("Vous venez d'obtenir un kit de nettoyage !")
 
 
@@ -529,7 +674,7 @@ def Gestion_Jouer(fenetre, Niveau):
                     text_partiel = text_complet[:i+1]
                     Label_texte_parole_discussion_pnj_strvar.set(f"{text_partiel}")
                     Label_texte_parole_discussion_pnj_widget.update()
-                    time.sleep(0.03)
+                    time.sleep(0.01)
                 Label_btn_suivant_discussion_pnj['state'] = NORMAL
 
         global pnj1_infos
@@ -809,7 +954,7 @@ def Gestion_Jouer(fenetre, Niveau):
 
 
 
-    Jeu.geometry("1300x700")
+    # Jeu.geometry("1300x700")
     ######On place tout les elements sur la fenetre#####
 
     #####Frame global qui contient les deux partie du jeu
@@ -896,6 +1041,9 @@ def Gestion_Jouer(fenetre, Niveau):
     ##Frame qui affiche le cours actuel
     Label_Frame_Cours_Affiche = Frame(Label_Frame_Cours_cle,bg='white')
     Label_Frame_Cours_Affiche.pack(side='top', expand=True, fill="both", padx=5, pady=5)
+
+    #On load le cours actuel : 
+    load_cours(Niveau,0)
     
     ##Frame affiche l'inventaire (clé(s))
     Label_Frame_Inv_Cle = Frame(Label_Frame_Cours_cle, bg='white')
@@ -946,7 +1094,7 @@ def Gestion_Jouer(fenetre, Niveau):
 #ACCUEIL#
 
 global Niveau
-Niveau = 0
+Niveau = 2
 
 Lancement = Tk()
 Lancement.title("RPG : Lanncement  Théo | Quentin")
