@@ -338,65 +338,104 @@ def Gestion_Jouer(fenetre, Niveau):
         ]
 
         def ajouter_element(Texte): #Une partie de la gestion du code de la liste box provient d'internet
+            global listbox
             element = Texte.strip()
             if element:
                 listbox.insert(END, element + "\n")
             listbox.insert(END, "\n")
 
+        if num_pnj ==0:
+            global listbox
+            listbox = Text(Label_Frame_Cours_Affiche, width =35,wrap="word")
+            listbox.pack(side=LEFT, fill=BOTH)
 
-        listbox = Text(Label_Frame_Cours_Affiche, width =35,wrap="word")
-        listbox.pack(side=LEFT, fill=BOTH)
+            scrollbar = Scrollbar(Label_Frame_Cours_Affiche, orient=VERTICAL, command=listbox.yview)
+            scrollbar.pack(side=RIGHT, fill=Y)
 
-        scrollbar = Scrollbar(Label_Frame_Cours_Affiche, orient=VERTICAL, command=listbox.yview, bg="#000000")
-        scrollbar.pack(side=RIGHT, fill=Y)
+            listbox.config(yscrollcommand=scrollbar.set)
 
-        listbox.config(yscrollcommand=scrollbar.set)
+            #chargement pour le reload de la fonction global quand on change de niveau
+            if Niveau ==0:
+                listbox.insert(END, "--Equation du 1er degré--" + "\n")
+                listbox.insert(END, "\n")
 
+            if Niveau ==1:
+                listbox.insert(END, "--Equation du 1er degré--" + "\n")
+                listbox.insert(END, "\n")
+
+                for i in range(3):
+                    ajouter_element(Liste_cours[i])
+                listbox.insert(END, "\n")
+
+                listbox.insert(END, "--Equation à deux inconnues--" + "\n")
+                listbox.insert(END, "\n")
+
+            elif Niveau ==2:
+                listbox.insert(END, "--Equation du 1er degré--" + "\n")
+                listbox.insert(END, "\n")
+                for i in range(3):
+                    ajouter_element(Liste_cours[i])
+                listbox.insert(END, "\n")
+
+                listbox.insert(END, "--Equation à deux inconnues--" + "\n")
+                listbox.insert(END, "\n")
+                for i in range(3,7):
+                    ajouter_element(Liste_cours[i])
+                listbox.insert(END, "\n")
+
+                listbox.insert(END, "--Exos à définir--" + "\n")
+                listbox.insert(END, "\n")
+
+            elif Niveau ==3:
+                listbox.insert(END, "--Equation du 1er degré--" + "\n")
+                listbox.insert(END, "\n")
+                for i in range(3):
+                    ajouter_element(Liste_cours[i])
+                listbox.insert(END, "\n")
+
+                listbox.insert(END, "--Equation à deux inconnues--" + "\n")
+                listbox.insert(END, "\n")
+                for i in range(3,7):
+                    ajouter_element(Liste_cours[i])
+                listbox.insert(END, "\n")
+
+                listbox.insert(END, "--Exos à définir--" + "\n")
+                listbox.insert(END, "\n")
+                for i in range(7,12):
+                    ajouter_element(Liste_cours[i])
+                listbox.insert(END, "\n")
+
+
+        # Pour chack pnj qui donnera son cours : 
         if Niveau ==0:
-            listbox.insert(END, "--Equation du 1er degré--" + "\n")
-            listbox.insert(END, "\n")
-
-        if Niveau ==1:
-            listbox.insert(END, "--Equation du 1er degré--" + "\n")
-            listbox.insert(END, "\n")
-
-            for i in range(3):
-                ajouter_element(Liste_cours[i])
-            listbox.insert(END, "\n")
+            if num_pnj=="pnj1":
+                ajouter_element(Liste_cours[0])
+            elif num_pnj=="pnj2":
+                ajouter_element(Liste_cours[1])
+            elif num_pnj=="pnj3":
+                ajouter_element(Liste_cours[2])
+        
+        elif Niveau ==1:
+            if num_pnj=="pnj1":
+                ajouter_element(Liste_cours[3])
+            elif num_pnj=="pnj2":
+                ajouter_element(Liste_cours[4])
+            elif num_pnj=="pnj3":
+                ajouter_element(Liste_cours[5])       
+            elif num_pnj=="pnj4":
+                ajouter_element(Liste_cours[6]) 
 
         elif Niveau ==2:
-            listbox.insert(END, "--Equation du 1er degré--" + "\n")
-            listbox.insert(END, "\n")
-            for i in range(3):
-                ajouter_element(Liste_cours[i])
-            listbox.insert(END, "\n")
-
-            listbox.insert(END, "--Equation à deux inconnues--" + "\n")
-            listbox.insert(END, "\n")
-            for i in range(3,7):
-                ajouter_element(Liste_cours[i])
-            listbox.insert(END, "\n")
-
-        elif Niveau ==3:
-            listbox.insert(END, "--Equation du 1er degré--" + "\n")
-            listbox.insert(END, "\n")
-            for i in range(3):
-                ajouter_element(Liste_cours[i])
-            listbox.insert(END, "\n")
-
-            listbox.insert(END, "--Equation à deux inconnues--" + "\n")
-            listbox.insert(END, "\n")
-            for i in range(3,7):
-                ajouter_element(Liste_cours[i])
-            listbox.insert(END, "\n")
-
-            listbox.insert(END, "--Exos à définir--" + "\n")
-            for i in range(7,12):
-                ajouter_element(Liste_cours[i])
-            listbox.insert(END, "\n")
-
-
-
+            if num_pnj=="pnj1":
+                ajouter_element(Liste_cours[7])
+            elif num_pnj=="pnj2":
+                ajouter_element(Liste_cours[8])
+            elif num_pnj=="pnj3":
+                ajouter_element(Liste_cours[9])       
+            elif num_pnj=="pnj4":
+                ajouter_element(Liste_cours[10]) 
+            elif num_pnj=="pnj5":
+                ajouter_element(Liste_cours[11]) 
 
     def table_craft(event):
         global pnj1_infos
@@ -801,7 +840,13 @@ def Gestion_Jouer(fenetre, Niveau):
 
                 elif c_sw==6:
                     if erreur == 0:
-                        text_complet_consignes ="Vous obtenez un indice ! Cliquez sur suivant pour passez au niveau suppérieur !"
+                        if Niveau ==0:
+                            text_complet_consignes ="avant de passez la porte vous découvrez un message gravé dessus msg nv1 : Cliquez sur suivant pour passez au niveau suppérieur !"
+                        elif Niveau ==1:
+                            text_complet_consignes ="avant de passez la porte vous découvrez un message gravé dessus msg nv2: Cliquez sur suivant pour passez au niveau suppérieur !"
+                        elif Niveau ==3:
+                            text_complet_consignes ="avant de passez la porte vous découvrez un message gravé dessus msg nv3: Cliquez sur suivant pour passez au niveau suppérieur !"
+
                     else:
                         second_window_probleme.destroy()
 
@@ -1029,7 +1074,7 @@ def Gestion_Jouer(fenetre, Niveau):
     canvas_tete_pnj_grand = Canvas(Label_Frame_Discussion_pnj, bg='white', height=100, width=200)
     canvas_tete_pnj_grand.pack(anchor="c", padx=10,pady=5, side=LEFT)
     Label_texte_parole_discussion_pnj_strvar = StringVar()
-    Label_texte_parole_discussion_pnj_widget = Label(Label_Frame_Discussion_pnj, textvariable=Label_texte_parole_discussion_pnj_strvar, wraplength=350, justify="left")
+    Label_texte_parole_discussion_pnj_widget = Label(Label_Frame_Discussion_pnj, textvariable=Label_texte_parole_discussion_pnj_strvar, wraplength=320, justify="left")
     Label_texte_parole_discussion_pnj_widget.pack(side=LEFT, padx=5, pady=5)
 
 
@@ -1094,7 +1139,7 @@ def Gestion_Jouer(fenetre, Niveau):
 #ACCUEIL#
 
 global Niveau
-Niveau = 2
+Niveau = 1
 
 Lancement = Tk()
 Lancement.title("RPG : Lanncement  Théo | Quentin")
