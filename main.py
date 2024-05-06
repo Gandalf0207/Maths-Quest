@@ -344,7 +344,7 @@ def Gestion_Jouer(fenetre, Niveau):
             listbox.insert(END, "\n")
 
 
-        listbox = Text(Label_Frame_Cours_Affiche, width =50,wrap="word")
+        listbox = Text(Label_Frame_Cours_Affiche, width =35,wrap="word")
         listbox.pack(side=LEFT, fill=BOTH)
 
         scrollbar = Scrollbar(Label_Frame_Cours_Affiche, orient=VERTICAL, command=listbox.yview, bg="#000000")
