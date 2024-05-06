@@ -1139,7 +1139,7 @@ def Gestion_Jouer(fenetre, Niveau):
 #ACCUEIL#
 
 global Niveau
-Niveau = 1
+Niveau = 0
 
 Lancement = Tk()
 Lancement.title("RPG : Lanncement  Théo | Quentin")
