@@ -66,31 +66,116 @@ def Gestion_Jouer(fenetre, Niveau):
 
     Perso = PhotoImage(file="image/perso.png")
 
-    pnj1 = PhotoImage(file = "image/pnj1.png")
-    pnj2 = PhotoImage(file = "image/pnj2.png")
-    pnj3 = PhotoImage(file = "image/pnj3.png")
-    pnj4 = PhotoImage(file = "image/pnj4.png")
-    pnj5 = PhotoImage(file = "image/pnj4.png")
 
-    pnj1_grand = PhotoImage(file="image/sorcier1.png")
-    pnj2_grand = PhotoImage(file="image/sorcier2.png")
-    pnj3_grand = PhotoImage(file="image/sorcier3.png")
-    pnj4_grand = PhotoImage(file="image/sorcier4.png")
-    pnj5_grand = PhotoImage(file = "image/pnj4.png")
+    loot_vide_pnj1 = PhotoImage(file="image/clepnj1.png")
+    loot_vide_pnj2 = PhotoImage(file="image/clepnj2.png")
+    loot_vide_pnj3 = PhotoImage(file="image/clepnj3.png")
+    loot_vide_pnj4 = PhotoImage(file="image/clepnj1.png")
+    loot_vide_pnj5 = PhotoImage(file="image/clepnj2.png")
 
-    clepnj1 = PhotoImage(file="image/clepnj1.png")
-    clepnj2 = PhotoImage(file="image/clepnj2.png")
-    clepnj3 = PhotoImage(file="image/clepnj3.png")
-    clepnj1_ = PhotoImage(file="image/clepnj1_.png")
-    clepnj2_ = PhotoImage(file="image/clepnj2_.png")
-    clepnj3_ = PhotoImage(file="image/clepnj3_.png")
+    loot_pnj1 = PhotoImage(file="image/clepnj3.png")
+    loot_pnj2 = PhotoImage(file="image/clepnj1.png")
+    loot_pnj3 = PhotoImage(file="image/clepnj2.png")
+    loot_pnj4 = PhotoImage(file="image/clepnj3.png")
+    loot_pnj5 = PhotoImage(file="image/clepnj1.png")
 
-    glue2 = PhotoImage(file="image/glue.png")
-    glue = PhotoImage(file="image/glue0.png")
 
-    mur1 = PhotoImage(file="image/Wall1.png")
-    mur2 = PhotoImage(file="image/Wall2.png")
-    mur3 = PhotoImage(file="image/Wall3.png")
+    #en fonction du niveau, on choisit les murs / les pnjs
+
+    #exo 1 et 5 : 1er degré + 2nd degré 
+    if Niveau ==0 or Niveau == 5:
+        mur1 = PhotoImage(file="image/Water.png")
+        mur2 = PhotoImage(file="image/Water_rock.png")
+        mur3 = PhotoImage(file="image/Water_Lotus.png")
+
+        pnj1 = PhotoImage(file = "image/pnj1.png")
+        pnj2 = PhotoImage(file = "image/Iggy.png")
+        pnj3 = PhotoImage(file = "image/pnj3.png")
+
+        pnj1_moyen = PhotoImage(file="image/sorcier1.png")
+        pnj2_moyen = PhotoImage(file="image/sorcier2.png")
+        pnj3_moyen = PhotoImage(file="image/sorcier3.png")
+
+        pnj1_grand = PhotoImage(file="image/sorcier1.png")
+        pnj2_grand = PhotoImage(file="image/sorcier2.png")
+        pnj3_grand = PhotoImage(file="image/sorcier3.png")
+
+    #exo 2 et 6 : volume + Derivation
+    elif Niveau ==1 or Niveau ==6:
+        mur1 = PhotoImage(file="image/Water.png")
+        mur2 = PhotoImage(file="image/Water_rock.png")
+        mur3 = PhotoImage(file="image/Water_Lotus.png")
+
+        pnj1 = PhotoImage(file = "image/pnj1.png")
+        pnj2 = PhotoImage(file = "image/pnj2.png")
+        pnj3 = PhotoImage(file = "image/pnj3.png")
+        pnj4 = PhotoImage(file = "image/pnj4.png")
+
+        pnj1_moyen = PhotoImage(file="image/sorcier1.png")
+        pnj2_moyen = PhotoImage(file="image/sorcier2.png")
+        pnj3_moyen = PhotoImage(file="image/sorcier3.png")
+        pnj4_moyen = PhotoImage(file="image/sorcier4.png")
+
+        pnj1_grand = PhotoImage(file="image/sorcier1.png")
+        pnj2_grand = PhotoImage(file="image/sorcier2.png")
+        pnj3_grand = PhotoImage(file="image/sorcier3.png")
+        pnj4_grand = PhotoImage(file="image/sorcier4.png")
+
+    # exo 3 et 7: fonction affiche tangente pente + Suite
+    elif Niveau ==2 or Niveau==7:
+        mur1 = PhotoImage(file="image/Wall1.png")
+        mur2 = PhotoImage(file="image/Wall2.png")
+        mur3 = PhotoImage(file="image/Wall3.png")
+
+        pnj1 = PhotoImage(file = "image/pnj1.png")
+        pnj2 = PhotoImage(file = "image/pnj2.png")
+        pnj3 = PhotoImage(file = "image/pnj3.png")
+        pnj4 = PhotoImage(file = "image/pnj4.png")
+
+        pnj1_moyen = PhotoImage(file="image/sorcier1.png")
+        pnj2_moyen = PhotoImage(file="image/sorcier2.png")
+        pnj3_moyen = PhotoImage(file="image/sorcier3.png")
+        pnj4_moyen = PhotoImage(file="image/sorcier4.png")
+        pnj5_moyen = PhotoImage(file = "image/pnj4.png")
+
+        pnj1_grand = PhotoImage(file="image/sorcier1.png")
+        pnj2_grand = PhotoImage(file="image/sorcier2.png")
+        pnj3_grand = PhotoImage(file="image/sorcier3.png")
+        pnj4_grand = PhotoImage(file="image/sorcier4.png")
+        pnj5_grand = PhotoImage(file = "image/pnj4.png")
+
+    #exo 4 : systèe à 2 inconnues
+    elif Niveau ==3:
+        mur1 = PhotoImage(file="image/Water.png")
+        mur2 = PhotoImage(file="image/Water_rock.png")
+        mur3 = PhotoImage(file="image/Water_Lotus.png")
+
+        pnj1 = PhotoImage(file = "image/pnj1.png")
+        pnj2 = PhotoImage(file = "image/pnj2.png")
+        pnj3 = PhotoImage(file = "image/pnj3.png")
+        pnj4 = PhotoImage(file = "image/pnj4.png")
+
+        pnj1_moyen = PhotoImage(file="image/sorcier1.png")
+        pnj2_moyen = PhotoImage(file="image/sorcier2.png")
+        pnj3_moyen = PhotoImage(file="image/sorcier3.png")
+        pnj4_moyen = PhotoImage(file="image/sorcier4.png")
+
+        pnj1_grand = PhotoImage(file="image/sorcier1.png")
+        pnj2_grand = PhotoImage(file="image/sorcier2.png")
+        pnj3_grand = PhotoImage(file="image/sorcier3.png")
+        pnj4_grand = PhotoImage(file="image/sorcier4.png")
+
+    #les deux niveaux de boss
+    elif Niveau==4 or Niveau ==8:
+        mur1 = PhotoImage(file="image/Water.png")
+        mur2 = PhotoImage(file="image/Water_rock.png")
+        mur3 = PhotoImage(file="image/Water_Lotus.png")
+
+        pnj_boss = PhotoImage(file = "image/pnj4.png")
+        pnj_boss_moyen = PhotoImage(file = "image/pnj4.png")
+        pnj_boss_grand = PhotoImage(file = "image/pnj4.png")
+
+
 
 
 
@@ -276,48 +361,48 @@ def Gestion_Jouer(fenetre, Niveau):
         if assemble_cle == True:
             canvas_inv.delete("all")
 
-            if Niveau == 0:
-                canvas_inv.create_image(10,0, anchor = NW, image=clepnj1)
-                canvas_inv.create_image(60,0, anchor = NW, image=clepnj2)
-                canvas_inv.create_image(110,0, anchor = NW, image=clepnj3)
+            if Niveau == 0 or Niveau ==5:
+                canvas_inv.create_image(10,0, anchor = NW, image=loot_pnj1)
+                canvas_inv.create_image(60,0, anchor = NW, image=loot_pnj2)
+                canvas_inv.create_image(110,0, anchor = NW, image=loot_pnj3)
 
-            elif Niveau == 1 :
-                canvas_inv.create_image(30,0, anchor = NW, image=clepnj1)
-                canvas_inv.create_image(80,0, anchor = NW, image=clepnj2)
-                canvas_inv.create_image(130,0, anchor = NW, image=clepnj3)
+            elif Niveau == 1 or Niveau==3 or Niveau==6:
+                canvas_inv.create_image(30,0, anchor = NW, image=loot_pnj1)
+                canvas_inv.create_image(80,0, anchor = NW, image=loot_pnj2)
+                canvas_inv.create_image(130,0, anchor = NW, image=loot_pnj3)
 
-            elif Niveau ==2:
+            elif Niveau ==2 or Niveau ==7:
 
-                canvas_inv.create_image(30,0, anchor = NW, image=clepnj1)
-                canvas_inv.create_image(80,0, anchor = NW, image=clepnj2)
-                canvas_inv.create_image(130,0, anchor = NW, image=clepnj3)
+                canvas_inv.create_image(30,0, anchor = NW, image=loot_pnj1)
+                canvas_inv.create_image(80,0, anchor = NW, image=loot_pnj2)
+                canvas_inv.create_image(130,0, anchor = NW, image=loot_pnj3)
 
         else:
             if pnj1_infos == False and pnj2_infos == False and pnj3_infos == False and pnj4_infos == False and pnj5_infos == False:
-                canvas_inv.create_image(0,0, anchor = NW, image=clepnj1)
-                canvas_inv.create_image(60,0, anchor = NW, image=clepnj2)
-                canvas_inv.create_image(120,0, anchor = NW, image=clepnj3)
-                if Niveau == 1:
-                    canvas_inv.create_image(180,0, anchor = NW, image=glue)
-                elif Niveau ==2:
-                    canvas_inv.create_image(180,0, anchor = NW, image=glue)
-                    canvas_inv.create_image(240,0, anchor = NW, image=glue)
+                canvas_inv.create_image(0,0, anchor = NW, image=loot_vide_pnj1)
+                canvas_inv.create_image(60,0, anchor = NW, image=loot_vide_pnj2)
+                canvas_inv.create_image(120,0, anchor = NW, image=loot_vide_pnj3)
+                if Niveau == 1 or Niveau ==3 or Niveau ==6:
+                    canvas_inv.create_image(180,0, anchor = NW, image=loot_vide_pnj4)
+                elif Niveau ==2 or Niveau ==7:
+                    canvas_inv.create_image(180,0, anchor = NW, image=loot_vide_pnj4)
+                    canvas_inv.create_image(240,0, anchor = NW, image=loot_vide_pnj5)
 
 
             if pnj1_infos == True:
-                canvas_inv.create_image(0,0, anchor = NW, image=clepnj1)
+                canvas_inv.create_image(0,0, anchor = NW, image=loot_pnj1)
 
             if pnj2_infos == True:
-                canvas_inv.create_image(60,0, anchor = NW, image=clepnj2)
+                canvas_inv.create_image(60,0, anchor = NW, image=loot_pnj2)
 
             if pnj3_infos == True:
-                canvas_inv.create_image(120,0, anchor = NW, image=clepnj3)
+                canvas_inv.create_image(120,0, anchor = NW, image=loot_pnj3)
             
             if pnj4_infos == True:
-                canvas_inv.create_image(180,0, anchor = NW, image=glue2)
+                canvas_inv.create_image(180,0, anchor = NW, image=loot_pnj4)
 
             if pnj5_infos == True:
-                canvas_inv.create_image(240,0, anchor = NW, image=glue2)
+                canvas_inv.create_image(240,0, anchor = NW, image=loot_pnj5)
 
     def load_cours(Niveau, num_pnj):
         Liste_cours = [
@@ -335,6 +420,29 @@ def Gestion_Jouer(fenetre, Niveau):
         "cours 3 nv3",
         "cours 4 nv3",
         "cours 5 nv3",
+
+        "cours 1 nv4",
+        "cours 2 nv4",
+        "cours 3 nv4",
+        "cours 4 nv4", 
+
+
+
+        "cours 1 nv5",
+        "cours 2 nv5",
+        "cours 3 nv5",
+
+        "cours 1 nv6",
+        "cours 2 nv6",
+        "cours 3 nv6",
+        "cours 4 nv6", 
+        
+        "cours 1 nv7",
+        "cours 2 nv7",
+        "cours 3 nv7",
+        "cours 4 nv7",
+        "cours 5 nv7",
+ 
         ]
 
         def ajouter_element(Texte): #Une partie de la gestion du code de la liste box provient d'internet
@@ -344,22 +452,34 @@ def Gestion_Jouer(fenetre, Niveau):
                 listbox.insert(END, element + "\n")
             listbox.insert(END, "\n")
 
-        if num_pnj ==0:
-            global listbox
-            listbox = Text(Label_Frame_Cours_Affiche, width =35,wrap="word")
-            listbox.pack(side=LEFT, fill=BOTH)
+        #partie load du premier chargement
+        if num_pnj ==0 or num_pnj==1:
 
-            scrollbar = Scrollbar(Label_Frame_Cours_Affiche, orient=VERTICAL, command=listbox.yview)
-            scrollbar.pack(side=RIGHT, fill=Y)
+            if num_pnj==0:
+                global listbox
+                listbox = Text(Label_Frame_Cours_Affiche, width =35,wrap="word")
+                listbox.pack(side=LEFT, fill=BOTH)
 
-            listbox.config(yscrollcommand=scrollbar.set)
+                scrollbar = Scrollbar(Label_Frame_Cours_Affiche, orient=VERTICAL, command=listbox.yview)
+                scrollbar.pack(side=RIGHT, fill=Y)
+
+                listbox.config(yscrollcommand=scrollbar.set)
+
+            elif num_pnj==1:
+                listbox.delete(1.0,END)
+
 
             #chargement pour le reload de la fonction global quand on change de niveau
-            if Niveau ==0:
+            #pour eviterd'ecrire à deux fois le meme code de 200 ligne; des optimisation sont faite 
+            #ces optimisations consistent en conditions  : 
+            #    - pour reload au changement de niveau
+            #    - pour reload et mettre en ordre le cours au moment de passer la porte
+
+            if (Niveau ==0 and num_pnj==0):
                 listbox.insert(END, "--Equation du 1er degré--" + "\n")
                 listbox.insert(END, "\n")
 
-            if Niveau ==1:
+            elif (Niveau ==1 and num_pnj==0) or (Niveau==0 and num_pnj==1):
                 listbox.insert(END, "--Equation du 1er degré--" + "\n")
                 listbox.insert(END, "\n")
 
@@ -367,46 +487,131 @@ def Gestion_Jouer(fenetre, Niveau):
                     ajouter_element(Liste_cours[i])
                 listbox.insert(END, "\n")
 
-                listbox.insert(END, "--Equation à deux inconnues--" + "\n")
-                listbox.insert(END, "\n")
+                if num_pnj==0:
+                    listbox.insert(END, "--Volume--" + "\n")
+                    listbox.insert(END, "\n")
 
-            elif Niveau ==2:
+            elif (Niveau ==2 and num_pnj==0) or (Niveau== 1 and num_pnj==1):
                 listbox.insert(END, "--Equation du 1er degré--" + "\n")
                 listbox.insert(END, "\n")
                 for i in range(3):
                     ajouter_element(Liste_cours[i])
                 listbox.insert(END, "\n")
 
-                listbox.insert(END, "--Equation à deux inconnues--" + "\n")
+                listbox.insert(END, "--Volume--" + "\n")
                 listbox.insert(END, "\n")
                 for i in range(3,7):
                     ajouter_element(Liste_cours[i])
                 listbox.insert(END, "\n")
 
-                listbox.insert(END, "--Exos à définir--" + "\n")
-                listbox.insert(END, "\n")
+                if num_pnj==0:
+                    listbox.insert(END, "--Fonction Affine--" + "\n")
+                    listbox.insert(END, "\n")
 
-            elif Niveau ==3:
+            elif (Niveau ==3 and num_pnj==0) or (Niveau== 2 and num_pnj==1):
                 listbox.insert(END, "--Equation du 1er degré--" + "\n")
                 listbox.insert(END, "\n")
                 for i in range(3):
                     ajouter_element(Liste_cours[i])
                 listbox.insert(END, "\n")
 
-                listbox.insert(END, "--Equation à deux inconnues--" + "\n")
+                listbox.insert(END, "--Volume--" + "\n")
                 listbox.insert(END, "\n")
                 for i in range(3,7):
                     ajouter_element(Liste_cours[i])
                 listbox.insert(END, "\n")
 
-                listbox.insert(END, "--Exos à définir--" + "\n")
+                listbox.insert(END, "--Fonction Affine--" + "\n")
                 listbox.insert(END, "\n")
                 for i in range(7,12):
                     ajouter_element(Liste_cours[i])
                 listbox.insert(END, "\n")
 
+                if nm_pnj==0:
+                    listbox.insert(END, "--Equation à 2 inconnues--" + "\n")
+                    listbox.insert(END, "\n")
 
-        # Pour chack pnj qui donnera son cours : 
+            elif (Niveau ==4 and num_pnj==0) or (Niveau== 3 and num_pnj==1):
+                listbox.insert(END, "--Equation du 1er degré--" + "\n")
+                listbox.insert(END, "\n")
+                for i in range(3):
+                    ajouter_element(Liste_cours[i])
+                listbox.insert(END, "\n")
+
+                listbox.insert(END, "--Volume--" + "\n")
+                listbox.insert(END, "\n")
+                for i in range(3,7):
+                    ajouter_element(Liste_cours[i])
+                listbox.insert(END, "\n")
+
+                listbox.insert(END, "--Fonction Affine--" + "\n")
+                listbox.insert(END, "\n")
+                for i in range(7,12):
+                    ajouter_element(Liste_cours[i])
+                listbox.insert(END, "\n")
+
+                listbox.insert(END, "--Equation à 2 inconnues--" + "\n")
+                listbox.insert(END, "\n")
+                for i in range(12,16):
+                    ajouter_element(Liste_cours[i])
+                listbox.insert(END, "\n")
+
+
+
+            elif (Niveau ==5 and num_pnj==0):
+                listbox.insert(END, "--Equation du second degré--" + "\n")
+                listbox.insert(END, "\n")
+
+            elif (Niveau ==6 and num_pnj==0) or (Niveau== 5 and num_pnj==1):
+                listbox.insert(END, "--Equation du second degré--" + "\n")
+                listbox.insert(END, "\n")
+                for i in range(16,19):
+                    ajouter_element(Liste_cours[i])
+                listbox.insert(END, "\n")
+
+                if num_pnj==0:
+                    listbox.insert(END, "--Dérivation--" + "\n")
+                    listbox.insert(END, "\n")
+
+            elif (Niveau==7 and num_pnj==0) or (Niveau== 6 and num_pnj==1):
+                listbox.insert(END, "--Equation du second degré--" + "\n")
+                listbox.insert(END, "\n")
+                for i in range(16,19):
+                    ajouter_element(Liste_cours[i])
+                listbox.insert(END, "\n")
+
+                listbox.insert(END, "--Dérivation--" + "\n")
+                listbox.insert(END, "\n")
+                for i in range(19,23):
+                    ajouter_element(Liste_cours[i])
+                listbox.insert(END, "\n")
+
+                if num_pnj==0:
+                    listbox.insert(END, "--Suite--" + "\n")
+                    listbox.insert(END, "\n")
+
+            elif (Niveau==8 and num_pnj==0) or (Niveau== 7 and num_pnj==1):
+                listbox.insert(END, "--Equation du second degré--" + "\n")
+                listbox.insert(END, "\n")
+                for i in range(16,19):
+                    ajouter_element(Liste_cours[i])
+                listbox.insert(END, "\n")
+
+                listbox.insert(END, "--Dérivation--" + "\n")
+                listbox.insert(END, "\n")
+                for i in range(19,23):
+                    ajouter_element(Liste_cours[i])
+                listbox.insert(END, "\n")
+
+                listbox.insert(END, "--Suite--" + "\n")
+                listbox.insert(END, "\n")
+                for i in range(23,28):
+                    ajouter_element(Liste_cours[i])
+                listbox.insert(END, "\n")
+
+
+
+        # Pour chaque pnj qui donnera son cours : 
         if Niveau ==0:
             if num_pnj=="pnj1":
                 ajouter_element(Liste_cours[0])
@@ -435,7 +640,48 @@ def Gestion_Jouer(fenetre, Niveau):
             elif num_pnj=="pnj4":
                 ajouter_element(Liste_cours[10]) 
             elif num_pnj=="pnj5":
-                ajouter_element(Liste_cours[11]) 
+                ajouter_element(Liste_cours[11])
+
+        elif Niveau ==3:
+            if num_pnj=="pnj1":
+                ajouter_element(Liste_cours[12])
+            elif num_pnj=="pnj2":
+                ajouter_element(Liste_cours[13])
+            elif num_pnj=="pnj3":
+                ajouter_element(Liste_cours[14])       
+            elif num_pnj=="pnj4":
+                ajouter_element(Liste_cours[15]) 
+
+        elif Niveau ==5:
+            if num_pnj=="pnj1":
+                ajouter_element(Liste_cours[16])
+            elif num_pnj=="pnj2":
+                ajouter_element(Liste_cours[17])
+            elif num_pnj=="pnj3":
+                ajouter_element(Liste_cours[18])
+        
+        elif Niveau ==6:
+            if num_pnj=="pnj1":
+                ajouter_element(Liste_cours[19])
+            elif num_pnj=="pnj2":
+                ajouter_element(Liste_cours[20])
+            elif num_pnj=="pnj3":
+                ajouter_element(Liste_cours[21])       
+            elif num_pnj=="pnj4":
+                ajouter_element(Liste_cours[22]) 
+
+        elif Niveau ==7:
+            if num_pnj=="pnj1":
+                ajouter_element(Liste_cours[23])
+            elif num_pnj=="pnj2":
+                ajouter_element(Liste_cours[24])
+            elif num_pnj=="pnj3":
+                ajouter_element(Liste_cours[25])       
+            elif num_pnj=="pnj4":
+                ajouter_element(Liste_cours[26]) 
+            elif num_pnj=="pnj5":
+                ajouter_element(Liste_cours[27])
+
 
     def table_craft(event):
         global pnj1_infos
@@ -530,6 +776,38 @@ def Gestion_Jouer(fenetre, Niveau):
                             text_complet = ""
                         elif c==3:
                             text_complet = ""
+                    
+                    elif Niveau ==3:
+                        if c==1:
+                            text_complet = ""
+                        elif c==2:
+                            text_complet = ""
+                        elif c==3:
+                            text_complet = ""
+
+                    elif Niveau ==5:
+                        if c==1:
+                            text_complet = ""
+                        elif c==2:
+                            text_complet = ""
+                        elif c==3:
+                            text_complet = ""
+
+                    elif Niveau ==6:
+                        if c==1:
+                            text_complet = ""
+                        elif c==2:
+                            text_complet = ""
+                        elif c==3:
+                            text_complet = ""
+
+                    elif Niveau ==7:
+                        if c==1:
+                            text_complet = ""
+                        elif c==2:
+                            text_complet = ""
+                        elif c==3:
+                            text_complet = ""
 
                     if c == 4:
                         canvas_tete_pnj_grand.delete("all")
@@ -564,6 +842,38 @@ def Gestion_Jouer(fenetre, Niveau):
                             text_complet = ""
 
                     elif Niveau ==2:
+                        if c==1:
+                            text_complet = ""
+                        elif c==2:
+                            text_complet = ""
+                        elif c==3:
+                            text_complet = ""
+                    
+                    elif Niveau ==3:
+                        if c==1:
+                            text_complet = ""
+                        elif c==2:
+                            text_complet = ""
+                        elif c==3:
+                            text_complet = ""
+
+                    elif Niveau ==5:
+                        if c==1:
+                            text_complet = ""
+                        elif c==2:
+                            text_complet = ""
+                        elif c==3:
+                            text_complet = ""
+
+                    elif Niveau ==6:
+                        if c==1:
+                            text_complet = ""
+                        elif c==2:
+                            text_complet = ""
+                        elif c==3:
+                            text_complet = ""
+
+                    elif Niveau ==7:
                         if c==1:
                             text_complet = ""
                         elif c==2:
@@ -611,6 +921,38 @@ def Gestion_Jouer(fenetre, Niveau):
                             text_complet = ""
                         elif c==3:
                             text_complet = ""
+                    
+                    elif Niveau ==3:
+                        if c==1:
+                            text_complet = ""
+                        elif c==2:
+                            text_complet = ""
+                        elif c==3:
+                            text_complet = ""
+
+                    elif Niveau ==5:
+                        if c==1:
+                            text_complet = ""
+                        elif c==2:
+                            text_complet = ""
+                        elif c==3:
+                            text_complet = ""
+
+                    elif Niveau ==6:
+                        if c==1:
+                            text_complet = ""
+                        elif c==2:
+                            text_complet = ""
+                        elif c==3:
+                            text_complet = ""
+
+                    elif Niveau ==7:
+                        if c==1:
+                            text_complet = ""
+                        elif c==2:
+                            text_complet = ""
+                        elif c==3:
+                            text_complet = ""
 
 
                     if c == 4:
@@ -643,6 +985,30 @@ def Gestion_Jouer(fenetre, Niveau):
                             text_complet = ""
                         elif c==3:
                             text_complet = ""
+                    
+                    elif Niveau ==3:
+                        if c==1:
+                            text_complet = ""
+                        elif c==2:
+                            text_complet = ""
+                        elif c==3:
+                            text_complet = ""
+
+                    elif Niveau ==6:
+                        if c==1:
+                            text_complet = ""
+                        elif c==2:
+                            text_complet = ""
+                        elif c==3:
+                            text_complet = ""
+                    
+                    elif Niveau ==7:
+                        if c==1:
+                            text_complet = ""
+                        elif c==2:
+                            text_complet = ""
+                        elif c==3:
+                            text_complet = ""
 
                     if c == 4:
                         canvas_tete_pnj_grand.delete("all")
@@ -668,6 +1034,14 @@ def Gestion_Jouer(fenetre, Niveau):
                         elif c==3:
                             text_complet = "Voici un kit de nettoyage ! Il vous sera utile pour que votre clé fonctionne ! "
 
+                    elif Niveau ==7:
+                        if c==1:
+                            text_complet = ""
+                        elif c==2:
+                            text_complet = ""
+                        elif c==3:
+                            text_complet = ""
+                    
                     if c == 4:
                         canvas_tete_pnj_grand.delete("all")
                         Label_texte_parole_discussion_pnj_strvar.set("")
@@ -683,7 +1057,7 @@ def Gestion_Jouer(fenetre, Niveau):
 
 
 
-            #de nouveau une partie commune mais cette fois quand on a déjà vu le pnj
+            #de nouveau une partie commune mais cette fois quand on a déjà vu le pnj   #### A FAIRE POUR CHAQUE NIVEAU POUR CHAQUE PNJ COMME AU DESSUS
             else:
                 if c ==1:
                     if pnj=="pnj4":
@@ -760,7 +1134,7 @@ def Gestion_Jouer(fenetre, Niveau):
                 elif (L[ordonne-1][abscisse] == pnj_List[4] or L[ordonne+1][abscisse]== pnj_List[4] or L[ordonne][abscisse-1]== pnj_List[4] or L[ordonne][abscisse+1]== pnj_List[4]):
                     pnj_ = "pnj5"
                     pnj_infos_ = pnj5_infos
-                    canvas_tete_pnj_grand.create_image(0, 0, anchor=NW, image=pnj1_grand)
+                    canvas_tete_pnj_grand.create_image(0, 0, anchor=NW, image=pnj5_grand)
             
                 global Label_btn_suivant_discussion_pnj
 
@@ -778,6 +1152,7 @@ def Gestion_Jouer(fenetre, Niveau):
             print(assemble_cle)
             if assemble_cle == True:
                 porte_enigme(Niveau)
+                load_cours(Niveau, 1)
             else:
                 Label_text_possibilite_strvar.set("Vous devez d'abord assemblé votre Clé pour pouvoir ouvrir la porte !")
                 canvas_infos_possibilite_discussion.create_image(0,0,anchor=NW, image=porte)
@@ -821,6 +1196,15 @@ def Gestion_Jouer(fenetre, Niveau):
                         text_complet_consignes = "Vous devez résoudre cette equation à deux inconnues n trouvant l valeur de y et y. Apres avoir résolu cette equation; selectionnez la bonne case et faites valider"
                     elif Niveau ==2:
                         text_complet_consinges = "Vous devez résoudre cette exo pas encore fait"
+                    elif Niveau==3:
+                        text_complet_consinges = "Vous devez résoudre cette exo pas encore fait"
+                    elif Niveau==5:
+                        text_complet_consinges = "Vous devez résoudre cette exo pas encore fait"
+                    elif Niveau==6:
+                        text_complet_consinges = "Vous devez résoudre cette exo pas encore fait"
+                    elif Niveau==7:
+                        text_complet_consinges = "Vous devez résoudre cette exo pas encore fait"
+    
                 elif c_sw==4:
                     Label_btn_suivant_second_window ['state'] = DISABLED
                     # on affcihe les btns de réponses
@@ -841,11 +1225,11 @@ def Gestion_Jouer(fenetre, Niveau):
                 elif c_sw==6:
                     if erreur == 0:
                         if Niveau ==0:
-                            text_complet_consignes ="avant de passez la porte vous découvrez un message gravé dessus msg nv1 : Cliquez sur suivant pour passez au niveau suppérieur !"
+                            text_complet_consignes ="Cliquez sur suivant pour passez au niveau suppérieur !"
                         elif Niveau ==1:
-                            text_complet_consignes ="avant de passez la porte vous découvrez un message gravé dessus msg nv2: Cliquez sur suivant pour passez au niveau suppérieur !"
+                            text_complet_consignes ="Cliquez sur suivant pour passez au niveau suppérieur !"
                         elif Niveau ==3:
-                            text_complet_consignes ="avant de passez la porte vous découvrez un message gravé dessus msg nv3: Cliquez sur suivant pour passez au niveau suppérieur !"
+                            text_complet_consignes ="Cliquez sur suivant pour passez au niveau suppérieur !"
 
                     else:
                         second_window_probleme.destroy()
@@ -1056,11 +1440,11 @@ def Gestion_Jouer(fenetre, Niveau):
     canvas_infos_possibilite_discussion = Canvas(Label_Frame_Text_Info_Discussion_pnj, bg='white', height=50, width=50)
     canvas_infos_possibilite_discussion.pack(anchor="c", side=LEFT, padx=15)
     Label_text_possibilite_strvar = StringVar()
-    if Niveau ==0:
+    if Niveau ==0 or Niveau ==5:
         Label_text_possibilite_strvar.set("Objectif : Récupérer tous les fragments de clés !")
-    elif Niveau ==1:
+    elif Niveau ==1 or Niveau ==3 or Niveau ==6:
         Label_text_possibilite_strvar.set("Objectif : Récupérer tous les fragments de clés et le tube de colle !")
-    elif Niveau ==2:
+    elif Niveau ==2 or Niveau ==7:
         Label_text_possibilite_strvar.set("Objectif : Récupérer tous les fragments de clés,le tube de colle et le kit de nettoyage !")
 
     Label_text_possibilite_widget = Label(Label_Frame_Text_Info_Discussion_pnj, textvariable=Label_text_possibilite_strvar, wraplength=200, justify="left")
@@ -1096,20 +1480,20 @@ def Gestion_Jouer(fenetre, Niveau):
 
     #On load l'inventaire de base 
     long_canvas_inv = 180
-    if Niveau ==1:
+    if Niveau ==1 or Niveau ==3 or Niveau ==6:
         long_canvas_inv = 240
-    elif Niveau == 2:
+    elif Niveau == 2 or Niveau ==7:
         long_canvas_inv = 300
 
     canvas_inv = Canvas(Label_Frame_Inv_Cle, width=long_canvas_inv, height=50, bg = "blue")
-    canvas_inv.create_image(0,0,anchor=NW, image = clepnj1_)
-    canvas_inv.create_image(60,0,anchor=NW, image = clepnj2_)
-    canvas_inv.create_image(120,0,anchor=NW, image = clepnj3_)
-    if Niveau == 1:
-        canvas_inv.create_image(180,0,anchor=NW, image = glue)
-    elif Niveau ==2:
-        canvas_inv.create_image(180,0,anchor=NW, image = glue)
-        canvas_inv.create_image(240,0,anchor=NW, image = glue)
+    canvas_inv.create_image(0,0,anchor=NW, image = loot_vide_pnj1)
+    canvas_inv.create_image(60,0,anchor=NW, image = loot_vide_pnj2)
+    canvas_inv.create_image(120,0,anchor=NW, image = loot_vide_pnj3)
+    if Niveau == 1 or Niveau ==3 or Niveau ==6:
+        canvas_inv.create_image(180,0,anchor=NW, image = loot_vide_pnj4)
+    elif Niveau ==2 or Niveau ==7:
+        canvas_inv.create_image(180,0,anchor=NW, image = loot_vide_pnj4)
+        canvas_inv.create_image(240,0,anchor=NW, image = loot_vide_pnj5)
 
     canvas_inv.pack(pady=10)
 
@@ -1119,12 +1503,16 @@ def Gestion_Jouer(fenetre, Niveau):
 
 #deplacement
     Jeu.focus_set()
+
     Jeu.bind("<KeyPress-Up>", deplacement)
     Jeu.bind("<KeyPress-Down>", deplacement)
     Jeu.bind("<KeyPress-Left>", deplacement)
     Jeu.bind("<KeyPress-Right>", deplacement)
+
     Jeu.bind("<space>", parler_pnj)
+
     Jeu.bind("<KeyPress-c>", table_craft)
+
     Jeu.bind("<Escape>", regle_infos_jeu)
 
 
@@ -1139,7 +1527,7 @@ def Gestion_Jouer(fenetre, Niveau):
 #ACCUEIL#
 
 global Niveau
-Niveau = 0
+Niveau = 4
 
 Lancement = Tk()
 Lancement.title("RPG : Lanncement  Théo | Quentin")
