@@ -9,7 +9,7 @@ def Custom_Map(Map, longueur, largeur, Niveau):
         L_pnj = ["pnj1","pnj2","pnj3", "pnj4"]
     elif Niveau ==2 or Niveau ==7:
         L_pnj = ["pnj1","pnj2","pnj3", "pnj4", "pnj5"]
-
+        
 
     checkboss = False
     if Niveau ==4 or Niveau ==8:
