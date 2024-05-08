@@ -62,9 +62,14 @@ def Custom_Map(Map, longueur, largeur, Niveau):
 
 
     else:
-        for x in range(8,32):
+        for x in range(14,26):
             for y in range(6,15):
                 Map[y][x] = " "
+        
+        for x in range(16, 24):
+            for y in range(7,14):
+                Map[y][x] = "boss"
+
 
     #On place le joueur
     Map[1][1] = "○"

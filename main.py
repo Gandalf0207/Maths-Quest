@@ -14,6 +14,7 @@ import matplotlib.pyplot as plt
 import labyrinthe
 import custom_labyrinthe
 import py_maths_exo
+import py_maths_boss
 
 plt.rcParams['text.usetex'] = True
 
@@ -31,6 +32,8 @@ Label_btn_suivant_discussion_pnj = None
 global second_window_probleme
 second_window_probleme= None
 
+global boss_window
+boss_window= None
 
 def Gestion_Jouer(fenetre, Niveau):
 
@@ -40,6 +43,9 @@ def Gestion_Jouer(fenetre, Niveau):
     # Variable pour suivre l'état de la deuxième fenêtre pour les problèmes de la porte
     global second_window_probleme
     second_window_probleme= None
+
+    global boss_window
+    boss_window= None
 
     #le "fenetre" correspond à la fenetre tk qui est en cours de loop
     # Le permir passage se sera la fenetre 'Lancement', puis les autres tours se sera les fenetres de 'Jeu'
@@ -51,7 +57,7 @@ def Gestion_Jouer(fenetre, Niveau):
 
     #On crée la map 
     longueur = 38
-    largeur = 20
+    largeur = 21
     L = labyrinthe.mapmaker(longueur,largeur) 
 
     #On custom la map avec les pnj, portes et joueur....
@@ -173,7 +179,7 @@ def Gestion_Jouer(fenetre, Niveau):
 
         pnj_boss = PhotoImage(file = "image/pnj4.png")
         pnj_boss_moyen = PhotoImage(file = "image/pnj4.png")
-        pnj_boss_grand = PhotoImage(file = "image/pnj4.png")
+        pnj_boss_grand = PhotoImage(file = "image/BOSS.png")
 
 
 
@@ -190,7 +196,7 @@ def Gestion_Jouer(fenetre, Niveau):
         global abscisse
 
         touche = event.keysym
-        check = ["■" ,"\U0001F6AA", "¤"]
+        check = ["■" ,"\U0001F6AA", "¤", "boss"]
         pnj_liste = ["pnj1", "pnj2", "pnj3", "pnj4", "pnj5"]
 
 
@@ -283,6 +289,10 @@ def Gestion_Jouer(fenetre, Niveau):
             Label_text_possibilite_strvar.set("Appuie sur 'espace' pour ouvrir la porte !")
             canvas_infos_possibilite_discussion.create_image(0,0,anchor=NW, image=porte)
 
+        #check de si on parle au boss ou non :
+        elif (L[ordonne-1][abscisse] == "boss" or L[ordonne+1][abscisse]== "boss" or L[ordonne][abscisse-1]== "boss" or L[ordonne][abscisse+1]== "boss"):
+            Label_text_possibilite_strvar.set("Appuie sur 'espace' pour m'affronter !")
+            canvas_infos_possibilite_discussion.create_image(0,0,anchor=NW, image=pnj_boss_moyen)
 
         #Script permettant d'afficher si une discution est possible avec les pnj ou non
         elif (L[ordonne-1][abscisse] in pnj_liste or L[ordonne+1][abscisse] in pnj_liste or L[ordonne][abscisse-1] in pnj_liste or L[ordonne][abscisse+1] in pnj_liste):
@@ -312,27 +322,30 @@ def Gestion_Jouer(fenetre, Niveau):
                 canvas_infos_possibilite_discussion.create_image(0,0,anchor=NW, image=pnj5)
 
         else:
-            if Niveau ==0:
+            if Niveau ==0 or Niveau ==5:
                 if pnj1_infos == False or pnj2_infos == False or pnj3_infos == False:
                     Label_text_possibilite_strvar.set("Objectif : Récupérer tous les fragments de clés !")
                 elif assemble_cle == False:
                     Label_text_possibilite_strvar.set("Objectif : Assembler la clé à la table de fabrication !")
                 elif assemble_cle == True:
                     Label_text_possibilite_strvar.set("Objectif : Ouvrir la porte !")
-            elif Niveau ==1:
+            elif Niveau ==1 or Niveau ==3 or Niveau==6:
                 if pnj1_infos == False or pnj2_infos == False or pnj3_infos == False or pnj3_infos == False:
                     Label_text_possibilite_strvar.set("Objectif : Récupérer tous les fragments de clés et le tube de colle !")
                 elif assemble_cle == False:
                     Label_text_possibilite_strvar.set("Objectif : Assembler la clé à la table de fabrication !")
                 elif assemble_cle == True:
                     Label_text_possibilite_strvar.set("Objectif : Ouvrir la porte !")
-            elif Niveau ==2:
+            elif Niveau ==2 or Niveau ==7:
                 if pnj1_infos == False or pnj2_infos == False or pnj3_infos == False or pnj3_infos == False and pnj5_infos == False:
                     Label_text_possibilite_strvar.set("Objectif : Récupérer tous les fragments de clés, le tube de colle et le kit de nettoyage !")
                 elif assemble_cle == False:
                     Label_text_possibilite_strvar.set("Objectif : Assembler la clé à la table de fabrication !")
                 elif assemble_cle == True:
                     Label_text_possibilite_strvar.set("Objectif : Ouvrir la porte !")
+            elif Niveau ==4 or Niveau==8:
+                    Label_text_possibilite_strvar.set("Objectif : Affronter le BOSS")
+
 
 
             canvas_infos_possibilite_discussion.create_image(0,0,anchor=NW, image=carre)
@@ -379,14 +392,16 @@ def Gestion_Jouer(fenetre, Niveau):
 
         else:
             if pnj1_infos == False and pnj2_infos == False and pnj3_infos == False and pnj4_infos == False and pnj5_infos == False:
-                canvas_inv.create_image(0,0, anchor = NW, image=loot_vide_pnj1)
-                canvas_inv.create_image(60,0, anchor = NW, image=loot_vide_pnj2)
-                canvas_inv.create_image(120,0, anchor = NW, image=loot_vide_pnj3)
-                if Niveau == 1 or Niveau ==3 or Niveau ==6:
-                    canvas_inv.create_image(180,0, anchor = NW, image=loot_vide_pnj4)
-                elif Niveau ==2 or Niveau ==7:
-                    canvas_inv.create_image(180,0, anchor = NW, image=loot_vide_pnj4)
-                    canvas_inv.create_image(240,0, anchor = NW, image=loot_vide_pnj5)
+                
+                if Niveau !=4 and Niveau!=8:
+                    canvas_inv.create_image(0,0, anchor = NW, image=loot_vide_pnj1)
+                    canvas_inv.create_image(60,0, anchor = NW, image=loot_vide_pnj2)
+                    canvas_inv.create_image(120,0, anchor = NW, image=loot_vide_pnj3)
+                    if Niveau == 1 or Niveau ==3 or Niveau ==6:
+                        canvas_inv.create_image(180,0, anchor = NW, image=loot_vide_pnj4)
+                    elif Niveau ==2 or Niveau ==7:
+                        canvas_inv.create_image(180,0, anchor = NW, image=loot_vide_pnj4)
+                        canvas_inv.create_image(240,0, anchor = NW, image=loot_vide_pnj5)
 
 
             if pnj1_infos == True:
@@ -822,7 +837,6 @@ def Gestion_Jouer(fenetre, Niveau):
                         load_cours(Niveau, num_pnj)
                         Label_text_possibilite_strvar.set("Vous venez d'obtenir un fragment de clé !")
 
-
                 elif pnj == "pnj2":
                     # et le cours est différent en fonction du niveau (map qui change)
                     if Niveau ==0:
@@ -894,7 +908,6 @@ def Gestion_Jouer(fenetre, Niveau):
                         load_inv(Niveau)
                         load_cours(Niveau, num_pnj)
                         Label_text_possibilite_strvar.set("Vous venez d'obtenir un fragment de clé !")
-
 
                 elif pnj == "pnj3":
                     # et le cours est différent en fonction du niveau (map qui change)
@@ -1135,7 +1148,8 @@ def Gestion_Jouer(fenetre, Niveau):
                     pnj_ = "pnj5"
                     pnj_infos_ = pnj5_infos
                     canvas_tete_pnj_grand.create_image(0, 0, anchor=NW, image=pnj5_grand)
-            
+
+
                 global Label_btn_suivant_discussion_pnj
 
                 if Label_btn_suivant_discussion_pnj is not None:
@@ -1157,7 +1171,9 @@ def Gestion_Jouer(fenetre, Niveau):
                 Label_text_possibilite_strvar.set("Vous devez d'abord assemblé votre Clé pour pouvoir ouvrir la porte !")
                 canvas_infos_possibilite_discussion.create_image(0,0,anchor=NW, image=porte)
 
-
+        #check s'il y le boss autour ou non:
+        elif (L[ordonne-1][abscisse] == "boss" or L[ordonne+1][abscisse]== "boss" or L[ordonne][abscisse-1]== "boss" or L[ordonne][abscisse+1]== "boss"):
+            boss_enigme(Niveau)
 
         else:
             Label_text_possibilite_strvar.set("Il n'y a personne autour de vous avec qui discuter !")
@@ -1329,14 +1345,145 @@ def Gestion_Jouer(fenetre, Niveau):
             # Lie la fermeture de la fenêtre à la réinitialisation de second_window_probleme
             second_window_probleme.protocol("WM_DELETE_WINDOW", lambda: reset_second_window())
 
+    #Fonction qui gère les deuxsalles de boss
+    def boss_enigme(Niveau):
+        global boss_window
 
-    def reset_second_window():
-        global second_window_probleme
-        if second_window_probleme:
-            second_window_probleme.destroy()  # Détruit la fenêtre
-        second_window_probleme= None
 
-        
+        if not boss_window or not boss_window.winfo_exists():  # Vérifie si la deuxième fenêtre existe
+            def affiche_consigne_boss(Niveau):
+                global erreur_boss
+                global c_boss
+                c_boss  += 1
+
+                text_complet_consignes_boss = ""
+
+                if c_boss==1:
+                    if Niveau==4:
+                        text_complet_consignes_boss = "Pour pouvoir tourner la clé et ainsi dévérouiller la porte, vous devez résoudre cette exercice ! "
+                elif c_boss==2:
+                    if Niveau==4:
+                        text_complet_consignes_boss = "Toutes les parties du cours que vous avez collectées vous serviront pour répondre ! Vous pouvez les consulter "
+                elif c_boss==3:
+                    if Niveau==4:
+                        text_complet_consignes_boss = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab "
+
+                elif c_boss==4:
+                    Label_btn_suivant_boss_window ['state'] = DISABLED
+                    # on affcihe les btns de réponses
+                    Label_btn_result_possible_1_boss = Button(Label_Frame_Reponse_Verif_boss, text=value_btn_1_boss, command=lambda:verif_reponse_boss(value_btn_1_boss,Exo_correction_boss[1],Label_btn_result_possible_1_boss,Label_btn_result_possible_2_boss,Label_btn_result_possible_3_boss))
+                    Label_btn_result_possible_1_boss.pack(side="left", padx = 5, pady = 5)
+
+                    Label_btn_result_possible_2_boss = Button(Label_Frame_Reponse_Verif_boss, text=value_btn_2_boss, command=lambda:verif_reponse_boss(value_btn_2_boss,Exo_correction_boss[1],Label_btn_result_possible_1_boss,Label_btn_result_possible_2_boss,Label_btn_result_possible_3_boss))
+                    Label_btn_result_possible_2_boss.pack(side ='left', padx = 5, pady = 5)
+
+                    Label_btn_result_possible_3_boss = Button(Label_Frame_Reponse_Verif_boss, text=value_btn_3_boss, command=lambda:verif_reponse_boss(value_btn_3_boss,Exo_correction_boss[1],Label_btn_result_possible_1_boss,Label_btn_result_possible_2_boss,Label_btn_result_possible_3_boss))
+                    Label_btn_result_possible_3_boss.pack(side='left', padx= 5, pady = 5)
+                elif c_boss==5:
+                    if erreur_boss == 0:
+                        text_complet_consignes_boss = "Bravo ! Vous avez trouvé la bonne solution !"
+                    else:
+                        text_complet_consignes_boss = "Vous n'avez pas trouvé la bonne solution, cliquez sur suivant pour recommencer !"
+
+                elif c_boss==6:
+                    if erreur_boss == 0:
+                        if Niveau ==0:
+                            text_complet_consignes_boss ="Cliquez sur suivant pour passez au niveau suppérieur !"
+                        elif Niveau ==1:
+                            text_complet_consignes_boss ="Cliquez sur suivant pour passez au niveau suppérieur !"
+                        elif Niveau ==3:
+                            text_complet_consignes_boss ="Cliquez sur suivant pour passez au niveau suppérieur !"
+
+                    else:
+                        boss_window.destroy()
+
+                else:
+                    Niveau +=1
+                    boss_window.destroy()
+                    Gestion_Jouer(Jeu, Niveau)
+
+                
+                if  4 > c_boss  or 5 <= c_boss <7:
+
+                    Label_btn_suivant_boss_window ['state'] = DISABLED
+                    for i in range(len(text_complet_consignes_boss)):
+                        text_partiel_boss = text_complet_consignes_boss[:i+1]
+                        Label_Text_Explication_boss_strvar.set(f"{text_partiel_boss}")
+                        Label_Text_Explication_boss_widget.update()
+                        time.sleep(0.03)
+                    Label_btn_suivant_boss_window ['state'] = NORMAL
+ 
+            def verif_reponse_boss(reponse, correction,Label_btn_result_possible_1_boss,Label_btn_result_possible_2_boss,Label_btn_result_possible_3_boss):
+                Label_btn_result_possible_1_boss.destroy()
+                Label_btn_result_possible_2_boss.destroy()
+                Label_btn_result_possible_3_boss.destroy()
+                global erreur_boss
+                erreur_boss = 0
+                if reponse == correction:
+                    affiche_consigne_boss(Niveau)
+                else:
+                    erreur_boss = 1
+                    affiche_consigne_boss(Niveau)
+
+                ok = 1
+            
+            global c_boss
+            c_boss = 0
+
+            boss_window = Toplevel()  # Utiliser Toplevel au lieu de Tk pour une nouvelle fenêtre indépendante
+            # boss_window.geometry("400x600") 
+
+            ####frame global de la fenetre
+            Label_Frame_global_boss = Frame(boss_window, bg = "yellow")
+            Label_Frame_global_boss.pack(expand=True, fill="both")
+
+            ###frame qui conteintdra toutes les consignes / explications et le btn suivant
+            Label_Frame_Canvas_consignes_explication_btn_boss = Frame(Label_Frame_global_boss, bg="#000000")
+            Label_Frame_Canvas_consignes_explication_btn_boss.pack(side=TOP, fill='x', pady= 5, padx=5)
+
+            #on load les element de consignes
+            Label_Text_Explication_boss_strvar = StringVar()
+            Label_Text_Explication_boss_strvar.set("Cliquez sur suivant !")
+            Label_Text_Explication_boss_widget = Label(Label_Frame_Canvas_consignes_explication_btn_boss,wraplength=300, textvariable = Label_Text_Explication_boss_strvar, justify="left"  )
+            Label_Text_Explication_boss_widget.pack(fill='x',side = LEFT, padx= 5, pady=5)
+            Label_btn_suivant_boss_window = Button(Label_Frame_Canvas_consignes_explication_btn_boss, text="Suivant !", command=lambda:affiche_consigne_boss(Niveau))
+            Label_btn_suivant_boss_window.pack(side=TOP, anchor="e", pady=5, padx=5)
+
+            ### frame qui contient le canvas qui affichera la formule
+            Label_Frame_Canvas_formule_boss = Frame(Label_Frame_global_boss, bg="#000000")
+            Label_Frame_Canvas_formule_boss.pack(side=TOP, fill='y', pady= 5, padx=5)
+
+            if Niveau ==4:
+                # on recupère la formule et la correction
+                Exo_correction_boss = py_maths_boss.choix_exo_niveau_boss(Niveau,Label_Frame_Canvas_formule_boss)
+                print(Exo_correction_boss)
+
+
+                # on définit les trois valeur qui vont s'afficher dans les boutons
+                value_btn_1_boss = Exo_correction_boss[2]
+                value_btn_2_boss = Exo_correction_boss[3]
+                value_btn_3_boss = Exo_correction_boss[4]
+            elif Niveau==8:
+                a = 1
+                #il faut load l'img et et selec le resultat            
+
+            ## Frame qui contient les trois valeur de réponse avec les cases à cocher et le bouton valider
+            Label_Frame_Reponse_Verif_boss = Frame(Label_Frame_global_boss, bg= "#000000")
+            Label_Frame_Reponse_Verif_boss.pack(side=TOP, fill='x', pady= 5, padx=5)
+
+
+            # Lie la fermeture de la fenêtre à la réinitialisation de boss_window
+            boss_window.protocol("WM_DELETE_WINDOW", lambda: reset_boss_window())
+
+    def reset_boss_window():
+        global boss_window
+        if boss_window:
+            boss_window.destroy()  # Détruit la fenêtre
+        boss_window= None
+
+
+
+
     def regle_infos_jeu(event):
         Regle = Toplevel()
         Regle.geometry("600x400")
@@ -1426,6 +1573,10 @@ def Gestion_Jouer(fenetre, Niveau):
                 canvas.create_image(24*y, 24*x, anchor=NW, image=Perso)
             elif L[x][y] == "¤":
                 canvas.create_image(24*y, 24*x, anchor=NW, image=craft_table_)
+                
+    if Niveau==4 or Niveau==8:
+        canvas.create_image(24*16, 24*7, anchor=NW, image=pnj_boss_grand)
+
     canvas.pack(side="top",padx=5, pady=5)
 
     ###Frame gauche bas pour clé + pouvoir parler infos
@@ -1446,6 +1597,8 @@ def Gestion_Jouer(fenetre, Niveau):
         Label_text_possibilite_strvar.set("Objectif : Récupérer tous les fragments de clés et le tube de colle !")
     elif Niveau ==2 or Niveau ==7:
         Label_text_possibilite_strvar.set("Objectif : Récupérer tous les fragments de clés,le tube de colle et le kit de nettoyage !")
+    elif Niveau ==4 or Niveau ==8:
+        Label_text_possibilite_strvar.set("Objectif : Affronter le BOSS")
 
     Label_text_possibilite_widget = Label(Label_Frame_Text_Info_Discussion_pnj, textvariable=Label_text_possibilite_strvar, wraplength=200, justify="left")
     Label_text_possibilite_widget.pack(side="left", pady=5, padx=5)
@@ -1527,7 +1680,7 @@ def Gestion_Jouer(fenetre, Niveau):
 #ACCUEIL#
 
 global Niveau
-Niveau = 0
+Niveau = 4
 
 Lancement = Tk()
 Lancement.title("RPG : Lanncement  Théo | Quentin")
