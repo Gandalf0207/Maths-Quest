@@ -1390,7 +1390,7 @@ def Gestion_Jouer(fenetre, Niveau):
                     if Niveau ==0:
                         text_complet_consignes = "Vous devez résoudre cette équation du premier degré en trouvant la valeur de x. Apres avoir résolu cette equation; selectionnez la bonne case et faites valider"
                     elif Niveau ==1:
-                        text_complet_consignes = "Vous devez résoudre cette equation à deux inconnues n trouvant l valeur de y et y. Apres avoir résolu cette equation; selectionnez la bonne case et faites valider"
+                        text_complet_consignes = f"Vous devez résoudre ce calcul de volume, il vous faudra trouver le volume totale; selectionnez la bonne case et faites valider Attention; toutes les valerus donn&es sont en m etle résultat attendu en m cube. Données : a = {Exo_correction[5][0]}; b ={Exo_correction[5][1]}; c ={Exo_correction[5][2]}; d ={Exo_correction[5][3]}; e ={Exo_correction[5][4]}; f ={Exo_correction[5][5]}; r ={Exo_correction[5][6]}"
                     elif Niveau ==2:
                         text_complet_consinges = "Vous devez résoudre cette exo pas encore fait"
                     elif Niveau==3:

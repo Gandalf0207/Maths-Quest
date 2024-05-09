@@ -83,7 +83,8 @@ def choix_exo_niveau(Niveau):
         v_cone = (b_cyl*h_cyl)/3
 
         v_chateau = v_gros_rectangle+v_petit_rectangle+v_cyl_1+v_cyl_2+(v_cone*2)
-
+        
+        L_valeurs  = [a, b, c, d, e, f, r]
         resultat = round(v_chateau,2)
         resultat2 = round((v_chateau + a),2)
         resultat3 = round((v_chateau - b),2)
@@ -147,6 +148,8 @@ def choix_exo_niveau(Niveau):
     Liste_exo_all.append(btn1_value)
     Liste_exo_all.append(btn2_value)
     Liste_exo_all.append(btn3_value)
+    if Niveau ==1:
+        Liste_exo_all.append(L_valeurs)
 
 
 
