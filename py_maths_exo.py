@@ -43,9 +43,53 @@ def choix_exo_niveau(Niveau):
                     resultat = nb
             else:
                 resultat = nb
-          
 
-    elif Niveau ==1: 
+
+            v1 = random.randint(-7,7)
+            v2 = random.randint(-7,7)
+            while v1 ==0 or v2== 0 or v1==v2 :
+                v1 = random.randint(-7,7)
+                v2 = random.randint(-7,7)
+            resultat2 = resultat+v1
+            resultat3 = resultat+v2
+
+
+    elif Niveau ==1:
+        eqt = "Aucune equation nécéssaire"
+
+        a = random.randint(5,15)
+        b = random.randint(25,50)
+        c = b/4
+        d = a + 3
+        r = random.randint(4,8)
+        f = r - 1.5
+        h_cyl = random.randint(5,12)
+        e = sqrt((r**2)+(h_cyl**2))
+        while e != round(e,3) :
+            a = random.randint(5,15)
+            b = random.randint(25,50)
+            c = b/4
+            d = a + 3
+            r = random.randint(4,8)
+            f = r - 1.5
+            h_cyl = random.randint(5,12)
+            e = sqrt((r**2)+(h_cyl**2))
+
+        b_cyl = pi*r*r
+        v_cyl_1 = b_cyl*a
+        v_cyl_2 = b_cyl*d
+        v_gros_rectangle = b*f*a
+        v_petit_rectangle = c*f*(d-a)
+        v_cone = (b_cyl*h_cyl)/3
+
+        v_chateau = v_gros_rectangle+v_petit_rectangle+v_cyl_1+v_cyl_2+(v_cone*2)
+
+        resultat = round(v_chateau,2)
+        resultat2 = round((v_chateau + a),2)
+        resultat3 = round((v_chateau - b),2)
+
+
+    elif Niveau ==3: 
         value_x = 0
         value_y = 0
 
@@ -83,23 +127,12 @@ def choix_exo_niveau(Niveau):
 
 
     #On load tout les elements de réponse :  eqt / resultat vrai / les trois résultat dont 2 faux
-    v1 = random.randint(-7,7)
-    v2 = random.randint(-7,7)
-    
-    while v1 ==0 or v2== 0 or v1==v2 :
-        v1 = random.randint(-7,7)
-        v2 = random.randint(-7,7)
-
     L_result_possible = []
-    if Niveau ==0:
-        L_result_possible.append(resultat) 
-        L_result_possible.append(resultat + v1)
-        L_result_possible.append(resultat + v2)
-    elif Niveau ==1:
-        L_result_possible.append(resultat)
-        L_result_possible.append(resultat2)
-        L_result_possible.append(resultat3)
-        
+    L_result_possible.append(resultat)
+    L_result_possible.append(resultat2)
+    L_result_possible.append(resultat3)
+
+    #on mélange 
     random.shuffle(L_result_possible)
     btn1_value = L_result_possible[0]
     btn2_value = L_result_possible[1]
@@ -108,7 +141,7 @@ def choix_exo_niveau(Niveau):
 
 
 
-
+    #on crée la liste finale
     Liste_exo_all.append(eqt)
     Liste_exo_all.append(resultat)
     Liste_exo_all.append(btn1_value)
