@@ -187,9 +187,9 @@ def Gestion_Jouer(fenetre, Niveau):
 
     #les deux niveaux de boss
     elif Niveau==4 or Niveau ==8:
-        mur1 = PhotoImage(file="image/Water.png")
-        mur2 = PhotoImage(file="image/Water_rock.png")
-        mur3 = PhotoImage(file="image/Water_Lotus.png")
+        mur1 = PhotoImage(file="image/Wall_red.png")
+        mur2 = PhotoImage(file="image/Wall_red_with_symbols.png")
+        mur3 = PhotoImage(file="image/Wall_red_flower.png")
 
         pnj_boss = PhotoImage(file = "image/pnj4.png")
         pnj_boss_moyen = PhotoImage(file = "image/pnj4.png")
@@ -1390,7 +1390,7 @@ def Gestion_Jouer(fenetre, Niveau):
                     if Niveau ==0:
                         text_complet_consignes = "Vous devez résoudre cette équation du premier degré en trouvant la valeur de x. Apres avoir résolu cette equation; selectionnez la bonne case et faites valider"
                     elif Niveau ==1:
-                        text_complet_consignes = f"Vous devez résoudre ce calcul de volume, il vous faudra trouver le volume totale; selectionnez la bonne case et faites valider Attention; toutes les valerus donn&es sont en m etle résultat attendu en m cube. Données : a = {Exo_correction[5][0]}; b ={Exo_correction[5][1]}; c ={Exo_correction[5][2]}; d ={Exo_correction[5][3]}; e ={Exo_correction[5][4]}; f ={Exo_correction[5][5]}; r ={Exo_correction[5][6]}"
+                        text_complet_consignes = f"Vous devez résoudre ce calcul de volume, il vous faudra trouver le volume totale; selectionnez la bonne case et faites valider Attention; toutes les valerus donn&es sont en m etle résultat attendu en  m cube. Données : a = {Exo_correction[5][0]}; b ={Exo_correction[5][1]}; c ={Exo_correction[5][2]}; d ={Exo_correction[5][3]}; e ={Exo_correction[5][4]}; f ={Exo_correction[5][5]}; r ={Exo_correction[5][6]}"
                     elif Niveau ==2:
                         text_complet_consinges = "Vous devez résoudre cette exo pas encore fait"
                     elif Niveau==3:
@@ -1881,7 +1881,7 @@ def Gestion_Jouer(fenetre, Niveau):
 #ACCUEIL#
 
 global Niveau
-Niveau = 0
+Niveau = 4
 
 Lancement = Tk()
 Lancement.title("RPG : Lanncement  Théo | Quentin")
