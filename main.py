@@ -164,7 +164,7 @@ def Gestion_Jouer(fenetre, Niveau):
         pnj4_grand = PhotoImage(file="image/sorcier4.png")
         pnj5_grand = PhotoImage(file = "image/pnj4.png")
 
-    #exo 4 : systèe à 2 inconnues
+    #exo 4 : systèe à 2 inconnues   | meme pnj que le niveau avec 4 pnj à faire
     elif Niveau ==3:
         mur1 = PhotoImage(file="image/Water.png")
         mur2 = PhotoImage(file="image/Water_rock.png")
