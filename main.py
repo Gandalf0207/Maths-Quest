@@ -425,10 +425,10 @@ def Gestion_Jouer(fenetre, Niveau):
         "Si une équation possède des x des 2 côtés de l’égalité il faut tous les faire passer d’un seul côté. Exemple : 3x + 2 = 5x + 3 devient 3x + 2 - 3x = 5x + 2 - 3x il suffit ensuite d’une résolution classique.",
         "Dans une équation il faut annuler les étapes ainsi la soustraction s’oppose à l’addition et la division à la multiplication. Exemple de résolution d’équation : 3x + 2 = 5 devient 3x + 2 - 2 = 5 - 2 puis 3x/3 = 3/3 donc x = 1.", 
         
-        "cours 1 nv2",
-        "cours 2 nv2",
-        "cours 3 nv2",
-        "cours 4 nv2",
+        "La formule de l’aire de la base d’un disque qui est π x rayon².",
+        "Le volume du cylindre est base x hauteur soit π x rayon² x h.",
+        "Le volume du cône est celui du cylindre divisé par 3 soit (π x rayon² x h)/3.",
+        "La formule pour le parallélépipède rectangle est largeur x hauteur x longueur, le cube en est un cas particulier tous sont égaux.",
         
         "cours 1 nv3",
         "cours 2 nv3",
@@ -467,7 +467,6 @@ def Gestion_Jouer(fenetre, Niveau):
             if element:
                 listbox.insert(END, element + "\n")
             listbox.insert(END, "\n")                
-            listbox.config(state=DISABLED)
 
         #partie load du premier chargement
         if num_pnj ==0 or num_pnj==1:
@@ -510,7 +509,7 @@ def Gestion_Jouer(fenetre, Niveau):
                 listbox.insert(END, "\n")
 
                 if num_pnj==0:
-                    listbox.insert(END, "--Volume--" + "\n")
+                    listbox.insert(END, "--Equation du 1er degré--" + "\n")
                     listbox.insert(END, "\n")
 
             elif (Niveau ==2 and num_pnj==0) or (Niveau== 1 and num_pnj==1):
@@ -785,17 +784,17 @@ def Gestion_Jouer(fenetre, Niveau):
                         if c==1:
                             text_complet = "Leilégalité : B’jour jeune aventurier, je pense que j’pourrais bien t’apprendre un truc aujourd’hui."
                         elif c==2:
-                            text_complet = "Pour résoudre une équation il faut respecter un certain équilibre comme une balance \u2696 , si une partie de l’égalité change alors l’autre coté aussi."
+                            text_complet = "Leilégalité : Pour résoudre une équation il faut respecter un certain équilibre comme une balance \u2696 , si une partie de l’égalité change alors l’autre coté aussi."
                         elif c==3:
                             text_complet = "Leilégalité : Tiens voila pour m’avoir écouté; un fragment de clé que j’ai ramené lors de mon dernier voyage !"
 
                     elif Niveau ==1:
                         if c==1:
-                            text_complet = ""
+                            text_complet = "Paπ : Tiens je parie que tu as croisé ma femme toi ! Eh oui je reconnais cet objet il est à moi mais trêve de plaisanterie je pense que si tu es la jeune aventurier c’est pour continuer ton périple"
                         elif c==2:
-                            text_complet = ""
+                            text_complet = "Paπ : Pour cela, il te faudra connaitre la formule de l’aire de la base d’un disque qui est π x rayon²."
                         elif c==3:
-                            text_complet = ""
+                            text_complet = "Paπ : Tiens voila pour la suite, un bout de quelque chose dans l’ancien temps !"
 
                     elif Niveau ==2:
                         if c==1:
@@ -862,11 +861,11 @@ def Gestion_Jouer(fenetre, Niveau):
 
                     elif Niveau ==1:
                         if c==1:
-                            text_complet = ""
+                            text_complet = "Cécylindre : Salut toi t’aurais pas envie de savoir calculer le volume d’un cylindre par hasard ? Nan ? "
                         elif c==2:
-                            text_complet = ""
+                            text_complet = "Cécylindre : Bon si jamais c’est la hauteur multipliée par l’aire de la base. "
                         elif c==3:
-                            text_complet = ""
+                            text_complet = "Cécylindre : Tiens je te passe ça comme t’as l’air sympa."
 
                     elif Niveau ==2:
                         if c==1:
@@ -934,11 +933,11 @@ def Gestion_Jouer(fenetre, Niveau):
 
                     elif Niveau ==1:
                         if c==1:
-                            text_complet = ""
+                            text_complet = "Marchand de glace : Dis donc toi, il fait aujourd’hui un petit rafraichissement ? "
                         elif c==2:
-                            text_complet = ""
+                            text_complet = "Marchand de glace : D’ailleurs tu savais qu’un cône avait pour volume celui d’un cylindre divisé par 3."
                         elif c==3:
-                            text_complet = ""
+                            text_complet = "Marchand de glace : Allez tiens c’est pas une glace mais ça te sera utile je pense."
 
                     elif Niveau ==2:
                         if c==1:
@@ -998,11 +997,11 @@ def Gestion_Jouer(fenetre, Niveau):
                     # et le cours est différent en fonction du niveau (map qui change)
                     if Niveau ==1:
                         if c==1:
-                            text_complet = ""
+                            text_complet = "Titouan : Zalut monzieur dis tu zavais qu’il pozait des zénigmes à la porte ? Apparemment faut zavoir calculer le volume d’un cube et d’un paralléléchouette rectangle, du coup z’ai appris et en fait z’est zuper zimple."
                         elif c==2:
-                            text_complet = ""
+                            text_complet = "Titouan : Il suffit de faire longueur x largeur x hauteur et z’est la même pour tous. "
                         elif c==3:
-                            text_complet = "Bravo ! Vous avez obtenue un bâton de colle !"
+                            text_complet = "Titouan : Tient au fait z’arrête pas de m’en mettre partout."
 
                     elif Niveau ==2:
                         if c==1:
@@ -1094,9 +1093,9 @@ def Gestion_Jouer(fenetre, Niveau):
 
                     elif Niveau ==1:
                         if c==1:
-                            text_complet = ""
+                            text_complet = "Paπ : Alors aussi mauvaise mémoire que ma femme ? Écoute bien cette fois la formule de l’aire de la base d’un disque qui est π x rayon²."
                         elif c==2:
-                            text_complet = ""
+                            text_complet = "Paπ : Malheuresement dans l'ancien temps c'est bidule étaient rar donc je n'en ai plus pour toi !"
 
                     elif Niveau ==2:
                         if c==1:
@@ -1138,9 +1137,9 @@ def Gestion_Jouer(fenetre, Niveau):
 
                     elif Niveau ==1:
                         if c==1:
-                            text_complet = ""
+                            text_complet = "Cécylindre : Finalement t’as pas écouté et tu aurais dû ? Le volume du cylindre c’est la hauteur multipliée par l’aire de la base."
                         elif c==2:
-                            text_complet = ""
+                            text_complet = "Cécylindre : Il me semble t'avoir déjà donné quelque chose non ?"
 
                     elif Niveau ==2:
                         if c==1:
@@ -1182,9 +1181,9 @@ def Gestion_Jouer(fenetre, Niveau):
 
                     elif Niveau ==1:
                         if c==1:
-                            text_complet = ""
+                            text_complet = "Marchand de glace : Tu veux une glace au final ? Désolé mais les enfants m’ont tout pris, je te propose de réécouter mon histoire de cône, pour calculer le volume d’un cône c’est le volume du cylindre que tu divises par 3."
                         elif c==2:
-                            text_complet = ""
+                            text_complet = "Marchand de glace : Sur pour la glace ?"
 
                     elif Niveau ==2:
                         if c==1:
@@ -1220,9 +1219,9 @@ def Gestion_Jouer(fenetre, Niveau):
                 elif pnj == "pnj4":
                     if Niveau ==1:
                         if c==1:
-                            text_complet = ""
+                            text_complet = "Titouan : T’as pas réussi à passer la porte ? Alors ze vais te réexpliquer, pour calculer le volume du cube et du paralléléchouette rectangle il zuffit de faire longueur x largeur x hauteur et z’est la même pour tous."
                         elif c==2:
-                            text_complet = ""
+                            text_complet = "Titouan : z'ai plus de zolle pour zoi dézolé"
 
                     elif Niveau ==2:
                         if c==1:
@@ -1881,7 +1880,7 @@ def Gestion_Jouer(fenetre, Niveau):
 #ACCUEIL#
 
 global Niveau
-Niveau = 4
+Niveau = 1
 
 Lancement = Tk()
 Lancement.title("RPG : Lanncement  Théo | Quentin")
