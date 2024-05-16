@@ -62,7 +62,7 @@ if __name__ == "__main__":
     #faire fenetre tkinter avec les consignes d'utilisation et le btn de vérification, pour un visuel utilisateur "simple"
     f = Tk()
     f.title("Termes et conditions d'utilisation | Installation")
-    f.iconbitmap('image/ico.ico')
+
 
 
     Label_titre = Label(f, text="Maze-Maths", fg = "#01548d", font=("Arial", 25))
