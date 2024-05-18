@@ -84,6 +84,7 @@ Afin de pouvoir utiliser le jeu sans soucis, nous vous demandons de bien vouloir
         - Git --> **Git-2.45.1-64-bit**
         - Python --> **python-3.12.3-amd64**
         - MikTeX --> **basic-miktex-24.1-x64**
+        - Visual C++ x64 --> **VC_redist.x64**
       - Une fois les points exe renommés, les placer dans le même dossier que le fichier Python : "Installateur_logiciels".
       - Exécuter le fichier Python, les 3 exe seront exécutés, il vous suffira juste de cliquer sur install aux fenêtres d'installation.
         
