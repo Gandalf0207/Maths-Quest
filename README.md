@@ -21,7 +21,7 @@ Notre projet est composé de deux éléments principaux :
   - Utilisation des dépenances des modules python & Latex
   - Utilisation du module Git 
 
-
+<br> </br>
 ### Comment Jouer ?
 
 #### Résumé : 
@@ -58,6 +58,7 @@ Votre scrore sera affcihé à la tout fin de votre partie.
 
 ##### Voilà, vous avez terminé le jeu ! 
 
+<br> </br>
 ### Installation : 
 > [!NOTE]
 > Le jeu et le système d'instalation a été développé pourles machine utilisant window 10 et +
@@ -89,7 +90,8 @@ Afin de pouvoir utiliser e jeu sans soucis, nous vous demandons de bien vouloir 
   Veillez à redémarer votre machine si nécéssaire pour permettre à votre système de bien intéger l'intallation des logiciels précédnetsApreès cela, il vous faut installer     différesn dépendances nécéssaire au bon fonctionement du jeu.
   Vous avez 2 possibilié de le faire :
     - Vous pouvez executer simplement de script [Installateur_dépendances](Installateur_dependances.py) . Ce Script téléchargement également le jeu depuis GitHub.
-    - Vous pouvez installer manuellement des dépendances. Pour ce faire, ouvre un terminal (cmd / powershell...) et entrez les commandes suivantes dans l'ordre donné:
+    - Vous pouvez installer manuellement des dépendances. Pour ce faire, ouvrez un terminal (cmd / powershell...) et entrez les commandes suivantes dans l'ordre donné.
+
 
 > Mettre à jour pip 
 ```
@@ -99,21 +101,46 @@ Afin de pouvoir utiliser e jeu sans soucis, nous vous demandons de bien vouloir 
 ```
   pip instal matplotlib
 ```
+> Installation extension Latex : type1cm.sty
 ```
-  python -m ensurepip
+  mpm --install type1cm
 ```
+> Installation extension Latex : type1ec.sty
 ```
-  python -m ensurepip
+  mpm --install cm-super
 ```
+> Installation extension Latex : geometry.sty
 ```
-  python -m ensurepip
+  mpm --install geometry
+```
+> Installation extension Latex : underscore.sty
+```
+  mpm --install underscore
+```
+> Installation extension Latex : ttfonts.map
+```
+  mpm --install zhmetrics
 ```
 
+   ##### Téléchargement du jeu :
+   - Si vous avez executer le scrip : Installaeru_dépencances, vous avez déjà le dosier du jeu avec le jeu présent sur votre machine (au niveau du fichier python)
+   - Si vous avez executer les commande d'instalaltion des dépendances à la main, vous devez cloner le dépot github pour pouvoir le récupérer. Dans votre invite de commande, éxécuter la commande ci-dessous :
 
+> Clone du dossier contenant le jeu
+```
+  git clone https://github.com/Gandalf0207/Maze-Maths.git
+```
 
+Si vous renconter des problème avec des éléments de l'installation, vérifié bien que vous respecter les didférents éléments de prévention, présent dans les explications de l'installation et ci-dessous
+
+> [!NOTE]
+> Pour toutes les dépendances latex, un pop-up va s'ouvrir, vous devrez cliquer sur Install pour pouvoir l'installer.    
 
 > [!TIP]
 > Si vous utilisez une anciennne version de windows ou bien que vous rencontrer toujours une erreur avec Visual C++ x64. Installer egalement [Visual C++ x86](https://learn.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist?view=msvc-170)
+
+> [!TIP]
+> Lorsque vous executer une commande **git clone**, assurez vous que l'emplacement ou vous etes est le bon pour clonr le dossier. 
 
 > [!WARNING]
 > Veuillez faire attention sur le lieu d'instalaltion des logiciles, et si nécéssaire vous octroyer les droits en les ajoutant dans le **PATH**;
@@ -121,4 +148,32 @@ Afin de pouvoir utiliser e jeu sans soucis, nous vous demandons de bien vouloir 
 > [!WARNING]
 > Si vous rncontrer un problème lors de l'installation des dépendances, apres l'instlation des logiciles.exe, veillez à redémarer votrre machine. Puis à réinstaler les dépendances.
 
+<br> </br>
+### Jouer :
+Une fois tout les éléments de l'installation fait, vous pouvez profiter du jeu ! 
 
+<br> </br>
+### Crédits & Termes et Conditions d'utilisations :
+
+  Merci d'utiliser ce jeu Python Maze-Maths, un projet créé avec passion pour l'amour des mathématiques et du partage de connaissances. Avant de continuer à utiliser ce logiciel, veuillez lire attentivement les conditions suivantes :
+
+  1. Droit d'auteur : Ce jeu est protégé par les lois sur le droit d'auteur et est la propriété intellectuelle de LUBAN Théo & PLADEAU Quentin. Tous les droits qui ne sont pas expressément accordés dans ces conditions sont réservés.
+
+  2. Utilisation personnelle : Ce jeu est destiné à un usage personnel et non commercial. Vous pouvez le partager avec des amis et des proches, mais toute distribution à des fins commerciales est strictement interdite sans autorisation préalable.
+
+  3. Règlementation française : En utilisant ce jeu, vous acceptez de vous conformer à toutes les lois et réglementations en vigueur en France concernant les droits d'auteur, la propriété intellectuelle et toute autre loi applicable.
+
+  4. Librairies open source : Ce jeu utilise des librairies open source telles que Python, Tkinter, Matplotlib, LaTeX, et d'autres. Nous reconnaissons et apprécions le travail des développeurs de ces librairies, et nous nous engageons à respecter les termes de leurs licences respectives. Les informations sur ces licences sont disponibles dans les fichiers correspondants du projet.
+        
+  5. Crédits : Nous tenons à remercier LUBAN Théo & PLADEAU Quentin pour leur contribution à ce projet. Leurs efforts ont été essentiels pour créer ce jeu. Nous apprécions également le soutien de ESCOUTE Cédric, qui a rendu ce projet possible.
+
+  6. Cadre de réalisation : Ce jeu a été développé dans le cadre [du cours de NSI de première]. Nous sommes reconnaissants envers ESCOUTE Cédric pour son soutien et l'enseignement de connaissances ayant servie au projet.
+
+  En utilisant ce jeu, vous acceptez ces termes et conditions. Si vous n'acceptez pas ces termes, veuillez ne pas utiliser ce logiciel. Ces termes et conditions peuvent être modifiés à tout moment sans préavis.
+
+  Pour toute question ou préoccupation concernant ces termes et conditions, veuillez contacter votre enseignant vous ayant transmit une copie du projet.      
+
+#
+__© Tous droits réservé 2024__
+
+*by LUBAN Théo & PLADEAU Quentin*
