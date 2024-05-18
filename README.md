@@ -6,7 +6,7 @@
 > [!IMPORTANT]
 > Si vous rencontrez un bug dans le jeu ou si vous souhaitez proposer des idées de mises à jour, merci de suivre les modèles présents [ici](.github/ISSUE_TEMPLATE)
 
-Maze-Maths est un projet étudiant réalisé par 2 élèves en première NSI : **LUBAN Théo** & **PLADEAU Quentin**. Le but de ce projet est de réaliser un petit jeu de labyrinthe et de maths avec le langage de programmation Python et le module de GUI (graphical user interface) Tkinter qui est natif à Python.
+Maze-Maths est un projet étudiant réalisé par 2 élèves en première NSI : **LUBAN Théo** & **PLADEAU Quentin**. Le but de ce projet est de réaliser un petit jeu de labyrinthe et de maths avec le langage de programmation Python et le module de GUI (graphical user interface) Tkinter qui est natif à Python. Le jeu se veut durable et unique, c'est pourquoi le point fort du jeu est l'aléatoire. En effet, que ce soit la génération de la carte ou encore les problèmes mathématiques, toutes les valeurs sont aléatoires. Cela rend donc chaque partie unique !
 
 Notre projet est composé de deux éléments principaux :
 - Des Maths
