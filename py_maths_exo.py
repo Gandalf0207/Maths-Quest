@@ -1,8 +1,10 @@
 import random
 from math import *
 
- 
-def choix_exo_niveau(Niveau):
+import matplotlib.pyplot as plt
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+
+def choix_exo_niveau(Niveau,Label_Frame_Canvas_formule_exo):
     def pgcd(a,b):
         # pgcd(a,b): calcul du 'Plus Grand Commun Diviseur' entre les 2 nombres entiers a et b
         while b != 0:
@@ -89,6 +91,89 @@ def choix_exo_niveau(Niveau):
         resultat2 = round((v_chateau + a),2)
         resultat3 = round((v_chateau - b),2)
 
+    elif Niveau ==2:
+        eqt = "Aucune equation nécéssaire"
+        #Script provenat de stack overflow et adapté par nous
+        def reload_function():
+            def line_intersection(line1, line2):
+                xdiff = (line1[0][0] - line1[1][0], line2[0][0] - line2[1][0])
+                ydiff = (line1[0][1] - line1[1][1], line2[0][1] - line2[1][1])
+
+                def det(a, b):
+                    return a[0] * b[1] - a[1] * b[0]
+
+                div = det(xdiff, ydiff)
+                if div == 0:
+                    return 'erreur'
+
+                d = (det(*line1), det(*line2))
+                x = det(d, xdiff) / div
+                y = det(d, ydiff) / div
+                return int(x), int(y)
+
+            XA = random.randint(-50,50)
+            XB = random.randint(-50,50)
+            XC = random.randint(-50,50)
+            XD = random.randint(-50,50)
+
+            YA = random.randint(-50,50)
+            YB = random.randint(-50,50)
+            YC = random.randint(-50,50)
+            YD = random.randint(-50,50)
+            while XA == YA or XB == YB or XC == YC or XD == YD:
+                YA = random.randint(-50,50)
+                YB = random.randint(-50,50)
+                YC = random.randint(-50,50)
+                YD = random.randint(-50,50)
+
+            A = (XA, YA) 
+            B = (XB, YB) 
+            C = (XC, YC)
+            D = (XD, YD)
+            print("A = ", A)
+            print("B = ", B)
+            print("C = ", C)
+            print("D = ", D)
+
+            return ([line_intersection((A, B), (C, D)), A, B, C, D])
+
+
+        valeur = reload_function()
+        if valeur =="erreur":
+            while valeur =="erreur":
+                Label_Frame_Canvas_formule_exo.delete('all')
+                valeur = reload_function()
+
+
+        # Formatage des résultats en chaînes de caractères
+        resultat = f"{valeur[0]}"
+        print(resultat)
+        f1 = valeur[0][0]
+        f2 = valeur[0][1]
+        a1, a2 = random.randint(-10, 10), random.randint(-10, 10)
+        a3, a4 = random.randint(-10, 10), random.randint(-10, 10)
+        resultat2 = f"({f1+a1}, {f2-a2})"
+        resultat3 = f"({f1-a3}, {f2-a4})"
+        A = valeur[1]
+        B = valeur[2]
+        C = valeur[3]
+        D = valeur[4]
+        points = [A, B, C, D]
+
+        # Créez un graphique Matplotlib
+        fig, ax = plt.subplots()  # Ajoutez "ax" ici
+        for x, y in points:
+            ax.scatter(x, y, color='blue', marker='o', label=f"({x}, {y})")
+            ax.text(x, y, f"({x}, {y})", ha='center', va='bottom')  # Ajoutez l'étiquette
+
+        # Supprimez les axes
+        ax.axis('off')  # Ajoutez cette ligne pour masquer les axes
+
+        # Affichez le graphique dans le canvas Tkinter
+        canvas_widget = FigureCanvasTkAgg(fig, master=Label_Frame_Canvas_formule_exo)
+        canvas_widget.draw()
+        canvas_widget.get_tk_widget().pack()
+
 
     elif Niveau ==3: 
         value_x = 0
@@ -150,6 +235,8 @@ def choix_exo_niveau(Niveau):
     Liste_exo_all.append(btn3_value)
     if Niveau ==1:
         Liste_exo_all.append(L_valeurs)
+    elif Niveau ==2:
+        Liste_exo_all.append(points)
 
 
 

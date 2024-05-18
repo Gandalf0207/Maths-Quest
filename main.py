@@ -1422,15 +1422,15 @@ def Gestion_Jouer(fenetre, Niveau):
                         elif Niveau ==1:
                             text_complet_consignes = f"Vous devez résoudre ce calcul de volume, il vous faudra trouver le volume totale; selectionnez la bonne case et faites valider Attention; toutes les valerus donn&es sont en m etle résultat attendu en  m cube. Données : a = {Exo_correction[5][0]}; b ={Exo_correction[5][1]}; c ={Exo_correction[5][2]}; d ={Exo_correction[5][3]}; e ={Exo_correction[5][4]}; f ={Exo_correction[5][5]}; r ={Exo_correction[5][6]}"
                         elif Niveau ==2:
-                            text_complet_consignes = "Vous devez résoudre cette exo pas encore fait"
+                            text_complet_consignes = f"Vous devez résoudre ce rpoblème : Trouver les coordonnées de l'intersection entre [AB] et [CD]. Voici les coordonnées des points : A = {Exo_correction[5][0]}; B ={Exo_correction[5][1]}; C ={Exo_correction[5][2]}; D ={Exo_correction[5][3]}"
                         elif Niveau==3:
-                            text_complet_consinges = "Vous devez résoudre cette exo pas encore fait"
+                            text_complet_consinges = "Vous devez résoudre cet exo pas encore fait"
                         elif Niveau==5:
-                            text_complet_consinges = "Vous devez résoudre cette exo pas encore fait"
+                            text_complet_consinges = "Vous devez résoudre cet exo pas encore fait"
                         elif Niveau==6:
-                            text_complet_consinges = "Vous devez résoudre cette exo pas encore fait"
+                            text_complet_consinges = "Vous devez résoudre cet exo pas encore fait"
                         elif Niveau==7:
-                            text_complet_consinges = "Vous devez résoudre cette exo pas encore fait"
+                            text_complet_consinges = "Vous devez résoudre cet exo pas encore fait"
         
                     elif c_sw==4:
                         Label_btn_suivant_second_window ['state'] = DISABLED
@@ -1498,9 +1498,6 @@ def Gestion_Jouer(fenetre, Niveau):
 
                 second_window_probleme = Toplevel()  # Utiliser Toplevel au lieu de Tk pour une nouvelle fenêtre indépendante
                 # second_window_probleme.geometry("400x600") 
-                # on recupère la formule et la correction
-                Exo_correction = py_maths_exo.choix_exo_niveau(Niveau)
-                print(Exo_correction)
 
                 ####frame global de la fenetre
                 Label_Frame_global_second_window = Frame(second_window_probleme, bg = "#BBC4E3")
@@ -1524,7 +1521,12 @@ def Gestion_Jouer(fenetre, Niveau):
                 ### frame qui contient le canvas qui affichera la formule
                 Label_Frame_Canvas_formule_exo = Frame(Label_Frame_global_second_window, bg="#99A6D0")
                 Label_Frame_Canvas_formule_exo.pack(side=TOP, fill='y', pady= 5, padx=5)
-                if Niveau !=1:
+
+                # on recupère la formule et la correction
+                Exo_correction = py_maths_exo.choix_exo_niveau(Niveau,Label_Frame_Canvas_formule_exo)
+                print(Exo_correction)
+
+                if Niveau !=1 and Niveau !=2:
                     #On load le canvas avec sa formule qu'on a recup depuis le ficheir py-math_exo
                     #Code Ia /Internet # Formater la formule avec les nombres aléatoires
                     formule = Exo_correction[0]
@@ -1553,13 +1555,15 @@ def Gestion_Jouer(fenetre, Niveau):
                     Label_canvas_img_sw.pack(padx=5,pady=5)
                     Label_canvas_img_sw.create_image(0,0,anchor=NW, image=Volume_nv1)
 
+                #le nv 2 ce gère tout seul
+
 
 
                 ## Frame global de la frame qui contient les trois valeur de réponse avec les cases à cocher et le bouton valider
                 Label_Frame_Reponse_Verif = Frame(Label_Frame_global_second_window, bg= None)
                 Label_Frame_Reponse_Verif.pack(side=TOP, fill='x', pady= 5, padx=5, )
                 #Frame avec les 3 btn 
-                Label_Frame_Reponse_Verif_2 = Frame (Label_Frame_Reponse_Verif, bg = None)
+                Label_Frame_Reponse_Verif_2 = Frame(Label_Frame_Reponse_Verif, bg = None)
                 Label_Frame_Reponse_Verif_2.pack(anchor=CENTER)
                 # on définit les trois valeur qui vont s'afficher dans les boutons
                 value_btn_1 = Exo_correction[2]
@@ -1752,16 +1756,16 @@ def Gestion_Jouer(fenetre, Niveau):
         global pnj3_infos
         global pnj4_infos
         global pnj5_infos
-        pnj1_infos = False
-        pnj2_infos = False
-        pnj3_infos = False
-        pnj4_infos = False  
-        pnj5_infos = False
+        pnj1_infos = True
+        pnj2_infos = True
+        pnj3_infos = True
+        pnj4_infos = True  
+        pnj5_infos = True
 
         # quad un elment est fabriqué, pour l'afficher correctement
 
         global assemble_cle
-        assemble_cle = False
+        assemble_cle = True
 
 
 
