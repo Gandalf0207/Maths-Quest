@@ -1424,13 +1424,13 @@ def Gestion_Jouer(fenetre, Niveau):
                         elif Niveau ==2:
                             text_complet_consignes = f"Vous devez résoudre ce rpoblème : Trouver les coordonnées de l'intersection entre [AB] et [CD]. Voici les coordonnées des points : A = {Exo_correction[5][0]}; B ={Exo_correction[5][1]}; C ={Exo_correction[5][2]}; D ={Exo_correction[5][3]}"
                         elif Niveau==3:
-                            text_complet_consinges = "Vous devez résoudre cet exo pas encore fait"
+                            text_complet_consignes = "Vous devez résoudre cet exo pas encore fait"
                         elif Niveau==5:
-                            text_complet_consinges = "Vous devez résoudre cet exo pas encore fait"
+                            text_complet_consignes = "Vous devez résoudre cet exo pas encore fait"
                         elif Niveau==6:
-                            text_complet_consinges = "Vous devez résoudre cet exo pas encore fait"
+                            text_complet_consignes = "Vous devez résoudre cet exo pas encore fait"
                         elif Niveau==7:
-                            text_complet_consinges = "Vous devez résoudre cet exo pas encore fait"
+                            text_complet_consignes = "Vous devez résoudre cet exo pas encore fait"
         
                     elif c_sw==4:
                         Label_btn_suivant_second_window ['state'] = DISABLED
@@ -1756,16 +1756,16 @@ def Gestion_Jouer(fenetre, Niveau):
         global pnj3_infos
         global pnj4_infos
         global pnj5_infos
-        pnj1_infos = True
-        pnj2_infos = True
-        pnj3_infos = True
-        pnj4_infos = True  
-        pnj5_infos = True
+        pnj1_infos = False
+        pnj2_infos = False
+        pnj3_infos = False
+        pnj4_infos = False  
+        pnj5_infos = False
 
         # quad un elment est fabriqué, pour l'afficher correctement
 
         global assemble_cle
-        assemble_cle = True
+        assemble_cle = False
 
 
 
