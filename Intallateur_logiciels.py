@@ -1,47 +1,22 @@
-# votre_script.py
+# Ce script est a éxécuter en première partie
+# Ce script permet de lancer les 3.exe nécessaire au bon fonctionnement du jeu 
+# Ce script permet donc de rendre la machine de l'utilisateur aux normes pour accueillir le projet jeu
+
 import subprocess
 from tkinter import *
 from tkinter import scrolledtext
 
 
 def installateur():
-    #insrallation de git pour pouvoir colone le dossier
+    #Installation du module git
     subprocess.run("Git-2.45.1-64-bit.exe", shell=True)
-    # on recupère le jeu
-    subprocess.run("git clone https://github.com/Gandalf0207/Projet-Ouvert-Jeu-.git", shell=True, text=True)
 
-    #Installation de pytohn 3.12.3 (dernière version (modif name ?))
+    # Installation de pytohn 3.12.3
     python_installer = "python-3.12.3-amd64.exe"
     subprocess.call(python_installer, shell=True)
-    # Installer pip
-    subprocess.run(["python", "-m", "ensurepip"], shell=True)
-    # Installer les bibliothèques requises
-    subprocess.run(["pip", "install", "matplotlib"], shell=True)
 
     # Installation miktek : compilateur latex
     subprocess.run("basic-miktex-24.1-x64.exe", shell=True)
-    # Ajoutez d'autres bibliothèques au besoin
-    subprocess.run(["mpm", "--install", "type1cm"], shell=True)
-    subprocess.run(["mpm", "--install", "cm-super"], shell=True)
-    subprocess.run(["mpm", "--install", "geometry"], shell=True)
-    subprocess.run(["mpm", "--install", "underscore"], shell=True)
-    subprocess.run(["mpm", "--install", "zhmetrics"], shell=True)
-
-
-# type1cm.sty
-# type1cm
-
-# type1ec.sty
-# cm-super
-
-# geometry.sty
-# geometry
-
-# underscore.sty
-# underscore
-
-# ttfonts.map
-# zhmetrics
 
 def check():
 
@@ -53,15 +28,15 @@ def check():
         Label_btn_lancer.config(state=DISABLED)
         btn = False
 
-
-
 global btn 
 btn = False
+
+
+
 if __name__ == "__main__":
 
 
 
-    #faire fenetre tkinter avec les consignes d'utilisation et le btn de vérification, pour un visuel utilisateur "simple"
     f = Tk()
     f.title("Termes et conditions d'utilisation | Installation")
 

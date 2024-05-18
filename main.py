@@ -74,32 +74,49 @@ def Gestion_Jouer(fenetre, Niveau):
         Perso = PhotoImage(file="image/perso.png")
 
 
-        loot_vide_pnj1 = PhotoImage(file="image/clepnj1_.png")
-        loot_vide_pnj2 = PhotoImage(file="image/clepnj2_.png")
-        loot_vide_pnj3 = PhotoImage(file="image/clepnj3_.png")
-        loot_vide_pnj4 = PhotoImage(file="image/Glue_Ombre.png")
-
-        loot_vide_pnj5 = PhotoImage(file="image/clepnj2_.png")
-
-
-        loot_pnj1 = PhotoImage(file="image/clepnj1.png")
-        loot_pnj2 = PhotoImage(file="image/clepnj2.png")
-        loot_pnj3 = PhotoImage(file="image/clepnj3.png")
-        loot_pnj4 = PhotoImage(file="image/Glue.png")
-
-        loot_pnj5 = PhotoImage(file="image/clepnj1.png")
-
         Volume_nv1 = PhotoImage(file="image/volume.png")
 
         #en fonction du niveau, on choisit les murs / les pnjs
 
         if Niveau ==0 or Niveau ==5:
                 Grande_cle = PhotoImage(file="image/Cle_1_repare.png")
+
+                loot_vide_pnj1 = PhotoImage(file="image/clepnj1_.png")
+                loot_vide_pnj2 = PhotoImage(file="image/clepnj2_.png")
+                loot_vide_pnj3 = PhotoImage(file="image/clepnj3_.png")
+                loot_vide_pnj4 = PhotoImage(file="image/Glue_Ombre.png")
+                loot_vide_pnj5 = PhotoImage(file="image/clepnj2_.png")
+                loot_pnj1 = PhotoImage(file="image/clepnj1.png")
+                loot_pnj2 = PhotoImage(file="image/clepnj2.png")
+                loot_pnj3 = PhotoImage(file="image/clepnj3.png")
+                loot_pnj4 = PhotoImage(file="image/Glue.png")
+                loot_pnj5 = PhotoImage(file="image/clepnj1.png")
         elif Niveau == 1 or Niveau ==3 or Niveau==6:
                 Grande_cle = PhotoImage(file="image/Cle_2_repare.png")
-        elif Niveau ==2 or Niveau ==7:
-                Grande_cle = PhotoImage(file="image/Cle_2_repare.png")
 
+                loot_vide_pnj1 = PhotoImage(file="image/clepnj1_.png")
+                loot_vide_pnj2 = PhotoImage(file="image/clepnj2_.png")
+                loot_vide_pnj3 = PhotoImage(file="image/clepnj3_.png")
+                loot_vide_pnj4 = PhotoImage(file="image/Glue_Ombre.png")
+                loot_vide_pnj5 = PhotoImage(file="image/clepnj2_.png")
+                loot_pnj1 = PhotoImage(file="image/clepnj1.png")
+                loot_pnj2 = PhotoImage(file="image/clepnj2.png")
+                loot_pnj3 = PhotoImage(file="image/clepnj3.png")
+                loot_pnj4 = PhotoImage(file="image/Glue.png")
+                loot_pnj5 = PhotoImage(file="image/clepnj1.png")
+        elif Niveau ==2 or Niveau ==7:
+                Grande_cle = PhotoImage(file="image/Cle_3_repare.png")
+
+                loot_vide_pnj1 = PhotoImage(file="image/clepnj1_.png")
+                loot_vide_pnj2 = PhotoImage(file="image/clepnj2_.png")
+                loot_vide_pnj3 = PhotoImage(file="image/clepnj3_.png")
+                loot_vide_pnj4 = PhotoImage(file="image/Glue_Ombre.png")
+                loot_vide_pnj5 = PhotoImage(file="image/clepnj2_.png")
+                loot_pnj1 = PhotoImage(file="image/clepnj1-.png")
+                loot_pnj2 = PhotoImage(file="image/clepnj2-.png")
+                loot_pnj3 = PhotoImage(file="image/clepnj3-.png")
+                loot_pnj4 = PhotoImage(file="image/Glue.png")
+                loot_pnj5 = PhotoImage(file="image/clepnj1.png")
 
 
         #exo 1 et 5 : 1er degré + 2nd degré 
@@ -128,8 +145,8 @@ def Gestion_Jouer(fenetre, Niveau):
 
             pnj1 = PhotoImage(file = "image/pnj1.png")
             pnj2 = PhotoImage(file = "image/pnj2.png")
-            pnj3 = PhotoImage(file = "image/pnj3.png")
-            pnj4 = PhotoImage(file = "image/pnj4.png")
+            pnj3 = PhotoImage(file = "image/Marchand_de_glace.png")
+            pnj4 = PhotoImage(file = "image/pnj2.png")
 
             pnj1_moyen = PhotoImage(file="image/sorcier1.png")
             pnj2_moyen = PhotoImage(file="image/sorcier2.png")
@@ -151,7 +168,7 @@ def Gestion_Jouer(fenetre, Niveau):
             pnj1 = PhotoImage(file = "image/pnj1.png")
             pnj2 = PhotoImage(file = "image/pnj2.png")
             pnj3 = PhotoImage(file = "image/pnj3.png")
-            pnj4 = PhotoImage(file = "image/pnj4.png")
+            pnj4 = PhotoImage(file = "image/pnj2.png")
 
             pnj1_moyen = PhotoImage(file="image/sorcier1.png")
             pnj2_moyen = PhotoImage(file="image/sorcier2.png")
@@ -163,7 +180,7 @@ def Gestion_Jouer(fenetre, Niveau):
             pnj2_grand = PhotoImage(file="image/sorcier2.png")
             pnj3_grand = PhotoImage(file="image/sorcier3.png")
             pnj4_grand = PhotoImage(file="image/sorcier4.png")
-            pnj5_grand = PhotoImage(file = "image/pnj4.png")
+            pnj5_grand = PhotoImage(file = "image/pnj2c.png")
 
         #exo 4 : systèe à 2 inconnues   | meme pnj que le niveau avec 4 pnj à faire
         elif Niveau ==3:
@@ -174,7 +191,7 @@ def Gestion_Jouer(fenetre, Niveau):
             pnj1 = PhotoImage(file = "image/pnj1.png")
             pnj2 = PhotoImage(file = "image/pnj2.png")
             pnj3 = PhotoImage(file = "image/pnj3.png")
-            pnj4 = PhotoImage(file = "image/pnj4.png")
+            pnj4 = PhotoImage(file = "image/pnj2.png")
 
             pnj1_moyen = PhotoImage(file="image/sorcier1.png")
             pnj2_moyen = PhotoImage(file="image/sorcier2.png")
@@ -192,8 +209,8 @@ def Gestion_Jouer(fenetre, Niveau):
             mur2 = PhotoImage(file="image/Wall_red_with_symbols.png")
             mur3 = PhotoImage(file="image/Wall_red_flower.png")
 
-            pnj_boss = PhotoImage(file = "image/pnj4.png")
-            pnj_boss_moyen = PhotoImage(file = "image/pnj4.png")
+            pnj_boss = PhotoImage(file = "image/pnj2.png")
+            pnj_boss_moyen = PhotoImage(file = "image/pnj2.png")
             pnj_boss_grand = PhotoImage(file = "image/BOSS.png")
 
 
@@ -510,7 +527,7 @@ def Gestion_Jouer(fenetre, Niveau):
                     listbox.insert(END, "\n")
 
                     if num_pnj==0:
-                        listbox.insert(END, "--Equation du 1er degré--" + "\n")
+                        listbox.insert(END, "--Volume--" + "\n")
                         listbox.insert(END, "\n")
 
                 elif (Niveau ==2 and num_pnj==0) or (Niveau== 1 and num_pnj==1):
