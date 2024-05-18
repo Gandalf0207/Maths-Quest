@@ -18,6 +18,9 @@ def installateur():
     # Installation miktek : compilateur latex
     subprocess.run("basic-miktex-24.1-x64.exe", shell=True)
 
+    # Installation visual c++ x64 : script c
+    subprocess.run("VC_redist.x64.exe", shell=True)
+    
 def check():
 
     global btn
