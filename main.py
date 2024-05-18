@@ -5,7 +5,6 @@ from tkinter import ttk
 import random
 import time 
 
-import tkinter as tk
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import matplotlib.pyplot as plt
@@ -68,11 +67,12 @@ def Gestion_Jouer(fenetre, Niveau):
         #On load les img pour pouvoir les afficher
 
         porte = PhotoImage(file="image/porte.png")
+        porte_moyen = PhotoImage(file="image/porte.png")
         carre = PhotoImage(file="image/CARRE.png")
         craft_table_ = PhotoImage(file="image/craft.png")
 
         Perso = PhotoImage(file="image/perso.png")
-
+        idee = PhotoImage(file="image/idee.png")
 
         Volume_nv1 = PhotoImage(file="image/volume.png")
 
@@ -84,13 +84,11 @@ def Gestion_Jouer(fenetre, Niveau):
                 loot_vide_pnj1 = PhotoImage(file="image/clepnj1_.png")
                 loot_vide_pnj2 = PhotoImage(file="image/clepnj2_.png")
                 loot_vide_pnj3 = PhotoImage(file="image/clepnj3_.png")
-                loot_vide_pnj4 = PhotoImage(file="image/Glue_Ombre.png")
-                loot_vide_pnj5 = PhotoImage(file="image/clepnj2_.png")
+
                 loot_pnj1 = PhotoImage(file="image/clepnj1.png")
                 loot_pnj2 = PhotoImage(file="image/clepnj2.png")
                 loot_pnj3 = PhotoImage(file="image/clepnj3.png")
-                loot_pnj4 = PhotoImage(file="image/Glue.png")
-                loot_pnj5 = PhotoImage(file="image/clepnj1.png")
+
         elif Niveau == 1 or Niveau ==3 or Niveau==6:
                 Grande_cle = PhotoImage(file="image/Cle_2_repare.png")
 
@@ -98,12 +96,12 @@ def Gestion_Jouer(fenetre, Niveau):
                 loot_vide_pnj2 = PhotoImage(file="image/clepnj2_.png")
                 loot_vide_pnj3 = PhotoImage(file="image/clepnj3_.png")
                 loot_vide_pnj4 = PhotoImage(file="image/Glue_Ombre.png")
-                loot_vide_pnj5 = PhotoImage(file="image/clepnj2_.png")
+
                 loot_pnj1 = PhotoImage(file="image/clepnj1.png")
                 loot_pnj2 = PhotoImage(file="image/clepnj2.png")
                 loot_pnj3 = PhotoImage(file="image/clepnj3.png")
                 loot_pnj4 = PhotoImage(file="image/Glue.png")
-                loot_pnj5 = PhotoImage(file="image/clepnj1.png")
+
         elif Niveau ==2 or Niveau ==7:
                 Grande_cle = PhotoImage(file="image/Cle_3_repare.png")
 
@@ -111,12 +109,13 @@ def Gestion_Jouer(fenetre, Niveau):
                 loot_vide_pnj2 = PhotoImage(file="image/clepnj2_.png")
                 loot_vide_pnj3 = PhotoImage(file="image/clepnj3_.png")
                 loot_vide_pnj4 = PhotoImage(file="image/Glue_Ombre.png")
-                loot_vide_pnj5 = PhotoImage(file="image/clepnj2_.png")
+                loot_vide_pnj5 = PhotoImage(file="image/Kit_de_nettoyage_ombre.png")
+
                 loot_pnj1 = PhotoImage(file="image/clepnj1-.png")
                 loot_pnj2 = PhotoImage(file="image/clepnj2-.png")
                 loot_pnj3 = PhotoImage(file="image/clepnj3-.png")
                 loot_pnj4 = PhotoImage(file="image/Glue.png")
-                loot_pnj5 = PhotoImage(file="image/clepnj1.png")
+                loot_pnj5 = PhotoImage(file="image/Kit_de_nettoyage.png")
 
 
         #exo 1 et 5 : 1er degré + 2nd degré 
@@ -169,18 +168,19 @@ def Gestion_Jouer(fenetre, Niveau):
             pnj2 = PhotoImage(file = "image/pnj2.png")
             pnj3 = PhotoImage(file = "image/pnj3.png")
             pnj4 = PhotoImage(file = "image/pnj2.png")
+            pnj5 = PhotoImage(file = "image/pnj2.png")
 
             pnj1_moyen = PhotoImage(file="image/sorcier1.png")
             pnj2_moyen = PhotoImage(file="image/sorcier2.png")
             pnj3_moyen = PhotoImage(file="image/sorcier3.png")
             pnj4_moyen = PhotoImage(file="image/sorcier4.png")
-            pnj5_moyen = PhotoImage(file = "image/pnj4.png")
+            pnj5_moyen = PhotoImage(file = "image/pnj2.png")
 
             pnj1_grand = PhotoImage(file="image/sorcier1.png")
             pnj2_grand = PhotoImage(file="image/sorcier2.png")
             pnj3_grand = PhotoImage(file="image/sorcier3.png")
             pnj4_grand = PhotoImage(file="image/sorcier4.png")
-            pnj5_grand = PhotoImage(file = "image/pnj2c.png")
+            pnj5_grand = PhotoImage(file = "image/pnj2.png")
 
         #exo 4 : systèe à 2 inconnues   | meme pnj que le niveau avec 4 pnj à faire
         elif Niveau ==3:
@@ -311,6 +311,9 @@ def Gestion_Jouer(fenetre, Niveau):
 
             print("Abscisse : ", abscisse)
             print("Ordonne : ", ordonne)
+
+            canvas_infos_possibilite_discussion.delete('all')
+
             #verif si table de craft dispo et si oui on affiche le msg d'information
             if L[ordonne][abscisse-1] == "¤":
                 Label_text_possibilite_strvar.set("Appuie sur 'C' pour assembler la grande Clé !")
@@ -319,7 +322,7 @@ def Gestion_Jouer(fenetre, Niveau):
             #check si c'est la porte et on met à jour les infos dans le cadre e bas à gauche
             elif (L[ordonne-1][abscisse] == "\U0001F6AA" or L[ordonne+1][abscisse]== "\U0001F6AA" or L[ordonne][abscisse-1]== "\U0001F6AA" or L[ordonne][abscisse+1]== "\U0001F6AA"):
                 Label_text_possibilite_strvar.set("Appuie sur 'espace' pour ouvrir la porte !")
-                canvas_infos_possibilite_discussion.create_image(0,0,anchor=NW, image=porte)
+                canvas_infos_possibilite_discussion.create_image(0,0,anchor=NW, image=porte_moyen)
 
             #check de si on parle au boss ou non :
             elif (L[ordonne-1][abscisse] == "boss" or L[ordonne+1][abscisse]== "boss" or L[ordonne][abscisse-1]== "boss" or L[ordonne][abscisse+1]== "boss"):
@@ -354,6 +357,7 @@ def Gestion_Jouer(fenetre, Niveau):
                     canvas_infos_possibilite_discussion.create_image(0,0,anchor=NW, image=pnj5)
 
             else:
+
                 if Niveau ==0 or Niveau ==5:
                     if pnj1_infos == False or pnj2_infos == False or pnj3_infos == False:
                         Label_text_possibilite_strvar.set("Objectif : Récupérer tous les fragments de clés !")
@@ -379,8 +383,9 @@ def Gestion_Jouer(fenetre, Niveau):
                         Label_text_possibilite_strvar.set("Objectif : Affronter le BOSS")
 
 
+                canvas_infos_possibilite_discussion.delete('all')
+                canvas_infos_possibilite_discussion.create_image(0,0,anchor=NW, image = idee)
 
-                canvas_infos_possibilite_discussion.create_image(0,0,anchor=NW, image=carre)
                 #on clear si jamais la personne s'en va
                 canvas_tete_pnj_grand.delete("all")
                 Label_texte_parole_discussion_pnj_strvar.set("")
@@ -491,7 +496,7 @@ def Gestion_Jouer(fenetre, Niveau):
 
                 if num_pnj==0:
                     global listbox
-                    listbox = Text(Label_Frame_Cours_Affiche, width =35,wrap="word")
+                    listbox = Text(Label_Frame_Cours_Affiche, width =35,wrap="word",bg=None)
                     listbox.pack(side=LEFT, fill=BOTH)
 
                     scrollbar = Scrollbar(Label_Frame_Cours_Affiche, orient=VERTICAL, command=listbox.yview)
@@ -737,7 +742,12 @@ def Gestion_Jouer(fenetre, Niveau):
 
             global assemble_cle
 
+
+            canvas_infos_possibilite_discussion.delete('all')
+            canvas_infos_possibilite_discussion.create_image(0,0,anchor=NW, image=idee)
+             
             if L[ordonne][abscisse-1] == "¤":
+
                 if assemble_cle == False:
 
                     if Niveau ==0 or Niveau ==5:
@@ -1356,7 +1366,7 @@ def Gestion_Jouer(fenetre, Niveau):
                     #On crée le bouton pour faire discuter le pnj avec l'utilisateur et on set le texte de bienvenue          
                     Label_texte_parole_discussion_pnj_strvar.set("Salut ! Clique sur suivant !")
                     Label_btn_suivant_discussion_pnj = Button(Label_Frame_Discussion_pnj, text="Suivant", command=lambda: affiche_prog(pnj_, pnj_infos_, Niveau))
-                    Label_btn_suivant_discussion_pnj.pack(side=BOTTOM, anchor="e", pady=5)
+                    Label_btn_suivant_discussion_pnj.pack(side=BOTTOM, anchor="e", pady=5, padx=2)
             
             # check si autour il y a la porte ou non
             elif (L[ordonne-1][abscisse] == "\U0001F6AA" or L[ordonne+1][abscisse]== "\U0001F6AA" or L[ordonne][abscisse-1]== "\U0001F6AA" or L[ordonne][abscisse+1]== "\U0001F6AA"):
@@ -1367,13 +1377,16 @@ def Gestion_Jouer(fenetre, Niveau):
                     load_cours(Niveau, 1)
                 else:
                     Label_text_possibilite_strvar.set("Vous devez d'abord assemblé votre Clé pour pouvoir ouvrir la porte !")
-                    canvas_infos_possibilite_discussion.create_image(0,0,anchor=NW, image=porte)
+                    canvas_infos_possibilite_discussion.delete('all')
+                    canvas_infos_possibilite_discussion.create_image(0,0,anchor=NW, image=idee)
 
             #check s'il y le boss autour ou non:
             elif (L[ordonne-1][abscisse] == "boss" or L[ordonne+1][abscisse]== "boss" or L[ordonne][abscisse-1]== "boss" or L[ordonne][abscisse+1]== "boss"):
                 boss_enigme(Niveau)
 
             else:
+                canvas_infos_possibilite_discussion.delete('all')
+                canvas_infos_possibilite_discussion.create_image(0,0,anchor=NW, image=idee)
                 Label_text_possibilite_strvar.set("Il n'y a personne autour de vous avec qui discuter !")
                 #on clear si jamais la personne s'en va
                 canvas_tete_pnj_grand.delete("all")
@@ -1409,7 +1422,7 @@ def Gestion_Jouer(fenetre, Niveau):
                         elif Niveau ==1:
                             text_complet_consignes = f"Vous devez résoudre ce calcul de volume, il vous faudra trouver le volume totale; selectionnez la bonne case et faites valider Attention; toutes les valerus donn&es sont en m etle résultat attendu en  m cube. Données : a = {Exo_correction[5][0]}; b ={Exo_correction[5][1]}; c ={Exo_correction[5][2]}; d ={Exo_correction[5][3]}; e ={Exo_correction[5][4]}; f ={Exo_correction[5][5]}; r ={Exo_correction[5][6]}"
                         elif Niveau ==2:
-                            text_complet_consinges = "Vous devez résoudre cette exo pas encore fait"
+                            text_complet_consignes = "Vous devez résoudre cette exo pas encore fait"
                         elif Niveau==3:
                             text_complet_consinges = "Vous devez résoudre cette exo pas encore fait"
                         elif Niveau==5:
@@ -1422,14 +1435,14 @@ def Gestion_Jouer(fenetre, Niveau):
                     elif c_sw==4:
                         Label_btn_suivant_second_window ['state'] = DISABLED
                         # on affcihe les btns de réponses
-                        Label_btn_result_possible_1 = Button(Label_Frame_Reponse_Verif, text=value_btn_1, command=lambda:verif_reponse_sw(value_btn_1,Exo_correction[1],Label_btn_result_possible_1,Label_btn_result_possible_2,Label_btn_result_possible_3))
-                        Label_btn_result_possible_1.pack(side="left", padx = 25, pady = 5)
+                        Label_btn_result_possible_1 = Button(Label_Frame_Reponse_Verif_2, text=value_btn_1, command=lambda:verif_reponse_sw(value_btn_1,Exo_correction[1],Label_btn_result_possible_1,Label_btn_result_possible_2,Label_btn_result_possible_3))
+                        Label_btn_result_possible_1.pack(side = LEFT, padx = 25, pady = 5)
 
-                        Label_btn_result_possible_2 = Button(Label_Frame_Reponse_Verif, text=value_btn_2, command=lambda:verif_reponse_sw(value_btn_2,Exo_correction[1],Label_btn_result_possible_1,Label_btn_result_possible_2,Label_btn_result_possible_3))
-                        Label_btn_result_possible_2.pack(side ='left', padx = 25, pady = 5)
+                        Label_btn_result_possible_2 = Button(Label_Frame_Reponse_Verif_2, text=value_btn_2, command=lambda:verif_reponse_sw(value_btn_2,Exo_correction[1],Label_btn_result_possible_1,Label_btn_result_possible_2,Label_btn_result_possible_3))
+                        Label_btn_result_possible_2.pack(side = LEFT, padx = 25, pady = 5)
 
-                        Label_btn_result_possible_3 = Button(Label_Frame_Reponse_Verif, text=value_btn_3, command=lambda:verif_reponse_sw(value_btn_3,Exo_correction[1],Label_btn_result_possible_1,Label_btn_result_possible_2,Label_btn_result_possible_3))
-                        Label_btn_result_possible_3.pack(side='left', padx= 25, pady = 5)
+                        Label_btn_result_possible_3 = Button(Label_Frame_Reponse_Verif_2, text=value_btn_3, command=lambda:verif_reponse_sw(value_btn_3,Exo_correction[1],Label_btn_result_possible_1,Label_btn_result_possible_2,Label_btn_result_possible_3))
+                        Label_btn_result_possible_3.pack(side = LEFT, padx= 25, pady = 5)
                     elif c_sw==5:
                         if erreur == 0:
                             text_complet_consignes = "Bravo ! Vous avez trouvé la bonne solution !"
@@ -1490,17 +1503,17 @@ def Gestion_Jouer(fenetre, Niveau):
                 print(Exo_correction)
 
                 ####frame global de la fenetre
-                Label_Frame_global_second_window = Frame(second_window_probleme, bg = "yellow")
+                Label_Frame_global_second_window = Frame(second_window_probleme, bg = "#BBC4E3")
                 Label_Frame_global_second_window.pack(expand=True, fill="both")
 
                 ###frame qui conteintdra toutes les consignes / explications et le btn suivant
-                Label_Frame_Canvas_consignes_explication_btn = Frame(Label_Frame_global_second_window, bg="#000000")
+                Label_Frame_Canvas_consignes_explication_btn = Frame(Label_Frame_global_second_window, bg= None)
                 Label_Frame_Canvas_consignes_explication_btn.pack(side=TOP, fill='x', pady= 5, padx=5)
 
                 #on load les element de consignes
                 Label_Text_Explication_Exercice_strvar = StringVar()
                 Label_Text_Explication_Exercice_strvar.set("Cliquez sur suivant !")
-                len_wrap = 300
+                len_wrap = 330
                 if Niveau==1:
                     len_wrap =625
                 Label_Text_Explication_Exercice_widget = Label(Label_Frame_Canvas_consignes_explication_btn,wraplength=len_wrap, textvariable = Label_Text_Explication_Exercice_strvar, justify="left"  )
@@ -1509,7 +1522,7 @@ def Gestion_Jouer(fenetre, Niveau):
                 Label_btn_suivant_second_window.pack(side=TOP, anchor="e", pady=5, padx=5)
 
                 ### frame qui contient le canvas qui affichera la formule
-                Label_Frame_Canvas_formule_exo = Frame(Label_Frame_global_second_window, bg="#000000")
+                Label_Frame_Canvas_formule_exo = Frame(Label_Frame_global_second_window, bg="#99A6D0")
                 Label_Frame_Canvas_formule_exo.pack(side=TOP, fill='y', pady= 5, padx=5)
                 if Niveau !=1:
                     #On load le canvas avec sa formule qu'on a recup depuis le ficheir py-math_exo
@@ -1536,15 +1549,18 @@ def Gestion_Jouer(fenetre, Niveau):
 
 
                 elif Niveau ==1:
-                    Label_canvas_img_sw = Canvas(Label_Frame_Canvas_formule_exo, width = 713, height = 487)
+                    Label_canvas_img_sw = Canvas(Label_Frame_Canvas_formule_exo, width = 713, height = 487, bg = "#ffffff")
                     Label_canvas_img_sw.pack(padx=5,pady=5)
                     Label_canvas_img_sw.create_image(0,0,anchor=NW, image=Volume_nv1)
 
 
 
-                ## Frame qui contient les trois valeur de réponse avec les cases à cocher et le bouton valider
-                Label_Frame_Reponse_Verif = Frame(Label_Frame_global_second_window, bg= "#000000")
-                Label_Frame_Reponse_Verif.pack(side=TOP, fill='x', pady= 5, padx=5)
+                ## Frame global de la frame qui contient les trois valeur de réponse avec les cases à cocher et le bouton valider
+                Label_Frame_Reponse_Verif = Frame(Label_Frame_global_second_window, bg= None)
+                Label_Frame_Reponse_Verif.pack(side=TOP, fill='x', pady= 5, padx=5, )
+                #Frame avec les 3 btn 
+                Label_Frame_Reponse_Verif_2 = Frame (Label_Frame_Reponse_Verif, bg = None)
+                Label_Frame_Reponse_Verif_2.pack(anchor=CENTER)
                 # on définit les trois valeur qui vont s'afficher dans les boutons
                 value_btn_1 = Exo_correction[2]
                 value_btn_2 = Exo_correction[3]
@@ -1586,14 +1602,14 @@ def Gestion_Jouer(fenetre, Niveau):
                     elif c_boss==4:
                         Label_btn_suivant_boss_window ['state'] = DISABLED
                         # on affcihe les btns de réponses
-                        Label_btn_result_possible_1_boss = Button(Label_Frame_Reponse_Verif_boss, text=value_btn_1_boss, command=lambda:verif_reponse_boss(value_btn_1_boss,Exo_correction_boss[1],Label_btn_result_possible_1_boss,Label_btn_result_possible_2_boss,Label_btn_result_possible_3_boss))
-                        Label_btn_result_possible_1_boss.pack(side="left", padx = 5, pady = 5)
+                        Label_btn_result_possible_1_boss = Button(Label_Frame_Reponse_Verif_boss_2, text=value_btn_1_boss, command=lambda:verif_reponse_boss(value_btn_1_boss,Exo_correction_boss[1],Label_btn_result_possible_1_boss,Label_btn_result_possible_2_boss,Label_btn_result_possible_3_boss))
+                        Label_btn_result_possible_1_boss.pack(side =LEFT, padx = 5, pady = 5)
 
-                        Label_btn_result_possible_2_boss = Button(Label_Frame_Reponse_Verif_boss, text=value_btn_2_boss, command=lambda:verif_reponse_boss(value_btn_2_boss,Exo_correction_boss[1],Label_btn_result_possible_1_boss,Label_btn_result_possible_2_boss,Label_btn_result_possible_3_boss))
-                        Label_btn_result_possible_2_boss.pack(side ='left', padx = 5, pady = 5)
+                        Label_btn_result_possible_2_boss = Button(Label_Frame_Reponse_Verif_boss_2, text=value_btn_2_boss, command=lambda:verif_reponse_boss(value_btn_2_boss,Exo_correction_boss[1],Label_btn_result_possible_1_boss,Label_btn_result_possible_2_boss,Label_btn_result_possible_3_boss))
+                        Label_btn_result_possible_2_boss.pack(side =LEFT, padx = 5, pady = 5)
 
-                        Label_btn_result_possible_3_boss = Button(Label_Frame_Reponse_Verif_boss, text=value_btn_3_boss, command=lambda:verif_reponse_boss(value_btn_3_boss,Exo_correction_boss[1],Label_btn_result_possible_1_boss,Label_btn_result_possible_2_boss,Label_btn_result_possible_3_boss))
-                        Label_btn_result_possible_3_boss.pack(side='left', padx= 5, pady = 5)
+                        Label_btn_result_possible_3_boss = Button(Label_Frame_Reponse_Verif_boss_2, text=value_btn_3_boss, command=lambda:verif_reponse_boss(value_btn_3_boss,Exo_correction_boss[1],Label_btn_result_possible_1_boss,Label_btn_result_possible_2_boss,Label_btn_result_possible_3_boss))
+                        Label_btn_result_possible_3_boss.pack(side =LEFT, padx= 5, pady = 5)
                     elif c_boss==5:
                         if erreur_boss == 0:
                             text_complet_consignes_boss = "Bravo ! Vous avez trouvé la bonne solution !"
@@ -1649,11 +1665,11 @@ def Gestion_Jouer(fenetre, Niveau):
                 # boss_window.geometry("400x600") 
 
                 ####frame global de la fenetre
-                Label_Frame_global_boss = Frame(boss_window, bg = "yellow")
+                Label_Frame_global_boss = Frame(boss_window, bg = "#BBC4E3")
                 Label_Frame_global_boss.pack(expand=True, fill="both")
 
                 ###frame qui conteintdra toutes les consignes / explications et le btn suivant
-                Label_Frame_Canvas_consignes_explication_btn_boss = Frame(Label_Frame_global_boss, bg="#000000")
+                Label_Frame_Canvas_consignes_explication_btn_boss = Frame(Label_Frame_global_boss, bg=None)
                 Label_Frame_Canvas_consignes_explication_btn_boss.pack(side=TOP, fill='x', pady= 5, padx=5)
 
                 #on load les element de consignes
@@ -1665,7 +1681,7 @@ def Gestion_Jouer(fenetre, Niveau):
                 Label_btn_suivant_boss_window.pack(side=TOP, anchor="e", pady=5, padx=5)
 
                 ### frame qui contient le canvas qui affichera la formule
-                Label_Frame_Canvas_formule_boss = Frame(Label_Frame_global_boss, bg="#000000")
+                Label_Frame_Canvas_formule_boss = Frame(Label_Frame_global_boss, bg="#99A6D0")
                 Label_Frame_Canvas_formule_boss.pack(side=TOP, fill='y', pady= 5, padx=5)
 
                 if Niveau ==4:
@@ -1682,10 +1698,11 @@ def Gestion_Jouer(fenetre, Niveau):
                     a = 1
                     #il faut load l'img et et selec le resultat            
 
-                ## Frame qui contient les trois valeur de réponse avec les cases à cocher et le bouton valider
-                Label_Frame_Reponse_Verif_boss = Frame(Label_Frame_global_boss, bg= "#000000")
-                Label_Frame_Reponse_Verif_boss.pack(side=TOP, fill='x', pady= 5, padx=5)
-
+                ## Frame global qui contient la frame ave les trois valeur de réponse avec les cases à cocher et le bouton valider
+                Label_Frame_Reponse_Verif_boss = Frame(Label_Frame_global_boss, bg= None)
+                Label_Frame_Reponse_Verif_boss.pack(side=TOP, fill='x', pady= 5, padx=5, anchor=CENTER)
+                Label_Frame_Reponse_Verif_boss_2 = Frame(Label_Frame_Reponse_Verif_boss, bg=None)
+                Label_Frame_Reponse_Verif_boss_2.pack(anchor = CENTER)
 
                 # Lie la fermeture de la fenêtre à la réinitialisation de boss_window
                 boss_window.protocol("WM_DELETE_WINDOW", lambda: reset_boss_window())
@@ -1750,21 +1767,20 @@ def Gestion_Jouer(fenetre, Niveau):
 
 
 
-        # Jeu.geometry("1300x700")
         ######On place tout les elements sur la fenetre#####
 
         #####Frame global qui contient les deux partie du jeu
-        Label_Frame_Global = Frame(Jeu, bg='yellow')
+        Label_Frame_Global = Frame(Jeu, bg='#BBC4E3')
         Label_Frame_Global.pack(expand=True, fill="both")
 
         ####Partie Gauche : 
-        Label_Frame_Jeu_Inv = Frame(Label_Frame_Global, bg='#000000') 
+        Label_Frame_Jeu_Inv = Frame(Label_Frame_Global, bg='#BBC4E3') 
         Label_Frame_Jeu_Inv.pack(side = 'left', fill='y', padx=5, pady=5)
 
         #Jeu partie Gauche haut : 
         long_c = len(L[0])*24
         larg_c = len(L)*24
-        canvas = Canvas(Label_Frame_Jeu_Inv, width=long_c, height=larg_c)
+        canvas = Canvas(Label_Frame_Jeu_Inv, width=long_c, height=larg_c, bg = "#ffffff", borderwidth= 1)
 
         #On affiche dans tkinter
         for x in range(len(L)):
@@ -1800,17 +1816,18 @@ def Gestion_Jouer(fenetre, Niveau):
         canvas.pack(side="top",padx=5, pady=5)
 
         ###Frame gauche bas pour clé + pouvoir parler infos
-        Label_Frame_pnj_Text = Frame(Label_Frame_Jeu_Inv, bg="red")
+        Label_Frame_pnj_Text = Frame(Label_Frame_Jeu_Inv, bg="#99A6D0")
         Label_Frame_pnj_Text.pack(side=TOP, fill='x',padx=5, pady=5)
 
         ##Frame affiche le texte si on peut parler à un pnj ou faire un action
-        Label_Frame_Text_Info_Discussion_pnj = Frame(Label_Frame_pnj_Text, bg="blue")
+        Label_Frame_Text_Info_Discussion_pnj = Frame(Label_Frame_pnj_Text, bg= None)
         Label_Frame_Text_Info_Discussion_pnj.pack(fill='y', padx=5, pady=5, side='left')
 
         #On load les elements pour afficher les msg de possibilité de discution 
-        canvas_infos_possibilite_discussion = Canvas(Label_Frame_Text_Info_Discussion_pnj, bg='white', height=50, width=50)
+        canvas_infos_possibilite_discussion = Canvas(Label_Frame_Text_Info_Discussion_pnj, bg=None, height=50, width=50)
         canvas_infos_possibilite_discussion.pack(anchor="c", side=LEFT, padx=15)
         Label_text_possibilite_strvar = StringVar()
+        canvas_infos_possibilite_discussion.create_image(0,0, anchor=NW, image=idee)
         if Niveau ==0 or Niveau ==5:
             Label_text_possibilite_strvar.set("Objectif : Récupérer tous les fragments de clés !")
         elif Niveau ==1 or Niveau ==3 or Niveau ==6:
@@ -1820,15 +1837,15 @@ def Gestion_Jouer(fenetre, Niveau):
         elif Niveau ==4 or Niveau ==8:
             Label_text_possibilite_strvar.set("Objectif : Affronter le BOSS")
 
-        Label_text_possibilite_widget = Label(Label_Frame_Text_Info_Discussion_pnj, textvariable=Label_text_possibilite_strvar, wraplength=200, justify="left")
+        Label_text_possibilite_widget = Label(Label_Frame_Text_Info_Discussion_pnj, textvariable=Label_text_possibilite_strvar, wraplength=150, width = 25, justify="left", bg = None)
         Label_text_possibilite_widget.pack(side="left", pady=5, padx=5)
     
         ## Frame de box de discussion avec les pnj 
-        Label_Frame_Discussion_pnj = Frame(Label_Frame_pnj_Text, bg="blue")
+        Label_Frame_Discussion_pnj = Frame(Label_Frame_pnj_Text, bg=None)
         Label_Frame_Discussion_pnj.pack(expand=True, fill=BOTH, padx=5, pady=5, side='right')
 
         #On load les element qui serviron aux boites de discussion des pnjs
-        canvas_tete_pnj_grand = Canvas(Label_Frame_Discussion_pnj, bg='white', height=100, width=200)
+        canvas_tete_pnj_grand = Canvas(Label_Frame_Discussion_pnj, bg=None, height=100, width=200)
         canvas_tete_pnj_grand.pack(anchor="c", padx=10,pady=5, side=LEFT)
         Label_texte_parole_discussion_pnj_strvar = StringVar()
         Label_texte_parole_discussion_pnj_widget = Label(Label_Frame_Discussion_pnj, textvariable=Label_texte_parole_discussion_pnj_strvar, wraplength=320, justify="left")
@@ -1837,7 +1854,7 @@ def Gestion_Jouer(fenetre, Niveau):
 
 
         ####Partie Droite : 
-        Label_Frame_Cours_cle = Frame(Label_Frame_Global, bg="#000000")
+        Label_Frame_Cours_cle = Frame(Label_Frame_Global, bg="#99A6D0")
         Label_Frame_Cours_cle.pack(side='right', expand=True, fill="both", padx=5, pady=5)
 
         ##Frame qui affiche le cours actuel
@@ -1848,7 +1865,7 @@ def Gestion_Jouer(fenetre, Niveau):
         load_cours(Niveau,0)
         
         ##Frame affiche l'inventaire (clé(s))
-        Label_Frame_Inv_Cle = Frame(Label_Frame_Cours_cle, bg='white')
+        Label_Frame_Inv_Cle = Frame(Label_Frame_Cours_cle, bg='#99A6D0')
         Label_Frame_Inv_Cle.pack(side='bottom', padx=5, pady=5, fill='x')
 
         #On load l'inventaire de base 
@@ -1858,7 +1875,7 @@ def Gestion_Jouer(fenetre, Niveau):
         elif Niveau == 2 or Niveau ==7:
             long_canvas_inv = 250
 
-        canvas_inv = Canvas(Label_Frame_Inv_Cle, width=long_canvas_inv, height=50, bg = "blue")
+        canvas_inv = Canvas(Label_Frame_Inv_Cle, width=long_canvas_inv, height=50, bg = "#7786BA")
 
         if Niveau !=4 and Niveau !=8:
             canvas_inv.create_image(0,0,anchor=NW, image = loot_vide_pnj1)
@@ -1872,7 +1889,6 @@ def Gestion_Jouer(fenetre, Niveau):
                 canvas_inv.create_image(200,0,anchor=NW, image = loot_vide_pnj5)
 
         canvas_inv.pack(pady=10)
-
 
 
 
