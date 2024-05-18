@@ -79,7 +79,7 @@ Afin de pouvoir utiliser le jeu sans soucis, nous vous demandons de bien vouloir
   - [Visual C++ x64](https://learn.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist?view=msvc-170)
   Une fois que vous avez récupéré ces trois fichiers exécutables, vous avez 2 possibilités de les installer :
     - Vous pouvez les faire manuellement en exécutant chacun des points exe.
-    - Vous pouvez utiliser le script : [Installateur_logiciels](Installateur_logiciels.py).
+    - Vous pouvez utiliser le script : [Installateur_logiciels](Installateurs/Installateur_logiciels.py).
       - Pour ce faire, veuillez renommer les trois points exe de cette manière :
         - Git --> **Git-2.45.1-64-bit**
         - Python --> **python-3.12.3-amd64**
@@ -90,7 +90,7 @@ Afin de pouvoir utiliser le jeu sans soucis, nous vous demandons de bien vouloir
   ##### Téléchargement des dépendances nécessaires au jeu :
   Veillez à redémarrer votre machine si nécessaire pour permettre à votre système de bien intégrer l'installation des logiciels précédents. Après cela, il vous faut installer différentes dépendances nécessaires au bon fonctionnement du jeu.
   Vous avez 2 possibilités de le faire :
-    - Vous pouvez exécuter simplement le script [Installateur_dépendances](Installateur_dependances.py). Ce script télécharge également le jeu depuis GitHub.
+    - Vous pouvez exécuter simplement le script [Installateur_dépendances](Installateurs/Installateur_dependances.py). Ce script télécharge également le jeu depuis GitHub.
     - Vous pouvez installer manuellement les dépendances. Pour ce faire, ouvrez un terminal (cmd / powershell...) et entrez les commandes suivantes dans l'ordre donné.
 
 > Mettre à jour pip 
