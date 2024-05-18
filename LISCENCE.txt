@@ -1,0 +1,12 @@
+Attribution-NonCommercial 4.0 International Public License (CC BY-NC 4.0)
+Ce travail est sous licence [Creative Commons Attribution-NonCommercial 4.0 International License][cc-by-nc].
+
+Vous êtes libre de :
+- Partager — copier et redistribuer le matériel dans n'importe quel format ou support.
+- Adapter — remixer, transformer et développer le matériel.
+
+Sous les conditions suivantes :
+- Attribution — Vous devez donner les crédits appropriés, fournir un lien vers la licence et indiquer si des modifications ont été effectuées. Vous pouvez le faire de manière raisonnable, mais pas d'une manière qui suggère que le donneur de licence vous approuve ou approuve votre utilisation.
+- NonCommercial — Vous ne pouvez pas utiliser le matériel à des fins commerciales.
+
+Pour plus de détails, voir : https://creativecommons.org/licenses/by-nc/4.0/
