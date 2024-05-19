@@ -34,6 +34,12 @@ second_window_probleme= None
 global boss_window
 boss_window= None
 
+# Valeurs permettant de déterminer le nombre d'indices utilisé et de pouvoir afficher le résultats
+global indices_give_1
+global indices_give_2
+indices_give_1 = 0
+indices_give_2 = 0
+
 def Gestion_Jouer(fenetre, Niveau, type_partie):
 
     global Label_btn_suivant_discussion_pnj
@@ -45,6 +51,9 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
 
     global boss_window
     boss_window= None
+
+
+
 
     #le "fenetre" correspond à la fenetre tk qui est en cours de loop
     # Le permir passage se sera la fenetre 'Lancement', puis les autres tours se sera les fenetres de 'Jeu'
@@ -60,7 +69,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
     elif type_partie == 'premiere':
         tours = 9
 
-    if Niveau != tours:
+    if Niveau < tours:
         #On crée la map 
         longueur = 38
         largeur = 21
@@ -1593,6 +1602,15 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
             global boss_window
 
             if not boss_window or not boss_window.winfo_exists():  # Vérifie si la deuxième fenêtre existe
+
+                #on reset le nombred d'indices donnée si jamais il y a eu plusieurs tentatives
+                global indices_give_1
+                global indices_give_2
+                if Niveau ==4:
+                    indices_give_1 = 0
+                elif Niveau ==8:
+                    indices_give_2 = 0
+
                 def affiche_consigne_boss(Niveau):
                     global erreur_boss
                     global c_boss
@@ -1727,11 +1745,6 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                 global c_boss
                 c_boss = 0
 
-                # Valeurs permettant de déterminer le nombre d'indices utilisé et de pouvoir afficher le résultats
-                global indices_give_1
-                global indices_give_2
-                indices_give_1 = 0
-                indices_give_2 = 0
 
                 boss_window = Toplevel()  # Utiliser Toplevel au lieu de Tk pour une nouvelle fenêtre indépendante
                 # boss_window.geometry("400x600") 
@@ -2014,6 +2027,148 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
         def app(event):
             boss_enigme(Niveau)
         Jeu.bind("<KeyPress-t>", app)
+
+
+
+    elif Niveau == tours:
+        def text_choix_medaille(type_partie_ , nb_check):
+
+
+            L_Text_resultat_medaille = [
+                "Médailles Diamond Bravo, vous avez utilisé 0 indices ! blablabla",
+                "Médailles glod Très bien, vous avez utilisé 1 indices ! blablabla",
+                "Médailles silver Bien, vous avez utilisé 2 indices ! blablabla",
+                "Médailles Bronze, vous avez utilisé 3 indices ! blablabla",
+            ]
+
+            if type_partie_=='seconde':
+                text_medaille.set(L_Text_resultat_medaille[indices_give_1])
+            elif type_partie_=='premiere':
+                text_medaille.set(L_Text_resultat_medaille[indices_give_2])
+            else:
+                if nb_check==0:
+                    text_medaille.set(L_Text_resultat_medaille[indices_give_1])
+                elif nb_check ==1:
+                    text2_medaille.set(L_Text_resultat_medaille[indices_give_2])
+
+
+
+        if type_partie=='seconde':
+            if indices_give_1 ==0:
+                img_resultat =  PhotoImage(file="image/diamond.png") 
+            elif indices_give_1 ==1:
+                img_resultat = PhotoImage(file = "image/gold.png")
+            elif indices_give_1 ==2:
+                img_resultat = PhotoImage(file = "image/silver.png")
+            elif indices_give_1 ==3:
+                img_resultat = PhotoImage(file = "image/bronze.png")
+
+        if type_partie=='premiere':
+            if indices_give_2 ==0:
+                img_resultat = PhotoImage(file="image/diamond.png") 
+            elif indices_give_2 ==1:
+                img_resultat = PhotoImage(file = "image/gold.png")
+            elif indices_give_2 ==2:
+                img_resultat = PhotoImage(file = "image/silver.png")
+            elif indices_give_2 ==3:
+                img_resultat = PhotoImage(file = "image/bronze.png")
+
+        if type_partie =='all':
+            if indices_give_1 ==0:
+                img_resultat = PhotoImage(file="image/diamond.png") 
+            elif indices_give_1 ==1:
+                img_resultat = PhotoImage(file = "image/gold.png")
+            elif indices_give_1 ==2:
+                img_resultat = PhotoImage(file = "image/silver.png")
+            elif indices_give_1 ==3:
+                img_resultat = PhotoImage(file = "image/bronze.png") 
+
+            if indices_give_2 ==0:
+                img_resultat2 = PhotoImage(file="image/diamond.png") 
+            elif indices_give_2 ==1:
+                img_resultat2 = PhotoImage(file = "image/gold.png")
+            elif indices_give_2 ==2:
+                img_resultat2 = PhotoImage(file = "image/silver.png")
+            elif indices_give_2 ==3:
+                img_resultat2 = PhotoImage(file = "image/bronze.png")  
+
+
+        Label_titre_resultat_partie = Label(Jeu, text = 'Résultats')
+        Label_titre_resultat_partie.pack(pady=10)
+
+        #Frame global pour afficher les éléments des résultats
+        Label_Frame_global_resultat = Frame(Jeu, bg = 'red')
+        Label_Frame_global_resultat.pack(expand=True, fill=BOTH, pady= 5, padx = 5)
+
+        if type_partie !='all':
+            #Frame avec les elements des resulat (sous frame)
+            Label_Frame_resultat_titre_elements = Frame(Label_Frame_global_resultat, bg = 'green')
+            Label_Frame_resultat_titre_elements.pack(expand=True, fill=BOTH, pady=5, padx=5)
+
+            Label_titre_type_partie_resultat = Label(Label_Frame_resultat_titre_elements, text = type_partie, anchor = NW)
+            Label_titre_type_partie_resultat.pack(pady=5, padx=5, side=TOP)
+
+            #frame avec le canvas de la médaille en fonction des indices est du text correspondant de félicitation(sous-sous frame)
+            Label_Frame_resultat_canvas_text = Frame(Label_Frame_resultat_titre_elements, bg='blue')
+            Label_Frame_resultat_canvas_text.pack(side=TOP, pady=5, padx=5)
+
+            Label_canvas_medailles = Canvas(Label_Frame_resultat_canvas_text, width=75, height=75)
+            Label_canvas_medailles.pack(side=LEFT, pady=5, padx=5)
+
+            text_medaille= StringVar()
+            Label_text_resultat = Label(Label_Frame_resultat_canvas_text, textvariable=text_medaille)
+            Label_text_resultat.pack(side=RIGHT, pady=5, padx=5)
+
+            text_choix_medaille(type_partie, -1)
+            Label_canvas_medailles.create_image(0,0,anchor=NW, image=img_resultat)
+
+        else:
+            ### ELEMENT POUR LA PARTIE SECONDE
+            #Frame avec les elements des resulat (sous frame)
+            Label_Frame_resultat_titre_elements = Frame(Label_Frame_global_resultat, bg = 'green')
+            Label_Frame_resultat_titre_elements.pack(expand=True, fill=BOTH, pady=5, padx=5)
+
+            Label_titre_type_partie_resultat = Label(Label_Frame_resultat_titre_elements, text = "seconde", anchor = NW)
+            Label_titre_type_partie_resultat.pack(pady=5, padx=5, side=TOP)
+
+            #frame avec le canvas de la médaille en fonction des indices est du text correspondant de félicitation(sous-sous frame)
+            Label_Frame_resultat_canvas_text = Frame(Label_Frame_resultat_titre_elements, bg='blue')
+            Label_Frame_resultat_canvas_text.pack(side=TOP, pady=5, padx=5)
+
+            Label_canvas_medailles = Canvas(Label_Frame_resultat_canvas_text, width=75, height=75)
+            Label_canvas_medailles.pack(side=LEFT, pady=5, padx=5)
+
+            text_medaille= StringVar()
+            Label_text_resultat = Label(Label_Frame_resultat_canvas_text, textvariable=text_medaille)
+            Label_text_resultat.pack(side=RIGHT, pady=5, padx=5)
+
+            text_choix_medaille(type_partie, 0)
+            Label_canvas_medailles.create_image(0,0,anchor=NW, image=img_resultat)
+
+
+
+            #### ELEMENT POUR LA PARTIE PREMIERE
+            #Frame avec les elements des resulat (sous frame)
+            Label_Frame_resultat_titre_elements2 = Frame(Label_Frame_global_resultat, bg = 'green')
+            Label_Frame_resultat_titre_elements2.pack(expand=True, fill=BOTH, pady=5, padx=5)
+
+            Label_titre_type_partie_resultat2 = Label(Label_Frame_resultat_titre_elements2, text = "premiere", anchor = NW)
+            Label_titre_type_partie_resultat2.pack(pady=5, padx=5, side=TOP)
+
+            #frame avec le canvas de la médaille en fonction des indices est du text correspondant de félicitation(sous-sous frame)
+            Label_Frame_resultat_canvas_text2 = Frame(Label_Frame_resultat_titre_elements2, bg='blue')
+            Label_Frame_resultat_canvas_text2.pack(side=TOP, pady=5, padx=5)
+
+            Label_canvas_medailles2 = Canvas(Label_Frame_resultat_canvas_text2, width=75, height=75)
+            Label_canvas_medailles2.pack(side=LEFT, pady=5, padx=5)
+
+            text2_medaille= StringVar()
+            Label_text_resultat2 = Label(Label_Frame_resultat_canvas_text2, textvariable=text2_medaille)
+            Label_text_resultat2.pack(side=RIGHT, pady=5, padx=5)
+
+            text_choix_medaille(type_partie, 1)
+            Label_canvas_medailles2.create_image(0,0,anchor=NW, image=img_resultat2)
+
 
 
 
