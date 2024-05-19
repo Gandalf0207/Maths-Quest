@@ -1662,18 +1662,107 @@ def Gestion_Jouer(fenetre, Niveau):
 
                     ok = 1
                 
+                def Give_indices_boss(Niveau):
+
+                    def ajouter_element_indices(Texte_): #Une partie de la gestion du code de la liste box provient d'internet
+                        global listbox_indices
+                        element_ = Texte_.strip()
+                        listbox_indices.config(state=NORMAL)
+                        if element_:
+                            listbox_indices.insert(END, element_ + "\n")
+                        listbox_indices.insert(END, "\n")
+                        listbox_indices.config(state=DISABLED)
+
+
+                    global indices_give_1
+                    global indices_give_2
+
+                    L_indices_1 = [
+                        "Indices 1 boss 1 : ",
+                        "Indices 2 boss 1 : ",
+                        "Indices 3 boss 1 : ",
+                        "Vous avez utilisé tout les indices !"
+                        ]
+                    L_indices_2 = [
+                        "Indices 1 boss 2 : ",
+                        "Indices 2 boss 2 : ",
+                        "Indices 3 boss 2 : ",
+                        "Vous avez utilisé tout les indices !"
+                        ]
+
+                    if Niveau ==4:
+                        if indices_give_1 < 3:
+                            ajouter_element_indices(L_indices_1[indices_give_1])
+                            indices_give_1 +=1
+                        elif indices_give_1 == 3:
+                            ajouter_element_indices(L_indices_1[indices_give_1])
+                            Label_btn_get_indices.destroy()
+
+
+
+                    elif Niveau == 8:
+                        if indices_give_2 < 3:
+                            ajouter_element_indices(L_indices_2[indices_give_2])
+                            indices_give_2 +=1
+                        elif indices_give_2 ==3:
+                            ajouter_element_indices(L_indices_2[indices_give_2])
+                            Label_btn_get_indices.destroy()
+
+
+
+
+
+
+
+
+
                 global c_boss
                 c_boss = 0
+
+                # Valeurs permettant de déterminer le nombre d'indices utilisé et de pouvoir afficher le résultats
+                global indices_give_1
+                global indices_give_2
+                indices_give_1 = 0
+                indices_give_2 = 0
 
                 boss_window = Toplevel()  # Utiliser Toplevel au lieu de Tk pour une nouvelle fenêtre indépendante
                 # boss_window.geometry("400x600") 
 
-                ####frame global de la fenetre
+                #####frame global de la fenetre
                 Label_Frame_global_boss = Frame(boss_window, bg = "#BBC4E3")
                 Label_Frame_global_boss.pack(expand=True, fill="both")
 
+                #### frame globale des element de droite / des indices
+                Label_frame_indices_boss = Frame(Label_Frame_global_boss, bg ="#99A6D0", width= 100)
+                Label_frame_indices_boss.pack(expand=True, fill = 'both', side=RIGHT)
+
+                ###frame box de la listbox des indices
+                Label_Frame_box_listbox_indices_boss = Frame(Label_frame_indices_boss, bg = None)
+                Label_Frame_box_listbox_indices_boss.pack(side =TOP, pady= 5, padx = 5)
+                #on crée la box pour les indices s'il sont demandé par l'utilisateur
+                global listbox_indices
+                listbox_indices = Text(Label_Frame_box_listbox_indices_boss, width =35,wrap="word",bg=None)
+                listbox_indices.pack(side=LEFT, fill=BOTH)
+
+                scrollbar_indices = Scrollbar(Label_Frame_box_listbox_indices_boss, orient=VERTICAL, command=listbox_indices.yview)
+                scrollbar_indices.pack(side=RIGHT, fill=Y)
+
+                listbox_indices.config(yscrollcommand=scrollbar_indices.set)
+                
+                listbox_indices.insert(END, "--Indices--" + "\n")
+                listbox_indices.insert(END, "\n")
+                listbox_indices.config(state=DISABLED)
+
+
+                Label_btn_get_indices = Button(Label_frame_indices_boss,text="Obtenir un indice", command=lambda:Give_indices_boss(Niveau))
+                Label_btn_get_indices.pack(pady=10, side=TOP)
+
+                ###frame global des éléments de gauche
+                Label_frame_global_element_gauche_boss = Frame(Label_Frame_global_boss, bg = "#99A6D0")
+                Label_frame_global_element_gauche_boss.pack(expand=True, fill='y', side=LEFT)
+
                 ###frame qui conteintdra toutes les consignes / explications et le btn suivant
-                Label_Frame_Canvas_consignes_explication_btn_boss = Frame(Label_Frame_global_boss, bg=None)
+                Label_Frame_Canvas_consignes_explication_btn_boss = Frame(Label_frame_global_element_gauche_boss, bg=None)
                 Label_Frame_Canvas_consignes_explication_btn_boss.pack(side=TOP, fill='x', pady= 5, padx=5)
 
                 #on load les element de consignes
@@ -1685,7 +1774,7 @@ def Gestion_Jouer(fenetre, Niveau):
                 Label_btn_suivant_boss_window.pack(side=TOP, anchor="e", pady=5, padx=5)
 
                 ### frame qui contient le canvas qui affichera la formule
-                Label_Frame_Canvas_formule_boss = Frame(Label_Frame_global_boss, bg="#99A6D0")
+                Label_Frame_Canvas_formule_boss = Frame(Label_frame_global_element_gauche_boss, bg="#99A6D0")
                 Label_Frame_Canvas_formule_boss.pack(side=TOP, fill='y', pady= 5, padx=5)
 
                 if Niveau ==4:
@@ -1703,7 +1792,7 @@ def Gestion_Jouer(fenetre, Niveau):
                     #il faut load l'img et et selec le resultat            
 
                 ## Frame global qui contient la frame ave les trois valeur de réponse avec les cases à cocher et le bouton valider
-                Label_Frame_Reponse_Verif_boss = Frame(Label_Frame_global_boss, bg= None)
+                Label_Frame_Reponse_Verif_boss = Frame(Label_frame_global_element_gauche_boss, bg= None)
                 Label_Frame_Reponse_Verif_boss.pack(side=TOP, fill='x', pady= 5, padx=5, anchor=CENTER)
                 Label_Frame_Reponse_Verif_boss_2 = Frame(Label_Frame_Reponse_Verif_boss, bg=None)
                 Label_Frame_Reponse_Verif_boss_2.pack(anchor = CENTER)
@@ -1912,6 +2001,10 @@ def Gestion_Jouer(fenetre, Niveau):
         Jeu.bind("<Escape>", regle_infos_jeu)
 
         Jeu.bind("<KeyPress-r>", pass_)
+
+        def app(event):
+            boss_enigme(Niveau)
+        Jeu.bind("<KeyPress-t>", app)
 
 
 
