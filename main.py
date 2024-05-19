@@ -34,7 +34,7 @@ second_window_probleme= None
 global boss_window
 boss_window= None
 
-def Gestion_Jouer(fenetre, Niveau):
+def Gestion_Jouer(fenetre, Niveau, type_partie):
 
     global Label_btn_suivant_discussion_pnj
     Label_btn_suivant_discussion_pnj = None
@@ -53,8 +53,14 @@ def Gestion_Jouer(fenetre, Niveau):
 
 
     Jeu = Tk()
+    if type_partie =='all':
+        tours = 9
+    elif type_partie =='seconde':
+        tours = 5
+    elif type_partie == 'premiere':
+        tours = 9
 
-    if Niveau != 9:
+    if Niveau != tours:
         #On crée la map 
         longueur = 38
         largeur = 21
@@ -1464,7 +1470,8 @@ def Gestion_Jouer(fenetre, Niveau):
                     else:
                         Niveau +=1
                         second_window_probleme.destroy()
-                        Gestion_Jouer(Jeu, Niveau)
+                        global type_partie
+                        Gestion_Jouer(Jeu, Niveau, type_partie)
 
 
 
@@ -1635,7 +1642,8 @@ def Gestion_Jouer(fenetre, Niveau):
                     else:
                         Niveau +=1
                         boss_window.destroy()
-                        Gestion_Jouer(Jeu, Niveau)
+                        global type_partie
+                        Gestion_Jouer(Jeu, Niveau, type_partie)
 
                     
                     if  4 > c_boss  or 5 <= c_boss <7:
@@ -1830,8 +1838,9 @@ def Gestion_Jouer(fenetre, Niveau):
         #fonction pass à supp dans version final
         def pass_(event):
             global Niveau
+            global type_partie
             Niveau +=1
-            Gestion_Jouer(Jeu, Niveau)
+            Gestion_Jouer(Jeu, Niveau, type_partie)
 
         # coordonnées
         global ordonne
@@ -1986,7 +1995,7 @@ def Gestion_Jouer(fenetre, Niveau):
 
 
 
-    #deplacement
+        #deplacement
         Jeu.focus_set()
 
         Jeu.bind("<KeyPress-Up>", deplacement)
@@ -2019,20 +2028,103 @@ def Gestion_Jouer(fenetre, Niveau):
 
 ##################################################################################################
 #ACCUEIL#
+def verif_lancement():
+    global type_partie
+    global Niveau
+    if Label_choix_partie_courte.get() ==1:
+        if Label_partie_courte_selection.get() == "seconde":
+            type_partie = 'seconde'
+            Gestion_Jouer(Lancement, Niveau, type_partie)
+        elif Label_partie_courte_selection.get() == "premiere":
+            type_partie = 'premiere'
+            Niveau = 5
+            Gestion_Jouer(Lancement, Niveau, type_partie)
+        else:
+            text_erreur_lancement.set("Vous devez sélectionner le niveau de votre partie courte !")
+    elif Label_choix_partie_long.get() ==1:
+        type_partie = 'all'
+        Gestion_Jouer(Lancement, Niveau, type_partie)
+    else:
+        text_erreur_lancement.set("Vous devez sélectionner le type de partie !")
+
+def desac_btn_1():
+    if Label_choix_partie_courte.get() ==1:
+        Label_choix_partie_long.set(0)
+        btn_long.config(state=DISABLED)
+        btn_court_seconde.config(state=NORMAL)
+        btn_court_premiere.config(state=NORMAL)
+    else:
+        btn_long.config(state=NORMAL)
+        btn_court_seconde.config(state=DISABLED)
+        btn_court_premiere.config(state=DISABLED)
+
+
+def desac_btn_2():
+    if Label_choix_partie_long.get() ==1:
+        Label_choix_partie_courte.set(0)
+        btn_court.config(state=DISABLED)
+        btn_court_seconde.config(state=DISABLED)
+        btn_court_premiere.config(state=DISABLED)
+    else:
+        btn_court.config(state=NORMAL)
+        btn_court_seconde.config(state=NORMAL)
+        btn_court_premiere.config(state=NORMAL)
+
 
 global Niveau
 Niveau = 0
 
 Lancement = Tk()
-Lancement.title("RPG : Lanncement  Théo | Quentin")
-
+Lancement.title("Maze-Maths : Lancement  Théo | Quentin")
 Lancement.geometry("350x400")
+Lancement.config(bg = "#BBC4E3")
 
-Frame_ = ttk.Frame(Lancement, bg = None)
+Label_titre_lancement = Label(Lancement, text="Maze-Maths",fg = "#01548d", font=("Arial", 25),bg = "#BBC4E3")
+Label_titre_lancement.pack(pady = 10)
 
+#frame global du choix
+Frame_choix = Frame(Lancement, bg = '#99A6D0')
+Frame_choix.pack(expand=True, fill='x', padx=5, pady=5)
 
-btn = ttk.Button(Frame_, text="Jouer !",command=lambda:Gestion_Jouer(Lancement, Niveau)).pack( pady=20)
-Frame_.pack()
+Label_titre_choix_lancement = Label(Frame_choix, text="Choix du type de partie", anchor=CENTER, bg = "#99A6D0")
+Label_titre_choix_lancement.pack(pady = 5, side=TOP)
+
+###frame partie gauche
+Frame_choix_gauche = Frame(Frame_choix, bg=  None)
+Frame_choix_gauche.pack(expand=True, fill='x', pady=5, padx=5, side=LEFT)
+
+Label_choix_partie_courte = IntVar()
+btn_court = Checkbutton(Frame_choix_gauche,variable = Label_choix_partie_courte, text="Courte", command=desac_btn_1)
+btn_court.pack()
+
+##Frame pour le choix de partie courte
+Frame_choix_courte_selection = Frame(Frame_choix_gauche, bg= None)
+Frame_choix_courte_selection.pack(pady= 5 , padx = 5)
+
+Label_partie_courte_selection = StringVar()
+btn_court_seconde = Radiobutton(Frame_choix_courte_selection, text="Seconde", variable=Label_partie_courte_selection, value='seconde', state=DISABLED)
+btn_court_seconde.pack(pady=5, padx=5)
+
+btn_court_premiere = Radiobutton(Frame_choix_courte_selection, text="Première", variable=Label_partie_courte_selection, value='premiere', state=DISABLED)
+btn_court_premiere.pack(pady=5, padx=5)
+
+###frame partie droite
+Frame_choix_droite = Frame(Frame_choix, bg=  None)
+Frame_choix_droite.pack(expand=True, fill=BOTH, pady=5, padx=5, side=RIGHT)
+
+Label_choix_partie_long = IntVar()
+btn_long = Checkbutton(Frame_choix_droite,variable = Label_choix_partie_long, text="Longue", command=desac_btn_2)
+btn_long.pack()
+
+Frame_ = Frame(Lancement, bg = '#99A6D0')
+Frame_.pack(expand=True, fill=BOTH)
+
+btn = ttk.Button(Frame_, text="Jouer !",command=verif_lancement).pack( pady=20)
+
+text_erreur_lancement = StringVar()
+Label_text_erreur_lancement = Label(Frame_, textvariable=text_erreur_lancement,bg = "#99A6D0", wraplength = 200, justify='center', fg='#9A0004')
+Label_text_erreur_lancement.pack()
+
 
 Lancement.mainloop()
 ##################################################################################################
