@@ -72,27 +72,28 @@ Afin de pouvoir utiliser le jeu sans soucis, nous vous demandons de bien vouloir
 - Si vous avez juste à votre disposition ce GitHub, veuillez suivre attentivement l'installation ci-dessous :
 
   ##### Téléchargement des .exe nécessaires au jeu :
-  Vous devez récupérer les 3 .exe qui sont nécessaires à l'installation :
+  Vous devez récupérer les 4 .exe qui sont nécessaires à l'installation :
   - [Git](https://git-scm.com/)
   - [Python](https://www.python.org/downloads/release/python-3123/) *Une version récente est préférable*
   - [MikTeX](https://miktex.org/download)
   - [Visual C++ x64](https://learn.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist?view=msvc-170)
-  Une fois que vous avez récupéré ces trois fichiers exécutables, vous avez 2 possibilités de les installer :
-    - Vous pouvez les faire manuellement en exécutant chacun des points exe.
-    - Vous pouvez utiliser le script : [Installateur_logiciels](Installateurs/Installateur_logiciels.py).
-      - Pour ce faire, veuillez renommer les trois points exe de cette manière :
-        - Git --> **Git-2.45.1-64-bit**
-        - Python --> **python-3.12.3-amd64**
-        - MikTeX --> **basic-miktex-24.1-x64**
-        - Visual C++ x64 --> **VC_redist.x64**
-      - Une fois les points exe renommés, les placer dans le même dossier que le fichier Python : "Installateur_logiciels".
-      - Exécuter le fichier Python, les 3 exe seront exécutés, il vous suffira juste de cliquer sur install aux fenêtres d'installation.
-        
+
+  Une fois que vous avez récupéré ces 4 fichiers exécutables, executez-les dans l'ordre de téléchargement 1 par 1.
+
+  ##### Clône du repositorie GitHub:
+  Après avoir installer les 4 fichiers executables, vous devez récupérer le projet. Pour ce faire, dans votre invite de commande, exécutez la commande ci-dessous :
+
+> Clone du dossier contenant le jeu
+```
+git clone https://github.com/Gandalf0207/Maze-Maths.git
+```
+ 
   ##### Téléchargement des dépendances nécessaires au jeu :
   Veillez à redémarrer votre machine si nécessaire pour permettre à votre système de bien intégrer l'installation des logiciels précédents. Après cela, il vous faut installer différentes dépendances nécessaires au bon fonctionnement du jeu.
   Vous avez 2 possibilités de le faire :
-    - Vous pouvez exécuter simplement le script [Installateur_dépendances](Installateurs/Installateur_dependances.py). Ce script télécharge également le jeu depuis GitHub.
-    - Vous pouvez installer manuellement les dépendances. Pour ce faire, ouvrez un terminal (cmd / powershell...) et entrez les commandes suivantes dans l'ordre donné.
+  
+  - Vous pouvez exécuter simplement le script [Installateur_dépendances](Installateurs/Installateur_dependances.py).
+  - Vous pouvez installer manuellement les dépendances. Pour ce faire, ouvrez un terminal (cmd / powershell...) et entrez les commandes suivantes dans l'ordre donné.
 
 > Mettre à jour pip 
 ```
@@ -124,17 +125,12 @@ mpm --install underscore
 mpm --install zhmetrics
 ```
 
-  ##### Téléchargement du jeu :
-  - Si vous avez exécuté le script : Installateur_dépendances, vous avez déjà le dossier du jeu avec le jeu présent sur votre machine (au niveau du fichier Python).
-  - Si vous avez exécuté les commandes d'installation des dépendances à la main, vous devez cloner le dépôt GitHub pour pouvoir le récupérer. Dans votre invite de commande, exécutez la commande ci-dessous :
+<br>
 
-> Clone du dossier contenant le jeu
-```
-git clone https://github.com/Gandalf0207/Maze-Maths.git
-```
+Si vous rencontrez des problèmes avec des éléments de l'installation, vérifiez bien que vous respectez les différents éléments de prévention, présents dans les explications de l'installation et ci-dessous.
 
 <br>
-Si vous rencontrez des problèmes avec des éléments de l'installation, vérifiez bien que vous respectez les différents éléments de prévention, présents dans les explications de l'installation et ci-dessous.
+
 
 > [!NOTE]
 > Pour toutes les dépendances LaTeX, un pop-up va s'ouvrir, vous devrez cliquer sur Install pour pouvoir l'installer.
@@ -143,7 +139,7 @@ Si vous rencontrez des problèmes avec des éléments de l'installation, vérifi
 > Si vous utilisez une ancienne version de Windows ou bien que vous rencontrez toujours une erreur avec Visual C++ x64, installez également [Visual C++ x86](https://learn.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist?view=msvc-170).
 
 > [!TIP]
-> Lorsque vous exécutez une commande **git clone**, assurez-vous que l'emplacement où vous êtes est le bon pour cloner le dossier.
+> Lorsque vous exécutez une commande **git clone**, assurez-vous que l'emplacement où vous êtes est le bon pour cloner le dossier. La commande **Git clone** n'est possible seulement di vous avez télécharger le .exe git
 
 > [!WARNING]
 > Veuillez faire attention au lieu d'installation des logiciels, et si nécessaire vous octroyer les droits en les ajoutant dans le **PATH**.
@@ -153,7 +149,20 @@ Si vous rencontrez des problèmes avec des éléments de l'installation, vérifi
 
 <br> </br>
 ### Jouer :
-Une fois tous les éléments de l'installation faits, vous pouvez profiter du jeu !
+Une fois tous les éléments de l'installation faits, vous pouvez profiter du jeu ! Pour le lancer, éxécuter le fichier "Maze-Mahts.exe"
+
+  ##### Les déplacements : 
+  - Haut --> Touche '↑'
+  - Bas --> Touche '↓'
+  - Gauche --> Touche '←'
+  - Droite --> Touche '→'
+
+  ##### Parler : 
+  - Parler aux pnj --> Touche 'espace'
+  - Affronter le boss --> Touche 'espace'
+
+  ##### Autre : 
+  - Fabriquer --> Touche 'c'
 
 <br> </br>
 ### Crédits & Termes et Conditions d'utilisation :
