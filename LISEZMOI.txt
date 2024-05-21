@@ -1,4 +1,4 @@
-# Math-Quest
+# Maths-Quest
 
 > [!IMPORTANT]
 > Pour toute information complémentaire au niveau des droits d'auteur et de distribution, veuillez vous référer à la licence.
@@ -6,7 +6,7 @@
 > [!IMPORTANT]
 > Si vous rencontrez un bug dans le jeu ou si vous souhaitez proposer des idées de mises à jour, merci de suivre les modèles présents [ici](.github/ISSUE_TEMPLATE)
 
-Math-Quest est un projet étudiant réalisé par 2 élèves en première NSI : **LUBAN Théo** & **PLADEAU Quentin**. Le but de ce projet est de réaliser un petit jeu de labyrinthe et de maths avec le langage de programmation Python et le module de GUI (graphical user interface) Tkinter qui est natif à Python. Le jeu se veut durable et unique, c'est pourquoi le point fort du jeu est l'aléatoire. En effet, que ce soit la génération de la carte ou encore les problèmes mathématiques, toutes les valeurs sont aléatoires. Cela rend donc chaque partie unique !
+Maths-Quest est un projet étudiant réalisé par 2 élèves en première NSI : **LUBAN Théo** & **PLADEAU Quentin**. Le but de ce projet est de réaliser un petit jeu de labyrinthe et de maths avec le langage de programmation Python et le module de GUI (graphical user interface) Tkinter qui est natif à Python. Le jeu se veut durable et unique, c'est pourquoi le point fort du jeu est l'aléatoire. En effet, que ce soit la génération de la carte ou encore les problèmes mathématiques, toutes les valeurs sont aléatoires. Cela rend donc chaque partie unique !
 
 Notre projet est composé de deux éléments principaux :
 - Des Maths
@@ -30,7 +30,7 @@ Notre projet est composé de deux éléments principaux :
 Le jeu se présente donc sous la forme d'un GUI. Après le lancement du jeu, il vous suffit de vous déplacer sur la carte, à la recherche des personnages non joueurs qui seront là pour vous donner de petits objets, qui plus tard, une fois assemblés, vous permettront d'accéder aux niveaux supérieurs. Le jeu, au lancement, se présente sous deux formes : soit une partie courte (choix entre le niveau de mathématiques de première ou seconde) soit une partie longue (les deux niveaux combinés). Le jeu se termine par l'affrontement d'un boss (2 boss si la partie choisie est longue). Le boss vous pose un problème de maths et vous devez le résoudre. Pour vous aider : le cours que tous les PNJ vous auront donné ainsi que des indices disponibles au nombre de trois. Ce jeu est donc un outil éducatif autour des maths pour les élèves et équipes pédagogiques de première et seconde ou plus.
 
 #### Pas-à-pas :
-Exécutez le fichier "Math-Quest.exe". Après son exécution, vous devriez voir cette fenêtre apparaître : (insérer img fenetre load)
+Exécutez le fichier "Maths-Quest.exe". Après son exécution, vous devriez voir cette fenêtre apparaître : (insérer img fenetre load)
 Vous avez donc le choix entre 2 options :
 - Une partie courte :
   - Soit autour du programme de seconde en maths
@@ -85,7 +85,7 @@ Afin de pouvoir utiliser le jeu sans soucis, nous vous demandons de bien vouloir
 
   > Clone du dossier contenant le jeu
   ```
-  git clone https://github.com/Gandalf0207/Math-Quest.git
+  git clone https://github.com/Gandalf0207/Maths-Quest.git
   ```
  
   ##### Téléchargement des dépendances nécessaires au jeu :
@@ -94,6 +94,7 @@ Afin de pouvoir utiliser le jeu sans soucis, nous vous demandons de bien vouloir
   
   - Vous pouvez exécuter simplement le script [Installateur_dépendances](Installateurs/Installateur_dependances.py).
   - Vous pouvez installer manuellement les dépendances. Pour ce faire, ouvrez un terminal (cmd / powershell...) et entrez les commandes suivantes dans l'ordre donné.
+    Pour chacune des comande en rapport avec des dépendances Latex, une fenêtre peut s'ouvrir, il vous faut accpeter l'installation
 
   > Mettre à jour pip 
   ```
@@ -167,7 +168,7 @@ Une fois tous les éléments de l'installation faits, vous pouvez profiter du je
 <br> </br>
 ### Crédits & Termes et Conditions d'utilisation :
 
-  Merci d'utiliser ce jeu Python Math-Quest, un projet créé avec passion pour l'amour des mathématiques et du partage de connaissances. Avant de continuer à utiliser ce logiciel, veuillez lire attentivement les conditions suivantes :
+  Merci d'utiliser ce jeu Python Maths-Quest, un projet créé avec passion pour l'amour des mathématiques et du partage de connaissances. Avant de continuer à utiliser ce logiciel, veuillez lire attentivement les conditions suivantes :
 
   1. Droit d'auteur : Ce jeu est protégé par les lois sur le droit d'auteur et est la propriété intellectuelle de LUBAN Théo & PLADEAU Quentin. Tous les droits qui ne sont pas expressément accordés dans ces conditions sont réservés.
   
@@ -189,3 +190,17 @@ Une fois tous les éléments de l'installation faits, vous pouvez profiter du je
 __© Tous droits réservés 2024__
 
 *by LUBAN Théo & PLADEAU Quentin*
+
+
+
+
+
+
+
+
+
+
+
+
+
+
