@@ -1,6 +1,5 @@
-# Ce script est a éxécuter en première partie
-# Ce script permet de lancer les 3.exe nécessaire au bon fonctionnement du jeu 
-# Ce script permet donc de rendre la machine de l'utilisateur aux normes pour accueillir le projet jeu
+#Ce script est a éxécuter en secodne partie. 
+#Ce script instal, toutes les dépendances nécéssaire au bon fonctionnement du jeu 
 
 import subprocess
 from tkinter import *
@@ -8,19 +7,20 @@ from tkinter import scrolledtext
 
 
 def installateur():
-    #Installation du module git
-    subprocess.run("Git-2.45.1-64-bit.exe", shell=True)
 
-    # Installation de pytohn 3.12.3
-    python_installer = "python-3.12.3-amd64.exe"
-    subprocess.call(python_installer, shell=True)
+    # Installer pip
+    subprocess.run(["python", "-m", "ensurepip"], shell=True)
+    # Installer les bibliothèques requises
+    subprocess.run(["pip", "install", "matplotlib"], shell=True)
 
-    # Installation miktek : compilateur latex
-    subprocess.run("basic-miktex-24.1-x64.exe", shell=True)
+    # Installer dépendances Latex nécéssaires
+    subprocess.run(["mpm", "--install", "type1cm"], shell=True)
+    subprocess.run(["mpm", "--install", "cm-super"], shell=True)
+    subprocess.run(["mpm", "--install", "geometry"], shell=True)
+    subprocess.run(["mpm", "--install", "underscore"], shell=True)
+    subprocess.run(["mpm", "--install", "zhmetrics"], shell=True)
 
-    # Installation visual c++ x64 : script c
-    subprocess.run("VC_redist.x64.exe", shell=True)
-    
+
 def check():
 
     global btn
@@ -33,12 +33,7 @@ def check():
 
 global btn 
 btn = False
-
-
-
 if __name__ == "__main__":
-
-
 
     f = Tk()
     f.title("Termes et conditions d'utilisation | Installation")
