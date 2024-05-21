@@ -592,7 +592,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
 
                     listbox.insert(END, "--Equation à 2 inconnues--" + "\n")
                     listbox.insert(END, "\n")
-                    for i in range(12,16):
+                    for i in range(12,17):
                         ajouter_element(Liste_cours[i])
                     listbox.insert(END, "\n")
 
@@ -605,7 +605,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                 elif (Niveau ==6 and num_pnj==0) or (Niveau== 5 and num_pnj==1):
                     listbox.insert(END, "--Equation du second degré--" + "\n")
                     listbox.insert(END, "\n")
-                    for i in range(16,19):
+                    for i in range(17,20):
                         ajouter_element(Liste_cours[i])
                     listbox.insert(END, "\n")
 
@@ -616,13 +616,13 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                 elif (Niveau==7 and num_pnj==0) or (Niveau== 6 and num_pnj==1):
                     listbox.insert(END, "--Equation du second degré--" + "\n")
                     listbox.insert(END, "\n")
-                    for i in range(16,19):
+                    for i in range(17,20):
                         ajouter_element(Liste_cours[i])
                     listbox.insert(END, "\n")
 
                     listbox.insert(END, "--Dérivation--" + "\n")
                     listbox.insert(END, "\n")
-                    for i in range(19,23):
+                    for i in range(20,24):
                         ajouter_element(Liste_cours[i])
                     listbox.insert(END, "\n")
 
@@ -633,19 +633,19 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                 elif (Niveau==8 and num_pnj==0) or (Niveau== 7 and num_pnj==1):
                     listbox.insert(END, "--Equation du second degré--" + "\n")
                     listbox.insert(END, "\n")
-                    for i in range(16,19):
+                    for i in range(17,20):
                         ajouter_element(Liste_cours[i])
                     listbox.insert(END, "\n")
 
                     listbox.insert(END, "--Dérivation--" + "\n")
                     listbox.insert(END, "\n")
-                    for i in range(19,23):
+                    for i in range(20,24):
                         ajouter_element(Liste_cours[i])
                     listbox.insert(END, "\n")
 
                     listbox.insert(END, "--Suite--" + "\n")
                     listbox.insert(END, "\n")
-                    for i in range(23,28):
+                    for i in range(24,29):
                         ajouter_element(Liste_cours[i])
                     listbox.insert(END, "\n")
                 
