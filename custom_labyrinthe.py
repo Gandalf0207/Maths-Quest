@@ -5,9 +5,9 @@ def Custom_Map(Map, longueur, largeur, Niveau):
 
     if Niveau ==0 or Niveau ==5:
         L_pnj = ["pnj1","pnj2","pnj3"]
-    elif Niveau ==1 or Niveau ==3 or Niveau==6:
+    elif Niveau ==1 or Niveau==6:
         L_pnj = ["pnj1","pnj2","pnj3", "pnj4"]
-    elif Niveau ==2 or Niveau ==7:
+    elif Niveau ==2 or Niveau ==3 or Niveau ==7:
         L_pnj = ["pnj1","pnj2","pnj3", "pnj4", "pnj5"]
         
 

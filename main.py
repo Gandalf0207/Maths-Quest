@@ -104,7 +104,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                 loot_pnj2 = PhotoImage(file="image/clepnj2.png")
                 loot_pnj3 = PhotoImage(file="image/clepnj3.png")
 
-        elif Niveau == 1 or Niveau ==3 or Niveau==6:
+        elif Niveau == 1 or Niveau==6:
                 Grande_cle = PhotoImage(file="image/Cle_2_repare.png")
 
                 loot_vide_pnj1 = PhotoImage(file="image/clepnj1_.png")
@@ -117,7 +117,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                 loot_pnj3 = PhotoImage(file="image/clepnj3.png")
                 loot_pnj4 = PhotoImage(file="image/Glue.png")
 
-        elif Niveau ==2 or Niveau ==7:
+        elif Niveau ==2 or Niveau ==3 or Niveau ==7:
                 Grande_cle = PhotoImage(file="image/Cle_3_repare.png")
 
                 loot_vide_pnj1 = PhotoImage(file="image/clepnj1_.png")
@@ -174,7 +174,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
 
 
         # exo 3 et 7: fonction affiche tangente pente + Suite
-        elif Niveau ==2 or Niveau==7:
+        elif Niveau ==2 or Niveau ==3 or Niveau==7:
             mur1 = PhotoImage(file="image/Wall1.png")
             mur2 = PhotoImage(file="image/Wall2.png")
             mur3 = PhotoImage(file="image/Wall3.png")
@@ -197,26 +197,6 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
             pnj4_grand = PhotoImage(file="image/sorcier4.png")
             pnj5_grand = PhotoImage(file = "image/pnj2.png")
 
-        #exo 4 : systèe à 2 inconnues   | meme pnj que le niveau avec 4 pnj à faire
-        elif Niveau ==3:
-            mur1 = PhotoImage(file="image/Water.png")
-            mur2 = PhotoImage(file="image/Water_rock.png")
-            mur3 = PhotoImage(file="image/Water_Lotus.png")
-
-            pnj1 = PhotoImage(file = "image/pnj1.png")
-            pnj2 = PhotoImage(file = "image/pnj2.png")
-            pnj3 = PhotoImage(file = "image/pnj3.png")
-            pnj4 = PhotoImage(file = "image/pnj2.png")
-
-            pnj1_moyen = PhotoImage(file="image/sorcier1.png")
-            pnj2_moyen = PhotoImage(file="image/sorcier2.png")
-            pnj3_moyen = PhotoImage(file="image/sorcier3.png")
-            pnj4_moyen = PhotoImage(file="image/sorcier4.png")
-
-            pnj1_grand = PhotoImage(file="image/sorcier1.png")
-            pnj2_grand = PhotoImage(file="image/sorcier2.png")
-            pnj3_grand = PhotoImage(file="image/sorcier3.png")
-            pnj4_grand = PhotoImage(file="image/sorcier4.png")
 
         #les deux niveaux de boss
         elif Niveau==4 or Niveau ==8:
@@ -380,14 +360,14 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                         Label_text_possibilite_strvar.set("Objectif : Assembler la clé à la table de fabrication !")
                     elif assemble_cle == True:
                         Label_text_possibilite_strvar.set("Objectif : Ouvrir la porte !")
-                elif Niveau ==1 or Niveau ==3 or Niveau==6:
+                elif Niveau ==1 or Niveau==6:
                     if pnj1_infos == False or pnj2_infos == False or pnj3_infos == False or pnj3_infos == False:
                         Label_text_possibilite_strvar.set("Objectif : Récupérer tous les fragments de clés et le tube de colle !")
                     elif assemble_cle == False:
                         Label_text_possibilite_strvar.set("Objectif : Assembler la clé à la table de fabrication !")
                     elif assemble_cle == True:
                         Label_text_possibilite_strvar.set("Objectif : Ouvrir la porte !")
-                elif Niveau ==2 or Niveau ==7:
+                elif Niveau ==2 or Niveau ==3 or Niveau ==7:
                     if pnj1_infos == False or pnj2_infos == False or pnj3_infos == False or pnj3_infos == False and pnj5_infos == False:
                         Label_text_possibilite_strvar.set("Objectif : Récupérer tous les fragments de clés, le tube de colle et le kit de nettoyage !")
                     elif assemble_cle == False:
@@ -435,9 +415,9 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                         canvas_inv.create_image(0,0, anchor = NW, image=loot_vide_pnj1)
                         canvas_inv.create_image(50,0, anchor = NW, image=loot_vide_pnj2)
                         canvas_inv.create_image(100,0, anchor = NW, image=loot_vide_pnj3)
-                        if Niveau == 1 or Niveau ==3 or Niveau ==6:
+                        if Niveau == 1 or Niveau ==6:
                             canvas_inv.create_image(150,0, anchor = NW, image=loot_vide_pnj4)
-                        elif Niveau ==2 or Niveau ==7:
+                        elif Niveau ==2 or Niveau ==3 or Niveau ==7:
                             canvas_inv.create_image(150,0, anchor = NW, image=loot_vide_pnj4)
                             canvas_inv.create_image(200,0, anchor = NW, image=loot_vide_pnj5)
 
@@ -477,7 +457,8 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
             "cours 1 nv4",
             "cours 2 nv4",
             "cours 3 nv4",
-            "cours 4 nv4", 
+            "cours 4 nv4",
+            "cours 5 nv4", 
 
 
 
@@ -713,37 +694,39 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                 elif num_pnj=="pnj3":
                     ajouter_element(Liste_cours[14])       
                 elif num_pnj=="pnj4":
-                    ajouter_element(Liste_cours[15]) 
+                    ajouter_element(Liste_cours[15])
+                elif  num_pnj=="pnj5":
+                    ajouter_element(Liste_cours[16]) 
 
             elif Niveau ==5:
                 if num_pnj=="pnj1":
-                    ajouter_element(Liste_cours[16])
-                elif num_pnj=="pnj2":
                     ajouter_element(Liste_cours[17])
-                elif num_pnj=="pnj3":
+                elif num_pnj=="pnj2":
                     ajouter_element(Liste_cours[18])
+                elif num_pnj=="pnj3":
+                    ajouter_element(Liste_cours[19])
             
             elif Niveau ==6:
                 if num_pnj=="pnj1":
-                    ajouter_element(Liste_cours[19])
-                elif num_pnj=="pnj2":
                     ajouter_element(Liste_cours[20])
+                elif num_pnj=="pnj2":
+                    ajouter_element(Liste_cours[21])
                 elif num_pnj=="pnj3":
-                    ajouter_element(Liste_cours[21])       
+                    ajouter_element(Liste_cours[22])       
                 elif num_pnj=="pnj4":
-                    ajouter_element(Liste_cours[22]) 
+                    ajouter_element(Liste_cours[23]) 
 
             elif Niveau ==7:
                 if num_pnj=="pnj1":
-                    ajouter_element(Liste_cours[23])
-                elif num_pnj=="pnj2":
                     ajouter_element(Liste_cours[24])
+                elif num_pnj=="pnj2":
+                    ajouter_element(Liste_cours[25])
                 elif num_pnj=="pnj3":
-                    ajouter_element(Liste_cours[25])       
+                    ajouter_element(Liste_cours[26])       
                 elif num_pnj=="pnj4":
-                    ajouter_element(Liste_cours[26]) 
+                    ajouter_element(Liste_cours[27]) 
                 elif num_pnj=="pnj5":
-                    ajouter_element(Liste_cours[27])
+                    ajouter_element(Liste_cours[28])
                 
             listbox.config(state=DISABLED)
 
@@ -775,7 +758,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                             Label_text_possibilite_strvar.set("Vous n'avez pas collecté toutes les clés !")
 
 
-                    elif Niveau == 1 or Niveau ==3 or Niveau==6:
+                    elif Niveau == 1 or Niveau==6:
                         if pnj1_infos == True and pnj2_infos == True and pnj3_infos == True and pnj4_infos == True:
                             assemble_cle = True
                             load_inv(Niveau)
@@ -786,7 +769,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                             else:
                                 Label_text_possibilite_strvar.set("Vous n'avez pas collecté toutes les clés !")
             
-                    elif Niveau == 2 or Niveau==7:
+                    elif Niveau == 2 or Niveau ==3 or Niveau==7:
                         if pnj1_infos == True and pnj2_infos == True and pnj3_infos == True and pnj4_infos == True and pnj5_infos == True:
                             assemble_cle = True
                             load_inv(Niveau)
@@ -1102,6 +1085,14 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                             elif c==3:
                                 text_complet = "Voici un kit de nettoyage ! Il vous sera utile pour que votre clé fonctionne ! "
 
+                        elif Niveau ==3:
+                            if c==1:
+                                text_complet = ""
+                            elif c==2:
+                                text_complet = ""
+                            elif c==3:
+                                text_complet = ""
+
                         elif Niveau ==7:
                             if c==1:
                                 text_complet = ""
@@ -1297,6 +1288,12 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                             elif c==2:
                                 text_complet = ""
 
+                        if Niveau ==3:
+                            if c==1:
+                                text_complet = ""
+                            elif c==2:
+                                text_complet = ""
+
                         elif Niveau ==7:
                             if c==1:
                                 text_complet = ""
@@ -1351,7 +1348,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                         pnj_ = "pnj2"
                         pnj_infos_ = pnj2_infos
                         canvas_tete_pnj_grand.create_image(0, 0, anchor=NW, image=pnj2_grand)
-
+###
 
                     #PNJ3
                     elif (L[ordonne-1][abscisse] == pnj_List[2] or L[ordonne+1][abscisse]== pnj_List[2] or L[ordonne][abscisse-1]== pnj_List[2] or L[ordonne][abscisse+1]== pnj_List[2]):
@@ -1507,7 +1504,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                         erreur = 1
                         affiche_consigne(Niveau)
 
-                    ok = 1
+
                 
                 global c_sw
                 c_sw = 0
@@ -1686,7 +1683,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                         erreur_boss = 1
                         affiche_consigne_boss(Niveau)
 
-                    ok = 1
+   
                 
                 def Give_indices_boss(Niveau):
 
@@ -1833,7 +1830,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
         def regle_infos_jeu(event):
             Regle = Toplevel()
             Regle.geometry("600x400")
-            Label_titre_regle = Label(Regle, text="Maze-Thon : Règles").pack(pady=5)
+            Label_titre_regle = Label(Regle, text="Maze-Maths : Règles").pack(pady=5)
 
             Label_Frame_Touche = Frame(Regle, bg = "#000000")
             Label_Frame_Touche.pack(expand=True, fill="both")
@@ -1867,11 +1864,11 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
         global pnj3_infos
         global pnj4_infos
         global pnj5_infos
-        pnj1_infos = False
-        pnj2_infos = False
-        pnj3_infos = False
-        pnj4_infos = False  
-        pnj5_infos = False
+        pnj1_infos = True
+        pnj2_infos = True
+        pnj3_infos = True
+        pnj4_infos = True  
+        pnj5_infos = True
 
         # quad un elment est fabriqué, pour l'afficher correctement
 
@@ -1945,9 +1942,9 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
         canvas_infos_possibilite_discussion.create_image(0,0, anchor=NW, image=idee)
         if Niveau ==0 or Niveau ==5:
             Label_text_possibilite_strvar.set("Objectif : Récupérer tous les fragments de clés !")
-        elif Niveau ==1 or Niveau ==3 or Niveau ==6:
+        elif Niveau ==1 or Niveau ==6:
             Label_text_possibilite_strvar.set("Objectif : Récupérer tous les fragments de clés et le tube de colle !")
-        elif Niveau ==2 or Niveau ==7:
+        elif Niveau ==2 or Niveau ==3 or Niveau ==7:
             Label_text_possibilite_strvar.set("Objectif : Récupérer tous les fragments de clés,le tube de colle et le kit de nettoyage !")
         elif Niveau ==4 or Niveau ==8:
             Label_text_possibilite_strvar.set("Objectif : Affronter le BOSS")
@@ -1985,9 +1982,9 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
 
         #On load l'inventaire de base 
         long_canvas_inv = 150
-        if Niveau ==1 or Niveau ==3 or Niveau ==6:
+        if Niveau ==1 or Niveau ==6:
             long_canvas_inv = 200
-        elif Niveau == 2 or Niveau ==7:
+        elif Niveau == 2 or Niveau ==3 or Niveau ==7:
             long_canvas_inv = 250
 
         canvas_inv = Canvas(Label_Frame_Inv_Cle, width=long_canvas_inv, height=50, bg = "#7786BA")
@@ -1997,9 +1994,9 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
             canvas_inv.create_image(50,0,anchor=NW, image = loot_vide_pnj2)
             canvas_inv.create_image(100,0,anchor=NW, image = loot_vide_pnj3)
 
-            if Niveau == 1 or Niveau ==3 or Niveau ==6:
+            if Niveau == 1 or Niveau ==6:
                 canvas_inv.create_image(150,0,anchor=NW, image = loot_vide_pnj4)
-            elif Niveau ==2 or Niveau ==7:
+            elif Niveau ==2 or Niveau ==3 or Niveau ==7:
                 canvas_inv.create_image(150,0,anchor=NW, image = loot_vide_pnj4)
                 canvas_inv.create_image(200,0,anchor=NW, image = loot_vide_pnj5)
 
