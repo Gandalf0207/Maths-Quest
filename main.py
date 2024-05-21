@@ -448,11 +448,11 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
             "Le volume du cône est celui du cylindre divisé par 3 soit (π x rayon² x h)/3.",
             "La formule pour le parallélépipède rectangle est largeur x hauteur x longueur, le cube en est un cas particulier tous sont égaux.",
             
-            "cours 1 nv3",
-            "cours 2 nv3",
-            "cours 3 nv3",
-            "cours 4 nv3",
-            "cours 5 nv3",
+            "Une droite se présente sous la forme mx + p, avec m en tant que coefficient directeur et p l’ordonné à l’origine",
+            "Les droites parallèles à l’axe des ordonnées (“droite verticale”) ont une équation de la forme x=c avec c un nombre par exemple x = 2 est une droite verticale qui passe par l’abscisse 2",
+            "Dans une équation sous forme mx + p, p est l’ordonnée à l’origine donc (0;p) pour trouver p, on utilise les coordonnées d’un point de la droite par exemple avec le point A(xA; yA), on a p = yA - m.xA",
+            "Pour trouver le coefficient directeur m d’une droite de la forme mx+p, il faut appliquer la relation m = (yB - yA)/(xB-xA)",
+            "Pour trouver le point d’intersection de 2 droites il faut trouver quand l’équation réduite 1 est égale à l’équation réduite 2 soit mx + p = m’x + p’",
 
             "cours 1 nv4",
             "cours 2 nv4",
@@ -545,7 +545,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                     listbox.insert(END, "\n")
 
                     if num_pnj==0:
-                        listbox.insert(END, "--Fonction Affine--" + "\n")
+                        listbox.insert(END, "--Fonction Affine & Equation de Droite--" + "\n")
                         listbox.insert(END, "\n")
 
                 elif (Niveau ==3 and num_pnj==0) or (Niveau== 2 and num_pnj==1):
@@ -561,7 +561,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                         ajouter_element(Liste_cours[i])
                     listbox.insert(END, "\n")
 
-                    listbox.insert(END, "--Fonction Affine--" + "\n")
+                    listbox.insert(END, "--Fonction Affine & Equation de Droite--" + "\n")
                     listbox.insert(END, "\n")
                     for i in range(7,12):
                         ajouter_element(Liste_cours[i])
@@ -584,7 +584,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                         ajouter_element(Liste_cours[i])
                     listbox.insert(END, "\n")
 
-                    listbox.insert(END, "--Fonction Affine--" + "\n")
+                    listbox.insert(END, "--Fonction Affine & Equation de Droite--" + "\n")
                     listbox.insert(END, "\n")
                     for i in range(7,12):
                         ajouter_element(Liste_cours[i])
@@ -824,11 +824,11 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
 
                         elif Niveau ==2:
                             if c==1:
-                                text_complet = ""
+                                text_complet = "Cana : Miaou, Miaou Meow ! Miaou miaou Meow, Miaou Meow. Meow, Miaou Miaou. (Votre Miaou français est encore plus rouillé que votre waf mais vous comprenez : “Salut grand petit être, moi c’est Cana et toi tu m’écoutes bien ! Je parie que tu ne sais pas comment déterminer une équation de droite."
                             elif c==2:
-                                text_complet = ""
+                                text_complet = "Cana : Les droites ont une équation de la forme y = mx + p sauf cas particulier, avec m est le coefficient directeur ou pente de la droite et p l’ordonné à l’origine. "
                             elif c==3:
-                                text_complet = ""
+                                text_complet = "Cana : Oh mince tu m’as bien eu, prends ce jouet je le mérite plus."
                         
                         elif Niveau ==3:
                             if c==1:
@@ -895,11 +895,11 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
 
                         elif Niveau ==2:
                             if c==1:
-                                text_complet = ""
+                                text_complet = "Homme strict : Dit jeune homme, savais-tu que les droites parallèles à l’axe des ordonnées aussi appelées droites verticales."
                             elif c==2:
-                                text_complet = ""
+                                text_complet = "Homme strict : Elles ont une équation de forme x=c sachant que c est un nombre par exemple x = 2 est une droite verticale qui passe par l’abscisse 2."
                             elif c==3:
-                                text_complet = ""
+                                text_complet = "Homme strict : Tiens mon brave prends cet objet."
                         
                         elif Niveau ==3:
                             if c==1:
@@ -967,11 +967,11 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
 
                         elif Niveau ==2:
                             if c==1:
-                                text_complet = ""
+                                text_complet = "Marchand de tapis : Salut à toi jeune aventurier. Alors si aujourd'hui je me permets de te parler, c'est pour une raison très simple. Savais-tu que 95 % de la population détenait 5 % des richesses ? Alors est-ce que tu veux en faire partie ? Il faut que tu te poses les bonnes questions."
                             elif c==2:
-                                text_complet = ""
+                                text_complet = "Marchand de tapis : Est-ce que tu préfères faire savoir que dans une équation sous forme mx + p, p est l’ordonnée à l’origine ou te fermer des portes toute ta vie ?"
                             elif c==3:
-                                text_complet = ""
+                                text_complet = "Marchand de tapis : Moi je pense que la question est vite répondue. Alors soit tu me suis, soit tu vas demander des écus à tes parents pour aller à la taverne. Avec moi c'est comme ça que ça marche, OK ? Fais le bon choix, je t’offre ça pour bien commencer ta vie."
                         
                         elif Niveau ==3:
                             if c==1:
@@ -1031,11 +1031,11 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
 
                         elif Niveau ==2:
                             if c==1:
-                                text_complet = ""
+                                text_complet = "Delta : Salut moi c’est Delta tu savais que pour trouver le coefficient directeur d’une droite ?"
                             elif c==2:
-                                text_complet = ""
+                                text_complet = "Delta : Il faut faire m = (yB - yA)/(xB-xA) (en latex stp) soit deltaY/deltaX. "
                             elif c==3:
-                                text_complet = ""
+                                text_complet = "Delta : Tiens je te passe ce truc tout sale il me sert à rien."
                         
                         elif Niveau ==3:
                             if c==1:
@@ -1079,11 +1079,11 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                         # et le cours est différent en fonction du niveau (map qui change)
                         if Niveau ==2:
                             if c==1:
-                                text_complet = ""
+                                text_complet = "Capitaine d’un navire : Doucement moussaillon tu vas te mouiller ! Tu sais c’est vachement utile de connaître le point d’intersection de 2 droites, ça m’a sauvé plus jeune alors je vais t’apprendre. "
                             elif c==2:
-                                text_complet = ""
+                                text_complet = "Capitaine d’un navire : Quand tu as les 2 équations réduites tu t’amuses à faire une équation des 2 soit mx + p = m’x + p."
                             elif c==3:
-                                text_complet = "Voici un kit de nettoyage ! Il vous sera utile pour que votre clé fonctionne ! "
+                                text_complet = "Capitaine d’un navire : Tiens mon brave si tu as un pont à nettoyer ça t’aidera !"
 
                         elif Niveau ==3:
                             if c==1:
@@ -1133,9 +1133,9 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
 
                         elif Niveau ==2:
                             if c==1:
-                                text_complet = ""
+                                text_complet = "Cana : Meow Miaou !! Meow, Miaou Meow Miaou Miaou. Miaou Miaou Meow. Meow… (Vous comprenez : “Comment j’ai pu le laisser partir avec mon jouet !! Oh tu es de retour, tu veux que je te répète que la droite  se présente sous la forme mx + p avec m en tant que coefficient directeur et p l’ordonné à l’origine. "
                             elif c==2:
-                                text_complet = ""
+                                text_complet = "Cana : D’accord mais alors tu me repasses mon jouet. Oh…"
 
                         elif Niveau ==3:
                             if c==1:
@@ -1177,9 +1177,9 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
 
                         elif Niveau ==2:
                             if c==1:
-                                text_complet = ""
+                                text_complet = "Homme strict : Re Bonjour mon brave. Tu n’as pas écouté et tu voudrais que je répète ? Ah la jeunesse ce n’est plus ce que c’était, je vais te réexpliquer mais c’est la dernière fois. "
                             elif c==2:
-                                text_complet = ""
+                                text_complet = "Homme strict : Les droites parallèles à l’axe des ordonnées aussi appelées droites verticales ont une équation de forme x=c sachant que c est un nombre par exemple x = 2 est une droite verticale qui passe par l’abscisse 2."
         
                         elif Niveau ==3:
                             if c==1:
@@ -1221,9 +1221,9 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
 
                         elif Niveau ==2:
                             if c==1:
-                                text_complet = ""
+                                text_complet = "Marchand de tapis : Alors jeune aventurier tu veux que je te réexplique comment la vie fonctionne ?"
                             elif c==2:
-                                text_complet = ""
+                                text_complet = "Marchand de tapis : Pour comprendre faut que tu saches que dans une équation sous forme mx + p, p est l’ordonnée à l’origine, alors tu entrevois la vrai vie maintenant ?"
 
                         elif Niveau ==3:
                             if c==1:
@@ -1259,9 +1259,9 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
 
                         elif Niveau ==2:
                             if c==1:
-                                text_complet = ""
+                                text_complet = "Delta : Tu te rappelles plus comment on fait ?"
                             elif c==2:
-                                text_complet = ""
+                                text_complet = "Delta : Pour trouver le coefficient directeur d’une droite il faut faire m = (yB - yA)/(xB-xA) (en latex stp) soit deltaY/deltaX."
 
                         elif Niveau ==3:
                             if c==1:
@@ -1284,9 +1284,9 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                     elif pnj == "pnj5":
                         if Niveau ==2:
                             if c==1:
-                                text_complet = ""
+                                text_complet = "Capitaine d’un navire : Alors, tombé à l’eau ? Je t’avais prévenu, écoute mieux cette fois."
                             elif c==2:
-                                text_complet = ""
+                                text_complet = "Capitaine d’un navire : Quand tu as les 2 équations réduites tu t’amuses à faire une équation des 2 soit mx + p = m’x + p’."
 
                         if Niveau ==3:
                             if c==1:
