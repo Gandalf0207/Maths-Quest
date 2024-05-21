@@ -1,5 +1,5 @@
 #Ce script est a éxécuter en secodne partie. 
-#Ce script installe, toutes les dépendances nécéssaire au bon fonctionnement du jeu 
+#Ce script instal, toutes les dépendances nécéssaire au bon fonctionnement du jeu 
 
 import subprocess
 from tkinter import *
@@ -7,8 +7,6 @@ from tkinter import scrolledtext
 
 
 def installateur():
-    # Récupérer le jeu sur github
-    subprocess.run("git clone https://github.com/Gandalf0207/Maze-Maths.git", shell=True, text=True)
 
     # Installer pip
     subprocess.run(["python", "-m", "ensurepip"], shell=True)
@@ -42,7 +40,7 @@ if __name__ == "__main__":
 
 
 
-    Label_titre = Label(f, text="Maze-Maths", fg = "#01548d", font=("Arial", 25))
+    Label_titre = Label(f, text="Math-Quest", fg = "#01548d", font=("Arial", 25))
 
     Label_titre.pack(pady=10)
     
@@ -57,7 +55,7 @@ if __name__ == "__main__":
     text = """
             Termes et Conditions d'Utilisation
 
-        Merci d'utiliser ce jeu Python Maze-Maths, un projet créé avec passion pour l'amour des mathématiques et du partage de connaissances. Avant de continuer à utiliser ce logiciel, veuillez lire attentivement les conditions suivantes :
+        Merci d'utiliser ce jeu Python Math-Quest, un projet créé avec passion pour l'amour des mathématiques et du partage de connaissances. Avant de continuer à utiliser ce logiciel, veuillez lire attentivement les conditions suivantes :
 
         1. Droit d'auteur : Ce jeu est protégé par les lois sur le droit d'auteur et est la propriété intellectuelle de LUBAN Théo & PLADEAU Quentin. Tous les droits qui ne sont pas expressément accordés dans ces conditions sont réservés.
 
