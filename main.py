@@ -1830,7 +1830,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
         def regle_infos_jeu(event):
             Regle = Toplevel()
             Regle.geometry("600x400")
-            Label_titre_regle = Label(Regle, text="Math-Quest : Règles").pack(pady=5)
+            Label_titre_regle = Label(Regle, text="Maths-Quest : Règles").pack(pady=5)
 
             Label_Frame_Touche = Frame(Regle, bg = "#000000")
             Label_Frame_Touche.pack(expand=True, fill="both")
@@ -2227,11 +2227,11 @@ global Niveau
 Niveau = 0
 
 Lancement = Tk()
-Lancement.title("Math-Quest : Lancement  Théo | Quentin")
+Lancement.title("Maths-Quest : Lancement  Théo | Quentin")
 Lancement.geometry("350x400")
 Lancement.config(bg = "#BBC4E3")
 
-Label_titre_lancement = Label(Lancement, text="Math-Quest",fg = "#01548d", font=("Arial", 25),bg = "#BBC4E3")
+Label_titre_lancement = Label(Lancement, text="Maths-Quest",fg = "#01548d", font=("Arial", 25),bg = "#BBC4E3")
 Label_titre_lancement.pack(pady = 10)
 
 #frame global du choix
