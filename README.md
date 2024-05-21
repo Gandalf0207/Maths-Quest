@@ -1,4 +1,4 @@
-# Maze-Maths
+# Math-Quest
 
 > [!IMPORTANT]
 > Pour toute information complémentaire au niveau des droits d'auteur et de distribution, veuillez vous référer à la licence.
@@ -6,13 +6,13 @@
 > [!IMPORTANT]
 > Si vous rencontrez un bug dans le jeu ou si vous souhaitez proposer des idées de mises à jour, merci de suivre les modèles présents [ici](.github/ISSUE_TEMPLATE)
 
-Maze-Maths est un projet étudiant réalisé par 2 élèves en première NSI : **LUBAN Théo** & **PLADEAU Quentin**. Le but de ce projet est de réaliser un petit jeu de labyrinthe et de maths avec le langage de programmation Python et le module de GUI (graphical user interface) Tkinter qui est natif à Python. Le jeu se veut durable et unique, c'est pourquoi le point fort du jeu est l'aléatoire. En effet, que ce soit la génération de la carte ou encore les problèmes mathématiques, toutes les valeurs sont aléatoires. Cela rend donc chaque partie unique !
+Math-Quest est un projet étudiant réalisé par 2 élèves en première NSI : **LUBAN Théo** & **PLADEAU Quentin**. Le but de ce projet est de réaliser un petit jeu de labyrinthe et de maths avec le langage de programmation Python et le module de GUI (graphical user interface) Tkinter qui est natif à Python. Le jeu se veut durable et unique, c'est pourquoi le point fort du jeu est l'aléatoire. En effet, que ce soit la génération de la carte ou encore les problèmes mathématiques, toutes les valeurs sont aléatoires. Cela rend donc chaque partie unique !
 
 Notre projet est composé de deux éléments principaux :
 - Des Maths
   - Équations du premier degré
   - Volumes
-  - Fonctions affines & pentes
+  - Fonctions affines & Equation de droite
   - Système d'équation à 2 inconnues
   - Équation du second degré (polynôme)
   - Dérivation
@@ -30,7 +30,7 @@ Notre projet est composé de deux éléments principaux :
 Le jeu se présente donc sous la forme d'un GUI. Après le lancement du jeu, il vous suffit de vous déplacer sur la carte, à la recherche des personnages non joueurs qui seront là pour vous donner de petits objets, qui plus tard, une fois assemblés, vous permettront d'accéder aux niveaux supérieurs. Le jeu, au lancement, se présente sous deux formes : soit une partie courte (choix entre le niveau de mathématiques de première ou seconde) soit une partie longue (les deux niveaux combinés). Le jeu se termine par l'affrontement d'un boss (2 boss si la partie choisie est longue). Le boss vous pose un problème de maths et vous devez le résoudre. Pour vous aider : le cours que tous les PNJ vous auront donné ainsi que des indices disponibles au nombre de trois. Ce jeu est donc un outil éducatif autour des maths pour les élèves et équipes pédagogiques de première et seconde ou plus.
 
 #### Pas-à-pas :
-Exécutez le fichier "Maze-Maths.exe". Après son exécution, vous devriez voir cette fenêtre apparaître : (insérer img fenetre load)
+Exécutez le fichier "Math-Quest.exe". Après son exécution, vous devriez voir cette fenêtre apparaître : (insérer img fenetre load)
 Vous avez donc le choix entre 2 options :
 - Une partie courte :
   - Soit autour du programme de seconde en maths
@@ -68,7 +68,7 @@ Votre score sera affiché à la fin de votre partie.
 Afin de pouvoir utiliser le jeu sans soucis, nous vous demandons de bien vouloir suivre pas-à-pas l'installation décrite ci-dessous du projet.
 
 #### 2 modes d'installation :
-- Si vous avez reçu par votre professeur un dossier contenant les éléments nécessaires à l'installation, veuillez suivre le PDF d'installation donné avec.
+- Si vous avez reçu par votre professeur un dossier contenant les éléments nécessaires à l'installation, veuillez suivre le PDF d'installation donné avec, vous pouvez également le retrouver [ici](insérer le lien).
 - Si vous avez juste à votre disposition ce GitHub, veuillez suivre attentivement l'installation ci-dessous :
 
   ##### Téléchargement des .exe nécessaires au jeu :
@@ -83,10 +83,10 @@ Afin de pouvoir utiliser le jeu sans soucis, nous vous demandons de bien vouloir
   ##### Clône du repositorie GitHub:
   Après avoir installer les 4 fichiers executables, vous devez récupérer le projet. Pour ce faire, dans votre invite de commande, exécutez la commande ci-dessous :
 
-> Clone du dossier contenant le jeu
-```
-git clone https://github.com/Gandalf0207/Maze-Maths.git
-```
+  > Clone du dossier contenant le jeu
+  ```
+  git clone https://github.com/Gandalf0207/Math-Quest.git
+  ```
  
   ##### Téléchargement des dépendances nécessaires au jeu :
   Veillez à redémarrer votre machine si nécessaire pour permettre à votre système de bien intégrer l'installation des logiciels précédents. Après cela, il vous faut installer différentes dépendances nécessaires au bon fonctionnement du jeu.
@@ -95,39 +95,39 @@ git clone https://github.com/Gandalf0207/Maze-Maths.git
   - Vous pouvez exécuter simplement le script [Installateur_dépendances](Installateurs/Installateur_dependances.py).
   - Vous pouvez installer manuellement les dépendances. Pour ce faire, ouvrez un terminal (cmd / powershell...) et entrez les commandes suivantes dans l'ordre donné.
 
-> Mettre à jour pip 
-```
-python -m ensurepip --upgrade
-python -m pip install --upgrade pip
-```
-> Installation de la dépendance : matplotlib
-```
-pip install matplotlib
-```
-> Installation extension LaTeX : type1cm.sty
-```
-mpm --install type1cm
-```
-> Installation extension LaTeX : type1ec.sty
-```
-mpm --install cm-super
-```
-> Installation extension LaTeX : geometry.sty
-```
-mpm --install geometry
-```
-> Installation extension LaTeX : underscore.sty
-```
-mpm --install underscore
-```
-> Installation extension LaTeX : ttfonts.map
-```
-mpm --install zhmetrics
-```
+  > Mettre à jour pip 
+  ```
+  python -m ensurepip --upgrade
+  python -m pip install --upgrade pip
+  ```
+  > Installation de la dépendance : matplotlib
+  ```
+  pip install matplotlib
+  ```
+  > Installation extension LaTeX : type1cm.sty
+  ```
+  mpm --install type1cm
+  ```
+  > Installation extension LaTeX : type1ec.sty
+  ```
+  mpm --install cm-super
+  ```
+  > Installation extension LaTeX : geometry.sty
+  ```
+  mpm --install geometry
+  ```
+  > Installation extension LaTeX : underscore.sty
+  ```
+  mpm --install underscore
+  ```
+  > Installation extension LaTeX : ttfonts.map
+  ```
+  mpm --install zhmetrics
+  ```
 
 <br>
 
-Si vous rencontrez des problèmes avec des éléments de l'installation, vérifiez bien que vous respectez les différents éléments de prévention, présents dans les explications de l'installation et ci-dessous.
+  Si vous rencontrez des problèmes avec des éléments de l'installation, vérifiez bien que vous respectez les différents éléments de prévention, présents dans les explications de l'installation et ci-dessous.
 
 <br>
 
@@ -167,7 +167,7 @@ Une fois tous les éléments de l'installation faits, vous pouvez profiter du je
 <br> </br>
 ### Crédits & Termes et Conditions d'utilisation :
 
-  Merci d'utiliser ce jeu Python Maze-Maths, un projet créé avec passion pour l'amour des mathématiques et du partage de connaissances. Avant de continuer à utiliser ce logiciel, veuillez lire attentivement les conditions suivantes :
+  Merci d'utiliser ce jeu Python Math-Quest, un projet créé avec passion pour l'amour des mathématiques et du partage de connaissances. Avant de continuer à utiliser ce logiciel, veuillez lire attentivement les conditions suivantes :
 
   1. Droit d'auteur : Ce jeu est protégé par les lois sur le droit d'auteur et est la propriété intellectuelle de LUBAN Théo & PLADEAU Quentin. Tous les droits qui ne sont pas expressément accordés dans ces conditions sont réservés.
   
