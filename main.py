@@ -148,7 +148,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
             pnj3_moyen = PhotoImage(file="image/sorcier3.png")
 
             pnj1_grand = PhotoImage(file="image/sorcier1.png")
-            pnj2_grand = PhotoImage(file="image/sorcier2.png")
+            pnj2_grand = PhotoImage(file="image/Iggy_grand.png")
             pnj3_grand = PhotoImage(file="image/sorcier3.png")
 
         #exo 2 et 6 : volume + Derivation
@@ -169,7 +169,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
 
             pnj1_grand = PhotoImage(file="image/sorcier1.png")
             pnj2_grand = PhotoImage(file="image/sorcier2.png")
-            pnj3_grand = PhotoImage(file="image/sorcier3.png")
+            pnj3_grand = PhotoImage(file="image/Marchand_de_glace_grand.png")
             pnj4_grand = PhotoImage(file="image/sorcier4.png")
 
 
@@ -1957,7 +1957,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
         Label_Frame_Discussion_pnj.pack(expand=True, fill=BOTH, padx=5, pady=5, side='right')
 
         #On load les element qui serviron aux boites de discussion des pnjs
-        canvas_tete_pnj_grand = Canvas(Label_Frame_Discussion_pnj, bg=None, height=100, width=200)
+        canvas_tete_pnj_grand = Canvas(Label_Frame_Discussion_pnj, bg=None, height=100, width=100)
         canvas_tete_pnj_grand.pack(anchor="c", padx=10,pady=5, side=LEFT)
         Label_texte_parole_discussion_pnj_strvar = StringVar()
         Label_texte_parole_discussion_pnj_widget = Label(Label_Frame_Discussion_pnj, textvariable=Label_texte_parole_discussion_pnj_strvar, wraplength=320, justify="left")
