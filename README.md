@@ -81,6 +81,7 @@ Afin de pouvoir utiliser le jeu sans soucis, nous vous demandons de bien vouloir
   Une fois que vous avez récupéré ces 4 fichiers exécutables, executez-les dans l'ordre de téléchargement 1 par 1.
 
   ##### Clône du repositorie GitHub:
+  Veillez à redémarrer votre machine si nécessaire pour permettre à votre système de bien intégrer l'installation des logiciels précédents. Après cela, il vous faut installer différentes dépendances nécessaires au bon fonctionnement du jeu.
   Après avoir installer les 4 fichiers executables, vous devez récupérer le projet. Pour ce faire, dans votre invite de commande, exécutez la commande ci-dessous :
 
   > Clone du dossier contenant le jeu
@@ -89,7 +90,6 @@ Afin de pouvoir utiliser le jeu sans soucis, nous vous demandons de bien vouloir
   ```
  
   ##### Téléchargement des dépendances nécessaires au jeu :
-  Veillez à redémarrer votre machine si nécessaire pour permettre à votre système de bien intégrer l'installation des logiciels précédents. Après cela, il vous faut installer différentes dépendances nécessaires au bon fonctionnement du jeu.
   Vous avez 2 possibilités de le faire :
   
   - Vous pouvez exécuter simplement le script [Installateur_dépendances](Installateurs/Installateur_dependances.py).
