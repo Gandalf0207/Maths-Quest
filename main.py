@@ -1434,7 +1434,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                         elif Niveau ==1:
                             text_complet_consignes = f"Vous devez résoudre ce calcul de volume, il vous faudra trouver le volume totale; selectionnez la bonne case et faites valider Attention; toutes les valerus donn&es sont en m etle résultat attendu en  m cube. Données : a = {Exo_correction[5][0]}; b ={Exo_correction[5][1]}; c ={Exo_correction[5][2]}; d ={Exo_correction[5][3]}; e ={Exo_correction[5][4]}; f ={Exo_correction[5][5]}; r ={Exo_correction[5][6]}"
                         elif Niveau ==2:
-                            text_complet_consignes = f"Vous devez résoudre ce rpoblème : Trouver les coordonnées de l'intersection entre [AB] et [CD]. Voici les coordonnées des points : A = {Exo_correction[5][0]}; B ={Exo_correction[5][1]}; C ={Exo_correction[5][2]}; D ={Exo_correction[5][3]}"
+                            text_complet_consignes = f"Vous devez résoudre ce problème : A l'aide des coordonnées, déterminez l'équation réduite de (AB) et (CD). Voici les coordonnées des points : A = {Exo_correction[5][0]}; B ={Exo_correction[5][1]}; C ={Exo_correction[5][2]}; D ={Exo_correction[5][3]}"
                         elif Niveau==3:
                             text_complet_consignes = "Vous devez résoudre cet exo pas encore fait"
                         elif Niveau==5:

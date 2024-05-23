@@ -95,72 +95,78 @@ def choix_exo_niveau(Niveau,Label_Frame_Canvas_formule_exo):
         eqt = "Aucune equation nécéssaire"
         #Script provenat de stack overflow et adapté par nous
         def reload_function():
-            def equation_reduite(droite1, droiteB):
-                m1 = droite1[0]
-                print(m1)
+            XA = random.randint(-10,10)
+            XB = random.randint(-10,10)
+            XC = random.randint(-10,10)
+            XD = random.randint(-10,10)
 
-                # (yB - yA)/(xB-xA)
+            YA = random.randint(-10,10)
+            YB = random.randint(-10,10)
+            YC = random.randint(-10,10)
+            YD = random.randint(-10,10)
+
+            m1 = 0.01
+            while m1 != round(m1,1):
+                XA = random.randint(-10,10)
+                XB = random.randint(-10,10)
+                YA = random.randint(-10,10)
+                YB = random.randint(-10,10)
+
+                A = (XA, YA) 
+                B = (XB, YB) 
+
+                if (XA != 0 and XB != 0 and XC != 0 and XD != 0 and YA != 0 and YB != 0 and YC != 0 and YD != 0) and (XB != XA and YB != YA):
+                    m1 = (B[1]- A[1]) / (B[0] - A[0])
+                p1 = A[1] - (m1*A[0]) 
+
+
+            m2 = 0.01
+            while m2 != round(m2,1):
+
+                XC = random.randint(-10,10)
+                XD = random.randint(-10,10)
+                YC = random.randint(-10,10)
+                YD = random.randint(-10,10)
+
+                C = (XC, YC)
+                D = (XD, YD)
+
+                if (XC != 0 and XD != 0 and XC != 0 and XD != 0 and YC != 0 and YD != 0 and YC != 0 and YD != 0) and (XD != XC and YD != YC):
+                    m2 = (D[1]- C[1]) / (D[0] - C[0])
+                p2 = C[1] - (m2*C[0]) 
 
 
 
-
-
-
-            
-            XA = random.randint(-50,50)
-            XB = random.randint(-50,50)
-            XC = random.randint(-50,50)
-            XD = random.randint(-50,50)
-
-            YA = random.randint(-50,50)
-            YB = random.randint(-50,50)
-            YC = random.randint(-50,50)
-            YD = random.randint(-50,50)
-            while XA == YA or XB == YB or XC == YC or XD == YD:
-                YA = random.randint(-50,50)
-                YB = random.randint(-50,50)
-                YC = random.randint(-50,50)
-                YD = random.randint(-50,50)
-
-            A = (XA, YA) 
-            B = (XB, YB) 
-            C = (XC, YC)
-            D = (XD, YD)
-            print("A = ", A)
-            print("B = ", B)
-            print("C = ", C)
-            print("D = ", D)
-
-            return ([equation_reduite((A, B), (C, D)), A, B, C, D])
+            return ([m1, round(p1,1), m2, round(p2,1), A, B, C, D])
 
 
         valeur = reload_function()
-        if valeur =="erreur":
-            while valeur =="erreur":
-                Label_Frame_Canvas_formule_exo.delete('all')
-                valeur = reload_function()
+
+        # Label_Frame_Canvas_formule_exo.delete('all')
 
 
         # Formatage des résultats en chaînes de caractères
-        resultat = f"{valeur[0]}"
+        resultat = f"Equation réduite de (AB) : {valeur[0]}x + {valeur[1]} \n Equation réduite de (CD) : {valeur[2]}x + {valeur[3]}"
         print(resultat)
-        f1 = valeur[0][0]
-        f2 = valeur[0][1]
-        a1, a2 = random.randint(-10, 10), random.randint(-10, 10)
-        a3, a4 = random.randint(-10, 10), random.randint(-10, 10)
-        resultat2 = f"({f1+a1}, {f2-a2})"
-        resultat3 = f"({f1-a3}, {f2-a4})"
-        A = valeur[1]
-        B = valeur[2]
-        C = valeur[3]
-        D = valeur[4]
+
+        resultat2 =  f"Equation réduite de (AB) : {valeur[1]}x + {valeur[0]} \n Equation réduite de (CD) : {valeur[3]}x + {valeur[2]}"
+        resultat3 =  f"Equation réduite de (AB) : {valeur[2]}x + {valeur[3]} \n Equation réduite de (CD) : {valeur[0]}x + {valeur[1]}"
+        A = valeur[4]
+        B = valeur[5]
+        C = valeur[6]
+        D = valeur[7]
         points = [A, B, C, D]
 
         # Créez un graphique Matplotlib
         fig, ax = plt.subplots()  # Ajoutez "ax" ici
+        compteur_pts = 0
+        l_pts = ["A","B","C","D"]
         for x, y in points:
+            
             ax.scatter(x, y, color='blue', marker='o', label=f"({x}, {y})")
             ax.text(x, y, f"({x}, {y})", ha='center', va='bottom')  # Ajoutez l'étiquette
+            ax.text(x, y-0.3, l_pts[compteur_pts], ha='center', va='top')
+            compteur_pts+=1
 
         # Supprimez les axes
         ax.axis('off')  # Ajoutez cette ligne pour masquer les axes
