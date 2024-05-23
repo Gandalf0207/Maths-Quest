@@ -95,22 +95,18 @@ def choix_exo_niveau(Niveau,Label_Frame_Canvas_formule_exo):
         eqt = "Aucune equation nécéssaire"
         #Script provenat de stack overflow et adapté par nous
         def reload_function():
-            def line_intersection(line1, line2):
-                xdiff = (line1[0][0] - line1[1][0], line2[0][0] - line2[1][0])
-                ydiff = (line1[0][1] - line1[1][1], line2[0][1] - line2[1][1])
+            def equation_reduite(droite1, droiteB):
+                m1 = droite1[0]
+                print(m1)
 
-                def det(a, b):
-                    return a[0] * b[1] - a[1] * b[0]
+                # (yB - yA)/(xB-xA)
 
-                div = det(xdiff, ydiff)
-                if div == 0:
-                    return 'erreur'
 
-                d = (det(*line1), det(*line2))
-                x = det(d, xdiff) / div
-                y = det(d, ydiff) / div
-                return int(x), int(y)
 
+
+
+
+            
             XA = random.randint(-50,50)
             XB = random.randint(-50,50)
             XC = random.randint(-50,50)
@@ -135,7 +131,7 @@ def choix_exo_niveau(Niveau,Label_Frame_Canvas_formule_exo):
             print("C = ", C)
             print("D = ", D)
 
-            return ([line_intersection((A, B), (C, D)), A, B, C, D])
+            return ([equation_reduite((A, B), (C, D)), A, B, C, D])
 
 
         valeur = reload_function()
