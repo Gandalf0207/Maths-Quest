@@ -62,6 +62,8 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
 
 
     Jeu = Tk()
+    Jeu.config(bg = "#BBC4E3")
+
     if type_partie =='all':
         tours = 9
     elif type_partie =='seconde':
@@ -70,6 +72,12 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
         tours = 9
 
     if Niveau < tours:
+        if Niveau==4 or Niveau ==8:
+            Jeu.title(f"Maths-Quest | Niveau Boss       © PLADEAU Quentin LUBAN Théo")
+        else:
+            Jeu.title("Maths-Quest | Niveau Jeu       © PLADEAU Quentin LUBAN Théo")
+
+
         #On crée la map 
         longueur = 38
         largeur = 21
@@ -311,7 +319,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
 
             #verif si table de craft dispo et si oui on affiche le msg d'information
             if L[ordonne][abscisse-1] == "¤":
-                Label_text_possibilite_strvar.set("Appuie sur 'C' pour assembler la grande Clé !")
+                Label_text_possibilite_strvar.set("Appuie sur 'c' pour assembler la grande Clé !")
                 canvas_infos_possibilite_discussion.create_image(0,0,anchor=NW, image=craft_table_)
 
             #check si c'est la porte et on met à jour les infos dans le cadre e bas à gauche
@@ -1348,7 +1356,6 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                         pnj_ = "pnj2"
                         pnj_infos_ = pnj2_infos
                         canvas_tete_pnj_grand.create_image(0, 0, anchor=NW, image=pnj2_grand)
-###
 
                     #PNJ3
                     elif (L[ordonne-1][abscisse] == pnj_List[2] or L[ordonne+1][abscisse]== pnj_List[2] or L[ordonne][abscisse-1]== pnj_List[2] or L[ordonne][abscisse+1]== pnj_List[2]):
@@ -1436,7 +1443,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                         elif Niveau ==2:
                             text_complet_consignes = f"Vous devez résoudre ce problème : A l'aide des coordonnées, déterminez l'équation réduite de (AB) et (CD). Voici les coordonnées des points : A = {Exo_correction[5][0]}; B ={Exo_correction[5][1]}; C ={Exo_correction[5][2]}; D ={Exo_correction[5][3]}"
                         elif Niveau==3:
-                            text_complet_consignes = "Vous devez résoudre cet exo pas encore fait"
+                            text_complet_consignes = "Vous devez résoudre ce système à 2 inconnues en trouvant la valeur de x et y."
                         elif Niveau==5:
                             text_complet_consignes = "Vous devez résoudre cet exo pas encore fait"
                         elif Niveau==6:
@@ -1463,11 +1470,9 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
 
                     elif c_sw==6:
                         if erreur == 0:
-                            if Niveau ==0:
-                                text_complet_consignes ="Cliquez sur suivant pour passez au niveau suppérieur !"
-                            elif Niveau ==1:
-                                text_complet_consignes ="Cliquez sur suivant pour passez au niveau suppérieur !"
-                            elif Niveau ==3:
+                            if niveau ==3 or niveau==7:
+                                text_complet_consignes ="Cliquez sur suivant pour passez au niveau du boss !"
+                            else:
                                 text_complet_consignes ="Cliquez sur suivant pour passez au niveau suppérieur !"
 
                         else:
@@ -1510,7 +1515,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                 c_sw = 0
 
                 second_window_probleme = Toplevel()  # Utiliser Toplevel au lieu de Tk pour une nouvelle fenêtre indépendante
-                # second_window_probleme.geometry("400x600") 
+                second_window_probleme.title("Maths-Quest | Porte Exercice       © PLADEAU Quentin LUBAN Théo")
 
                 ####frame global de la fenetre
                 Label_Frame_global_second_window = Frame(second_window_probleme, bg = "#BBC4E3")
@@ -1523,9 +1528,11 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                 #on load les element de consignes
                 Label_Text_Explication_Exercice_strvar = StringVar()
                 Label_Text_Explication_Exercice_strvar.set("Cliquez sur suivant !")
-                len_wrap = 330
+                len_wrap = 350
                 if Niveau==1:
                     len_wrap =625
+                elif Niveau ==2:
+                    len_wrap = 400
                 Label_Text_Explication_Exercice_widget = Label(Label_Frame_Canvas_consignes_explication_btn,wraplength=len_wrap, textvariable = Label_Text_Explication_Exercice_strvar, justify="left"  )
                 Label_Text_Explication_Exercice_widget.pack(fill='x',side = LEFT, padx= 5, pady=5)
                 Label_btn_suivant_second_window = Button(Label_Frame_Canvas_consignes_explication_btn, text="Suivant !", command=lambda:affiche_consigne(Niveau))
@@ -1744,7 +1751,8 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
 
 
                 boss_window = Toplevel()  # Utiliser Toplevel au lieu de Tk pour une nouvelle fenêtre indépendante
-                # boss_window.geometry("400x600") 
+                boss_window.title("Maths-Quest | Boss Exercices       © PLADEAU Quentin LUBAN Théo")
+
 
                 #####frame global de la fenetre
                 Label_Frame_global_boss = Frame(boss_window, bg = "#BBC4E3")
@@ -1960,7 +1968,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
         canvas_tete_pnj_grand = Canvas(Label_Frame_Discussion_pnj, bg=None, height=100, width=100)
         canvas_tete_pnj_grand.pack(anchor="c", padx=10,pady=5, side=LEFT)
         Label_texte_parole_discussion_pnj_strvar = StringVar()
-        Label_texte_parole_discussion_pnj_widget = Label(Label_Frame_Discussion_pnj, textvariable=Label_texte_parole_discussion_pnj_strvar, wraplength=320, justify="left")
+        Label_texte_parole_discussion_pnj_widget = Label(Label_Frame_Discussion_pnj, textvariable=Label_texte_parole_discussion_pnj_strvar, wraplength=350, justify="left")
         Label_texte_parole_discussion_pnj_widget.pack(side=LEFT, padx=5, pady=5)
 
 
@@ -2048,7 +2056,10 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                 elif nb_check ==1:
                     text2_medaille.set(L_Text_resultat_medaille[indices_give_2])
 
-
+        def acces_credits():
+            global Niveau
+            Niveau +=1
+            Gestion_Jouer(Jeu,Niveau,type_partie)
 
         if type_partie=='seconde':
             if indices_give_1 ==0:
@@ -2089,31 +2100,36 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
             elif indices_give_2 ==3:
                 img_resultat2 = PhotoImage(file = "image/bronze.png")  
 
-
-        Label_titre_resultat_partie = Label(Jeu, text = 'Résultats')
+        Jeu.title("Maths-Quest | Résultats       © PLADEAU Quentin LUBAN Théo")
+        Label_titre_resultat_partie = Label(Jeu, text = 'Résultats',bg = '#BBC4E3')
         Label_titre_resultat_partie.pack(pady=10)
 
         #Frame global pour afficher les éléments des résultats
-        Label_Frame_global_resultat = Frame(Jeu, bg = 'red')
+        Label_Frame_global_resultat = Frame(Jeu, bg = '#BBC4E3')
         Label_Frame_global_resultat.pack(expand=True, fill=BOTH, pady= 5, padx = 5)
+
+        Label_btn_suivant = Button(Jeu,text="Crédits", command=acces_credits)
+        Label_btn_suivant.pack(side=BOTTOM)
+
+        Jeu.protocol("WM_DELETE_WINDOW", acces_credits)
 
         if type_partie !='all':
             #Frame avec les elements des resulat (sous frame)
-            Label_Frame_resultat_titre_elements = Frame(Label_Frame_global_resultat, bg = 'green')
+            Label_Frame_resultat_titre_elements = Frame(Label_Frame_global_resultat, bg = '#99A6D0')
             Label_Frame_resultat_titre_elements.pack(expand=True, fill=BOTH, pady=5, padx=5)
 
-            Label_titre_type_partie_resultat = Label(Label_Frame_resultat_titre_elements, text = type_partie, anchor = NW)
+            Label_titre_type_partie_resultat = Label(Label_Frame_resultat_titre_elements, text = type_partie, anchor = NW, bg='#99A6D0')
             Label_titre_type_partie_resultat.pack(pady=5, padx=5, side=TOP)
 
             #frame avec le canvas de la médaille en fonction des indices est du text correspondant de félicitation(sous-sous frame)
-            Label_Frame_resultat_canvas_text = Frame(Label_Frame_resultat_titre_elements, bg='blue')
+            Label_Frame_resultat_canvas_text = Frame(Label_Frame_resultat_titre_elements, bg='#99A6D0')
             Label_Frame_resultat_canvas_text.pack(side=TOP, pady=5, padx=5)
 
-            Label_canvas_medailles = Canvas(Label_Frame_resultat_canvas_text, width=75, height=75)
+            Label_canvas_medailles = Canvas(Label_Frame_resultat_canvas_text, width=75, height=75, bg = None)
             Label_canvas_medailles.pack(side=LEFT, pady=5, padx=5)
 
             text_medaille= StringVar()
-            Label_text_resultat = Label(Label_Frame_resultat_canvas_text, textvariable=text_medaille)
+            Label_text_resultat = Label(Label_Frame_resultat_canvas_text, textvariable=text_medaille, bg='#99A6D0')
             Label_text_resultat.pack(side=RIGHT, pady=5, padx=5)
 
             text_choix_medaille(type_partie, -1)
@@ -2122,21 +2138,22 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
         else:
             ### ELEMENT POUR LA PARTIE SECONDE
             #Frame avec les elements des resulat (sous frame)
-            Label_Frame_resultat_titre_elements = Frame(Label_Frame_global_resultat, bg = 'green')
+            
+            Label_Frame_resultat_titre_elements = Frame(Label_Frame_global_resultat, bg = '#99A6D0')
             Label_Frame_resultat_titre_elements.pack(expand=True, fill=BOTH, pady=5, padx=5)
 
-            Label_titre_type_partie_resultat = Label(Label_Frame_resultat_titre_elements, text = "seconde", anchor = NW)
+            Label_titre_type_partie_resultat = Label(Label_Frame_resultat_titre_elements, text = "seconde", anchor = NW, bg='#99A6D0')
             Label_titre_type_partie_resultat.pack(pady=5, padx=5, side=TOP)
 
             #frame avec le canvas de la médaille en fonction des indices est du text correspondant de félicitation(sous-sous frame)
-            Label_Frame_resultat_canvas_text = Frame(Label_Frame_resultat_titre_elements, bg='blue')
+            Label_Frame_resultat_canvas_text = Frame(Label_Frame_resultat_titre_elements, bg='#99A6D0')
             Label_Frame_resultat_canvas_text.pack(side=TOP, pady=5, padx=5)
 
-            Label_canvas_medailles = Canvas(Label_Frame_resultat_canvas_text, width=75, height=75)
+            Label_canvas_medailles = Canvas(Label_Frame_resultat_canvas_text, width=75, height=75, bg='#99A6D0')
             Label_canvas_medailles.pack(side=LEFT, pady=5, padx=5)
 
             text_medaille= StringVar()
-            Label_text_resultat = Label(Label_Frame_resultat_canvas_text, textvariable=text_medaille)
+            Label_text_resultat = Label(Label_Frame_resultat_canvas_text, textvariable=text_medaille, bg='#99A6D0')
             Label_text_resultat.pack(side=RIGHT, pady=5, padx=5)
 
             text_choix_medaille(type_partie, 0)
@@ -2146,21 +2163,21 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
 
             #### ELEMENT POUR LA PARTIE PREMIERE
             #Frame avec les elements des resulat (sous frame)
-            Label_Frame_resultat_titre_elements2 = Frame(Label_Frame_global_resultat, bg = 'green')
+            Label_Frame_resultat_titre_elements2 = Frame(Label_Frame_global_resultat, bg='#99A6D0')
             Label_Frame_resultat_titre_elements2.pack(expand=True, fill=BOTH, pady=5, padx=5)
 
-            Label_titre_type_partie_resultat2 = Label(Label_Frame_resultat_titre_elements2, text = "premiere", anchor = NW)
+            Label_titre_type_partie_resultat2 = Label(Label_Frame_resultat_titre_elements2, text = "premiere", anchor = NW,bg='#99A6D0')
             Label_titre_type_partie_resultat2.pack(pady=5, padx=5, side=TOP)
 
             #frame avec le canvas de la médaille en fonction des indices est du text correspondant de félicitation(sous-sous frame)
-            Label_Frame_resultat_canvas_text2 = Frame(Label_Frame_resultat_titre_elements2, bg='blue')
+            Label_Frame_resultat_canvas_text2 = Frame(Label_Frame_resultat_titre_elements2,bg='#99A6D0')
             Label_Frame_resultat_canvas_text2.pack(side=TOP, pady=5, padx=5)
 
-            Label_canvas_medailles2 = Canvas(Label_Frame_resultat_canvas_text2, width=75, height=75)
+            Label_canvas_medailles2 = Canvas(Label_Frame_resultat_canvas_text2, width=75, height=75,bg='#99A6D0')
             Label_canvas_medailles2.pack(side=LEFT, pady=5, padx=5)
 
             text2_medaille= StringVar()
-            Label_text_resultat2 = Label(Label_Frame_resultat_canvas_text2, textvariable=text2_medaille)
+            Label_text_resultat2 = Label(Label_Frame_resultat_canvas_text2, textvariable=text2_medaille,bg='#99A6D0')
             Label_text_resultat2.pack(side=RIGHT, pady=5, padx=5)
 
             text_choix_medaille(type_partie, 1)
@@ -2170,8 +2187,14 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
 
 
     else:
+
+
+        Jeu.title("Maths-Quest | Crédits  © PLADEAU Quentin LUBAN Théo")
+
         Label_Titre_Credits = Label(Jeu, text = "Crédits")
         Label_Titre_Credits.pack(pady=15)
+
+
     
     Jeu.mainloop()
 
@@ -2227,7 +2250,7 @@ global Niveau
 Niveau = 0
 
 Lancement = Tk()
-Lancement.title("Maths-Quest : Lancement  Théo | Quentin")
+Lancement.title("Maths-Quest | Lancement      © PLADEAU Quentin LUBAN Théo")
 Lancement.geometry("350x400")
 Lancement.config(bg = "#BBC4E3")
 
