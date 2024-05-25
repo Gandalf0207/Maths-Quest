@@ -15,6 +15,7 @@ import labyrinthe
 import custom_labyrinthe
 import py_maths_exo
 import py_maths_boss
+import formule_latex
 
 plt.rcParams['text.usetex'] = True
 
@@ -35,6 +36,9 @@ second_window_probleme= None
 global boss_window
 boss_window= None
 
+global Regle
+Regle= None
+
 # Valeurs permettant de déterminer le nombre d'indices utilisé et de pouvoir afficher le résultats
 global indices_give_1
 global indices_give_2
@@ -53,6 +57,8 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
     global boss_window
     boss_window= None
 
+    global Regle
+    Regle= None
 
 
 
@@ -1534,31 +1540,46 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
 
             if not second_window_probleme or not second_window_probleme.winfo_exists():  # Vérifie si la deuxième fenêtre existe
                 def affiche_consigne(Niveau):
+
+                    def insert_consignes_exo(text_complet_consignes):
+                        Label_btn_suivant_second_window ['state'] = DISABLED
+                        for i in range(len(text_complet_consignes)):
+                            Label_scrollbox_consignes_exo.config(state=NORMAL)
+                            Label_scrollbox_consignes_exo.delete('1.0', END)
+                            text_partiel_second_window = text_complet_consignes[:i+1]
+                            Label_scrollbox_consignes_exo.insert(END, f"{text_partiel_second_window}")
+                            Label_scrollbox_consignes_exo.update()
+                            Label_scrollbox_consignes_exo.config(state=DISABLED)
+
+                            time.sleep(0.01)
+                        Label_btn_suivant_second_window ['state'] = NORMAL
+
+
                     global erreur
                     global c_sw
                     c_sw  += 1
-
-                    text_complet_consignes = ""
                     
                     if c_sw==1:
-                        text_complet_consignes = "Pour pouvoir tourner la clé et ainsi dévérouiller la porte, vous devez résoudre cette exercice ! "
+                        insert_consignes_exo("Pour pouvoir tourner la clé et ainsi dévérouiller la porte, vous devez résoudre cette exercice ! ")
                     elif c_sw==2:
-                        text_complet_consignes = "Toutes les parties du cours que vous avez collectées vous serviront pour répondre ! Vous pouvez les consulter "
+                        insert_consignes_exo("Toutes les parties du cours que vous avez collectées vous serviront pour répondre ! Vous pouvez les consulter ")
                     elif c_sw==3:
                         if Niveau ==0:
-                            text_complet_consignes = "Vous devez résoudre cette équation du premier degré en trouvant la valeur de x. Apres avoir résolu cette equation; selectionnez la bonne case et faites valider"
+                            insert_consignes_exo("Vous devez résoudre cette équation du premier degré en trouvant la valeur de x. Apres avoir résolu cette equation; selectionnez la bonne case et faites valider \n \n")
+                            formule_latex.make_formule(Exo_correction[0],Label_scrollbox_consignes_exo)
                         elif Niveau ==1:
-                            text_complet_consignes = f"Vous devez résoudre ce calcul de volume, il vous faudra trouver le volume totale; selectionnez la bonne case et faites valider Attention; toutes les valerus donn&es sont en m etle résultat attendu en  m cube. Données : a = {Exo_correction[5][0]}; b ={Exo_correction[5][1]}; c ={Exo_correction[5][2]}; d ={Exo_correction[5][3]}; e ={Exo_correction[5][4]}; f ={Exo_correction[5][5]}; r ={Exo_correction[5][6]}"
+                            insert_consignes_exo(f"Vous devez résoudre ce calcul de volume, il vous faudra trouver le volume totale; selectionnez la bonne case et faites valider Attention; toutes les valerus donn&es sont en m etle résultat attendu en  m cube. Données : a = {Exo_correction[5][0]}; b ={Exo_correction[5][1]}; c ={Exo_correction[5][2]}; d ={Exo_correction[5][3]}; e ={Exo_correction[5][4]}; f ={Exo_correction[5][5]}; r ={Exo_correction[5][6]}")
                         elif Niveau ==2:
-                            text_complet_consignes = f"Vous devez résoudre ce problème : A l'aide des coordonnées, déterminez l'équation réduite de (AB) et (CD). Voici les coordonnées des points : A = {Exo_correction[5][0]}; B ={Exo_correction[5][1]}; C ={Exo_correction[5][2]}; D ={Exo_correction[5][3]}"
+                            insert_consignes_exo(f"Vous devez résoudre ce problème : A l'aide des coordonnées, déterminez l'équation réduite de (AB) et (CD). Voici les coordonnées des points : A = {Exo_correction[5][0]}; B ={Exo_correction[5][1]}; C ={Exo_correction[5][2]}; D ={Exo_correction[5][3]}")
                         elif Niveau==3:
-                            text_complet_consignes = "Vous devez résoudre ce système à 2 inconnues en trouvant la valeur de x et y."
+                            insert_consignes_exo("Vous devez résoudre ce système à 2 inconnues en trouvant la valeur de x et y.")
+                            formule_latex.make_formule(Exo_correction[0],Label_scrollbox_consignes_exo)
                         elif Niveau==5:
-                            text_complet_consignes = "Vous devez résoudre cet exo pas encore fait"
+                            insert_consignes_exo("Vous devez résoudre cet exo pas encore fait")
                         elif Niveau==6:
-                            text_complet_consignes = "Vous devez résoudre cet exo pas encore fait"
+                            insert_consignes_exo("Vous devez résoudre cet exo pas encore fait")
                         elif Niveau==7:
-                            text_complet_consignes = "Vous devez résoudre cet exo pas encore fait"
+                            insert_consignes_exo("Vous devez résoudre cet exo pas encore fait")
         
                     elif c_sw==4:
                         Label_btn_suivant_second_window ['state'] = DISABLED
@@ -1573,16 +1594,16 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                         Label_btn_result_possible_3.pack(side = LEFT, padx= 25, pady = 5)
                     elif c_sw==5:
                         if erreur == 0:
-                            text_complet_consignes = "Bravo ! Vous avez trouvé la bonne solution !"
+                            insert_consignes_exo("Bravo ! Vous avez trouvé la bonne solution !")
                         else:
-                            text_complet_consignes = "Vous n'avez pas trouvé la bonne solution, cliquez sur suivant pour recommencer !"
+                            insert_consignes_exo("Vous n'avez pas trouvé la bonne solution, cliquez sur suivant pour recommencer !")
 
                     elif c_sw==6:
                         if erreur == 0:
-                            if niveau ==3 or niveau==7:
-                                text_complet_consignes ="Cliquez sur suivant pour passez au niveau du boss !"
+                            if Niveau ==3 or Niveau==7:
+                                insert_consignes_exo("Cliquez sur suivant pour passez au niveau du boss !")
                             else:
-                                text_complet_consignes ="Cliquez sur suivant pour passez au niveau suppérieur !"
+                                insert_consignes_exo("Cliquez sur suivant pour passez au niveau suppérieur !")
 
                         else:
                             second_window_probleme.destroy()
@@ -1595,16 +1616,6 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
 
 
 
-                    
-                    if  4 > c_sw  or 5 <= c_sw <7:
-
-                        Label_btn_suivant_second_window ['state'] = DISABLED
-                        for i in range(len(text_complet_consignes)):
-                            text_partiel_second_window = text_complet_consignes[:i+1]
-                            Label_Text_Explication_Exercice_strvar.set(f"{text_partiel_second_window}")
-                            Label_Text_Explication_Exercice_widget.update()
-                            time.sleep(0.01)
-                        Label_btn_suivant_second_window ['state'] = NORMAL
     
                 def verif_reponse_sw(reponse, correction,Label_btn_result_possible_1,Label_btn_result_possible_2,Label_btn_result_possible_3):
                     Label_btn_result_possible_1.destroy()
@@ -1630,61 +1641,53 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                 Label_Frame_global_second_window = Frame(second_window_probleme, bg = "#BBC4E3")
                 Label_Frame_global_second_window.pack(expand=True, fill="both")
 
+                if Niveau ==0:
+                    exo_nom = "Equation du premier degré"
+                elif Niveau==1:
+                    exo_nom = "Volumes"
+                elif Niveau ==2:
+                    exo_nom ="Fonctions affines & Equation de droite"
+                elif Niveau==3:
+                    exo_nom ="Système à 2 inconnues"
+                elif Niveau ==5:
+                    exo_nom ="Polynome second degré (polynôme)"
+                elif Niveau==6:
+                    exo_nom ="Dérivation"
+                elif Niveau ==7:
+                    exo_nom ="Suites"
+
+                Label_text_infos_type_exo =Label(Label_Frame_global_second_window, text=exo_nom, font=('Arial',12), bg="#BBC4E3")
+                Label_text_infos_type_exo.pack(anchor="nw",side= TOP, pady=5, padx=5)
+
+
                 ###frame qui conteintdra toutes les consignes / explications et le btn suivant
-                Label_Frame_Canvas_consignes_explication_btn = Frame(Label_Frame_global_second_window, bg= None)
-                Label_Frame_Canvas_consignes_explication_btn.pack(side=TOP, fill='x', pady= 5, padx=5)
+                Label_Frame_Canvas_consignes_explication_btn = Frame(Label_Frame_global_second_window, bg="#99A6D0")
+                Label_Frame_Canvas_consignes_explication_btn.pack(side=TOP, expand=True, fill=BOTH, pady= 5, padx=5)
 
                 #on load les element de consignes
-                Label_Text_Explication_Exercice_strvar = StringVar()
-                Label_Text_Explication_Exercice_strvar.set("Cliquez sur suivant !")
-                len_wrap = 350
-                if Niveau==1:
-                    len_wrap =625
-                elif Niveau ==2:
-                    len_wrap = 400
-                Label_Text_Explication_Exercice_widget = Label(Label_Frame_Canvas_consignes_explication_btn,wraplength=len_wrap, textvariable = Label_Text_Explication_Exercice_strvar, justify="left"  )
-                Label_Text_Explication_Exercice_widget.pack(fill='x',side = LEFT, padx= 5, pady=5)
+                Label_scrollbox_consignes_exo = scrolledtext.ScrolledText(Label_Frame_Canvas_consignes_explication_btn, wrap='word', font=("Arial", 10), height=7)
+                Label_scrollbox_consignes_exo.pack(side=LEFT, fill=BOTH, expand=True, pady= 5, padx = 5)
+                Label_scrollbox_consignes_exo.insert(END, 'Clique sur suivant !')
+
                 Label_btn_suivant_second_window = Button(Label_Frame_Canvas_consignes_explication_btn, text="Suivant !", command=lambda:affiche_consigne(Niveau))
                 Label_btn_suivant_second_window.pack(side=TOP, anchor="e", pady=5, padx=5)
 
-                ### frame qui contient le canvas qui affichera la formule
-                Label_Frame_Canvas_formule_exo = Frame(Label_Frame_global_second_window, bg="#99A6D0")
-                Label_Frame_Canvas_formule_exo.pack(side=TOP, fill='y', pady= 5, padx=5)
+                Label_Frame_Canvas_formule_exo = None
+
+                if Niveau ==1 or Niveau ==2:
+                    ### frame qui contient le canvas qui affichera une ilage au besoins
+                    Label_Frame_Canvas_formule_exo = Frame(Label_Frame_global_second_window, bg="#99A6D0")
+                    Label_Frame_Canvas_formule_exo.pack(side=TOP, fill='y', pady= 5, padx=5)
+
+                    if Niveau ==1:
+                        Label_canvas_img_sw = Canvas(Label_Frame_Canvas_formule_exo, width = 713, height = 487, bg = "#ffffff")
+                        Label_canvas_img_sw.pack(padx=5,pady=5)
+                        Label_canvas_img_sw.create_image(0,0,anchor=NW, image=Volume_nv1)
+
 
                 # on recupère la formule et la correction
                 Exo_correction = py_maths_exo.choix_exo_niveau(Niveau,Label_Frame_Canvas_formule_exo)
                 print(Exo_correction)
-
-                if Niveau !=1 and Niveau !=2:
-                    #On load le canvas avec sa formule qu'on a recup depuis le ficheir py-math_exo
-                    #Code Ia /Internet # Formater la formule avec les nombres aléatoires
-                    formule = Exo_correction[0]
-                    # Créer une figure matplotlib sans légendes et sans box
-                    fig = Figure(figsize=(5, 2), dpi=100, frameon=False)  # Taille initiale de la figure sans boîte englobante
-                    # Ajouter un sous-graphique
-                    ax = fig.add_subplot(111)
-                    # Supprimer les légendes et la boîte englobante
-                    ax.axis('off')
-                    # Ajouter la formule mathématique
-                    ax.text(0.5, 0.5, formule, fontsize=20, ha='center')
-                    # Obtenir les limites de la boîte englobante de la formule
-                    bbox = ax.get_window_extent().transformed(fig.dpi_scale_trans.inverted())
-                    # Redimensionner la figure en fonction de la taille de la formule
-                    fig.set_size_inches(5, bbox.height)
-                    # Créer un canvas Tkinter
-                    canvas_formule_exo_sw = FigureCanvasTkAgg(fig, master=Label_Frame_Canvas_formule_exo)
-                    canvas_formule_exo_sw.draw()
-                    # Afficher le canvas
-                    canvas_formule_exo_sw.get_tk_widget().pack(padx=5, pady=5)
-
-
-
-                elif Niveau ==1:
-                    Label_canvas_img_sw = Canvas(Label_Frame_Canvas_formule_exo, width = 713, height = 487, bg = "#ffffff")
-                    Label_canvas_img_sw.pack(padx=5,pady=5)
-                    Label_canvas_img_sw.create_image(0,0,anchor=NW, image=Volume_nv1)
-
-                #le nv 2 ce gère tout seul
 
 
 
@@ -1802,7 +1805,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
    
                 
                 def Give_indices_boss(Niveau):
-
+                    
                     def ajouter_element_indices(Texte_): #Une partie de la gestion du code de la liste box provient d'internet
                         global listbox_indices
                         element_ = Texte_.strip()
@@ -1945,21 +1948,26 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
 
 
         def regle_infos_jeu(event):
-            Regle = Toplevel()
-            Regle.title("Maths-Quest | Règles & Aide       © PLADEAU Quentin LUBAN Théo")
+            global Regle 
 
-            Label_titre_regle = Label(Regle, text="Maths-Quest : Règles & Aide", font=("Arial", 12)).pack(pady=5)
+            if not Regle  or not Regle.winfo_exists():  # Vérifie si la deuxième fenêtre existe
 
-            Label_Frame_Touche = Frame(Regle, bg = "#000000")
-            Label_Frame_Touche.pack(expand=True, fill="both")
+                Regle = Toplevel()
+                Regle.config(bg = "#BBC4E3")
+                Regle.title("Maths-Quest | Règles & Aide       © PLADEAU Quentin LUBAN Théo")
 
-            Label_frame_1 = Frame(Label_Frame_Touche, bg = "blue", width=250)
-            Label_frame_1.pack(fill='y', side=LEFT, pady=5, padx=5)
+                Label_titre_regle = Label(Regle, text="Maths-Quest : Règles & Aide", font=("Arial", 12), bg = "#BBC4E3").pack(pady=5)
 
-            scroll_text_touche_help = scrolledtext.ScrolledText(Label_frame_1, wrap=WORD,width = 35, font=("Arial", 10))
-            scroll_text_touche_help.pack(expand=True, fill='both', pady = 5, padx = 5)
+                Label_Frame_Touche = Frame(Regle, bg = "#BBC4E3")
+                Label_Frame_Touche.pack(expand=True, fill="both")
 
-            text_touche_help = """
+                Label_frame_1 = Frame(Label_Frame_Touche, bg = "#99A6D0", width=250)
+                Label_frame_1.pack(fill='y', side=LEFT, pady=5, padx=5)
+
+                scroll_text_touche_help = scrolledtext.ScrolledText(Label_frame_1, wrap=WORD,width = 35, font=("Arial", 10))
+                scroll_text_touche_help.pack(expand=True, fill='both', pady = 5, padx = 5)
+
+                text_touche_help = """
     Les déplacements :
         Haut --> Touche '↑'
         Bas --> Touche '↓'
@@ -1975,28 +1983,55 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
         Obtenir de l'aide --> 'echap'
 """
 
-            scroll_text_touche_help.insert(END, text_touche_help)
+                scroll_text_touche_help.insert(END, text_touche_help)
+                scroll_text_touche_help.config(state=DISABLED)
 
 
+                Label_frame_2= Frame(Label_Frame_Touche, bg = "#99A6D0", width=250)
+                Label_frame_2.pack(fill='y', side ='right', pady=5, padx=5)
 
-            Label_frame_2= Frame(Label_Frame_Touche, bg = "blue", width=250)
-            Label_frame_2.pack(fill='y', side ='right', pady=5, padx=5)
+                scroll_text_regles_help = scrolledtext.ScrolledText(Label_frame_2, wrap=WORD,width = 60, font=("Arial", 10))
+                scroll_text_regles_help.pack(expand=True, fill='both', pady = 5, padx = 5)
 
-            scroll_text_regles_help = scrolledtext.ScrolledText(Label_frame_2, wrap=WORD,width = 60, font=("Arial", 10))
-            scroll_text_regles_help.pack(expand=True, fill='both', pady = 5, padx = 5)
-
-            text_regles_help = """
+                text_regles_help = """
     But du jeu
+Vous devez vous déplacer sur la carte pour rencontrer les différents personnages. Chaque personnage est unique, il est donc nécessaire de discuter avec chacun d'entre eux pour obtenir divers objets. Ces objets, une fois assemblés, vous permettront de déverrouiller la porte présente sur la carte.
+
+Lorsque vous atteindrez la porte, un problème en rapport avec le cours que vous avez suivi à ce niveau vous sera posé. Vous devrez le résoudre pour avancer.
+
+Une fois que vous aurez passé tous les niveaux, vous atteindrez le niveau "boss". Dans ce niveau, vous devrez résoudre un exercice récapitulatif couvrant les cours que vous avez suivis précédemment. Vous aurez à votre disposition le cours et trois indices.
+Attention, chaque indice utilisé affectera votre résultat final !
+
+Exemple de PNJ :
+
 """
 
-            scroll_text_regles_help.insert(END, text_regles_help)
+                scroll_text_regles_help.insert(END, text_regles_help)
 
-            image__ = PhotoImage(file="image/Iggy.png")  # Remplacez par le chemin de votre image
-            scroll_text_regles_help.image_create(END, image=image__)
+                image__0 = PhotoImage(file="image/Iggy.png")  # Remplacez par le chemin de votre image
+                image__1 = PhotoImage(file="image/Marchand_de_glace.png")
+                image__2 = PhotoImage(file="image/pnj1.png")
+                
+                scroll_text_regles_help.image_create(END, image=image__0)
+                scroll_text_regles_help.image_create(END, image=image__1)
+                scroll_text_regles_help.image_create(END, image=image__2)
+
+                text_regles_help2 = """
 
 
-            close_btn = Button(Regle, command=Regle.destroy, text="Fermer").pack(side=BOTTOM, pady = 5)
-            Regle.mainloop()
+Pour plus de renseignements : https://github.com/Gandalf0207/Maths-Quest
+"""
+
+                scroll_text_regles_help.insert(END, text_regles_help2)
+                scroll_text_regles_help.config(state=DISABLED)
+
+                close_btn = Button(Regle, command=Regle.destroy, text="Fermer").pack(side=BOTTOM, pady = 5)
+                Regle.mainloop()
+
+
+
+
+
 
         #fonction pass à supp dans version final
         def pass_(event):
@@ -2017,11 +2052,11 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
         global pnj3_infos
         global pnj4_infos
         global pnj5_infos
-        pnj1_infos = False
-        pnj2_infos = False
-        pnj3_infos = False
-        pnj4_infos = False  
-        pnj5_infos = False
+        pnj1_infos = True
+        pnj2_infos = True
+        pnj3_infos = True
+        pnj4_infos = True  
+        pnj5_infos = True
 
         # quad un elment est fabriqué, pour l'afficher correctement
 
