@@ -2078,7 +2078,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
         if Niveau==4 or Niveau==8:
             canvas.create_image(24*16, 24*7, anchor=NW, image=pnj_boss_grand)
 
-        canvas.pack(side="top",padx=5, pady=5)
+        canvas.pack(side="top",padx=5, pady=0)
 
         ###Frame gauche bas pour clé + pouvoir parler infos
         Label_Frame_pnj_Text = Frame(Label_Frame_Jeu_Inv, bg="#99A6D0")
@@ -2086,7 +2086,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
 
         ##Frame affiche le texte si on peut parler à un pnj ou faire un action
         Label_Frame_Text_Info_Discussion_pnj = Frame(Label_Frame_pnj_Text, bg= None)
-        Label_Frame_Text_Info_Discussion_pnj.pack(fill='y', padx=5, pady=5, side='left')
+        Label_Frame_Text_Info_Discussion_pnj.pack(fill='y', padx=5, pady=0, side='left')
 
         #On load les elements pour afficher les msg de possibilité de discution 
         canvas_infos_possibilite_discussion = Canvas(Label_Frame_Text_Info_Discussion_pnj, bg=None, height=50, width=50)
@@ -2107,7 +2107,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
     
         ## Frame de box de discussion avec les pnj 
         Label_Frame_Discussion_pnj = Frame(Label_Frame_pnj_Text, bg=None)
-        Label_Frame_Discussion_pnj.pack(expand=True, fill=BOTH, padx=5, pady=5, side='right')
+        Label_Frame_Discussion_pnj.pack(expand=True, fill=BOTH, padx=5, pady=0, side='right')
 
         #On load les element qui serviron aux boites de discussion des pnjs
         canvas_tete_pnj_grand = Canvas(Label_Frame_Discussion_pnj, bg=None, height=100, width=100)
@@ -2120,8 +2120,8 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
         Label_text_nom_pnj_strvar = StringVar()
         Label_text_nom_pnj_widget = Label(Label_frame_nompnj_dialoguepnj, textvariable=Label_text_nom_pnj_strvar, font=('Arial 10 bold'))
         Label_text_nom_pnj_widget.pack(side=TOP, anchor='nw')
-        Label_texte_parole_discussion_pnj_scrolltext = scrolledtext.ScrolledText(Label_frame_nompnj_dialoguepnj, wrap='word', width=40, height=7, font=('Arial', 10))
-        Label_texte_parole_discussion_pnj_scrolltext.pack(anchor="c",side=TOP, pady= 5, padx=5, fill=BOTH, expand=True)
+        Label_texte_parole_discussion_pnj_scrolltext = scrolledtext.ScrolledText(Label_frame_nompnj_dialoguepnj, wrap='word', width=40, height=5, font=('Arial', 10))
+        Label_texte_parole_discussion_pnj_scrolltext.pack(anchor="c",side=TOP, pady= 0, padx=5, fill=BOTH, expand=True)
         Label_texte_parole_discussion_pnj_scrolltext.config(state=DISABLED)
 
 
