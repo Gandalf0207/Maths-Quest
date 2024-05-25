@@ -458,9 +458,9 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
 
         def load_cours(Niveau, num_pnj):
             Liste_cours = [
-            "Lors de la résolution d’une équation du 1er degré il faut respecter l’égalité comme pour l’équilibre d’une balance \u2696 si on enlève un poids on le fait des 2 côtés.",
-            "Si une équation possède des x des 2 côtés de l’égalité il faut tous les faire passer d’un seul côté. Exemple : 3x + 2 = 5x + 3 devient 3x + 2 - 3x = 5x + 2 - 3x il suffit ensuite d’une résolution classique.",
-            "Dans une équation il faut annuler les étapes ainsi la soustraction s’oppose à l’addition et la division à la multiplication. Exemple de résolution d’équation : 3x + 2 = 5 devient 3x + 2 - 2 = 5 - 2 puis 3x/3 = 3/3 donc x = 1.", 
+            "De façon intuitive, une égalité fonctionne un peu comme une balance à deux plateaux \u2696 : si on effectue une opération d'un côté, il faut réaliser la même opération de l'autre côté pour garder l'équilibre.",
+            "Quelques propriétés : On peut ajouter (ou soustraire) un même nombre aux deux membres d'une égalité. \n a = b équivaut à a + c = b + c \n a = b  équivaut à a - c = b - c \n On peut multiplier (ou diviser) les deux membres d'une égalité par un même nombre non nul. \n a = b équivaut à a × c = b × c \n a = b équivaut à   a/c = b/c(c ≠ 0) \n Exemple :  \n 5x + 2 = 17 \n 5x + 2 - 2 = 17 - 2 \n 5x/5 = 15/5 \n x = 3",
+            "Si il y a des x dans les deux membres de l’équation il faut tout mettre dans le même. Exemple : \n 3x + 2 = 5x + 3 \n équivaut à  3x + 2 - 5x = 5x + 3 - 5x \n équivaut à  -2x + 2 = 3 \n et ainsi de suite", 
             
             "La formule de l’aire de la base d’un disque qui est π x rayon².",
             "Le volume du cylindre est base x hauteur soit π x rayon² x h.",
@@ -844,7 +844,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                             if c==1:
                                 insert_text("B’jour jeune aventurier, je pense que j’pourrais bien t’apprendre un truc aujourd’hui.")
                             elif c==2:
-                                insert_text("Pour résoudre une équation il faut respecter un certain équilibre comme une balance \u2696 , si une partie de l’égalité change alors l’autre coté aussi.")
+                                insert_text("De façon intuitive, une égalité fonctionne un peu comme une balance à deux plateaux \u2696 : si on effectue une opération d'un côté, il faut réaliser la même opération de l'autre côté pour garder l'équilibre.")
                             elif c==3:
                                 insert_text("Tiens voila pour m’avoir écouté; un fragment de clé que j’ai ramené lors de mon dernier voyage !")
 
@@ -916,11 +916,11 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                         # et le cours est différent en fonction du niveau (map qui change)
                         if Niveau ==0:
                             if c==1:
-                                insert_text("Iggy : Wouf Wouf, Wouf Wouf Wouf, Wouf Wouf Woaf ! Wouf ?(Votre waf français est un peu rouillé mais vous comprenez : “Salut moi c’est Iggy, retiens bien ce que je vais te dire !")
+                                insert_text("Wouf Wouf, Wouf Wouf Wouf, Wouf Wouf Woaf ! Wouf ?(Votre waf français est un peu rouillé mais vous comprenez : “Salut moi c’est Iggy, retiens bien ce que je vais te dire !")
                             elif c==2:
-                                insert_text("Iggy : Quand tu résous une équation s’il y a des x des deux côtés essaie de tout mettre du même côté ce sera plus simple tu verras ! Par exemple avec 3x + 2 = 5x + 3 qui devient 3x + 2 - 3x = 5x + 2 - 3x après il faut juste que tu la résolve.")
+                                insert_text("On peut ajouter (ou soustraire) un même nombre aux deux membres d'une égalité. \n a = b équivaut à a + c = b + c \n a = b  équivaut à a - c = b - c \n On peut multiplier (ou diviser) les deux membres d'une égalité par un même nombre non nul. \n a = b équivaut à a × c = b × c \n a = b équivaut à   a/c = b/c(c ≠ 0) \n par exemple 5x + 2 = 17 donne 5x + 2 - 2 = 17 - 2 puis 5x/5 = 15/5 donc x = 3")
                             elif c==3:
-                                insert_text("Iggy : D’ailleurs t’aurais pas des croquettes contre mon os doré ?")
+                                insert_text("D’ailleurs t’aurais pas des croquettes contre mon os doré ?")
                                 
                         elif Niveau ==1:
                             if c==1:
@@ -991,11 +991,11 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                         # et le cours est différent en fonction du niveau (map qui change)
                         if Niveau ==0:
                             if c==1:
-                                insert_text("Mathémami : Qu’est ce tu dis ?! Que tu n’as pas parlé ? Autant pour moi mon petit mes oreilles ne fonctionnent plus aussi bien qu’avant, j’ai l’impression que t’essais d’aller en ville pour que tu puisses passer je vais te montrer un truc.")
+                                insert_text("Qu’est ce tu dis ?! Que tu n’as pas parlé ? Autant pour moi mon petit mes oreilles ne fonctionnent plus aussi bien qu’avant, j’ai l’impression que t’essais d’aller en ville pour que tu puisses passer je vais te montrer un truc.")
                             elif c==2:
-                                insert_text("Mathémami : Si tu prends l’équation 3x + 2 = 5, il faudra que tu retires l’étape qui arrive en dernier, ici c’est 3x + 2 - 2 = 5 - 2 car la soustraction et l’addition s’oppose et la multiplication et la division aussi, après il ne te reste plus qu’à faire 3x/3 = 3/3 et tu obtiens x = 1.")
+                                insert_text("Quand tu résous une équation s’il y a des x des deux côtés essaie de tout mettre du même côté ce sera plus simple tu verras ! Par exemple : \n 3x + 2 = 5x + 3 \n équivaut à  3x + 2 - 5x = 5x + 3 - 5x \n équivaut à  -2x + 2 = 3 \n et ainsi de suite")
                             elif c==3:
-                                insert_text("Mathémami : Tiens avant de partir prends ce bidule il appartient à mon mari redonne lui si tu le vois en ville.")
+                                insert_text("Tiens avant de partir prends ce bidule il appartient à mon mari redonne lui si tu le vois en ville.")
 
                         elif Niveau ==1:
                             if c==1:
@@ -1170,9 +1170,9 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                     if pnj == "pnj1":
                         if Niveau ==0:
                             if c==1:
-                                insert_text("Leilégalité : On s’recroise dit donc ! T’as oublié ce qu’j’ai dit ? Alors écoute bien j’vais répéter, pour résoudre une équation il faut respecter un certain équilibre comme une balance \u2696, si une partie de l’égalité change alors l’autre coté aussi.")
+                                insert_text("On s’recroise dit donc ! T’as oublié ce qu’j’ai dit ? Alors écoute bien j’vais répéter, de façon intuitive, une égalité fonctionne un peu comme une balance à deux plateaux \u2696 : si on effectue une opération d'un côté, il faut réaliser la même opération de l'autre côté pour garder l'équilibre.")
                             elif c==2:
-                                insert_text("Leilégalité : Je t'ai déjà donné mon fragment de clé; bon courage dans ta quete !")
+                                insert_text("Je t'ai déjà donné mon fragment de clé; bon courage dans ta quete !")
 
                         elif Niveau ==1:
                             if c==1:
@@ -1214,9 +1214,9 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                     elif pnj == "pnj2":
                         if Niveau ==0:
                             if c==1:
-                                insert_text("Iggy : Wouf Wouf Wouf ? Wouf Wouf, Wouf. (Vous comprenez : “T’as oublié tout ce que j’ai dit ? Ça va te couter cher en croquettes mais je vais répéter, quand tu résous une équation s’il y a des x des deux côtés essaie de tout mettre du même côté par exemple avec 3x + 2 = 5x + 3 qui devient 3x + 2 - 3x = 5x + 2 - 3x après il faut juste que tu la résolve.")
+                                insert_text("Wouf Wouf Wouf ? Wouf Wouf, Wouf. (Vous comprenez : “T’as oublié tout ce que j’ai dit ? Ça va te couter cher en croquettes mais je vais répéter, on peut ajouter (ou soustraire) un même nombre aux deux membres d'une égalité. \n a = b équivaut à a + c = b + c \n a = b  équivaut à a - c = b - c \n On peut multiplier (ou diviser) les deux membres d'une égalité par un même nombre non nul. \n a = b équivaut à a × c = b × c \n a = b équivaut à   a/c = b/c(c ≠ 0) \n par exemple 5x + 2 = 17 donne 5x + 2 - 2 = 17 - 2 puis 5x/5 = 15/5 donc x = 3.")
                             elif c==2:
-                                insert_text("Iggy : Je n'est plus d'os dorépour toi... Mais il te reste des croquettes ?")
+                                insert_text("Je n'est plus d'os doré pour toi... Mais il te reste des croquettes ?")
 
                         elif Niveau ==1:
                             if c==1:
@@ -1258,9 +1258,9 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                     elif pnj == "pnj3":
                         if Niveau ==0:
                             if c==1:
-                                insert_text("Mathémami : ZzZ ZzZ… Ah ! Tu m’as fait peur, je suis vieille tu sais. Comment ? Tu veux que je réexplique ? Alors je vais te remontrer, si tu prends l’équation 3x + 2 = 5, il faudra que tu retires l’étape qui arrive en dernier, ici c’est 3x + 2 - 2 = 5 - 2 car la soustraction et l’addition s’oppose et la multiplication et la division aussi, après il ne te reste plus qu’à faire 3x/3 = 3/3 et tu obtiens x = 1.")
+                                insert_text("ZzZ ZzZ… Ah ! Tu m’as fait peur, je suis vieille tu sais. Comment ? Tu veux que je réexplique ? Alors je vais te remontrer, quand tu résous une équation s’il y a des x des deux côtés essaie de tout mettre du même côté ce sera plus simple tu verras ! Par exemple : \n 3x + 2 = 5x + 3 \n équivaut à  3x + 2 - 5x = 5x + 3 - 5x \n équivaut à  -2x + 2 = 3 \n et ainsi de suite")
                             elif c==2:
-                                insert_text("Mathémami : Je n'ai plus rien à te donner, bonne nuit !")
+                                insert_text("Je n'ai plus rien à te donner, bonne nuit !")
 
                         elif Niveau ==1:
                             if c==1:
@@ -1382,13 +1382,13 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                 def nom_pnj_actuel(pnj, Niveau):
                     if pnj == "pnj1":
                         if Niveau ==0:
-                            nom_du_pnj = "Leilégalité : "
+                            nom_du_pnj = "Leilégalité :"
                         elif Niveau ==1:
-                            nom_du_pnj = ""          
+                            nom_du_pnj = "Paπ :"          
                         elif Niveau ==2:
-                            nom_du_pnj = ""
+                            nom_du_pnj = "Cana :"
                         elif Niveau ==3:
-                            nom_du_pnj = ""
+                            nom_du_pnj = "Mathémami :"
                         elif Niveau ==5:
                             nom_du_pnj = ""
                         elif Niveau ==6:
@@ -1398,13 +1398,13 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
 
                     elif pnj == "pnj2":
                         if Niveau ==0:
-                            nom_du_pnj = ""
+                            nom_du_pnj = "Iggy :"
                         elif Niveau ==1:
-                            nom_du_pnj = ""          
+                            nom_du_pnj = "Cécylindre :"          
                         elif Niveau ==2:
-                            nom_du_pnj = ""
+                            nom_du_pnj = "Homme strict :"
                         elif Niveau ==3:
-                            nom_du_pnj = ""
+                            nom_du_pnj = "Homme strict :"
                         elif Niveau ==5:
                             nom_du_pnj = ""
                         elif Niveau ==6:
@@ -1415,13 +1415,13 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                        
                     elif pnj == "pnj3":
                         if Niveau ==0:
-                            nom_du_pnj = ""
+                            nom_du_pnj = "Mathémami :"
                         elif Niveau ==1:
-                            nom_du_pnj = ""          
+                            nom_du_pnj = "Marchand de glace :"          
                         elif Niveau ==2:
-                            nom_du_pnj = ""
+                            nom_du_pnj = "Marchand de tapis :"
                         elif Niveau ==3:
-                            nom_du_pnj = ""
+                            nom_du_pnj = "Marchand de tapis :"
                         elif Niveau ==5:
                             nom_du_pnj = ""
                         elif Niveau ==6:
@@ -1432,11 +1432,11 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                     elif pnj == "pnj4":
 
                         if Niveau ==1:
-                            nom_du_pnj = ""
+                            nom_du_pnj = "Titouan :"
                         elif Niveau ==2:
-                            nom_du_pnj = ""  
+                            nom_du_pnj = "Delta :"  
                         elif Niveau ==3:
-                            nom_du_pnj = ""                        
+                            nom_du_pnj = "Delta :"                        
                         elif Niveau ==6:
                              nom_du_pnj = ""                   
                         elif Niveau ==7:
@@ -1444,9 +1444,9 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                        
                     elif pnj == "pnj5":
                         if Niveau ==2:
-                            nom_du_pnj = ""
+                            nom_du_pnj = "Capitaine d’un navire :"
                         elif Niveau ==3:
-                            nom_du_pnj = ""
+                            nom_du_pnj = "Capitaine d’un navire :"
                         elif Niveau ==7:
                             nom_du_pnj = ""
 
@@ -2052,16 +2052,16 @@ Pour plus de renseignements : https://github.com/Gandalf0207/Maths-Quest
         global pnj3_infos
         global pnj4_infos
         global pnj5_infos
-        pnj1_infos = True
-        pnj2_infos = True
-        pnj3_infos = True
-        pnj4_infos = True  
-        pnj5_infos = True
+        pnj1_infos = False
+        pnj2_infos = False
+        pnj3_infos = False
+        pnj4_infos = False  
+        pnj5_infos = False
 
         # quad un elment est fabriqué, pour l'afficher correctement
 
         global assemble_cle
-        assemble_cle = True
+        assemble_cle = False
 
 
 
