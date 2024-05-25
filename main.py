@@ -392,6 +392,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
 
                 #on clear si jamais la personne s'en va
                 canvas_tete_pnj_grand.delete("all")
+                Label_text_nom_pnj_strvar.set("")
                 Label_texte_parole_discussion_pnj_scrolltext.config(state=NORMAL)
                 Label_texte_parole_discussion_pnj_scrolltext.delete('1.0', END)
                 Label_texte_parole_discussion_pnj_scrolltext.config(state=DISABLED)
@@ -807,6 +808,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
 
             def affiche_prog(pnj, pnj_infos, Niveau):
 
+
                 def insert_text(text_complet):
 
                     Label_btn_suivant_discussion_pnj['state'] = DISABLED
@@ -834,11 +836,11 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                         # et le cours est différent en fonction du niveau (map qui change)
                         if Niveau ==0:
                             if c==1:
-                                insert_text("Leilégalité : B’jour jeune aventurier, je pense que j’pourrais bien t’apprendre un truc aujourd’hui.")
+                                insert_text("B’jour jeune aventurier, je pense que j’pourrais bien t’apprendre un truc aujourd’hui.")
                             elif c==2:
-                                insert_text("Leilégalité : Pour résoudre une équation il faut respecter un certain équilibre comme une balance \u2696 , si une partie de l’égalité change alors l’autre coté aussi.")
+                                insert_text("Pour résoudre une équation il faut respecter un certain équilibre comme une balance \u2696 , si une partie de l’égalité change alors l’autre coté aussi.")
                             elif c==3:
-                                insert_text("Leilégalité : Tiens voila pour m’avoir écouté; un fragment de clé que j’ai ramené lors de mon dernier voyage !")
+                                insert_text("Tiens voila pour m’avoir écouté; un fragment de clé que j’ai ramené lors de mon dernier voyage !")
 
                         elif Niveau ==1:
                             if c==1:
@@ -890,6 +892,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
 
                         if c == 4:
                             canvas_tete_pnj_grand.delete("all")
+                            Label_text_nom_pnj_strvar.set("")
                             Label_texte_parole_discussion_pnj_scrolltext.config(state=NORMAL)
                             Label_texte_parole_discussion_pnj_scrolltext.delete('1.0', END)
                             Label_texte_parole_discussion_pnj_scrolltext.config(state=DISABLED)
@@ -963,6 +966,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
 
                         if c == 4:
                             canvas_tete_pnj_grand.delete("all")
+                            Label_text_nom_pnj_strvar.set("")
                             Label_texte_parole_discussion_pnj_scrolltext.config(state=NORMAL)
                             Label_texte_parole_discussion_pnj_scrolltext.delete('1.0', END)
                             Label_texte_parole_discussion_pnj_scrolltext.config(state=DISABLED)
@@ -1038,6 +1042,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
 
                         if c == 4:
                             canvas_tete_pnj_grand.delete("all")
+                            Label_text_nom_pnj_strvar.set("")
                             Label_texte_parole_discussion_pnj_scrolltext.config(state=NORMAL)
                             Label_texte_parole_discussion_pnj_scrolltext.delete('1.0', END)
                             Label_texte_parole_discussion_pnj_scrolltext.config(state=DISABLED)
@@ -1095,6 +1100,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
 
                         if c == 4:
                             canvas_tete_pnj_grand.delete("all")
+                            Label_text_nom_pnj_strvar.set("")
                             Label_texte_parole_discussion_pnj_scrolltext.config(state=NORMAL)
                             Label_texte_parole_discussion_pnj_scrolltext.delete('1.0', END)
                             Label_texte_parole_discussion_pnj_scrolltext.config(state=DISABLED)
@@ -1137,6 +1143,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                         
                         if c == 4:
                             canvas_tete_pnj_grand.delete("all")
+                            Label_text_nom_pnj_strvar.set("")
                             Label_texte_parole_discussion_pnj_scrolltext.config(state=NORMAL)
                             Label_texte_parole_discussion_pnj_scrolltext.delete('1.0', END)
                             Label_texte_parole_discussion_pnj_scrolltext.config(state=DISABLED)
@@ -1340,6 +1347,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                     if c == 3 : 
                         #on clear si jamais la personne s'en va
                         canvas_tete_pnj_grand.delete("all")
+                        Label_text_nom_pnj_strvar.set("")
                         Label_texte_parole_discussion_pnj_scrolltext.config(state=NORMAL)
                         Label_texte_parole_discussion_pnj_scrolltext.delete('1.0', END)
                         Label_texte_parole_discussion_pnj_scrolltext.config(state=DISABLED)
@@ -1365,52 +1373,125 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
 
             # check si on se trouve bien dans une zone avec pnj quand la fonction est chargée  
             if (L[ordonne-1][abscisse] in pnj_List or L[ordonne+1][abscisse] in pnj_List or L[ordonne][abscisse-1] in pnj_List or L[ordonne][abscisse+1] in pnj_List ):
+                def nom_pnj_actuel(pnj, Niveau):
+                    if pnj == "pnj1":
+                        if Niveau ==0:
+                            nom_du_pnj = "Leilégalité : "
+                        elif Niveau ==1:
+                            nom_du_pnj = ""          
+                        elif Niveau ==2:
+                            nom_du_pnj = ""
+                        elif Niveau ==3:
+                            nom_du_pnj = ""
+                        elif Niveau ==5:
+                            nom_du_pnj = ""
+                        elif Niveau ==6:
+                            nom_du_pnj = ""
+                        elif Niveau ==7:
+                            nom_du_pnj = ""
+
+                    elif pnj == "pnj2":
+                        if Niveau ==0:
+                            nom_du_pnj = ""
+                        elif Niveau ==1:
+                            nom_du_pnj = ""          
+                        elif Niveau ==2:
+                            nom_du_pnj = ""
+                        elif Niveau ==3:
+                            nom_du_pnj = ""
+                        elif Niveau ==5:
+                            nom_du_pnj = ""
+                        elif Niveau ==6:
+                            nom_du_pnj = ""
+                        elif Niveau ==7:
+                            nom_du_pnj = ""
+                            
+                       
+                    elif pnj == "pnj3":
+                        if Niveau ==0:
+                            nom_du_pnj = ""
+                        elif Niveau ==1:
+                            nom_du_pnj = ""          
+                        elif Niveau ==2:
+                            nom_du_pnj = ""
+                        elif Niveau ==3:
+                            nom_du_pnj = ""
+                        elif Niveau ==5:
+                            nom_du_pnj = ""
+                        elif Niveau ==6:
+                            nom_du_pnj = ""
+                        elif Niveau ==7:
+                            nom_du_pnj = ""
+                           
+                    elif pnj == "pnj4":
+
+                        if Niveau ==1:
+                            nom_du_pnj = ""
+                        elif Niveau ==2:
+                            nom_du_pnj = ""  
+                        elif Niveau ==3:
+                            nom_du_pnj = ""                        
+                        elif Niveau ==6:
+                             nom_du_pnj = ""                   
+                        elif Niveau ==7:
+                             nom_du_pnj = ""                       
+                       
+                    elif pnj == "pnj5":
+                        if Niveau ==2:
+                            nom_du_pnj = ""
+                        elif Niveau ==3:
+                            nom_du_pnj = ""
+                        elif Niveau ==7:
+                            nom_du_pnj = ""
+
+                    return nom_du_pnj
                     
-                    #PNJ 1
-                    if (L[ordonne-1][abscisse] == pnj_List[0] or L[ordonne+1][abscisse]== pnj_List[0] or L[ordonne][abscisse-1]== pnj_List[0] or L[ordonne][abscisse+1]== pnj_List[0]):
-                        pnj_ = "pnj1"
-                        pnj_infos_ = pnj1_infos
-                        canvas_tete_pnj_grand.create_image(0, 0, anchor=NW, image=pnj1_grand)
+                #PNJ 1
+                if (L[ordonne-1][abscisse] == pnj_List[0] or L[ordonne+1][abscisse]== pnj_List[0] or L[ordonne][abscisse-1]== pnj_List[0] or L[ordonne][abscisse+1]== pnj_List[0]):
+                    pnj_ = "pnj1"
+                    pnj_infos_ = pnj1_infos
+                    canvas_tete_pnj_grand.create_image(0, 0, anchor=NW, image=pnj1_grand)
 
-                    #PNJ 2
-                    elif (L[ordonne-1][abscisse] == pnj_List[1] or L[ordonne+1][abscisse]== pnj_List[1] or L[ordonne][abscisse-1]== pnj_List[1] or L[ordonne][abscisse+1]== pnj_List[1]):
-                        pnj_ = "pnj2"
-                        pnj_infos_ = pnj2_infos
-                        canvas_tete_pnj_grand.create_image(0, 0, anchor=NW, image=pnj2_grand)
+                #PNJ 2
+                elif (L[ordonne-1][abscisse] == pnj_List[1] or L[ordonne+1][abscisse]== pnj_List[1] or L[ordonne][abscisse-1]== pnj_List[1] or L[ordonne][abscisse+1]== pnj_List[1]):
+                    pnj_ = "pnj2"
+                    pnj_infos_ = pnj2_infos
+                    canvas_tete_pnj_grand.create_image(0, 0, anchor=NW, image=pnj2_grand)
 
-                    #PNJ3
-                    elif (L[ordonne-1][abscisse] == pnj_List[2] or L[ordonne+1][abscisse]== pnj_List[2] or L[ordonne][abscisse-1]== pnj_List[2] or L[ordonne][abscisse+1]== pnj_List[2]):
-                        pnj_ = "pnj3"
-                        pnj_infos_ = pnj3_infos
-                        canvas_tete_pnj_grand.create_image(0, 0, anchor=NW, image=pnj3_grand)
-
-
-                    #PNJ4
-                    elif (L[ordonne-1][abscisse] == pnj_List[3] or L[ordonne+1][abscisse]== pnj_List[3] or L[ordonne][abscisse-1]== pnj_List[3] or L[ordonne][abscisse+1]== pnj_List[3]):
-                        pnj_ = "pnj4"
-                        pnj_infos_ = pnj4_infos
-                        canvas_tete_pnj_grand.create_image(0, 0, anchor=NW, image=pnj4_grand)
-
-                    #PNJ5
-                    elif (L[ordonne-1][abscisse] == pnj_List[4] or L[ordonne+1][abscisse]== pnj_List[4] or L[ordonne][abscisse-1]== pnj_List[4] or L[ordonne][abscisse+1]== pnj_List[4]):
-                        pnj_ = "pnj5"
-                        pnj_infos_ = pnj5_infos
-                        canvas_tete_pnj_grand.create_image(0, 0, anchor=NW, image=pnj5_grand)
+                #PNJ3
+                elif (L[ordonne-1][abscisse] == pnj_List[2] or L[ordonne+1][abscisse]== pnj_List[2] or L[ordonne][abscisse-1]== pnj_List[2] or L[ordonne][abscisse+1]== pnj_List[2]):
+                    pnj_ = "pnj3"
+                    pnj_infos_ = pnj3_infos
+                    canvas_tete_pnj_grand.create_image(0, 0, anchor=NW, image=pnj3_grand)
 
 
-                    global Label_btn_suivant_discussion_pnj
+                #PNJ4
+                elif (L[ordonne-1][abscisse] == pnj_List[3] or L[ordonne+1][abscisse]== pnj_List[3] or L[ordonne][abscisse-1]== pnj_List[3] or L[ordonne][abscisse+1]== pnj_List[3]):
+                    pnj_ = "pnj4"
+                    pnj_infos_ = pnj4_infos
+                    canvas_tete_pnj_grand.create_image(0, 0, anchor=NW, image=pnj4_grand)
 
-                    if Label_btn_suivant_discussion_pnj is not None:
-                        if Label_btn_suivant_discussion_pnj.winfo_exists():
-                            Label_btn_suivant_discussion_pnj.destroy()
-                    #On crée le bouton pour faire discuter le pnj avec l'utilisateur et on set le texte de bienvenue
-                    Label_texte_parole_discussion_pnj_scrolltext.config(state=NORMAL)
-                    Label_texte_parole_discussion_pnj_scrolltext.delete('1.0', END)
-                    Label_texte_parole_discussion_pnj_scrolltext.insert(END, "Salut ! Clique sur suivant !")
-                    Label_texte_parole_discussion_pnj_scrolltext.config(state=DISABLED)
+                #PNJ5
+                elif (L[ordonne-1][abscisse] == pnj_List[4] or L[ordonne+1][abscisse]== pnj_List[4] or L[ordonne][abscisse-1]== pnj_List[4] or L[ordonne][abscisse+1]== pnj_List[4]):
+                    pnj_ = "pnj5"
+                    pnj_infos_ = pnj5_infos
+                    canvas_tete_pnj_grand.create_image(0, 0, anchor=NW, image=pnj5_grand)
 
-                    Label_btn_suivant_discussion_pnj = Button(Label_Frame_Discussion_pnj, text="Suivant", command=lambda: affiche_prog(pnj_, pnj_infos_, Niveau))
-                    Label_btn_suivant_discussion_pnj.pack(side=BOTTOM, anchor="e", pady=5, padx=2)
+
+                global Label_btn_suivant_discussion_pnj
+
+                if Label_btn_suivant_discussion_pnj is not None:
+                    if Label_btn_suivant_discussion_pnj.winfo_exists():
+                        Label_btn_suivant_discussion_pnj.destroy()
+                #On crée le bouton pour faire discuter le pnj avec l'utilisateur et on set le texte de bienvenue
+                Label_text_nom_pnj_strvar.set(nom_pnj_actuel(pnj_, Niveau))
+                Label_texte_parole_discussion_pnj_scrolltext.config(state=NORMAL)
+                Label_texte_parole_discussion_pnj_scrolltext.delete('1.0', END)
+                Label_texte_parole_discussion_pnj_scrolltext.insert(END, "Salut ! Clique sur suivant !")
+                Label_texte_parole_discussion_pnj_scrolltext.config(state=DISABLED)
+
+                Label_btn_suivant_discussion_pnj = Button(Label_Frame_Discussion_pnj, text="Suivant", command=lambda: affiche_prog(pnj_, pnj_infos_, Niveau))
+                Label_btn_suivant_discussion_pnj.pack(side=BOTTOM, anchor="e", pady=5, padx=2)
             
             # check si autour il y a la porte ou non
             elif (L[ordonne-1][abscisse] == "\U0001F6AA" or L[ordonne+1][abscisse]== "\U0001F6AA" or L[ordonne][abscisse-1]== "\U0001F6AA" or L[ordonne][abscisse+1]== "\U0001F6AA"):
@@ -1434,6 +1515,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                 Label_text_possibilite_strvar.set("Il n'y a personne autour de vous avec qui discuter !")
                 #on clear si jamais la personne s'en va
                 canvas_tete_pnj_grand.delete("all")
+                Label_text_nom_pnj_strvar.set("")
                 Label_texte_parole_discussion_pnj_scrolltext.config(state=NORMAL)
                 Label_texte_parole_discussion_pnj_scrolltext.delete('1.0',END)
                 Label_texte_parole_discussion_pnj_scrolltext.config(state=DISABLED)
@@ -2031,8 +2113,15 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
         canvas_tete_pnj_grand = Canvas(Label_Frame_Discussion_pnj, bg=None, height=100, width=100)
         canvas_tete_pnj_grand.pack(anchor="nw", padx=10,pady=5, side=LEFT)
         
-        Label_texte_parole_discussion_pnj_scrolltext = scrolledtext.ScrolledText(Label_Frame_Discussion_pnj, wrap='word', width=40, height=7, font=('Arial', 10))
-        Label_texte_parole_discussion_pnj_scrolltext.pack(anchor="c", pady= 5, padx=5, fill=BOTH, expand=True)
+        #petite frame pour avoir le dialogue et le nom du pnj en question
+        Label_frame_nompnj_dialoguepnj = Frame(Label_Frame_Discussion_pnj, bg=None)
+        Label_frame_nompnj_dialoguepnj.pack(expand=True, fill=BOTH)
+
+        Label_text_nom_pnj_strvar = StringVar()
+        Label_text_nom_pnj_widget = Label(Label_frame_nompnj_dialoguepnj, textvariable=Label_text_nom_pnj_strvar, font=('Arial 10 bold'))
+        Label_text_nom_pnj_widget.pack(side=TOP, anchor='nw')
+        Label_texte_parole_discussion_pnj_scrolltext = scrolledtext.ScrolledText(Label_frame_nompnj_dialoguepnj, wrap='word', width=40, height=7, font=('Arial', 10))
+        Label_texte_parole_discussion_pnj_scrolltext.pack(anchor="c",side=TOP, pady= 5, padx=5, fill=BOTH, expand=True)
         Label_texte_parole_discussion_pnj_scrolltext.config(state=DISABLED)
 
 
