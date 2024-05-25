@@ -164,6 +164,7 @@ Une fois tous les éléments de l'installation faits, vous pouvez profiter du je
 
   ##### Autre : 
   - Fabriquer --> Touche 'c'
+  - Obtenir de l'aide --> 'echap'
 
 <br> </br>
 ### Crédits & Termes et Conditions d'utilisation :
