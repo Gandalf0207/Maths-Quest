@@ -2,6 +2,7 @@
 
 from tkinter import *
 from tkinter import ttk
+from tkinter import scrolledtext
 import random
 import time 
 
@@ -2109,7 +2110,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
         Label_Frame_global_resultat.pack(expand=True, fill=BOTH, pady= 5, padx = 5)
 
         Label_btn_suivant = Button(Jeu,text="Crédits", command=acces_credits)
-        Label_btn_suivant.pack(side=BOTTOM)
+        Label_btn_suivant.pack(side=BOTTOM, pady=5)
 
         Jeu.protocol("WM_DELETE_WINDOW", acces_credits)
 
@@ -2191,10 +2192,66 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
 
         Jeu.title("Maths-Quest | Crédits  © PLADEAU Quentin LUBAN Théo")
 
-        Label_Titre_Credits = Label(Jeu, text = "Crédits")
+        Label_Titre_Credits = Label(Jeu, text = "Crédits", font=("Arial", 15), bg = '#BBC4E3')
         Label_Titre_Credits.pack(pady=15)
 
 
+        frame_credits = Frame(Jeu)
+        frame_credits.pack(expand=True, fill='both', padx=20, pady=20)
+        
+        scroll_text_credits = scrolledtext.ScrolledText(frame_credits, wrap=WORD, width=60, height=20, font=("Arial", 10))
+        scroll_text_credits.pack(expand=True, fill='both')
+
+        text_credits = """
+        Maths-Quest
+
+        Merci beaucoup d'avoir joué à Maths-Quest ! Nous espérons que ce jeu vous a plu et vous a permis d'acquérir de nouvelles connaissances.
+
+        Ce projet a nécessité pas moins de 200 heures de travail, de réflexion et de développement. N'hésitez pas à nous faire part de vos avis concernant ce projet !
+
+        Pour soutenir le projet / obtenir des informations : https://github.com/Gandalf0207/Maths-Quest
+
+        
+        
+        Projet créé par Théo LUBAN et Quentin PLADEAU
+
+        Une idée originale de Théo LUBAN 
+
+        Développé par Quentin PLADEAU
+
+        Designé par Théo LUBAN
+        avec l'aide de Kaylan TROUHILLET
+
+        Sous les conseils de Cédric ESCOUTE
+
+
+
+            """
+
+        text_credits2 = """
+
+            Maths-Quest
+            
+            © Tous droits réservés 2024
+
+            by LUBAN Théo & PLADEAU Quentin
+
+        """
+
+        # Ajout de texte avec différentes polices
+        normal_font = ('Arial', 12)
+        italic_font = ('Arial', 10, 'italic')
+
+        scroll_text_credits.insert(END, text_credits, 'normal')
+        scroll_text_credits.insert(END, text_credits2, 'italic')
+
+        # Configuration des tags de police
+        scroll_text_credits.tag_configure('normal', font=normal_font)
+        scroll_text_credits.tag_configure('italic', font=italic_font)
+
+
+        btn_fin = Button(Jeu, text="Fermer", command=Jeu.destroy)
+        btn_fin.pack(pady=5)
     
     Jeu.mainloop()
 
