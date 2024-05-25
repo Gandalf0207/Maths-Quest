@@ -1838,8 +1838,9 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
 
         def regle_infos_jeu(event):
             Regle = Toplevel()
-            Regle.geometry("600x400")
-            Label_titre_regle = Label(Regle, text="Maths-Quest : Règles").pack(pady=5)
+            Regle.title("Maths-Quest | Règles & Aide       © PLADEAU Quentin LUBAN Théo")
+
+            Label_titre_regle = Label(Regle, text="Maths-Quest : Règles & Aide", font=("Arial", 12)).pack(pady=5)
 
             Label_Frame_Touche = Frame(Regle, bg = "#000000")
             Label_Frame_Touche.pack(expand=True, fill="both")
@@ -1847,11 +1848,46 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
             Label_frame_1 = Frame(Label_Frame_Touche, bg = "blue", width=250)
             Label_frame_1.pack(fill='y', side=LEFT, pady=5, padx=5)
 
-            Label_touche_box = Frame(Label_frame_1, height=200, bg="white", width=250)
-            Label_touche_box.pack(fill='x', padx=5, pady=5, side = TOP)
+            scroll_text_touche_help = scrolledtext.ScrolledText(Label_frame_1, wrap=WORD,width = 35, font=("Arial", 10))
+            scroll_text_touche_help.pack(expand=True, fill='both', pady = 5, padx = 5)
+
+            text_touche_help = """
+    Les déplacements :
+        Haut --> Touche '↑'
+        Bas --> Touche '↓'
+        Gauche --> Touche '←'
+        Droite --> Touche '→'
+
+    Parler :
+        Parler aux pnj --> Touche 'espace'
+        Affronter le boss --> Touche 'espace'
+
+    Autre :
+        Fabriquer --> Touche 'c'
+        Obtenir de l'aide --> 'echap'
+"""
+
+            scroll_text_touche_help.insert(END, text_touche_help)
 
 
-            close_btn = Button(Regle, command=Regle.destroy, text="Fermer").pack(side=BOTTOM)
+
+            Label_frame_2= Frame(Label_Frame_Touche, bg = "blue", width=250)
+            Label_frame_2.pack(fill='y', side ='right', pady=5, padx=5)
+
+            scroll_text_regles_help = scrolledtext.ScrolledText(Label_frame_2, wrap=WORD,width = 60, font=("Arial", 10))
+            scroll_text_regles_help.pack(expand=True, fill='both', pady = 5, padx = 5)
+
+            text_regles_help = """
+    But du jeu
+"""
+
+            scroll_text_regles_help.insert(END, text_regles_help)
+
+            image__ = PhotoImage(file="image/Iggy.png")  # Remplacez par le chemin de votre image
+            scroll_text_regles_help.image_create(END, image=image__)
+
+
+            close_btn = Button(Regle, command=Regle.destroy, text="Fermer").pack(side=BOTTOM, pady = 5)
             Regle.mainloop()
 
         #fonction pass à supp dans version final
@@ -1873,16 +1909,16 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
         global pnj3_infos
         global pnj4_infos
         global pnj5_infos
-        pnj1_infos = False
-        pnj2_infos = False
-        pnj3_infos = False
-        pnj4_infos = False  
-        pnj5_infos = False
+        pnj1_infos = True
+        pnj2_infos = True
+        pnj3_infos = True
+        pnj4_infos = True  
+        pnj5_infos = True
 
         # quad un elment est fabriqué, pour l'afficher correctement
 
         global assemble_cle
-        assemble_cle = False
+        assemble_cle = True
 
 
 
