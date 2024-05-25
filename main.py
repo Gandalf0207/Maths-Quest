@@ -392,7 +392,10 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
 
                 #on clear si jamais la personne s'en va
                 canvas_tete_pnj_grand.delete("all")
-                Label_texte_parole_discussion_pnj_strvar.set("")
+                Label_texte_parole_discussion_pnj_scrolltext.config(state=NORMAL)
+                Label_texte_parole_discussion_pnj_scrolltext.delete('1.0', END)
+                Label_texte_parole_discussion_pnj_scrolltext.config(state=DISABLED)
+
                 #fonction de check pour delete btn (winfo : true/false) et première ligne pour eviter les erreurs (double verif)
                 if Label_btn_suivant_discussion_pnj is not None:
                     if Label_btn_suivant_discussion_pnj.winfo_exists():
@@ -501,14 +504,8 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
 
                 if num_pnj==0:
                     global listbox
-                    listbox = Text(Label_Frame_Cours_Affiche, width =35,wrap="word",bg=None)
-                    listbox.pack(side=LEFT, fill=BOTH)
-
-                    scrollbar = Scrollbar(Label_Frame_Cours_Affiche, orient=VERTICAL, command=listbox.yview)
-                    scrollbar.pack(side=RIGHT, fill=Y)
-
-                    listbox.config(yscrollcommand=scrollbar.set)
-                    listbox.config(state=DISABLED)
+                    listbox = scrolledtext.ScrolledText(Label_Frame_Cours_Affiche, width =35,wrap="word",bg=None, font=("Arial",10))
+                    listbox.pack(side=LEFT, fill=BOTH, expand=True)
 
                 elif num_pnj==1:
                     listbox.config(state=NORMAL)
@@ -523,6 +520,9 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                 #    - pour reload au changement de niveau
                 #    - pour reload et mettre en ordre le cours au moment de passer la porte
                 listbox.config(state=NORMAL)
+
+                #chargment des img si on a des img dans la partie cours
+                #photo img.......
 
                 if (Niveau ==0 and num_pnj==0):
                     listbox.insert(END, "--Equation du 1er degré--" + "\n")
@@ -551,6 +551,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                     listbox.insert(END, "\n")
                     for i in range(3,7):
                         ajouter_element(Liste_cours[i])
+                        #il faut chager les img à ce niveau là dans la liste pour que chaque img corresponde à la parti du cours s'il y en a une....
                     listbox.insert(END, "\n")
 
                     if num_pnj==0:
@@ -805,10 +806,26 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
         def parler_pnj(event):
 
             def affiche_prog(pnj, pnj_infos, Niveau):
+
+                def insert_text(text_complet):
+
+                    Label_btn_suivant_discussion_pnj['state'] = DISABLED
+                    for i in range(len(text_complet)):
+                        Label_texte_parole_discussion_pnj_scrolltext.config(state=NORMAL)
+                        Label_texte_parole_discussion_pnj_scrolltext.delete('1.0', END)
+                        text_partiel = text_complet[:i+1]
+                        Label_texte_parole_discussion_pnj_scrolltext.insert(END, f"{text_partiel}")
+                        Label_texte_parole_discussion_pnj_scrolltext.config(state=DISABLED)
+                        Label_texte_parole_discussion_pnj_scrolltext.update()
+                        time.sleep(0.01)
+                    Label_btn_suivant_discussion_pnj['state'] = NORMAL
+
+
+
                 global c
                 c += 1
 
-                text_complet = ""
+                
                 # comme cette partie est commune; on l'affiche au debut si c'est le bon tour
                 if pnj_infos == False:
 
@@ -817,63 +834,65 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                         # et le cours est différent en fonction du niveau (map qui change)
                         if Niveau ==0:
                             if c==1:
-                                text_complet = "Leilégalité : B’jour jeune aventurier, je pense que j’pourrais bien t’apprendre un truc aujourd’hui."
+                                insert_text("Leilégalité : B’jour jeune aventurier, je pense que j’pourrais bien t’apprendre un truc aujourd’hui.")
                             elif c==2:
-                                text_complet = "Leilégalité : Pour résoudre une équation il faut respecter un certain équilibre comme une balance \u2696 , si une partie de l’égalité change alors l’autre coté aussi."
+                                insert_text("Leilégalité : Pour résoudre une équation il faut respecter un certain équilibre comme une balance \u2696 , si une partie de l’égalité change alors l’autre coté aussi.")
                             elif c==3:
-                                text_complet = "Leilégalité : Tiens voila pour m’avoir écouté; un fragment de clé que j’ai ramené lors de mon dernier voyage !"
+                                insert_text("Leilégalité : Tiens voila pour m’avoir écouté; un fragment de clé que j’ai ramené lors de mon dernier voyage !")
 
                         elif Niveau ==1:
                             if c==1:
-                                text_complet = "Paπ : Tiens je parie que tu as croisé ma femme toi ! Eh oui je reconnais cet objet il est à moi mais trêve de plaisanterie je pense que si tu es la jeune aventurier c’est pour continuer ton périple"
+                                insert_text("Paπ : Tiens je parie que tu as croisé ma femme toi ! Eh oui je reconnais cet objet il est à moi mais trêve de plaisanterie je pense que si tu es la jeune aventurier c’est pour continuer ton périple")
                             elif c==2:
-                                text_complet = "Paπ : Pour cela, il te faudra connaitre la formule de l’aire de la base d’un disque qui est π x rayon²."
+                                insert_text("Paπ : Pour cela, il te faudra connaitre la formule de l’aire de la base d’un disque qui est π x rayon².")
                             elif c==3:
-                                text_complet = "Paπ : Tiens voila pour la suite, un bout de quelque chose dans l’ancien temps !"
+                                insert_text("Paπ : Tiens voila pour la suite, un bout de quelque chose dans l’ancien temps !")
 
                         elif Niveau ==2:
                             if c==1:
-                                text_complet = "Cana : Miaou, Miaou Meow ! Miaou miaou Meow, Miaou Meow. Meow, Miaou Miaou. (Votre Miaou français est encore plus rouillé que votre waf mais vous comprenez : “Salut grand petit être, moi c’est Cana et toi tu m’écoutes bien ! Je parie que tu ne sais pas comment déterminer une équation de droite."
+                                insert_text("Cana : Miaou, Miaou Meow ! Miaou miaou Meow, Miaou Meow. Meow, Miaou Miaou. (Votre Miaou français est encore plus rouillé que votre waf mais vous comprenez : “Salut grand petit être, moi c’est Cana et toi tu m’écoutes bien ! Je parie que tu ne sais pas comment déterminer une équation de droite.")
                             elif c==2:
-                                text_complet = "Cana : Les droites ont une équation de la forme y = mx + p sauf cas particulier, avec m est le coefficient directeur ou pente de la droite et p l’ordonné à l’origine. "
+                                insert_text("Cana : Les droites ont une équation de la forme y = mx + p sauf cas particulier, avec m est le coefficient directeur ou pente de la droite et p l’ordonné à l’origine. ")
                             elif c==3:
-                                text_complet = "Cana : Oh mince tu m’as bien eu, prends ce jouet je le mérite plus."
+                                insert_text("Cana : Oh mince tu m’as bien eu, prends ce jouet je le mérite plus.")
                         
                         elif Niveau ==3:
                             if c==1:
-                                text_complet = ""
+                                insert_text("")
                             elif c==2:
-                                text_complet = ""
+                                insert_text("")
                             elif c==3:
-                                text_complet = ""
+                                insert_text("")
 
                         elif Niveau ==5:
                             if c==1:
-                                text_complet = ""
+                                insert_text("")
                             elif c==2:
-                                text_complet = ""
+                                insert_text("")
                             elif c==3:
-                                text_complet = ""
+                                insert_text("")
 
                         elif Niveau ==6:
                             if c==1:
-                                text_complet = ""
+                                insert_text("")
                             elif c==2:
-                                text_complet = ""
+                                insert_text("")
                             elif c==3:
-                                text_complet = ""
+                                insert_text("")
 
                         elif Niveau ==7:
                             if c==1:
-                                text_complet = ""
+                                insert_text("")
                             elif c==2:
-                                text_complet = ""
+                                insert_text("")
                             elif c==3:
-                                text_complet = ""
+                                insert_text("")
 
                         if c == 4:
                             canvas_tete_pnj_grand.delete("all")
-                            Label_texte_parole_discussion_pnj_strvar.set("")
+                            Label_texte_parole_discussion_pnj_scrolltext.config(state=NORMAL)
+                            Label_texte_parole_discussion_pnj_scrolltext.delete('1.0', END)
+                            Label_texte_parole_discussion_pnj_scrolltext.config(state=DISABLED)
                             Label_btn_suivant_discussion_pnj.destroy()
 
                             global pnj1_infos
@@ -888,63 +907,65 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                         # et le cours est différent en fonction du niveau (map qui change)
                         if Niveau ==0:
                             if c==1:
-                                text_complet = "Iggy : Wouf Wouf, Wouf Wouf Wouf, Wouf Wouf Woaf ! Wouf ?(Votre waf français est un peu rouillé mais vous comprenez : “Salut moi c’est Iggy, retiens bien ce que je vais te dire !"
+                                insert_text("Iggy : Wouf Wouf, Wouf Wouf Wouf, Wouf Wouf Woaf ! Wouf ?(Votre waf français est un peu rouillé mais vous comprenez : “Salut moi c’est Iggy, retiens bien ce que je vais te dire !")
                             elif c==2:
-                                text_complet = "Iggy : Quand tu résous une équation s’il y a des x des deux côtés essaie de tout mettre du même côté ce sera plus simple tu verras ! Par exemple avec 3x + 2 = 5x + 3 qui devient 3x + 2 - 3x = 5x + 2 - 3x après il faut juste que tu la résolve."
+                                insert_text("Iggy : Quand tu résous une équation s’il y a des x des deux côtés essaie de tout mettre du même côté ce sera plus simple tu verras ! Par exemple avec 3x + 2 = 5x + 3 qui devient 3x + 2 - 3x = 5x + 2 - 3x après il faut juste que tu la résolve.")
                             elif c==3:
-                                text_complet = "Iggy : D’ailleurs t’aurais pas des croquettes contre mon os doré ?"
-
+                                insert_text("Iggy : D’ailleurs t’aurais pas des croquettes contre mon os doré ?")
+                                
                         elif Niveau ==1:
                             if c==1:
-                                text_complet = "Cécylindre : Salut toi t’aurais pas envie de savoir calculer le volume d’un cylindre par hasard ? Nan ? "
+                                insert_text("Cécylindre : Salut toi t’aurais pas envie de savoir calculer le volume d’un cylindre par hasard ? Nan ? ")
                             elif c==2:
-                                text_complet = "Cécylindre : Bon si jamais c’est la hauteur multipliée par l’aire de la base. "
+                                insert_text("Cécylindre : Bon si jamais c’est la hauteur multipliée par l’aire de la base. ")
                             elif c==3:
-                                text_complet = "Cécylindre : Tiens je te passe ça comme t’as l’air sympa."
+                                insert_text("Cécylindre : Tiens je te passe ça comme t’as l’air sympa.")
 
                         elif Niveau ==2:
                             if c==1:
-                                text_complet = "Homme strict : Dit jeune homme, savais-tu que les droites parallèles à l’axe des ordonnées aussi appelées droites verticales."
+                                insert_text("Homme strict : Dit jeune homme, savais-tu que les droites parallèles à l’axe des ordonnées aussi appelées droites verticales.")
                             elif c==2:
-                                text_complet = "Homme strict : Elles ont une équation de forme x=c sachant que c est un nombre par exemple x = 2 est une droite verticale qui passe par l’abscisse 2."
+                                insert_text("Homme strict : Elles ont une équation de forme x=c sachant que c est un nombre par exemple x = 2 est une droite verticale qui passe par l’abscisse 2.")
                             elif c==3:
-                                text_complet = "Homme strict : Tiens mon brave prends cet objet."
+                                insert_text("Homme strict : Tiens mon brave prends cet objet.")
                         
                         elif Niveau ==3:
                             if c==1:
-                                text_complet = ""
+                                insert_text("")
                             elif c==2:
-                                text_complet = ""
+                                insert_text("")
                             elif c==3:
-                                text_complet = ""
+                                insert_text("")
 
                         elif Niveau ==5:
                             if c==1:
-                                text_complet = ""
+                                insert_text("")
                             elif c==2:
-                                text_complet = ""
+                                insert_text("")
                             elif c==3:
-                                text_complet = ""
+                                insert_text("")
 
                         elif Niveau ==6:
                             if c==1:
-                                text_complet = ""
+                                insert_text("")
                             elif c==2:
-                                text_complet = ""
+                                insert_text("")
                             elif c==3:
-                                text_complet = ""
+                                insert_text("")
 
                         elif Niveau ==7:
                             if c==1:
-                                text_complet = ""
+                                insert_text("")
                             elif c==2:
-                                text_complet = ""
+                                insert_text("")
                             elif c==3:
-                                text_complet = ""
+                                insert_text("")
 
                         if c == 4:
                             canvas_tete_pnj_grand.delete("all")
-                            Label_texte_parole_discussion_pnj_strvar.set("")
+                            Label_texte_parole_discussion_pnj_scrolltext.config(state=NORMAL)
+                            Label_texte_parole_discussion_pnj_scrolltext.delete('1.0', END)
+                            Label_texte_parole_discussion_pnj_scrolltext.config(state=DISABLED)
                             Label_btn_suivant_discussion_pnj.destroy()
 
 
@@ -960,64 +981,66 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                         # et le cours est différent en fonction du niveau (map qui change)
                         if Niveau ==0:
                             if c==1:
-                                text_complet = "Mathémami : Qu’est ce tu dis ?! Que tu n’as pas parlé ? Autant pour moi mon petit mes oreilles ne fonctionnent plus aussi bien qu’avant, j’ai l’impression que t’essais d’aller en ville pour que tu puisses passer je vais te montrer un truc."
+                                insert_text("Mathémami : Qu’est ce tu dis ?! Que tu n’as pas parlé ? Autant pour moi mon petit mes oreilles ne fonctionnent plus aussi bien qu’avant, j’ai l’impression que t’essais d’aller en ville pour que tu puisses passer je vais te montrer un truc.")
                             elif c==2:
-                                text_complet = "Mathémami : Si tu prends l’équation 3x + 2 = 5, il faudra que tu retires l’étape qui arrive en dernier, ici c’est 3x + 2 - 2 = 5 - 2 car la soustraction et l’addition s’oppose et la multiplication et la division aussi, après il ne te reste plus qu’à faire 3x/3 = 3/3 et tu obtiens x = 1."
+                                insert_text("Mathémami : Si tu prends l’équation 3x + 2 = 5, il faudra que tu retires l’étape qui arrive en dernier, ici c’est 3x + 2 - 2 = 5 - 2 car la soustraction et l’addition s’oppose et la multiplication et la division aussi, après il ne te reste plus qu’à faire 3x/3 = 3/3 et tu obtiens x = 1.")
                             elif c==3:
-                                text_complet = "Mathémami : Tiens avant de partir prends ce bidule il appartient à mon mari redonne lui si tu le vois en ville."
+                                insert_text("Mathémami : Tiens avant de partir prends ce bidule il appartient à mon mari redonne lui si tu le vois en ville.")
 
                         elif Niveau ==1:
                             if c==1:
-                                text_complet = "Marchand de glace : Dis donc toi, il fait aujourd’hui un petit rafraichissement ? "
+                                insert_text("Marchand de glace : Dis donc toi, il fait aujourd’hui un petit rafraichissement ? ")
                             elif c==2:
-                                text_complet = "Marchand de glace : D’ailleurs tu savais qu’un cône avait pour volume celui d’un cylindre divisé par 3."
+                                insert_text("Marchand de glace : D’ailleurs tu savais qu’un cône avait pour volume celui d’un cylindre divisé par 3.")
                             elif c==3:
-                                text_complet = "Marchand de glace : Allez tiens c’est pas une glace mais ça te sera utile je pense."
+                                insert_text("Marchand de glace : Allez tiens c’est pas une glace mais ça te sera utile je pense.")
 
                         elif Niveau ==2:
                             if c==1:
-                                text_complet = "Marchand de tapis : Salut à toi jeune aventurier. Alors si aujourd'hui je me permets de te parler, c'est pour une raison très simple. Savais-tu que 95 % de la population détenait 5 % des richesses ? Alors est-ce que tu veux en faire partie ? Il faut que tu te poses les bonnes questions."
+                                insert_text("Marchand de tapis : Salut à toi jeune aventurier. Alors si aujourd'hui je me permets de te parler, c'est pour une raison très simple. Savais-tu que 95 % de la population détenait 5 % des richesses ? Alors est-ce que tu veux en faire partie ? Il faut que tu te poses les bonnes questions.")
                             elif c==2:
-                                text_complet = "Marchand de tapis : Est-ce que tu préfères faire savoir que dans une équation sous forme mx + p, p est l’ordonnée à l’origine ou te fermer des portes toute ta vie ?"
+                                insert_text("Marchand de tapis : Est-ce que tu préfères faire savoir que dans une équation sous forme mx + p, p est l’ordonnée à l’origine ou te fermer des portes toute ta vie ?")
                             elif c==3:
-                                text_complet = "Marchand de tapis : Moi je pense que la question est vite répondue. Alors soit tu me suis, soit tu vas demander des écus à tes parents pour aller à la taverne. Avec moi c'est comme ça que ça marche, OK ? Fais le bon choix, je t’offre ça pour bien commencer ta vie."
+                                insert_text("Marchand de tapis : Moi je pense que la question est vite répondue. Alors soit tu me suis, soit tu vas demander des écus à tes parents pour aller à la taverne. Avec moi c'est comme ça que ça marche, OK ? Fais le bon choix, je t’offre ça pour bien commencer ta vie.")
                         
                         elif Niveau ==3:
                             if c==1:
-                                text_complet = ""
+                                insert_text("")
                             elif c==2:
-                                text_complet = ""
+                                insert_text("")
                             elif c==3:
-                                text_complet = ""
+                                insert_text("")
 
                         elif Niveau ==5:
                             if c==1:
-                                text_complet = ""
+                                insert_text("")
                             elif c==2:
-                                text_complet = ""
+                                insert_text("")
                             elif c==3:
-                                text_complet = ""
+                                insert_text("")
 
                         elif Niveau ==6:
                             if c==1:
-                                text_complet = ""
+                                insert_text("")
                             elif c==2:
-                                text_complet = ""
+                                insert_text("")
                             elif c==3:
-                                text_complet = ""
+                                insert_text("")
 
                         elif Niveau ==7:
                             if c==1:
-                                text_complet = ""
+                                insert_text("")
                             elif c==2:
-                                text_complet = ""
+                                insert_text("")
                             elif c==3:
-                                text_complet = ""
+                                insert_text("")
 
 
                         if c == 4:
                             canvas_tete_pnj_grand.delete("all")
-                            Label_texte_parole_discussion_pnj_strvar.set("")
+                            Label_texte_parole_discussion_pnj_scrolltext.config(state=NORMAL)
+                            Label_texte_parole_discussion_pnj_scrolltext.delete('1.0', END)
+                            Label_texte_parole_discussion_pnj_scrolltext.config(state=DISABLED)
                             Label_btn_suivant_discussion_pnj.destroy()
 
                             global pnj3_infos
@@ -1032,47 +1055,49 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                         # et le cours est différent en fonction du niveau (map qui change)
                         if Niveau ==1:
                             if c==1:
-                                text_complet = "Titouan : Zalut monzieur dis tu zavais qu’il pozait des zénigmes à la porte ? Apparemment faut zavoir calculer le volume d’un cube et d’un paralléléchouette rectangle, du coup z’ai appris et en fait z’est zuper zimple."
+                                insert_text("Titouan : Zalut monzieur dis tu zavais qu’il pozait des zénigmes à la porte ? Apparemment faut zavoir calculer le volume d’un cube et d’un paralléléchouette rectangle, du coup z’ai appris et en fait z’est zuper zimple.")
                             elif c==2:
-                                text_complet = "Titouan : Il suffit de faire longueur x largeur x hauteur et z’est la même pour tous. "
+                                insert_text("Titouan : Il suffit de faire longueur x largeur x hauteur et z’est la même pour tous. ")
                             elif c==3:
-                                text_complet = "Titouan : Tient au fait z’arrête pas de m’en mettre partout."
+                                insert_text("Titouan : Tient au fait z’arrête pas de m’en mettre partout.")
 
                         elif Niveau ==2:
                             if c==1:
-                                text_complet = "Delta : Salut moi c’est Delta tu savais que pour trouver le coefficient directeur d’une droite ?"
+                                insert_text("Delta : Salut moi c’est Delta tu savais que pour trouver le coefficient directeur d’une droite ?")
                             elif c==2:
-                                text_complet = "Delta : Il faut faire m = (yB - yA)/(xB-xA) (en latex stp) soit deltaY/deltaX. "
+                                insert_text("Delta : Il faut faire m = (yB - yA)/(xB-xA) (en latex stp) soit deltaY/deltaX. ")
                             elif c==3:
-                                text_complet = "Delta : Tiens je te passe ce truc tout sale il me sert à rien."
+                                insert_text("Delta : Tiens je te passe ce truc tout sale il me sert à rien.")
                         
                         elif Niveau ==3:
                             if c==1:
-                                text_complet = ""
+                                insert_text("")
                             elif c==2:
-                                text_complet = ""
+                                insert_text("")
                             elif c==3:
-                                text_complet = ""
+                                insert_text("")
 
                         elif Niveau ==6:
                             if c==1:
-                                text_complet = ""
+                                insert_text("")
                             elif c==2:
-                                text_complet = ""
+                                insert_text("")
                             elif c==3:
-                                text_complet = ""
+                                insert_text("")
                         
                         elif Niveau ==7:
                             if c==1:
-                                text_complet = ""
+                                insert_text("")
                             elif c==2:
-                                text_complet = ""
+                                insert_text("")
                             elif c==3:
-                                text_complet = ""
+                                insert_text("")
 
                         if c == 4:
                             canvas_tete_pnj_grand.delete("all")
-                            Label_texte_parole_discussion_pnj_strvar.set("")
+                            Label_texte_parole_discussion_pnj_scrolltext.config(state=NORMAL)
+                            Label_texte_parole_discussion_pnj_scrolltext.delete('1.0', END)
+                            Label_texte_parole_discussion_pnj_scrolltext.config(state=DISABLED)
                             Label_btn_suivant_discussion_pnj.destroy()
 
                             global pnj4_infos
@@ -1088,31 +1113,33 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                         # et le cours est différent en fonction du niveau (map qui change)
                         if Niveau ==2:
                             if c==1:
-                                text_complet = "Capitaine d’un navire : Doucement moussaillon tu vas te mouiller ! Tu sais c’est vachement utile de connaître le point d’intersection de 2 droites, ça m’a sauvé plus jeune alors je vais t’apprendre. "
+                                insert_text("Capitaine d’un navire : Doucement moussaillon tu vas te mouiller ! Tu sais c’est vachement utile de connaître le point d’intersection de 2 droites, ça m’a sauvé plus jeune alors je vais t’apprendre. ")
                             elif c==2:
-                                text_complet = "Capitaine d’un navire : Quand tu as les 2 équations réduites tu t’amuses à faire une équation des 2 soit mx + p = m’x + p."
+                                insert_text("Capitaine d’un navire : Quand tu as les 2 équations réduites tu t’amuses à faire une équation des 2 soit mx + p = m’x + p.")
                             elif c==3:
-                                text_complet = "Capitaine d’un navire : Tiens mon brave si tu as un pont à nettoyer ça t’aidera !"
+                                insert_text("Capitaine d’un navire : Tiens mon brave si tu as un pont à nettoyer ça t’aidera !")
 
                         elif Niveau ==3:
                             if c==1:
-                                text_complet = ""
+                                insert_text("")
                             elif c==2:
-                                text_complet = ""
+                                insert_text("")
                             elif c==3:
-                                text_complet = ""
+                                insert_text("")
 
                         elif Niveau ==7:
                             if c==1:
-                                text_complet = ""
+                                insert_text("")
                             elif c==2:
-                                text_complet = ""
+                                insert_text("")
                             elif c==3:
-                                text_complet = ""
+                                insert_text("")
                         
                         if c == 4:
                             canvas_tete_pnj_grand.delete("all")
-                            Label_texte_parole_discussion_pnj_strvar.set("")
+                            Label_texte_parole_discussion_pnj_scrolltext.config(state=NORMAL)
+                            Label_texte_parole_discussion_pnj_scrolltext.delete('1.0', END)
+                            Label_texte_parole_discussion_pnj_scrolltext.config(state=DISABLED)
                             Label_btn_suivant_discussion_pnj.destroy()
 
                             global pnj5_infos
@@ -1130,190 +1157,192 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                     if pnj == "pnj1":
                         if Niveau ==0:
                             if c==1:
-                                text_complet = "Leilégalité : On s’recroise dit donc ! T’as oublié ce qu’j’ai dit ? Alors écoute bien j’vais répéter, pour résoudre une équation il faut respecter un certain équilibre comme une balance \u2696, si une partie de l’égalité change alors l’autre coté aussi."
+                                insert_text("Leilégalité : On s’recroise dit donc ! T’as oublié ce qu’j’ai dit ? Alors écoute bien j’vais répéter, pour résoudre une équation il faut respecter un certain équilibre comme une balance \u2696, si une partie de l’égalité change alors l’autre coté aussi.")
                             elif c==2:
-                                text_complet = "Leilégalité : Je t'ai déjà donné mon fragment de clé; bon courage dans ta quete !"
+                                insert_text("Leilégalité : Je t'ai déjà donné mon fragment de clé; bon courage dans ta quete !")
 
                         elif Niveau ==1:
                             if c==1:
-                                text_complet = "Paπ : Alors aussi mauvaise mémoire que ma femme ? Écoute bien cette fois la formule de l’aire de la base d’un disque qui est π x rayon²."
+                                insert_text("Paπ : Alors aussi mauvaise mémoire que ma femme ? Écoute bien cette fois la formule de l’aire de la base d’un disque qui est π x rayon².")
                             elif c==2:
-                                text_complet = "Paπ : Malheuresement dans l'ancien temps c'est bidule étaient rar donc je n'en ai plus pour toi !"
+                                insert_text("Paπ : Malheuresement dans l'ancien temps c'est bidule étaient rar donc je n'en ai plus pour toi !")
 
                         elif Niveau ==2:
                             if c==1:
-                                text_complet = "Cana : Meow Miaou !! Meow, Miaou Meow Miaou Miaou. Miaou Miaou Meow. Meow… (Vous comprenez : “Comment j’ai pu le laisser partir avec mon jouet !! Oh tu es de retour, tu veux que je te répète que la droite  se présente sous la forme mx + p avec m en tant que coefficient directeur et p l’ordonné à l’origine. "
+                                insert_text("Cana : Meow Miaou !! Meow, Miaou Meow Miaou Miaou. Miaou Miaou Meow. Meow… (Vous comprenez : “Comment j’ai pu le laisser partir avec mon jouet !! Oh tu es de retour, tu veux que je te répète que la droite  se présente sous la forme mx + p avec m en tant que coefficient directeur et p l’ordonné à l’origine. ")
                             elif c==2:
-                                text_complet = "Cana : D’accord mais alors tu me repasses mon jouet. Oh…"
+                                insert_text("Cana : D’accord mais alors tu me repasses mon jouet. Oh…")
 
                         elif Niveau ==3:
                             if c==1:
-                                text_complet = ""
+                                insert_text("")
                             elif c==2:
-                                text_complet = ""
+                                insert_text("")
 
                         elif Niveau ==5:
                             if c==1:
-                                text_complet = ""
+                                insert_text("")
                             elif c==2:
-                                text_complet = ""
+                                insert_text("")
 
                         elif Niveau ==6:
                             if c==1:
-                                text_complet = ""
+                                insert_text("")
                             elif c==2:
-                                text_complet = ""
+                                insert_text("")
 
                         elif Niveau ==7:
                             if c==1:
-                                text_complet = ""
+                                insert_text("")
                             elif c==2:
-                                text_complet = ""
+                                insert_text("")
 
                     #pnj 2 alternatif
                     elif pnj == "pnj2":
                         if Niveau ==0:
                             if c==1:
-                                text_complet = "Iggy : Wouf Wouf Wouf ? Wouf Wouf, Wouf. (Vous comprenez : “T’as oublié tout ce que j’ai dit ? Ça va te couter cher en croquettes mais je vais répéter, quand tu résous une équation s’il y a des x des deux côtés essaie de tout mettre du même côté par exemple avec 3x + 2 = 5x + 3 qui devient 3x + 2 - 3x = 5x + 2 - 3x après il faut juste que tu la résolve."
+                                insert_text("Iggy : Wouf Wouf Wouf ? Wouf Wouf, Wouf. (Vous comprenez : “T’as oublié tout ce que j’ai dit ? Ça va te couter cher en croquettes mais je vais répéter, quand tu résous une équation s’il y a des x des deux côtés essaie de tout mettre du même côté par exemple avec 3x + 2 = 5x + 3 qui devient 3x + 2 - 3x = 5x + 2 - 3x après il faut juste que tu la résolve.")
                             elif c==2:
-                                text_complet = "Iggy : Je n'est plus d'os dorépour toi... Mais il te reste des croquettes ?"
+                                insert_text("Iggy : Je n'est plus d'os dorépour toi... Mais il te reste des croquettes ?")
 
                         elif Niveau ==1:
                             if c==1:
-                                text_complet = "Cécylindre : Finalement t’as pas écouté et tu aurais dû ? Le volume du cylindre c’est la hauteur multipliée par l’aire de la base."
+                                insert_text("Cécylindre : Finalement t’as pas écouté et tu aurais dû ? Le volume du cylindre c’est la hauteur multipliée par l’aire de la base.")
                             elif c==2:
-                                text_complet = "Cécylindre : Il me semble t'avoir déjà donné quelque chose non ?"
+                                insert_text("Cécylindre : Il me semble t'avoir déjà donné quelque chose non ?")
 
                         elif Niveau ==2:
                             if c==1:
-                                text_complet = "Homme strict : Re Bonjour mon brave. Tu n’as pas écouté et tu voudrais que je répète ? Ah la jeunesse ce n’est plus ce que c’était, je vais te réexpliquer mais c’est la dernière fois. "
+                                insert_text("Homme strict : Re Bonjour mon brave. Tu n’as pas écouté et tu voudrais que je répète ? Ah la jeunesse ce n’est plus ce que c’était, je vais te réexpliquer mais c’est la dernière fois. ")
                             elif c==2:
-                                text_complet = "Homme strict : Les droites parallèles à l’axe des ordonnées aussi appelées droites verticales ont une équation de forme x=c sachant que c est un nombre par exemple x = 2 est une droite verticale qui passe par l’abscisse 2."
+                                insert_text("Homme strict : Les droites parallèles à l’axe des ordonnées aussi appelées droites verticales ont une équation de forme x=c sachant que c est un nombre par exemple x = 2 est une droite verticale qui passe par l’abscisse 2.")
         
                         elif Niveau ==3:
                             if c==1:
-                                text_complet = ""
+                                insert_text("")
                             elif c==2:
-                                text_complet = ""
+                                insert_text("")
 
                         elif Niveau ==5:
                             if c==1:
-                                text_complet = ""
+                                insert_text("")
                             elif c==2:
-                                text_complet = ""
+                                insert_text("")
 
                         elif Niveau ==6:
                             if c==1:
-                                text_complet = ""
+                                insert_text("")
                             elif c==2:
-                                text_complet = ""
+                                insert_text("")
 
                         elif Niveau ==7:
                             if c==1:
-                                text_complet = ""
+                                insert_text("")
                             elif c==2:
-                                text_complet = ""
+                                insert_text("")
 
                     #pnj 3 alternatif
                     elif pnj == "pnj3":
                         if Niveau ==0:
                             if c==1:
-                                text_complet = "Mathémami : ZzZ ZzZ… Ah ! Tu m’as fait peur, je suis vieille tu sais. Comment ? Tu veux que je réexplique ? Alors je vais te remontrer, si tu prends l’équation 3x + 2 = 5, il faudra que tu retires l’étape qui arrive en dernier, ici c’est 3x + 2 - 2 = 5 - 2 car la soustraction et l’addition s’oppose et la multiplication et la division aussi, après il ne te reste plus qu’à faire 3x/3 = 3/3 et tu obtiens x = 1."
+                                insert_text("Mathémami : ZzZ ZzZ… Ah ! Tu m’as fait peur, je suis vieille tu sais. Comment ? Tu veux que je réexplique ? Alors je vais te remontrer, si tu prends l’équation 3x + 2 = 5, il faudra que tu retires l’étape qui arrive en dernier, ici c’est 3x + 2 - 2 = 5 - 2 car la soustraction et l’addition s’oppose et la multiplication et la division aussi, après il ne te reste plus qu’à faire 3x/3 = 3/3 et tu obtiens x = 1.")
                             elif c==2:
-                                text_complet = "Mathémami : Je n'ai plus rien à te donner, bonne nuit !"
+                                insert_text("Mathémami : Je n'ai plus rien à te donner, bonne nuit !")
 
                         elif Niveau ==1:
                             if c==1:
-                                text_complet = "Marchand de glace : Tu veux une glace au final ? Désolé mais les enfants m’ont tout pris, je te propose de réécouter mon histoire de cône, pour calculer le volume d’un cône c’est le volume du cylindre que tu divises par 3."
+                                insert_text("Marchand de glace : Tu veux une glace au final ? Désolé mais les enfants m’ont tout pris, je te propose de réécouter mon histoire de cône, pour calculer le volume d’un cône c’est le volume du cylindre que tu divises par 3.")
                             elif c==2:
-                                text_complet = "Marchand de glace : Sur pour la glace ?"
+                                insert_text("Marchand de glace : Sur pour la glace ?")
 
                         elif Niveau ==2:
                             if c==1:
-                                text_complet = "Marchand de tapis : Alors jeune aventurier tu veux que je te réexplique comment la vie fonctionne ?"
+                                insert_text("Marchand de tapis : Alors jeune aventurier tu veux que je te réexplique comment la vie fonctionne ?")
                             elif c==2:
-                                text_complet = "Marchand de tapis : Pour comprendre faut que tu saches que dans une équation sous forme mx + p, p est l’ordonnée à l’origine, alors tu entrevois la vrai vie maintenant ?"
+                                insert_text("Marchand de tapis : Pour comprendre faut que tu saches que dans une équation sous forme mx + p, p est l’ordonnée à l’origine, alors tu entrevois la vrai vie maintenant ?")
 
                         elif Niveau ==3:
                             if c==1:
-                                text_complet = ""
+                                insert_text("")
                             elif c==2:
-                                text_complet = ""
+                                insert_text("")
 
                         elif Niveau ==5:
                             if c==1:
-                                text_complet = ""
+                                insert_text("")
                             elif c==2:
-                                text_complet = ""
+                                insert_text("")
 
                         elif Niveau ==6:
                             if c==1:
-                                text_complet = ""
+                                insert_text("")
                             elif c==2:
-                                text_complet = ""
+                                insert_text("")
 
                         elif Niveau ==7:
                             if c==1:
-                                text_complet = ""
+                                insert_text("")
                             elif c==2:
-                                text_complet = ""
+                                insert_text("")
 
                     #pnj 4 alternatif
                     elif pnj == "pnj4":
                         if Niveau ==1:
                             if c==1:
-                                text_complet = "Titouan : T’as pas réussi à passer la porte ? Alors ze vais te réexpliquer, pour calculer le volume du cube et du paralléléchouette rectangle il zuffit de faire longueur x largeur x hauteur et z’est la même pour tous."
+                                insert_text("Titouan : T’as pas réussi à passer la porte ? Alors ze vais te réexpliquer, pour calculer le volume du cube et du paralléléchouette rectangle il zuffit de faire longueur x largeur x hauteur et z’est la même pour tous.")
                             elif c==2:
-                                text_complet = "Titouan : z'ai plus de zolle pour zoi dézolé"
+                                insert_text("Titouan : z'ai plus de zolle pour zoi dézolé")
 
                         elif Niveau ==2:
                             if c==1:
-                                text_complet = "Delta : Tu te rappelles plus comment on fait ?"
+                                insert_text("Delta : Tu te rappelles plus comment on fait ?")
                             elif c==2:
-                                text_complet = "Delta : Pour trouver le coefficient directeur d’une droite il faut faire m = (yB - yA)/(xB-xA) (en latex stp) soit deltaY/deltaX."
+                                insert_text("Delta : Pour trouver le coefficient directeur d’une droite il faut faire m = (yB - yA)/(xB-xA) (en latex stp) soit deltaY/deltaX.")
 
                         elif Niveau ==3:
                             if c==1:
-                                text_complet = ""
+                                insert_text("")
                             elif c==2:
-                                text_complet = ""
+                                insert_text("")
 
                         elif Niveau ==6:
                             if c==1:
-                                text_complet = ""
+                                insert_text("")
                             elif c==2:
-                                text_complet = ""
+                                insert_text("")
 
                         elif Niveau ==7:
                             if c==1:
-                                text_complet = ""
+                                insert_text("")
                             elif c==2:
-                                text_complet = ""
+                                insert_text("")
                     #pnj 5 alternatif
                     elif pnj == "pnj5":
                         if Niveau ==2:
                             if c==1:
-                                text_complet = "Capitaine d’un navire : Alors, tombé à l’eau ? Je t’avais prévenu, écoute mieux cette fois."
+                                insert_text("Capitaine d’un navire : Alors, tombé à l’eau ? Je t’avais prévenu, écoute mieux cette fois.")
                             elif c==2:
-                                text_complet = "Capitaine d’un navire : Quand tu as les 2 équations réduites tu t’amuses à faire une équation des 2 soit mx + p = m’x + p’."
+                                insert_text("Capitaine d’un navire : Quand tu as les 2 équations réduites tu t’amuses à faire une équation des 2 soit mx + p = m’x + p’.")
 
                         if Niveau ==3:
                             if c==1:
-                                text_complet = ""
+                                insert_text("")
                             elif c==2:
-                                text_complet = ""
+                                insert_text("")
 
                         elif Niveau ==7:
                             if c==1:
-                                text_complet = ""
+                                insert_text("")
                             elif c==2:
-                                text_complet = ""
+                                insert_text("")
 
                         
                     if c == 3 : 
                         #on clear si jamais la personne s'en va
                         canvas_tete_pnj_grand.delete("all")
-                        Label_texte_parole_discussion_pnj_strvar.set("")
+                        Label_texte_parole_discussion_pnj_scrolltext.config(state=NORMAL)
+                        Label_texte_parole_discussion_pnj_scrolltext.delete('1.0', END)
+                        Label_texte_parole_discussion_pnj_scrolltext.config(state=DISABLED)
                         #fonction de check pour delete btn (winfo : true/false) et première ligne pour eviter les erreurs (double verif)
                         if Label_btn_suivant_discussion_pnj is not None:
                             if Label_btn_suivant_discussion_pnj.winfo_exists():
@@ -1322,15 +1351,6 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
 
 
 
-                if (c < 4 and pnj_infos == False) or (c != 0 and pnj_infos == True):
-
-                    Label_btn_suivant_discussion_pnj['state'] = DISABLED
-                    for i in range(len(text_complet)):
-                        text_partiel = text_complet[:i+1]
-                        Label_texte_parole_discussion_pnj_strvar.set(f"{text_partiel}")
-                        Label_texte_parole_discussion_pnj_widget.update()
-                        time.sleep(0.01)
-                    Label_btn_suivant_discussion_pnj['state'] = NORMAL
 
             global pnj1_infos
             global pnj2_infos
@@ -1383,8 +1403,12 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                     if Label_btn_suivant_discussion_pnj is not None:
                         if Label_btn_suivant_discussion_pnj.winfo_exists():
                             Label_btn_suivant_discussion_pnj.destroy()
-                    #On crée le bouton pour faire discuter le pnj avec l'utilisateur et on set le texte de bienvenue          
-                    Label_texte_parole_discussion_pnj_strvar.set("Salut ! Clique sur suivant !")
+                    #On crée le bouton pour faire discuter le pnj avec l'utilisateur et on set le texte de bienvenue
+                    Label_texte_parole_discussion_pnj_scrolltext.config(state=NORMAL)
+                    Label_texte_parole_discussion_pnj_scrolltext.delete('1.0', END)
+                    Label_texte_parole_discussion_pnj_scrolltext.insert(END, "Salut ! Clique sur suivant !")
+                    Label_texte_parole_discussion_pnj_scrolltext.config(state=DISABLED)
+
                     Label_btn_suivant_discussion_pnj = Button(Label_Frame_Discussion_pnj, text="Suivant", command=lambda: affiche_prog(pnj_, pnj_infos_, Niveau))
                     Label_btn_suivant_discussion_pnj.pack(side=BOTTOM, anchor="e", pady=5, padx=2)
             
@@ -1410,7 +1434,9 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                 Label_text_possibilite_strvar.set("Il n'y a personne autour de vous avec qui discuter !")
                 #on clear si jamais la personne s'en va
                 canvas_tete_pnj_grand.delete("all")
-                Label_texte_parole_discussion_pnj_strvar.set("")
+                Label_texte_parole_discussion_pnj_scrolltext.config(state=NORMAL)
+                Label_texte_parole_discussion_pnj_scrolltext.delete('1.0',END)
+                Label_texte_parole_discussion_pnj_scrolltext.config(state=DISABLED)
                 #fonction de check pour delete btn (winfo : true/false) et première ligne pour eviter les erreurs (double verif)
                 if Label_btn_suivant_discussion_pnj is not None:
                     if Label_btn_suivant_discussion_pnj.winfo_exists():
@@ -1909,11 +1935,11 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
         global pnj3_infos
         global pnj4_infos
         global pnj5_infos
-        pnj1_infos = True
-        pnj2_infos = True
-        pnj3_infos = True
-        pnj4_infos = True  
-        pnj5_infos = True
+        pnj1_infos = False
+        pnj2_infos = False
+        pnj3_infos = False
+        pnj4_infos = False  
+        pnj5_infos = False
 
         # quad un elment est fabriqué, pour l'afficher correctement
 
@@ -1974,7 +2000,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
 
         ###Frame gauche bas pour clé + pouvoir parler infos
         Label_Frame_pnj_Text = Frame(Label_Frame_Jeu_Inv, bg="#99A6D0")
-        Label_Frame_pnj_Text.pack(side=TOP, fill='x',padx=5, pady=5)
+        Label_Frame_pnj_Text.pack(side=TOP, fill=BOTH,padx=5, pady=5, expand=True)
 
         ##Frame affiche le texte si on peut parler à un pnj ou faire un action
         Label_Frame_Text_Info_Discussion_pnj = Frame(Label_Frame_pnj_Text, bg= None)
@@ -2003,10 +2029,11 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
 
         #On load les element qui serviron aux boites de discussion des pnjs
         canvas_tete_pnj_grand = Canvas(Label_Frame_Discussion_pnj, bg=None, height=100, width=100)
-        canvas_tete_pnj_grand.pack(anchor="c", padx=10,pady=5, side=LEFT)
-        Label_texte_parole_discussion_pnj_strvar = StringVar()
-        Label_texte_parole_discussion_pnj_widget = Label(Label_Frame_Discussion_pnj, textvariable=Label_texte_parole_discussion_pnj_strvar, wraplength=350, justify="left")
-        Label_texte_parole_discussion_pnj_widget.pack(side=LEFT, padx=5, pady=5)
+        canvas_tete_pnj_grand.pack(anchor="nw", padx=10,pady=5, side=LEFT)
+        
+        Label_texte_parole_discussion_pnj_scrolltext = scrolledtext.ScrolledText(Label_Frame_Discussion_pnj, wrap='word', width=40, height=7, font=('Arial', 10))
+        Label_texte_parole_discussion_pnj_scrolltext.pack(anchor="c", pady= 5, padx=5, fill=BOTH, expand=True)
+        Label_texte_parole_discussion_pnj_scrolltext.config(state=DISABLED)
 
 
 

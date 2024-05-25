@@ -6,6 +6,11 @@ from io import BytesIO
 
 plt.rcParams['text.usetex'] = True
 
+def aaa():
+    text_widget.config(state=tk.NORMAL)  # Enable the text widget
+    text_widget.delete('1.0', tk.END)    # Clear the text widget
+    text_widget.config(state=tk.DISABLED)  # Disable the text widget again
+
 def render_latex(text, fontsize=10):
     # Create a matplotlib figure with a tight layout
     fig, ax = plt.subplots()
@@ -29,29 +34,29 @@ def render_latex(text, fontsize=10):
     
     return ImageTk.PhotoImage(image)
 
-def main():
-    root = tk.Tk()
-    root.title("Text with LaTeX")
 
-    # Create a Text widget with a scrollbar
-    text_widget = scrolledtext.ScrolledText(root, wrap='word')
-    text_widget.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
+root = tk.Tk()
+root.title("Text with LaTeX")
 
-    # Insert normal text
-    text_widget.insert(tk.END, "Voici du texte normal.\n\n")
+# Create a Text widget with a scrollbar
+text_widget = scrolledtext.ScrolledText(root, wrap='word')
+text_widget.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
 
-    # Render and insert LaTeX text with font size 10
-    latex_text = r"$\left\{ \begin{array}{lr} %sx + %sy & = %s \\ %sx - %sy & = %s \end{array} \right.$"%(1,2,3,4,5,6)
-    latex_image = render_latex(latex_text, fontsize=10)
-    text_widget.image_create(tk.END, image=latex_image)
-    
-    # Keep a reference to the image to prevent garbage collection
-    text_widget.image = latex_image
+# Insert normal text
+text_widget.insert(tk.END, "Voici du texte normal.\n\n")
 
-    # Insert more text
-    text_widget.insert(tk.END, "\n\nMerci beaucoup d'avoir joué à Maths-Quest !")
-    text_widget.config(state=tk.DISABLED)
-    root.mainloop()
+# Render and insert LaTeX text with font size 10
+latex_text = r"$\left\{ \begin{array}{lr} %sx + %sy & = %s \\ %sx - %sy & = %s \end{array} \right.$"%(1,2,3,4,5,6)
+latex_image = render_latex(latex_text, fontsize=10)
+text_widget.image_create(tk.END, image=latex_image)
 
-if __name__ == "__main__":
-    main()
+# Keep a reference to the image to prevent garbage collection
+text_widget.image = latex_image
+
+# Insert more text
+text_widget.insert(tk.END, "\n\nMerci beaucoup d'avoir joué à Maths-Quest !")
+text_widget.config(state=tk.DISABLED)
+
+btn_clear = tk.Button(root, text='Clear', command=aaa).pack()
+root.mainloop()
+
