@@ -4,10 +4,9 @@ from PIL import Image, ImageTk
 import matplotlib.pyplot as plt
 from io import BytesIO
 
-
 plt.rcParams['text.usetex'] = True
 
-def make_formule(eqt, label_de_la_box, fontsize, space):
+def make_formule(eqt, scrolled_text, fontsize):
     def render_latex(text):
         # Create a matplotlib figure with a tight layout
         fig, ax = plt.subplots()
@@ -28,23 +27,39 @@ def make_formule(eqt, label_de_la_box, fontsize, space):
         # Crop the image to the bounding box of the content
         bbox = image.getbbox()
         image = image.crop(bbox)
-        plt.close(fig) 
         
         return ImageTk.PhotoImage(image)
-
-        
-    # Render and insert LaTeX text with font size 10
+    
+    # Render and insert LaTeX text with specified fontsize
     latex_text = eqt
     latex_image = render_latex(latex_text)
-    label_de_la_box.config(state=NORMAL)
-    label_de_la_box.image_create(END, image=latex_image)
-    if space==1:
-        label_de_la_box.insert(END, "\n")
-    elif space==2:
-        label_de_la_box.insert(END, "\n\n")
-    label_de_la_box.config(state=DISABLED)
+    scrolled_text.config(state=NORMAL)
+    scrolled_text.image_create(END, image=latex_image)
+    scrolled_text.config(state=DISABLED)
+    
     # Keep a reference to the image to prevent garbage collection
-    label_de_la_box.images.append(latex_image)
+    scrolled_text.images.append(latex_image)
 
 
+# Create a Tkinter window
+root = Tk()
+root.title("Scrolltext avec images")
 
+# Create a scrolledtext widget
+scrolled_text = scrolledtext.ScrolledText(root)
+scrolled_text.pack(expand=True, fill=BOTH)
+
+# Add a list to store images
+scrolled_text.images = []
+
+# Example equations
+equations = [
+    r'$\int_{0}^{\infty} e^{-x^2} dx = \frac{\sqrt{\pi}}{2}$',
+    r'$F(s)=\int_{0}^{\infty} e^{-st} f(t) dt$'
+]
+
+# Make images for each equation
+for eq in equations:
+    make_formule(eq, scrolled_text, fontsize=12)
+
+root.mainloop()
