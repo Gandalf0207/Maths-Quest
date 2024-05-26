@@ -889,8 +889,8 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
             
             #set u des lien nécessaire
             # Marquage du texte pour le lien
-            start_index = "20.198"  # Position du début du lien dans le texte
-            end_index = "20.201"   # Position de la fin du lien dans le texte
+            start_index = "26.175"  # Position du début du lien dans le texte
+            end_index = "26.178"   # Position de la fin du lien dans le texte
 
             # Application de la balise pour le lien
             listbox.tag_add("link", start_index, end_index)
@@ -1851,9 +1851,10 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                 Label_Frame_Canvas_consignes_explication_btn.pack(side=TOP, expand=True, fill=BOTH, pady= 5, padx=5)
 
                 #on load les element de consignes
-                Label_scrollbox_consignes_exo = scrolledtext.ScrolledText(Label_Frame_Canvas_consignes_explication_btn, wrap='word', font=("Arial", 10), height=7)
+                Label_scrollbox_consignes_exo = scrolledtext.ScrolledText(Label_Frame_Canvas_consignes_explication_btn, wrap='word', font=("Arial", 10), height=4)
                 Label_scrollbox_consignes_exo.pack(side=LEFT, fill=BOTH, expand=True, pady= 5, padx = 5)
                 Label_scrollbox_consignes_exo.insert(END, 'Clique sur suivant !')
+                Label_scrollbox_consignes_exo.images = []
 
                 Label_btn_suivant_second_window = Button(Label_Frame_Canvas_consignes_explication_btn, text="Suivant !", command=lambda:affiche_consigne(Niveau))
                 Label_btn_suivant_second_window.pack(side=TOP, anchor="e", pady=5, padx=5)
