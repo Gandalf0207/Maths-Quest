@@ -210,6 +210,11 @@ def choix_exo_niveau(Niveau,Label_Frame_Canvas_formule_exo):
         resultat3 = f"x = {value_x-nb4} | y = {value_y+nb5}"
 
 
+    elif Niveau == 5 :
+        a = 1
+
+    elif Niveau ==6:
+        a=1
 
         
 
