@@ -459,13 +459,13 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
 
         def load_cours(Niveau, num_pnj):
             Liste_cours = [
-            "De façon intuitive, une égalité fonctionne un peu comme une balance à deux plateaux \u2696 : si on effectue une opération d'un côté, il faut réaliser la même opération de l'autre côté pour garder l'équilibre.",
+            "De façon intuitive, une égalité fonctionne un peu comme une balance à deux plateaux \u2629 : si on effectue une opération dans un des membres, il faut réaliser la même opération dans l’autre pour garder l'équilibre.",
             "Quelques propriétés : On peut ajouter (ou soustraire) un même nombre aux deux membres d'une égalité. \n    a = b équivaut à a + c = b + c\n    a = b  équivaut à a - c = b - c \nOn peut multiplier (ou diviser) les deux membres d'une égalité par un même nombre non nul. \n    a = b équivaut à a × c = b × c \n    a = b équivaut à   a/c = b/c(c ≠ 0) \nExemple :  \n5x + 2 = 17 \n5x + 2 - 2 = 17 - 2 \n5x/5 = 15/5 \nx = 3",
             "Si il y a des x dans les deux membres de l’équation il faut tout mettre dans le même. Exemple : \n                 3x + 2 = 5x + 3 \néquivaut à  3x + 2 - 5x = 5x + 3 - 5x \néquivaut à  -2x + 2 = 3 \net ainsi de suite", 
             
 
 
-            "La formule de l’aire de la base d’un disque qui est π x rayon², l’aire d’un triangle est ", 
+            "La formule de l’aire d’un disque est π x rayon², l’aire d’un triangle est ", 
             " et celle d’un carré ou d’un rectangle est longueur x largeur. Vidéo explicative de pi ici",
 
             "Le volume du cylindre est : base x hauteur soit π x rayon² x h. De manière plus générale une multitude de volume se calcule simplement par base x hauteur.",
@@ -477,25 +477,25 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
             
 
 
-            "Une droite se présente sous la forme mx + p, avec m en tant que coefficient directeur et p l’ordonné à l’origine.",
-            "Les droites parallèles à l’axe des ordonnées (“droite verticale”) ont une équation de la forme x=c avec c un nombre par exemple x = 2 est une droite verticale qui passe par l’abscisse 2.",
+            "L’équation d’une droite se présente sous la forme mx + p, avec m en tant que coefficient directeur et p l’ordonné à l’origine.",
+            "Les droites parallèles à l’axe des ordonnées (“droite verticale”) ne se présentent pas sous la forme y = mx + p mais ont une équation de la forme x=c avec c un nombre par exemple x = 2 est une droite verticale qui passe par l’abscisse 2.",
             "Dans une équation sous forme mx + p, passant par les points A(xA;yA) et B(xB;yB), p est l’ordonnée à l’origine pour trouver p, on utilise les coordonnées d’un point de la droite par exemple avec le point A(xA; yA), on a p = yA - m.xA et pour trouver m on a",
             "Une fonction affine admet une expression algébrique de la forme f(x) = mx + p et sa représentation graphique est une droite.",
-            "Pour trouver le point d’intersection de 2 droites il faut trouver quand l’équation réduite 1 est égale à l’équation réduite 2 soit mx + p = m’x + p",
+            "Pour trouver les coordonnées du point d’intersection de 2 droites il faut trouver quand l’équation réduite 1 est égale à l’équation réduite 2 soit mx + p = m’x + p’",
 
 
 
-            "Il y a 2 manières pour résoudre un système à doubles inconnues, la fin est la même mais la réflexion n’est pas la même, il y a donc la résolution par substitution et la résolution par combinaisons linéaires.",
+            "Il y a 2 manières pour résoudre un système à doubles inconnues, la fin est la même mais la réflexion n’est pas la même, il y a donc la résolution par substitution et la résolution par combinaisons linéaires, un système à double inconnues peut permettre de trouver les coordonnées d’un point d’intersection.",
             
             "La méthode de substitution consiste à isoler une des variables dans l'une des équations et à substituer cette expression dans l'autre équation. Cela permet de réduire le système à une seule équation avec une seule inconnue, qui peut alors être résolue.",
             
             "Exemple de résolution par substitution :",
-            "1. Isoler une variable : \n    y = 5 - x \n2. Substituer : \n    2x - (5 - x) = 1  \n3. Résoudre : \n    2x - 5 + x = 1  \n    3x - 5 = 1 \n    3x = 6 \n    x = 2 \n4. Remplacer et résoudre : \n    y = 5 - 2 = 3  \nSolution \n    x = 2, y = 3",
+            "1. Isoler une variable à l’aide d’une équation : \n    y = 5 - x \n2. Substituer y par c-x dans l’autre équation : \n    2x - (5 - x) = 1  \n3. Résoudre pour trouver x : \n    2x - 5 + x = 1  \n    3x - 5 = 1 \n    3x = 6 \n    x = 2 \n4. Remplacer x par 2 et trouver y : : \n    y = 5 - 2 = 3  \nSolution \n    x = 2, y = 3",
             
             "La méthode de combinaisons linéaires consiste à manipuler les équations pour éliminer l'une des variables. Cette manipulation se fait généralement en multipliant les équations par des coefficients appropriés afin d'obtenir des coefficients opposés pour une des variables, puis en additionnant ou soustrayant les équations.",
             
             "Exemple de résolution par combinaison linéaire :", 
-            "1. Additionner les deux équations pour éliminer y  : \n    (2x + y) + (3x - y) = 5 + 4 \n     2x + 3x + y - y = 9 \n     5x = 9 \n     x = 9/5 \n2. Substituer x dans la première équation pour trouver y  : \n     2*(9/5) + y = 5 \n     18/5 + y = 5 \n      y = 5 - 18/5 \n      y = 25/5 - 18/5 \n      y = 7/5 \nSolution \n     x = 9/5, y = 7/5", 
+            "1. Additionner les deux équations pour éliminer y  : \n    (2x + y) + (3x - y) = 5 + 4 \n     2x + 3x + y - y = 9 \n     5x = 9 \n     x = 9/5 \n2. Remplacer x par 9/5 dans la première équation pour trouver y : \n     2*(9/5) + y = 5 \n     18/5 + y = 5 \n      y = 5 - 18/5 \n      y = 25/5 - 18/5 \n      y = 7/5 \nSolution \n     x = 9/5, y = 7/5", 
 
 
 
@@ -551,7 +551,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                     listbox.insert(END, "\n")
 
                     ajouter_element(Liste_cours[3])
-                    formule_latex.make_formule(r"$ \frac{(longueur \cdot largeur)}{2}$",listbox, 11, 0) 
+                    formule_latex.make_formule(r"$ \frac{(longueur \times largeur)}{2}$",listbox, 14, 0) 
                     ajouter_element(Liste_cours[4])
                     saut_2_lignes()
 
@@ -559,13 +559,13 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                     saut_2_lignes()
 
                     ajouter_element(Liste_cours[6])
-                    formule_latex.make_formule(r"$ \frac{(\pi \cdot rayon^2)}{3}$",listbox, 11, 0) 
+                    formule_latex.make_formule(r"$ \frac{(\pi \times rayon^2)}{3}$",listbox, 14, 0) 
                     ajouter_element(Liste_cours[7])
-                    formule_latex.make_formule(r"$ \frac{V_{prisme}}{3}$",listbox, 11, 0) 
+                    formule_latex.make_formule(r"$ \frac{V_{prisme}}{3}$",listbox, 14, 0) 
                     saut_2_lignes()
 
                     ajouter_element(Liste_cours[8])
-                    formule_latex.make_formule(r"$ \frac{4}{(3\pi \cdot r^2)}$",listbox, 11, 0) 
+                    formule_latex.make_formule(r"$ \frac{4}{(3\pi \times r^2)}$",listbox, 14, 0) 
                     ajouter_element("    ")
                     saut_2_lignes()
 
@@ -579,7 +579,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                     for i in range(9,14):
                         ajouter_element(Liste_cours[i])
                         if i == 11:
-                            formule_latex.make_formule(r"$ m = \frac{yB - yA}{xB - xA}$",listbox, 11, 0) 
+                            formule_latex.make_formule(r"$ m = \frac{yB - yA}{xB - xA}$",listbox, 14, 0) 
                             ajouter_element("   ")
                         saut_2_lignes()
 
@@ -594,12 +594,12 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
 
                         if i ==16:
                             listbox.insert(END, "\n")
-                            formule_latex.make_formule(r"$\left\{ \begin{array}{lr} x + y & = 5 \\ 2x - y & = 1 \end{array} \right.$",listbox, 11, 1) 
+                            formule_latex.make_formule(r"$\left\{ \begin{array}{lr} x + y & = 5 \\ 2x - y & = 1 \end{array} \right.$",listbox, 14, 1) 
                             ajouter_element(Liste_cours[17])
 
                         elif i ==19:
                             listbox.insert(END, "\n")
-                            formule_latex.make_formule(r"$\left\{ \begin{array}{lr} 2x + y & = 5 \\ 3x - y & = 4 \end{array} \right.$",listbox, 11, 1) 
+                            formule_latex.make_formule(r"$\left\{ \begin{array}{lr} 2x + y & = 5 \\ 3x - y & = 4 \end{array} \right.$",listbox, 14, 1) 
                             ajouter_element(Liste_cours[20])
                         
                         if i!=17 and i!=20:
@@ -759,7 +759,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
             elif Niveau ==1:
                 if num_pnj=="pnj1":
                     ajouter_element(Liste_cours[3])
-                    formule_latex.make_formule(r"$ \frac{(longueur \cdot largeur)}{2}$",listbox, 11, 0) 
+                    formule_latex.make_formule(r"$ \frac{(longueur \times largeur)}{2}$",listbox, 14, 0) 
                     ajouter_element(Liste_cours[4])
                     saut_2_lignes()
 
@@ -769,16 +769,16 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
 
                 elif num_pnj=="pnj3":
                     ajouter_element(Liste_cours[6])
-                    formule_latex.make_formule(r"$ \frac{(\pi \cdot rayon^2)}{3}$",listbox, 11, 0) 
+                    formule_latex.make_formule(r"$ \frac{(\pi \times rayon^2)}{3}$",listbox, 14, 0) 
                     ajouter_element(Liste_cours[7])
-                    formule_latex.make_formule(r"$ \frac{V_{prisme}}{3}$",listbox, 11, 0) 
+                    formule_latex.make_formule(r"$ \frac{V_{prisme}}{3}$",listbox, 14, 0) 
                     ajouter_element("   ")
                     saut_2_lignes()
 
 
                 elif num_pnj=="pnj4":
                     ajouter_element(Liste_cours[8])
-                    formule_latex.make_formule(r"$ \frac{4}{(3\pi \cdot r^2)}$",listbox, 11, 0) 
+                    formule_latex.make_formule(r"$ \frac{4}{(3\pi \times r^2)}$",listbox, 14, 0) 
                     ajouter_element("   ")
                     saut_2_lignes()
 
@@ -795,7 +795,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
 
                 elif num_pnj=="pnj3":
                     ajouter_element(Liste_cours[11]) 
-                    formule_latex.make_formule(r"$ m = \frac{yB - yA}{xB - xA}$",listbox, 11, 2) 
+                    formule_latex.make_formule(r"$ m = \frac{yB - yA}{xB - xA}$",listbox, 14, 2) 
                     saut_2_lignes()
 
                 elif num_pnj=="pnj4":
@@ -820,7 +820,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                 elif num_pnj=="pnj3":
                     ajouter_element(Liste_cours[16])
                     listbox.insert(END, "\n")
-                    formule_latex.make_formule(r"$\left\{ \begin{array}{lr} x + y & = 5 \\ 2x - y & = 1 \end{array} \right.$",listbox, 11, 1) 
+                    formule_latex.make_formule(r"$\left\{ \begin{array}{lr} x + y & = 5 \\ 2x - y & = 1 \end{array} \right.$",listbox, 14, 1) 
                     ajouter_element(Liste_cours[17])
                     saut_2_lignes() 
 
@@ -831,7 +831,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                 elif  num_pnj=="pnj5":
                     ajouter_element(Liste_cours[19])
                     listbox.insert(END, "\n")
-                    formule_latex.make_formule(r"$\left\{ \begin{array}{lr} 2x + y & = 5 \\ 3x - y & = 4 \end{array} \right.$",listbox, 11, 1) 
+                    formule_latex.make_formule(r"$\left\{ \begin{array}{lr} 2x + y & = 5 \\ 3x - y & = 4 \end{array} \right.$",listbox, 14, 1) 
                     ajouter_element(Liste_cours[20])
                     saut_2_lignes() 
 
@@ -1009,7 +1009,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                             if c==1:
                                 insert_text("B’jour jeune aventurier, je pense que j’pourrais bien t’apprendre un truc aujourd’hui.")
                             elif c==2:
-                                insert_text("De façon intuitive, une égalité fonctionne un peu comme une balance à deux plateaux \u2696 : si on effectue une opération d'un côté, il faut réaliser la même opération de l'autre côté pour garder l'équilibre.")
+                                insert_text("De façon intuitive, une égalité fonctionne un peu comme une balance à deux plateaux \u2629 : si on effectue une opération dans un membre, il faut réaliser la même opération dans l’autre membre pour garder l'équilibre.")
                             elif c==3:
                                 insert_text("Tiens voila pour m’avoir écouté; un fragment de clé que j’ai ramené lors de mon dernier voyage !")
 
@@ -1018,7 +1018,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                                 insert_text("Tiens je parie que tu as croisé ma femme toi ! Eh oui je reconnais cet objet il est à moi mais trêve de plaisanterie je pense que si tu es la jeune aventurier c’est pour continuer ton périple.")
                             elif c==2:
                                 insert_text("Pour cela, il te faudra connaître la formule de l’aire d’un disque qui est π x rayon², je vais aussi t’apprendre l’aire d’un triangle est ")
-                                formule_latex.make_formule(r"$ \frac{(longueur \cdot largeur)}{2}$",Label_texte_parole_discussion_pnj_scrolltext, 11, 0) 
+                                formule_latex.make_formule(r"$ \frac{(longueur \times largeur)}{2}$",Label_texte_parole_discussion_pnj_scrolltext, 14, 0) 
                                 insert_text(" et celle d’un carré ou d’un rectangle est longueur x largeur.")
 
                             elif c==3:
@@ -1036,7 +1036,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                             if c==1:
                                 insert_text("Oh ! Je te connais toi dis donc ! Tu veux que je t’apprenne autre chose ?")
                             elif c==2:
-                                insert_text("Eh bien sache qu’il y a 2 manières pour résoudre un système à doubles inconnues, la fin est la même mais la réflexion n’est pas la même, il y a donc la résolution par substitution et la résolution par combinaisons linéaires je parie que ça t’en bouche un coin.")
+                                insert_text("Eh bien sache qu’il y a 2 manières pour résoudre un système à doubles inconnues, la fin est la même mais la réflexion n’est pas la même, il y a donc la résolution par substitution et la résolution par combinaisons linéaires, d’ailleurs un système à double inconnues permet par exemple de trouver les coordonnées d’un point d’intersection, je parie que ça t’en bouche un coin.")
                             elif c==3:
                                 insert_text("Tiens c’est une autre babiole de mon mari.")
 
@@ -1100,7 +1100,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
 
                         elif Niveau ==2:
                             if c==1:
-                                insert_text("Dit jeune homme, savais-tu que les droites parallèles à l’axe des ordonnées sont aussi appelées droites verticales.")
+                                insert_text("Dit jeune homme, savais-tu que les droites parallèles à l’axe des ordonnées (“droites verticales”) ne se présentent pas sous la forme y = mx + p.")
                             elif c==2:
                                 insert_text("Elles ont une équation de forme x=c sachant que c est un nombre par exemple x = 2 est une droite verticale qui passe par l’abscisse 2.")
                             elif c==3:
@@ -1178,7 +1178,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                                 insert_text("Salut à toi jeune aventurier. Alors si aujourd'hui je me permets de te parler, c'est pour une raison très simple. Savais-tu que 95 % de la population détient 5 % des richesses ? Alors je ne te garantie pas d’en faire partie mais au moins de partir sur de vraies bases ! Il faut que tu te poses les bonnes questions.")
                             elif c==2:
                                 insert_text("Il faut savoir que dans une équation sous forme mx + p, p est l’ordonnée à l’origine et qu’il se calcule avec p = yA - m.xA et")
-                                formule_latex.make_formule(r"$ m = \frac{yB - yA}{xB - xA}$",Label_texte_parole_discussion_pnj_scrolltext, 11, 0) 
+                                formule_latex.make_formule(r"$ m = \frac{yB - yA}{xB - xA}$",Label_texte_parole_discussion_pnj_scrolltext, 14, 0) 
                                 insert_text("il te faudra simplement les coordonnées des points A(xA;yA) et B(xB;yB) de la droite ou tu te fermera des portes toute ta vie !")
                             elif c==3:
                                 insert_text("Moi je pense qu’il y a une conclusion. Alors soit tu m'écoutes, soit tu vas demander des écus à tes parents pour tenter de passer la porte. Avec moi c'est comme ça que ça marche, OK ? Fais le bon choix, je t’offre ça pour bien commencer ta vie.")
@@ -1188,8 +1188,8 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                                 insert_text("Salut à toi jeune… ! Attends ! Je t’ai pas déjà fait le coup à toi ? Zut ! Bon bah tant pis… [PAUSE] Salut à toi jeune aventurier. Alors si aujourd'hui je me permets de te parler, c'est pour une raison très simple. Savais-tu que 95 % de la population détient 5 % des richesses ? Alors je ne te garantie pas d’en faire partie mais au moins de partir sur de vraies bases ! Il faut que tu te poses les bonnes questions.")
                             elif c==2:
                                 insert_text("Il faut savoir résoudre un système à double inconnues, je te fais une démonstration : \nPrenons\n")
-                                formule_latex.make_formule(r"$\left\{ \begin{array}{lr} x + y & = 5 \\ 2x - y & = 1 \end{array} \right.$",Label_texte_parole_discussion_pnj_scrolltext, 11, 1) 
-                                insert_text("1. Tu isoles une variable : \n    y = 5 - x  \n2. Tu substitues : \n   2x - (5 - x) = 1  \n3. Tu résous : \n   2x - 5 + x = 1  \n   3x - 5 = 1 \n   3x = 6 \n   x = 2 \n4. Et enfin tu remplaces et tu résous : \n    y = 5 - 2 = 3  \nEt paf ta solution \n   x = 2, y = 3 ")
+                                formule_latex.make_formule(r"$\left\{ \begin{array}{lr} x + y & = 5 \\ 2x - y & = 1 \end{array} \right.$",Label_texte_parole_discussion_pnj_scrolltext, 14, 1) 
+                                insert_text("1. Tu isoles une variable à l’aide d’une équation : \n    y = 5 - x  \n2. Tu substitues y par c-x dans l’autre équation : \n   2x - (5 - x) = 1  \n3. Tu résous pour trouver x : \n   2x - 5 + x = 1  \n   3x - 5 = 1 \n   3x = 6 \n   x = 2 \n4. Et enfin tu remplaces par 2 et tu trouves y : \n    y = 5 - 2 = 3  \nEt paf ta solution \n   x = 2, y = 3 ")
                             elif c==3:
                                 insert_text("Faut le savoir ou tu te fermera des portes toute ta vie ! Moi je pense qu’il y a une conclusion. Alors soit tu m'écoutes, soit tu vas demander des écus à tes parents pour tenter de passer la porte. Avec moi c'est comme ça que ça marche, OK ? Fais le bon choix, je t’offre ça pour bien commencer ta vie.")
 
@@ -1241,7 +1241,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                                 insert_text("Zalut monzieur dis tu zavais qu’il pozait des zénigmes à la porte ?")
                             elif c==2:
                                 insert_text("Je zais pas ze qu’il y a là bas mais au cas où ze vais t’apprendre à calculer le volume d’une zphère. Il zuffit de faire .")
-                                formule_latex.make_formule(r"$ \frac{4}{(3\pi \cdot r^2)}$",Label_texte_parole_discussion_pnj_scrolltext, 11, 0) 
+                                formule_latex.make_formule(r"$ \frac{4}{(3\pi \times r^2)}$",Label_texte_parole_discussion_pnj_scrolltext, 14, 0) 
                             elif c==3:
                                 insert_text("Tient au fait z’arrête pas de m’en mettre partout.")
 
@@ -1298,7 +1298,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                         # et le cours est différent en fonction du niveau (map qui change)
                         if Niveau ==2:
                             if c==1:
-                                insert_text("Doucement moussaillon tu vas te mouiller ! Tu sais c’est vachement utile de connaître le point d’intersection de 2 droites, ça m’a sauvé plus jeune alors je vais t’apprendre.")
+                                insert_text("Doucement moussaillon tu vas te mouiller ! Tu sais c’est vachement utile de connaître les coordonnées du point d’intersection de 2 droites, ça m’a sauvé plus jeune alors je vais t’apprendre.")
                             elif c==2:
                                 insert_text("Quand tu as les 2 équations réduites tu t’amuses à faire une équation des 2 soit mx + p = m’x + p’.")
                             elif c==3:
@@ -1309,8 +1309,8 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                                 insert_text("Doucement moussaillon, tu vas te mouiller ! Tu sais, c’est vachement utile de savoir résoudre des systèmes d’équations, ça m’a sauvé plus jeune alors je vais t’apprendre.")
                             elif c==2:
                                 insert_text("Un exemple c’est le mieux alors :\n")
-                                formule_latex.make_formule(r"$\left\{ \begin{array}{lr} 2x + y & = 5 \\ 3x - y & = 4 \end{array} \right.$",Label_texte_parole_discussion_pnj_scrolltext, 11, 1) 
-                                insert_text("1. On additionne les deux équations pour éliminer y  : \n   (2x + y) + (3x - y) = 5 + 4  \n    2x + 3x + y - y = 9 \n    5x = 9 \n    x = 9/5  \n2. Puis on substitue x dans la première équation pour trouver y  : \n    2*(9/5) + y = 5 \n    18/5 + y = 5 \n    y = 5 - 18/5 \n    y = 25/5 - 18/5 \n    y = 7/5 \nEt comme par enchantement ta solution \n    x = 9/5, y = 7/5")
+                                formule_latex.make_formule(r"$\left\{ \begin{array}{lr} 2x + y & = 5 \\ 3x - y & = 4 \end{array} \right.$",Label_texte_parole_discussion_pnj_scrolltext, 14, 1) 
+                                insert_text("1. On additionne les deux équations pour éliminer y  : \n   (2x + y) + (3x - y) = 5 + 4  \n    2x + 3x + y - y = 9 \n    5x = 9 \n    x = 9/5  \n2. Puis on remplace x par 9/5 dans la première équation pour trouver y : \n    2*(9/5) + y = 5 \n    18/5 + y = 5 \n    y = 5 - 18/5 \n    y = 25/5 - 18/5 \n    y = 7/5 \nEt comme par enchantement ta solution \n    x = 9/5, y = 7/5")
                             elif c==3:
                                 insert_text("C’est aussi simple que ça. Tiens, mon brave, si tu as un pont à nettoyer, ça t’aidera !")
 
@@ -1345,7 +1345,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                     if pnj == "pnj1":
                         if Niveau ==0:
                             if c==1:
-                                insert_text("On s’recroise dit donc ! T’as oublié ce qu’j’ai dit ? Alors écoute bien j’vais répéter, de façon intuitive, une égalité fonctionne un peu comme une balance à deux plateaux \u2696 : si on effectue une opération d'un côté, il faut réaliser la même opération de l'autre côté pour garder l'équilibre.")
+                                insert_text("On s’recroise dit donc ! T’as oublié ce qu’j’ai dit ? Alors écoute bien j’vais répéter, de façon intuitive, une égalité fonctionne un peu comme une balance à deux plateaux \u2629: si on effectue une opération dans un membre, il faut réaliser la même opération dans l’autre membre pour garder l'équilibre.")
                             elif c==2:
                                 insert_text("Je t'ai déjà donné mon fragment de clé; bon courage dans ta quete !")
 
@@ -1353,8 +1353,8 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                             if c==1:
                                 insert_text("Alors aussi mauvaise mémoire que ma femme ?")
                             elif c==2:
-                                insert_text("Écoute bien cette fois la formule de l’aire de la base d’un disque qui est π x rayon², l’aire d’un triangle est ")
-                                formule_latex.make_formule(r"$ \frac{(longueur \cdot largeur)}{2}$",Label_texte_parole_discussion_pnj_scrolltext, 11, 0) 
+                                insert_text("Écoute bien cette fois; la formule de l’aire d’un disque est π x rayon², l’aire d’un triangle est ")
+                                formule_latex.make_formule(r"$ \frac{(longueur \times largeur)}{2}$",Label_texte_parole_discussion_pnj_scrolltext, 14, 0) 
                                 insert_text("et celle d’un carré ou d’un rectangle est longueur x largeur.")
 
                         elif Niveau ==2:
@@ -1367,7 +1367,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                             if c==1:
                                 insert_text("Re Bonjour jeune homme ! Tu n’as pas bien compris et tu veux que je réexplique ?")
                             elif c==2:
-                                insert_text("Je comprends, écoute bien, il y a 2 manières pour résoudre un système à doubles inconnues, la fin est la même mais la réflexion n’est pas la même, il y a donc la résolution par substitution et la résolution par combinaisons linéaires.")
+                                insert_text("Je comprends, écoute bien, il y a 2 manières pour résoudre un système à doubles inconnues, la fin est la même mais la réflexion n’est pas la même, il y a donc la résolution par substitution et la résolution par combinaisons linéaires, d’ailleurs un système à double inconnues permet par exemple de trouver les coordonnées d’un point d’intersection.")
 
                         elif Niveau ==5:
                             if c==1:
@@ -1405,7 +1405,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                             if c==1:
                                 insert_text("Re Bonjour mon brave. Tu n’as pas écouté et tu voudrais que je répète ? Ah la jeunesse ce n’est plus ce que c’était, je vais te réexpliquer mais c’est la dernière fois.")
                             elif c==2:
-                                insert_text("Les droites parallèles à l’axe des ordonnées aussi appelées droites verticales ont une équation de forme x=c sachant que c est un nombre par exemple x = 2 est une droite verticale qui passe par l’abscisse 2.")
+                                insert_text("Les droites parallèles à l’axe des ordonnées (“droites verticales”) ne se présentent pas sous la forme y = mx + p. mais ont une équation de forme x=c sachant que c est un nombre par exemple x = 2 est une droite verticale qui passe par l’abscisse 2.")
         
                         elif Niveau ==3:
                             if c==1:
@@ -1450,7 +1450,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                                 insert_text("Alors jeune aventurier tu veux que je te réexplique comment la vie fonctionne ?")
                             elif c==2:
                                 insert_text("Pour comprendre faut que tu saches que dans une équation sous forme mx + p, p est l’ordonnée à l’origine et qu’il se calcule avec p = yA - m.xA et ")
-                                formule_latex.make_formule(r"$ m = \frac{yB - yA}{xB - xA}$",Label_texte_parole_discussion_pnj_scrolltext, 11, 0) 
+                                formule_latex.make_formule(r"$ m = \frac{yB - yA}{xB - xA}$",Label_texte_parole_discussion_pnj_scrolltext, 14, 0) 
                                 insert_text("il te faudra simplement les coordonnées des points A(xA;yA) et B(xB;yB) de la droite, alors tu entrevois la vrai vie maintenant ?")
 
                         elif Niveau ==3:
@@ -1458,8 +1458,8 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                                 insert_text("Alors jeune aventurier tu veux que je te réexplique comment la vie fonctionne ?")
                             elif c==2:
                                 insert_text(" Il faut savoir résoudre un système à double inconnues, je te fais une démonstration : \nPrenons\n")
-                                formule_latex.make_formule(r"$\left\{ \begin{array}{lr} x + y & = 5 \\ 2x - y & = 1 \end{array} \right.$",Label_texte_parole_discussion_pnj_scrolltext, 11, 1) 
-                                insert_text("1. Tu isoles une variable : \n    y = 5 - x  \n2. Tu substitues : \n    x - (5 - x) = 1 \n3. Tu résous : \n    2x - 5 + x = 1 \n    3x - 5 = 1 \n    3x = 6 \n    x = 2 \n4. Et enfin tu remplaces et tu résous : \n    y = 5 - 2 = 3 \nEt paf ta solution \n    x = 2, y = 3 , alors tu entrevois la vraie vie maintenant ?")
+                                formule_latex.make_formule(r"$\left\{ \begin{array}{lr} x + y & = 5 \\ 2x - y & = 1 \end{array} \right.$",Label_texte_parole_discussion_pnj_scrolltext, 14, 1) 
+                                insert_text("1. Tu isoles une variable à l’aide d’une équation : \n    y = 5 - x  \n2. Tu substitues y par c-x dans l’autre équation : \n    x - (5 - x) = 1 \n3. Tu résous pour trouver x : \n    2x - 5 + x = 1 \n    3x - 5 = 1 \n    3x = 6 \n    x = 2 \n4. Et enfin tu remplaces par 2 et tu trouves y : \n    y = 5 - 2 = 3 \nEt paf ta solution \n    x = 2, y = 3 , alors tu entrevois la vraie vie maintenant ?")
 
                         elif Niveau ==5:
                             if c==1:
@@ -1486,7 +1486,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                                 insert_text("T’as pas réussi à passer la porte ?")
                             elif c==2:
                                 insert_text("Alors ze vais te réexpliquer, pour calculer le volume d’une zphère il zuffit de faire ")
-                                formule_latex.make_formule(r"$ \frac{4}{(3\pi \cdot r^2)}$",Label_texte_parole_discussion_pnj_scrolltext, 11, 0) 
+                                formule_latex.make_formule(r"$ \frac{4}{(3\pi \times r^2)}$",Label_texte_parole_discussion_pnj_scrolltext, 14, 0) 
 
                         elif Niveau ==2:
                             if c==1:
@@ -1525,8 +1525,8 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                                 insert_text("Alors, tombé à l’eau ? Je t’avais prévenu, écoute mieux cette fois.")
                             elif c==2:
                                 insert_text("Un exemple c’est le mieux alors :\n ")
-                                formule_latex.make_formule(r"$\left\{ \begin{array}{lr} 2x + y & = 5 \\ 3x - y & = 4 \end{array} \right.$",Label_texte_parole_discussion_pnj_scrolltext, 11, 1)  
-                                insert_text("1. On additionne les deux équations pour éliminer y  : \n    (2x + y) + (3x - y) = 5 + 4 \n    2x + 3x + y - y = 9 \n    5x = 9 \n    x = 9/5 \n2. Puis on substitue x dans la première équation pour trouver y  : \n    2*(9/5) + y = 5 \n    18/5 + y = 5 \n    y = 5 - 18/5 \n    y = 25/5 - 18/5 \n    y = 7/5 \nEt comme par enchantement ta solution \n    x = 9/5, y = 7/5 ")
+                                formule_latex.make_formule(r"$\left\{ \begin{array}{lr} 2x + y & = 5 \\ 3x - y & = 4 \end{array} \right.$",Label_texte_parole_discussion_pnj_scrolltext, 14, 1)  
+                                insert_text("1. On additionne les deux équations pour éliminer y  : \n    (2x + y) + (3x - y) = 5 + 4 \n    2x + 3x + y - y = 9 \n    5x = 9 \n    x = 9/5 \n2. Puis on remplace x par 9/5 dans la première équation pour trouver y : \n    2*(9/5) + y = 5 \n    18/5 + y = 5 \n    y = 5 - 18/5 \n    y = 25/5 - 18/5 \n    y = 7/5 \nEt comme par enchantement ta solution \n    x = 9/5, y = 7/5 ")
 
                         elif Niveau ==7:
                             if c==1:
