@@ -1770,7 +1770,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                         elif Niveau==5:
                             insert_consignes_exo("Vous devez résoudre cet exo pas encore fait")
                         elif Niveau==6:
-                            insert_consignes_exo(f"Vous devez dériver la fonction f(x) suivante. Puis trouver la valeur de la fonction pour x = {Exo_correction[5]}")
+                            insert_consignes_exo(f"Vous devez dériver la fonction f(x) suivante. Puis trouver l'équation de tangente pour x = {Exo_correction[5]}")
                             formule_latex.make_formule(Exo_correction[0],Label_scrollbox_consignes_exo, 15, 0)
                         elif Niveau==7:
                             insert_consignes_exo("Vous devez résoudre cet exo pas encore fait")
