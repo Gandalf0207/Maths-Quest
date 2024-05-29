@@ -107,6 +107,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
         idee = PhotoImage(file="Images/Autre/idee.png")
 
         Volume_nv1 = PhotoImage(file="Images/Exercices/volume.png")
+        exo_boss_portdesete = PhotoImage(file="Images/Exercices/boss_exo.png")
 
         #en fonction du niveau, on choisit les murs / les pnjs
 
@@ -1925,19 +1926,19 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                 def affiche_consigne_boss(Niveau):
                     global erreur_boss
                     global c_boss
+                    global type_partie
+
                     c_boss  += 1
 
                     text_complet_consignes_boss = ""
 
                     if c_boss==1:
-                        if Niveau==4:
                             text_complet_consignes_boss = "Pour pouvoir tourner la clé et ainsi dévérouiller la porte, vous devez résoudre cette exercice ! "
                     elif c_boss==2:
-                        if Niveau==4:
                             text_complet_consignes_boss = "Toutes les parties du cours que vous avez collectées vous serviront pour répondre ! Vous pouvez les consulter "
                     elif c_boss==3:
                         if Niveau==4:
-                            text_complet_consignes_boss = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab "
+                            text_complet_consignes_boss = "consignes à définir ...."
 
                     elif c_boss==4:
                         Label_btn_suivant_boss_window ['state'] = DISABLED
@@ -1958,12 +1959,10 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
 
                     elif c_boss==6:
                         if erreur_boss == 0:
-                            if Niveau ==0:
+                            if Niveau ==4 and type_partie=='all':
                                 text_complet_consignes_boss ="Cliquez sur suivant pour passez au niveau suppérieur !"
-                            elif Niveau ==1:
-                                text_complet_consignes_boss ="Cliquez sur suivant pour passez au niveau suppérieur !"
-                            elif Niveau ==3:
-                                text_complet_consignes_boss ="Cliquez sur suivant pour passez au niveau suppérieur !"
+                            else:
+                                text_complet_consignes_boss ="Cliquez sur suivant pour obtenir vos résultats et terminer le jeu !"
 
                         else:
                             boss_window.destroy()
@@ -1971,17 +1970,23 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                     else:
                         Niveau +=1
                         boss_window.destroy()
-                        global type_partie
                         Gestion_Jouer(Jeu, Niveau, type_partie)
 
                     
                     if  4 > c_boss  or 5 <= c_boss <7:
 
                         Label_btn_suivant_boss_window ['state'] = DISABLED
+
+                        Label_scrollbox_consignes_boss.config(state = NORMAL)
+                        Label_scrollbox_consignes_boss.delete('1.0', END)
+                        Label_scrollbox_consignes_boss.config(state = DISABLED)
+
                         for i in range(len(text_complet_consignes_boss)):
-                            text_partiel_boss = text_complet_consignes_boss[:i+1]
-                            Label_Text_Explication_boss_strvar.set(f"{text_partiel_boss}")
-                            Label_Text_Explication_boss_widget.update()
+                            Label_scrollbox_consignes_boss.config(state = NORMAL)
+                            text_partiel_boss = text_complet_consignes_boss[i]
+                            Label_scrollbox_consignes_boss.insert(END, f"{text_partiel_boss}")
+                            Label_scrollbox_consignes_boss.update()
+                            Label_scrollbox_consignes_boss.config(state = DISABLED)
                             time.sleep(0.01)
                         Label_btn_suivant_boss_window ['state'] = NORMAL
     
@@ -2099,10 +2104,14 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                 Label_Frame_Canvas_consignes_explication_btn_boss.pack(side=TOP, fill='x', pady= 5, padx=5)
 
                 #on load les element de consignes
-                Label_Text_Explication_boss_strvar = StringVar()
-                Label_Text_Explication_boss_strvar.set("Cliquez sur suivant !")
-                Label_Text_Explication_boss_widget = Label(Label_Frame_Canvas_consignes_explication_btn_boss,wraplength=300, textvariable = Label_Text_Explication_boss_strvar, justify="left"  )
-                Label_Text_Explication_boss_widget.pack(fill='x',side = LEFT, padx= 5, pady=5)
+                #on load les element de consignes
+                Label_scrollbox_consignes_boss = scrolledtext.ScrolledText(Label_Frame_Canvas_consignes_explication_btn_boss, wrap='word', font=("Arial", 10), height=4)
+                Label_scrollbox_consignes_boss.pack(side=LEFT, fill=BOTH, expand=True, pady= 5, padx = 5)
+                Label_scrollbox_consignes_boss.insert(END, 'Clique sur suivant !')
+                Label_scrollbox_consignes_boss.images = []
+
+                Label_scrollbox_consignes_boss.config(state = DISABLED)
+
                 Label_btn_suivant_boss_window = Button(Label_Frame_Canvas_consignes_explication_btn_boss, text="Suivant !", command=lambda:affiche_consigne_boss(Niveau))
                 Label_btn_suivant_boss_window.pack(side=TOP, anchor="e", pady=5, padx=5)
 
@@ -2110,9 +2119,14 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                 Label_Frame_Canvas_formule_boss = Frame(Label_frame_global_element_gauche_boss, bg="#99A6D0")
                 Label_Frame_Canvas_formule_boss.pack(side=TOP, fill='y', pady= 5, padx=5)
 
+                #canvas avec l'image
+                Label_canvas_boss_image = Canvas(Label_Frame_Canvas_formule_boss, width = 400, height = 283)
+                Label_canvas_boss_image.create_image(0,0,anchor=NW, image = exo_boss_portdesete)
+                Label_canvas_boss_image.pack()
+
                 if Niveau ==4:
-                    # on recupère la formule et la correction
-                    Exo_correction_boss = py_maths_boss.choix_exo_niveau_boss(Niveau,Label_Frame_Canvas_formule_boss)
+                    # on recupère la correction et les valeur nécéssaire à la consignes
+                    Exo_correction_boss = py_maths_boss.choix_exo_niveau_boss(Niveau)
                     print(Exo_correction_boss)
 
 
