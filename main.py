@@ -101,7 +101,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
         porte_moyen = PhotoImage(file="Images/Autre/porte_moyen.png")
         carre = PhotoImage(file="Images/Autre/CARRE.png")
         craft_table_petit = PhotoImage(file="Images/Autre/craft_petit.png")
-        craft_table_moyen = PhtoImage(file="Images/Autre/craft_moyen")
+        craft_table_moyen = PhotoImage(file="Images/Autre/craft_moyen.png")
 
         Perso = PhotoImage(file="Images/Autre/perso.png")
         idee = PhotoImage(file="Images/Autre/idee.png")
@@ -200,7 +200,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                 pnj1 = PhotoImage(file = "Images/pnj/Cana/Cana_petit.png")
                 pnj1_moyen = PhotoImage(file="Images/pnj/Cana/Cana_moyen.png")
                 pnj1_grand = PhotoImage(file="Images/pnj/Cana/Cana_grand.png")
-            elif Niveau ==3:
+            elif Niveau ==3 or Niveau ==7: #set du nv 7 ici en tempo des vrai perso
                 pnj1 = PhotoImage(file = "Images/pnj/Mathemami/Mathemami_petit.png")
                 pnj1_moyen = PhotoImage(file="Images/pnj/Mathemami/Mathemami_moyen.png")
                 pnj1_grand = PhotoImage(file="Images/pnj/Mathemami/Mathemami_grand.png")
@@ -224,11 +224,11 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
 
         #les deux niveaux de boss
         elif Niveau==4 or Niveau ==8:
-            mur1 = PhotoImage(file="Images/Wall_red.png")
-            mur2 = PhotoImage(file="Images/Wall_red_with_symbols.png")
-            mur3 = PhotoImage(file="Images/Wall_red_flower.png")
+            mur1 = PhotoImage(file="Images/Map/Wall_red.png")
+            mur2 = PhotoImage(file="Images/Map/Wall_red_with_symbols.png")
+            mur3 = PhotoImage(file="Images/Map/Wall_red_flower.png")
 
-            pnj_boss = PhotoImage(file = "Images/pnj/Boss/Boss_petit.png")
+            pnj_boss_ = PhotoImage(file = "Images/pnj/Boss/Boss_petit.png")
             pnj_boss_moyen = PhotoImage(file = "Images/pnj/Boss/Boss_moyen.png")
 
 
@@ -1770,7 +1770,8 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                         elif Niveau==5:
                             insert_consignes_exo("Vous devez résoudre cet exo pas encore fait")
                         elif Niveau==6:
-                            insert_consignes_exo("Vous devez résoudre cet exo pas encore fait")
+                            insert_consignes_exo(f"Vous devez dériver la fonction f(x) suivante. Puis trouver la valeur de la fonction pour x = {Exo_correction[5]}")
+                            formule_latex.make_formule(Exo_correction[0],Label_scrollbox_consignes_exo, 15, 0)
                         elif Niveau==7:
                             insert_consignes_exo("Vous devez résoudre cet exo pas encore fait")
         
@@ -2246,16 +2247,16 @@ Pour plus de renseignements : https://github.com/Gandalf0207/Maths-Quest
         global pnj3_infos
         global pnj4_infos
         global pnj5_infos
-        pnj1_infos = False
-        pnj2_infos = False
-        pnj3_infos = False
-        pnj4_infos = False  
-        pnj5_infos = False
+        pnj1_infos = True
+        pnj2_infos = True
+        pnj3_infos = True
+        pnj4_infos = True  
+        pnj5_infos = True
 
         # quad un elment est fabriqué, pour l'afficher correctement
 
         global assemble_cle
-        assemble_cle = False
+        assemble_cle = True
 
 
 
