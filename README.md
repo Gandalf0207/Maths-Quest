@@ -57,6 +57,11 @@ Quand vous arrivez au niveau du boss, le principe est le même, vous devez vous 
 - 3 Indices utilisés --> Médaille de bronze
 Votre score sera affiché à la fin de votre partie.
 
+> [!NOTE]
+> Le programme exécute des générations d'images pour afficher du code de formules mathématiques en LaTeX (de manière jolie). Il est donc normal que, de temps à autre, le jeu ne réponde plus pendant quelques instants ou que, lors du passage d'un niveau à l'autre, le jeu prenne un peu de temps à s'ouvrir (jamais plus de 20 secondes).
+
+
+
 ##### Voilà, vous avez terminé le jeu !
 
 <br> </br>
