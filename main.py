@@ -97,132 +97,139 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
 
         #On load les img pour pouvoir les afficher
 
-        porte = PhotoImage(file="image/porte.png")
-        porte_moyen = PhotoImage(file="image/porte.png")
-        carre = PhotoImage(file="image/CARRE.png")
-        craft_table_ = PhotoImage(file="image/craft.png")
+        porte = PhotoImage(file="Images/Autre/porte_petit.png")
+        porte_moyen = PhotoImage(file="Images/Autre/porte_moyen.png")
+        carre = PhotoImage(file="Images/Autre/CARRE.png")
+        craft_table_petit = PhotoImage(file="Images/Autre/craft_petit.png")
+        craft_table_moyen = PhtoImage(file="Images/Autre/craft_moyen")
 
-        Perso = PhotoImage(file="image/perso.png")
-        idee = PhotoImage(file="image/idee.png")
+        Perso = PhotoImage(file="Images/Autre/perso.png")
+        idee = PhotoImage(file="Images/Autre/idee.png")
 
-        Volume_nv1 = PhotoImage(file="image/volume.png")
+        Volume_nv1 = PhotoImage(file="Images/Exercices/volume.png")
 
         #en fonction du niveau, on choisit les murs / les pnjs
 
         if Niveau ==0 or Niveau ==5:
-                Grande_cle = PhotoImage(file="image/Cle_1_repare.png")
+                Grande_cle = PhotoImage(file="Images/Objets/Cle_1_repare.png")
 
-                loot_vide_pnj1 = PhotoImage(file="image/clepnj1_.png")
-                loot_vide_pnj2 = PhotoImage(file="image/clepnj2_.png")
-                loot_vide_pnj3 = PhotoImage(file="image/clepnj3_.png")
+                loot_vide_pnj1 = PhotoImage(file="Images/Objets/clepnj1_.png")
+                loot_vide_pnj2 = PhotoImage(file="Images/Objets/clepnj2_.png")
+                loot_vide_pnj3 = PhotoImage(file="Images/Objets/clepnj3_.png")
 
-                loot_pnj1 = PhotoImage(file="image/clepnj1.png")
-                loot_pnj2 = PhotoImage(file="image/clepnj2.png")
-                loot_pnj3 = PhotoImage(file="image/clepnj3.png")
+                loot_pnj1 = PhotoImage(file="Images/Objets/clepnj1.png")
+                loot_pnj2 = PhotoImage(file="Images/Objets/clepnj2.png")
+                loot_pnj3 = PhotoImage(file="Images/Objets/clepnj3.png")
 
         elif Niveau == 1 or Niveau==6:
-                Grande_cle = PhotoImage(file="image/Cle_2_repare.png")
+                Grande_cle = PhotoImage(file="Images/Objets/Cle_2_repare.png")
 
-                loot_vide_pnj1 = PhotoImage(file="image/clepnj1_.png")
-                loot_vide_pnj2 = PhotoImage(file="image/clepnj2_.png")
-                loot_vide_pnj3 = PhotoImage(file="image/clepnj3_.png")
-                loot_vide_pnj4 = PhotoImage(file="image/Glue_Ombre.png")
+                loot_vide_pnj1 = PhotoImage(file="Images/Objets/clepnj1_.png")
+                loot_vide_pnj2 = PhotoImage(file="Images/Objets/clepnj2_.png")
+                loot_vide_pnj3 = PhotoImage(file="Images/Objets/clepnj3_.png")
+                loot_vide_pnj4 = PhotoImage(file="Images/Objets/Glue_Ombre.png")
 
-                loot_pnj1 = PhotoImage(file="image/clepnj1.png")
-                loot_pnj2 = PhotoImage(file="image/clepnj2.png")
-                loot_pnj3 = PhotoImage(file="image/clepnj3.png")
-                loot_pnj4 = PhotoImage(file="image/Glue.png")
+                loot_pnj1 = PhotoImage(file="Images/Objets/clepnj1.png")
+                loot_pnj2 = PhotoImage(file="Images/Objets/clepnj2.png")
+                loot_pnj3 = PhotoImage(file="Images/Objets/clepnj3.png")
+                loot_pnj4 = PhotoImage(file="Images/Objets/Glue.png")
 
         elif Niveau ==2 or Niveau ==3 or Niveau ==7:
-                Grande_cle = PhotoImage(file="image/Cle_3_repare.png")
+                Grande_cle = PhotoImage(file="Images/Objets/Cle_3_repare.png")
 
-                loot_vide_pnj1 = PhotoImage(file="image/clepnj1_.png")
-                loot_vide_pnj2 = PhotoImage(file="image/clepnj2_.png")
-                loot_vide_pnj3 = PhotoImage(file="image/clepnj3_.png")
-                loot_vide_pnj4 = PhotoImage(file="image/Glue_Ombre.png")
-                loot_vide_pnj5 = PhotoImage(file="image/Kit_de_nettoyage_ombre.png")
+                loot_vide_pnj1 = PhotoImage(file="Images/Objets/clepnj1_.png")
+                loot_vide_pnj2 = PhotoImage(file="Images/Objets/clepnj2_.png")
+                loot_vide_pnj3 = PhotoImage(file="Images/Objets/clepnj3_.png")
+                loot_vide_pnj4 = PhotoImage(file="Images/Objets/Glue_Ombre.png")
+                loot_vide_pnj5 = PhotoImage(file="Images/Objets/Kit_de_nettoyage_ombre.png")
 
-                loot_pnj1 = PhotoImage(file="image/clepnj1-.png")
-                loot_pnj2 = PhotoImage(file="image/clepnj2-.png")
-                loot_pnj3 = PhotoImage(file="image/clepnj3-.png")
-                loot_pnj4 = PhotoImage(file="image/Glue.png")
-                loot_pnj5 = PhotoImage(file="image/Kit_de_nettoyage.png")
+                loot_pnj1 = PhotoImage(file="Images/Objets/clepnj1-.png")
+                loot_pnj2 = PhotoImage(file="Images/Objets/clepnj2-.png")
+                loot_pnj3 = PhotoImage(file="Images/Objets/clepnj3-.png")
+                loot_pnj4 = PhotoImage(file="Images/Objets/Glue.png")
+                loot_pnj5 = PhotoImage(file="Images/Objets/Kit_de_nettoyage.png")
 
 
         #exo 1 et 5 : 1er degré + 2nd degré 
         if Niveau ==0 or Niveau == 5:
-            mur1 = PhotoImage(file="image/Water.png")
-            mur2 = PhotoImage(file="image/Water_rock.png")
-            mur3 = PhotoImage(file="image/Water_Lotus.png")
+            mur1 = PhotoImage(file="Images/Map/Water.png")
+            mur2 = PhotoImage(file="Images/Map/Water_rock.png")
+            mur3 = PhotoImage(file="Images/Map/Water_Lotus.png")
 
-            pnj1 = PhotoImage(file = "image/pnj1.png")
-            pnj2 = PhotoImage(file = "image/Iggy.png")
-            pnj3 = PhotoImage(file = "image/pnj3.png")
+            pnj1 = PhotoImage(file = "Images/pnj/Leilegalite/Leilegalite_petit.png")
+            pnj2 = PhotoImage(file = "Images/pnj/Iggy/Iggy_petit.png")
+            pnj3 = PhotoImage(file = "Images/pnj/Mathemami/Mathemami_petit.png")
 
-            pnj1_moyen = PhotoImage(file="image/sorcier1.png")
-            pnj2_moyen = PhotoImage(file="image/sorcier2.png")
-            pnj3_moyen = PhotoImage(file="image/sorcier3.png")
+            pnj1_moyen = PhotoImage(file="Images/pnj/Leilegalite/Leilegalite_moyen.png")
+            pnj2_moyen = PhotoImage(file="Images/pnj/Iggy/Iggy_moyen.png")
+            pnj3_moyen = PhotoImage(file="Images/pnj/Mathemami/Mathemami_moyen.png")
 
-            pnj1_grand = PhotoImage(file="image/sorcier1.png")
-            pnj2_grand = PhotoImage(file="image/Iggy_grand.png")
-            pnj3_grand = PhotoImage(file="image/sorcier3.png")
+            pnj1_grand = PhotoImage(file="Images/pnj/Leilegalite/Leilegalite_grand.png")
+            pnj2_grand = PhotoImage(file="Images/pnj/Iggy/Iggy_grand.png")
+            pnj3_grand = PhotoImage(file="Images/pnj/Mathemami/Mathemami_grand.png")
 
         #exo 2 et 6 : volume + Derivation
         elif Niveau ==1 or Niveau ==6:
-            mur1 = PhotoImage(file="image/Water.png")
-            mur2 = PhotoImage(file="image/Water_rock.png")
-            mur3 = PhotoImage(file="image/Water_Lotus.png")
+            mur1 = PhotoImage(file="Images/Map/Water.png")
+            mur2 = PhotoImage(file="Images/Map/Water_rock.png")
+            mur3 = PhotoImage(file="Images/Map/Water_Lotus.png")
 
-            pnj1 = PhotoImage(file = "image/pnj1.png")
-            pnj2 = PhotoImage(file = "image/pnj2.png")
-            pnj3 = PhotoImage(file = "image/Marchand_de_glace.png")
-            pnj4 = PhotoImage(file = "image/pnj2.png")
+            pnj1 = PhotoImage(file = "Images/pnj/Papy/Papy_petit.png")
+            pnj2 = PhotoImage(file = "Images/pnj/Cecylindre/Cecylindre_petit.png")
+            pnj3 = PhotoImage(file = "Images/pnj/MarchandDeGlace/Marchand_de_glace_petit.png")
+            pnj4 = PhotoImage(file = "Images/pnj/Titouan/Titouan_petit.png")
 
-            pnj1_moyen = PhotoImage(file="image/sorcier1.png")
-            pnj2_moyen = PhotoImage(file="image/sorcier2.png")
-            pnj3_moyen = PhotoImage(file="image/sorcier3.png")
-            pnj4_moyen = PhotoImage(file="image/sorcier4.png")
+            pnj1_moyen = PhotoImage(file="Images/pnj/Papy/Papy_moyen.png")
+            pnj2_moyen = PhotoImage(file="Images/pnj/Cecylindre/Cecylindre_moyen.png")
+            pnj3_moyen = PhotoImage(file="Images/pnj/MarchandDeGlace/Marchand_de_glace_moyen.png")
+            pnj4_moyen = PhotoImage(file="Images/pnj/Titouan/Titouan_moyen.png")
 
-            pnj1_grand = PhotoImage(file="image/sorcier1.png")
-            pnj2_grand = PhotoImage(file="image/sorcier2.png")
-            pnj3_grand = PhotoImage(file="image/Marchand_de_glace_grand.png")
-            pnj4_grand = PhotoImage(file="image/sorcier4.png")
+            pnj1_grand = PhotoImage(file="Images/pnj/Papy/Papy_grand.png")
+            pnj2_grand = PhotoImage(file="Images/pnj/Cecylindre/Cecylindre_grand.png")
+            pnj3_grand = PhotoImage(file="Images/pnj/MarchandDeGlace/Marchand_de_glace_grand.png")
+            pnj4_grand = PhotoImage(file="Images/pnj/Titouan/Titouan_grand.png")
 
 
         # exo 3 et 7: fonction affiche tangente pente + Suite
         elif Niveau ==2 or Niveau ==3 or Niveau==7:
-            mur1 = PhotoImage(file="image/Wall1.png")
-            mur2 = PhotoImage(file="image/Wall2.png")
-            mur3 = PhotoImage(file="image/Wall3.png")
+            mur1 = PhotoImage(file="Images/Map/Wall1.png")
+            mur2 = PhotoImage(file="Images/Map/Wall2.png")
+            mur3 = PhotoImage(file="Images/Map/Wall3.png")
 
-            pnj1 = PhotoImage(file = "image/pnj1.png")
-            pnj2 = PhotoImage(file = "image/pnj2.png")
-            pnj3 = PhotoImage(file = "image/pnj3.png")
-            pnj4 = PhotoImage(file = "image/pnj2.png")
-            pnj5 = PhotoImage(file = "image/pnj2.png")
+            if Niveau ==2:
+                pnj1 = PhotoImage(file = "Images/pnj/Cana/Cana_petit.png")
+                pnj1_moyen = PhotoImage(file="Images/pnj/Cana/Cana_moyen.png")
+                pnj1_grand = PhotoImage(file="Images/pnj/Cana/Cana_grand.png")
+            elif Niveau ==3:
+                pnj1 = PhotoImage(file = "Images/pnj/Mathemami/Mathemami_petit.png")
+                pnj1_moyen = PhotoImage(file="Images/pnj/Mathemami/Mathemami_moyen.png")
+                pnj1_grand = PhotoImage(file="Images/pnj/Mathemami/Mathemami_grand.png")
 
-            pnj1_moyen = PhotoImage(file="image/sorcier1.png")
-            pnj2_moyen = PhotoImage(file="image/sorcier2.png")
-            pnj3_moyen = PhotoImage(file="image/sorcier3.png")
-            pnj4_moyen = PhotoImage(file="image/sorcier4.png")
-            pnj5_moyen = PhotoImage(file = "image/pnj2.png")
 
-            pnj1_grand = PhotoImage(file="image/sorcier1.png")
-            pnj2_grand = PhotoImage(file="image/sorcier2.png")
-            pnj3_grand = PhotoImage(file="image/sorcier3.png")
-            pnj4_grand = PhotoImage(file="image/sorcier4.png")
-            pnj5_grand = PhotoImage(file = "image/pnj2.png")
+            pnj2 = PhotoImage(file = "Images/pnj/HommeStrict/HommeStrict_petit.png")
+            pnj3 = PhotoImage(file = "Images/pnj/MarchandDeTapis/Marchand_de_tapis_petit.png")
+            pnj4 = PhotoImage(file = "Images/pnj/Delta/Delta_petit.png")
+            pnj5 = PhotoImage(file = "Images/pnj/CapitaineDunNavire/Capitaine_dun_navire_petit.png")
+
+            pnj2_moyen = PhotoImage(file="Images/pnj/HommeStrict/HommeStrict_moyen.png")
+            pnj3_moyen = PhotoImage(file="Images/pnj/MarchandDeTapis/Marchand_de_tapis_moyen.png")
+            pnj4_moyen = PhotoImage(file="Images/pnj/Delta/Delta_moyen.png")
+            pnj5_moyen = PhotoImage(file="Images/pnj/CapitaineDunNavire/Capitaine_dun_navire_moyen.png")
+
+            pnj2_grand = PhotoImage(file="Images/pnj/HommeStrict/HommeStrict_grand.png")
+            pnj3_grand = PhotoImage(file="Images/pnj/MarchandDeTapis/Marchand_de_tapis_grand.png")
+            pnj4_grand = PhotoImage(file="Images/pnj/Delta/Delta_grand.png")
+            pnj5_grand = PhotoImage(file="Images/pnj/CapitaineDunNavire/Capitaine_dun_navire_grand.png")
 
 
         #les deux niveaux de boss
         elif Niveau==4 or Niveau ==8:
-            mur1 = PhotoImage(file="image/Wall_red.png")
-            mur2 = PhotoImage(file="image/Wall_red_with_symbols.png")
-            mur3 = PhotoImage(file="image/Wall_red_flower.png")
+            mur1 = PhotoImage(file="Images/Wall_red.png")
+            mur2 = PhotoImage(file="Images/Wall_red_with_symbols.png")
+            mur3 = PhotoImage(file="Images/Wall_red_flower.png")
 
-            pnj_boss = PhotoImage(file = "image/pnj2.png")
-            pnj_boss_moyen = PhotoImage(file = "image/pnj2.png")
-            pnj_boss_grand = PhotoImage(file = "image/BOSS.png")
+            pnj_boss = PhotoImage(file = "Images/pnj/Boss/Boss_petit.png")
+            pnj_boss_moyen = PhotoImage(file = "Images/pnj/Boss/Boss_moyen.png")
 
 
 
@@ -328,7 +335,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
             #verif si table de craft dispo et si oui on affiche le msg d'information
             if L[ordonne][abscisse-1] == "¤":
                 Label_text_possibilite_strvar.set("Appuie sur 'c' pour assembler la grande Clé !")
-                canvas_infos_possibilite_discussion.create_image(0,0,anchor=NW, image=craft_table_)
+                canvas_infos_possibilite_discussion.create_image(0,0,anchor=NW, image=craft_table_moyen)
 
             #check si c'est la porte et on met à jour les infos dans le cadre e bas à gauche
             elif (L[ordonne-1][abscisse] == "\U0001F6AA" or L[ordonne+1][abscisse]== "\U0001F6AA" or L[ordonne][abscisse-1]== "\U0001F6AA" or L[ordonne][abscisse+1]== "\U0001F6AA"):
@@ -2195,9 +2202,9 @@ Exemple de PNJ :
 
                 scroll_text_regles_help.insert(END, text_regles_help)
 
-                image__0 = PhotoImage(file="image/Iggy.png")  # Remplacez par le chemin de votre image
-                image__1 = PhotoImage(file="image/Marchand_de_glace.png")
-                image__2 = PhotoImage(file="image/pnj1.png")
+                image__0 = PhotoImage(file="Images/pnj/Iggy/Iggy_petit.png")  # Remplacez par le chemin de votre image
+                image__1 = PhotoImage(file="Images/pnj/MarchandDeGlace/Marchand_de_glace_petit.png")
+                image__2 = PhotoImage(file="Images/pnj/CapitaineDunNavire/Capitaine_dun_navire_petit.png")
                 
                 scroll_text_regles_help.image_create(END, image=image__0)
                 scroll_text_regles_help.image_create(END, image=image__1)
@@ -2295,10 +2302,10 @@ Pour plus de renseignements : https://github.com/Gandalf0207/Maths-Quest
                 elif L[x][y] == "○":
                     canvas.create_image(24*y, 24*x, anchor=NW, image=Perso)
                 elif L[x][y] == "¤":
-                    canvas.create_image(24*y, 24*x, anchor=NW, image=craft_table_)
+                    canvas.create_image(24*y, 24*x, anchor=NW, image=craft_table_petit)
                     
         if Niveau==4 or Niveau==8:
-            canvas.create_image(24*16, 24*7, anchor=NW, image=pnj_boss_grand)
+            canvas.create_image(24*16, 24*7, anchor=NW, image=pnj_boss_)
 
         canvas.pack(side="top",padx=5, pady=0)
 
@@ -2438,42 +2445,42 @@ Pour plus de renseignements : https://github.com/Gandalf0207/Maths-Quest
 
         if type_partie=='seconde':
             if indices_give_1 ==0:
-                img_resultat =  PhotoImage(file="image/diamond.png") 
+                img_resultat =  PhotoImage(file="Images/Medailles/diamond.png") 
             elif indices_give_1 ==1:
-                img_resultat = PhotoImage(file = "image/gold.png")
+                img_resultat = PhotoImage(file = "Images/Medailles/gold.png")
             elif indices_give_1 ==2:
-                img_resultat = PhotoImage(file = "image/silver.png")
+                img_resultat = PhotoImage(file = "Images/Medailles/silver.png")
             elif indices_give_1 ==3:
-                img_resultat = PhotoImage(file = "image/bronze.png")
+                img_resultat = PhotoImage(file = "Images/Medailles/bronze.png")
 
         if type_partie=='premiere':
             if indices_give_2 ==0:
-                img_resultat = PhotoImage(file="image/diamond.png") 
+                img_resultat = PhotoImage(file="Images/Medailles/diamond.png") 
             elif indices_give_2 ==1:
-                img_resultat = PhotoImage(file = "image/gold.png")
+                img_resultat = PhotoImage(file = "Images/Medailles/gold.png")
             elif indices_give_2 ==2:
-                img_resultat = PhotoImage(file = "image/silver.png")
+                img_resultat = PhotoImage(file = "Images/Medailles/silver.png")
             elif indices_give_2 ==3:
-                img_resultat = PhotoImage(file = "image/bronze.png")
+                img_resultat = PhotoImage(file = "Images/Medailles/bronze.png")
 
         if type_partie =='all':
             if indices_give_1 ==0:
-                img_resultat = PhotoImage(file="image/diamond.png") 
+                img_resultat = PhotoImage(file="Images/Medailles/diamond.png") 
             elif indices_give_1 ==1:
-                img_resultat = PhotoImage(file = "image/gold.png")
+                img_resultat = PhotoImage(file = "Images/Medailles/gold.png")
             elif indices_give_1 ==2:
-                img_resultat = PhotoImage(file = "image/silver.png")
+                img_resultat = PhotoImage(file = "Images/Medailles/silver.png")
             elif indices_give_1 ==3:
-                img_resultat = PhotoImage(file = "image/bronze.png") 
+                img_resultat = PhotoImage(file = "Images/Medailles/bronze.png") 
 
             if indices_give_2 ==0:
-                img_resultat2 = PhotoImage(file="image/diamond.png") 
+                img_resultat2 = PhotoImage(file="Images/Medailles/diamond.png") 
             elif indices_give_2 ==1:
-                img_resultat2 = PhotoImage(file = "image/gold.png")
+                img_resultat2 = PhotoImage(file = "Images/Medailles/gold.png")
             elif indices_give_2 ==2:
-                img_resultat2 = PhotoImage(file = "image/silver.png")
+                img_resultat2 = PhotoImage(file = "Images/Medailles/silver.png")
             elif indices_give_2 ==3:
-                img_resultat2 = PhotoImage(file = "image/bronze.png")  
+                img_resultat2 = PhotoImage(file = "Images/Medailles/bronze.png")  
 
         Jeu.title("Maths-Quest | Résultats       © PLADEAU Quentin LUBAN Théo")
         Label_titre_resultat_partie = Label(Jeu, text = 'Résultats',bg = '#BBC4E3')
