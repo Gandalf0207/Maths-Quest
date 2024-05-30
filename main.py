@@ -1938,19 +1938,19 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                             text_complet_consignes_boss = "Toutes les parties du cours que vous avez collectées vous serviront pour répondre ! Vous pouvez les consulter "
                     elif c_boss==3:
                         if Niveau==4:
-                            text_complet_consignes_boss = "consignes à définir ...."
+                            text_complet_consignes_boss = f"Un paquebot se trouve dans le port de Sète et avant de partir un client veut connaître le volume d’huile que le paquebot peut transporter sachant qu’il possède une cargaison de 85 tonneaux de longueur :{Exo_correction_boss[4][4]} et de largeur :{Exo_correction_boss[4][5]} (nous affirmons que les tonneaux utilisés ont des côtés totalement droit et non arrondis. Après cela le bateau prend le large et reçoit des informations sur un autre bateau naviguant à la même vitesse, déterminer si les 2 bateaux se croiseront. Nous indiquons également que le bateau b1 a pour trajectoire [AB] et ayant comme coordonnées le points A; le bateau b2 a pour trajectoire [CD] et ayant comme coordonnées le points C. Coordonnées : A ={Exo_correction_boss[4][0]} ; B = {Exo_correction_boss[4][1]} ; C = {Exo_correction_boss[4][2]} ; D = {Exo_correction_boss[4][3]}"
 
                     elif c_boss==4:
                         Label_btn_suivant_boss_window ['state'] = DISABLED
                         # on affcihe les btns de réponses
-                        Label_btn_result_possible_1_boss = Button(Label_Frame_Reponse_Verif_boss_2, text=value_btn_1_boss, command=lambda:verif_reponse_boss(value_btn_1_boss,Exo_correction_boss[1],Label_btn_result_possible_1_boss,Label_btn_result_possible_2_boss,Label_btn_result_possible_3_boss))
-                        Label_btn_result_possible_1_boss.pack(side =LEFT, padx = 5, pady = 5)
+                        Label_btn_result_possible_1_boss = Button(Label_Frame_Reponse_Verif_boss_2, text=value_btn_1_boss, command=lambda:verif_reponse_boss(value_btn_1_boss,Exo_correction_boss[0],Label_btn_result_possible_1_boss,Label_btn_result_possible_2_boss,Label_btn_result_possible_3_boss))
+                        Label_btn_result_possible_1_boss.pack(side =TOP, padx = 5, pady = 5)
 
-                        Label_btn_result_possible_2_boss = Button(Label_Frame_Reponse_Verif_boss_2, text=value_btn_2_boss, command=lambda:verif_reponse_boss(value_btn_2_boss,Exo_correction_boss[1],Label_btn_result_possible_1_boss,Label_btn_result_possible_2_boss,Label_btn_result_possible_3_boss))
-                        Label_btn_result_possible_2_boss.pack(side =LEFT, padx = 5, pady = 5)
+                        Label_btn_result_possible_2_boss = Button(Label_Frame_Reponse_Verif_boss_2, text=value_btn_2_boss, command=lambda:verif_reponse_boss(value_btn_2_boss,Exo_correction_boss[0],Label_btn_result_possible_1_boss,Label_btn_result_possible_2_boss,Label_btn_result_possible_3_boss))
+                        Label_btn_result_possible_2_boss.pack(side =TOP, padx = 5, pady = 5)
 
-                        Label_btn_result_possible_3_boss = Button(Label_Frame_Reponse_Verif_boss_2, text=value_btn_3_boss, command=lambda:verif_reponse_boss(value_btn_3_boss,Exo_correction_boss[1],Label_btn_result_possible_1_boss,Label_btn_result_possible_2_boss,Label_btn_result_possible_3_boss))
-                        Label_btn_result_possible_3_boss.pack(side =LEFT, padx= 5, pady = 5)
+                        Label_btn_result_possible_3_boss = Button(Label_Frame_Reponse_Verif_boss_2, text=value_btn_3_boss, command=lambda:verif_reponse_boss(value_btn_3_boss,Exo_correction_boss[0],Label_btn_result_possible_1_boss,Label_btn_result_possible_2_boss,Label_btn_result_possible_3_boss))
+                        Label_btn_result_possible_3_boss.pack(side =TOP, padx= 5, pady = 5)
                     elif c_boss==5:
                         if erreur_boss == 0:
                             text_complet_consignes_boss = "Bravo ! Vous avez trouvé la bonne solution !"
@@ -2053,11 +2053,6 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
 
 
 
-
-
-
-
-
                 global c_boss
                 c_boss = 0
 
@@ -2097,13 +2092,12 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
 
                 ###frame global des éléments de gauche
                 Label_frame_global_element_gauche_boss = Frame(Label_Frame_global_boss, bg = "#99A6D0")
-                Label_frame_global_element_gauche_boss.pack(expand=True, fill='y', side=LEFT)
+                Label_frame_global_element_gauche_boss.pack(expand=True, fill=BOTH, side=LEFT)
 
                 ###frame qui conteintdra toutes les consignes / explications et le btn suivant
                 Label_Frame_Canvas_consignes_explication_btn_boss = Frame(Label_frame_global_element_gauche_boss, bg=None)
-                Label_Frame_Canvas_consignes_explication_btn_boss.pack(side=TOP, fill='x', pady= 5, padx=5)
+                Label_Frame_Canvas_consignes_explication_btn_boss.pack(side=TOP,expand=True, fill = BOTH, pady= 5, padx=5)
 
-                #on load les element de consignes
                 #on load les element de consignes
                 Label_scrollbox_consignes_boss = scrolledtext.ScrolledText(Label_Frame_Canvas_consignes_explication_btn_boss, wrap='word', font=("Arial", 10), height=4)
                 Label_scrollbox_consignes_boss.pack(side=LEFT, fill=BOTH, expand=True, pady= 5, padx = 5)
@@ -2124,16 +2118,15 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                 Label_canvas_boss_image.create_image(0,0,anchor=NW, image = exo_boss_portdesete)
                 Label_canvas_boss_image.pack()
 
+                # on recupère la correction et les valeur nécéssaire à la consignes
+                Exo_correction_boss = py_maths_boss.choix_exo_niveau_boss(Niveau)
+                print(Exo_correction_boss)
                 if Niveau ==4:
-                    # on recupère la correction et les valeur nécéssaire à la consignes
-                    Exo_correction_boss = py_maths_boss.choix_exo_niveau_boss(Niveau)
-                    print(Exo_correction_boss)
-
-
                     # on définit les trois valeur qui vont s'afficher dans les boutons
-                    value_btn_1_boss = Exo_correction_boss[2]
-                    value_btn_2_boss = Exo_correction_boss[3]
-                    value_btn_3_boss = Exo_correction_boss[4]
+                    value_btn_1_boss = Exo_correction_boss[1]
+                    value_btn_2_boss = Exo_correction_boss[2]
+                    value_btn_3_boss = Exo_correction_boss[3]
+
                 elif Niveau==8:
                     a = 1
                     #il faut load l'img et et selec le resultat            
