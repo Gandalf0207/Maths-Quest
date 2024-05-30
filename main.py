@@ -171,9 +171,9 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
 
         #exo 2 et 6 : volume + Derivation
         elif Niveau ==1 or Niveau ==6:
-            mur1 = PhotoImage(file="Images/Map/Water.png")
-            mur2 = PhotoImage(file="Images/Map/Water_rock.png")
-            mur3 = PhotoImage(file="Images/Map/Water_Lotus.png")
+            mur1 = PhotoImage(file="Images/Map/Maison_1.png")
+            mur2 = PhotoImage(file="Images/Map/Maison_2.png")
+            mur3 = PhotoImage(file="Images/Map/Arbre.png")
 
             pnj1 = PhotoImage(file = "Images/pnj/Papy/Papy_petit.png")
             pnj2 = PhotoImage(file = "Images/pnj/Cecylindre/Cecylindre_petit.png")
