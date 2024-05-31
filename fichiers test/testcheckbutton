@@ -1,0 +1,14 @@
+from tkinter import *
+
+Tk = Tk()
+def verif():
+    print(bb.get())
+    if bb.get()=="":
+        print('rien de sélec')
+    
+bb = StringVar()
+aa = Radiobutton(Tk, variable=bb, text="bonjour", value="bonjour2").pack()
+cc = Radiobutton(Tk, variable=bb, text="bonjour", value="4").pack()
+
+btn= Button(Tk, text='test', command=verif).pack()
+Tk.mainloop()

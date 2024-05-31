@@ -61,6 +61,8 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
     global Regle
     Regle= None
 
+    global deplacement_perso
+    deplacement_perso = True
 
 
     #le "fenetre" correspond à la fenetre tk qui est en cours de loop
@@ -103,7 +105,8 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
         craft_table_petit = PhotoImage(file="Images/Autre/craft_petit.png")
         craft_table_moyen = PhotoImage(file="Images/Autre/craft_moyen.png")
 
-        Perso = PhotoImage(file="Images/Autre/perso.png")
+        Perso = PhotoImage(file="Images/Autre/Perso_marche_1.png")
+        Perso2 = PhotoImage(file="Images/Autre/Perso_marche_2.png")
         idee = PhotoImage(file="Images/Autre/idee.png")
 
         Volume_nv1 = PhotoImage(file="Images/Exercices/volume.png")
@@ -245,10 +248,12 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
             
             global ordonne
             global abscisse
+            global deplacement_perso
 
             touche = event.keysym
             check = ["■" ,"\U0001F6AA", "¤", "boss"]
             pnj_liste = ["pnj1", "pnj2", "pnj3", "pnj4", "pnj5"]
+
 
 
             if touche == "Up":
@@ -265,7 +270,15 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                         ordonne-=1
                     
                     L[ordonne][abscisse] = "○"
-                    L[ordonne][abscisse] = canvas.create_image(24*abscisse, 24*ordonne, anchor=NW, image=Perso)
+
+                    if deplacement_perso == True:
+                        L[ordonne][abscisse] = canvas.create_image(24*abscisse, 24*ordonne, anchor=NW, image=Perso2)
+                        deplacement_perso = False
+                    else:
+                        L[ordonne][abscisse] = canvas.create_image(24*abscisse, 24*ordonne, anchor=NW, image=Perso)
+                        deplacement_perso = True
+
+
                 else :
                     print("C'est un mur !")
 
@@ -284,7 +297,13 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                         abscisse-=1
 
                     L[ordonne][abscisse] = "○"
-                    L[ordonne][abscisse] = canvas.create_image(24*abscisse, 24*ordonne, anchor=NW, image=Perso)
+
+                    if deplacement_perso == True:
+                        L[ordonne][abscisse] = canvas.create_image(24*abscisse, 24*ordonne, anchor=NW, image=Perso2)
+                        deplacement_perso = False
+                    else:
+                        L[ordonne][abscisse] = canvas.create_image(24*abscisse, 24*ordonne, anchor=NW, image=Perso)
+                        deplacement_perso = True
                 else :
                     print("C'est un mur !")
 
@@ -303,7 +322,13 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                         ordonne+=1
 
                     L[ordonne][abscisse] = "○"
-                    L[ordonne][abscisse] = canvas.create_image(24*abscisse, 24*ordonne, anchor=NW, image=Perso)
+
+                    if deplacement_perso == True:
+                        L[ordonne][abscisse] = canvas.create_image(24*abscisse, 24*ordonne, anchor=NW, image=Perso2)
+                        deplacement_perso = False
+                    else:
+                        L[ordonne][abscisse] = canvas.create_image(24*abscisse, 24*ordonne, anchor=NW, image=Perso)
+                        deplacement_perso = True
                 else :
                     print("C'est un mur !")
 
@@ -322,7 +347,13 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                         abscisse+=1
 
                     L[ordonne][abscisse] = "○"
-                    L[ordonne][abscisse] = canvas.create_image(24*abscisse, 24*ordonne, anchor=NW, image=Perso)
+
+                    if deplacement_perso == True:
+                        L[ordonne][abscisse] = canvas.create_image(24*abscisse, 24*ordonne, anchor=NW, image=Perso2)
+                        deplacement_perso = False
+                    else:
+                        L[ordonne][abscisse] = canvas.create_image(24*abscisse, 24*ordonne, anchor=NW, image=Perso)
+                        deplacement_perso = True
 
                 else :
                     print("C'est un mur !")
@@ -1924,6 +1955,32 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                     indices_give_2 = 0
 
                 def affiche_consigne_boss(Niveau):
+                    def verif_reponse_boss(correction1, correction2 ,Label_btn_result_possible_1_boss,Label_btn_result_possible_2_boss,Label_btn_result_possible_3_boss,Label_btn_result_possible_1_2_boss,Label_btn_result_possible_2_2_boss,Label_btn_result_possible_3_2_boss,Label_text_infos_selection_verif_boss , Label_btn_valider_boss_exo):
+
+                        global erreur_boss
+                        erreur_boss = 0
+                        if get_value_boss_1.get() != "" and get_value_boss_2.get() !="":
+
+                            Label_btn_result_possible_1_boss.destroy()
+                            Label_btn_result_possible_2_boss.destroy()
+                            Label_btn_result_possible_3_boss.destroy()
+                            Label_btn_result_possible_1_2_boss.destroy()
+                            Label_btn_result_possible_2_2_boss.destroy()
+                            Label_btn_result_possible_3_2_boss.destroy()
+
+                            if get_value_boss_1.get() == correction1 and get_value_boss_2.get() == correction2:
+                                Label_text_infos_selection_verif_boss.destroy()
+                                Label_btn_valider_boss_exo.destroy()
+                                affiche_consigne_boss(Niveau)
+                            else:
+                                erreur_boss = 1
+                                Label_text_infos_selection_verif_boss.destroy()
+                                Label_btn_valider_boss_exo.destroy()
+                                affiche_consigne_boss(Niveau)
+                        else:
+                            Label_str_var_btn_verif_boss_infos.set("Vous devez sélectionner 1 réponse par colonne !")
+
+
                     global erreur_boss
                     global c_boss
                     global type_partie
@@ -1938,19 +1995,42 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                             text_complet_consignes_boss = "Toutes les parties du cours que vous avez collectées vous serviront pour répondre ! Vous pouvez les consulter "
                     elif c_boss==3:
                         if Niveau==4:
-                            text_complet_consignes_boss = f"Un paquebot se trouve dans le port de Sète et avant de partir un client veut connaître le volume d’huile que le paquebot peut transporter sachant qu’il possède une cargaison de 85 tonneaux de longueur :{Exo_correction_boss[4][4]} et de largeur :{Exo_correction_boss[4][5]} (nous affirmons que les tonneaux utilisés ont des côtés totalement droit et non arrondis. Après cela le bateau prend le large et reçoit des informations sur un autre bateau naviguant à la même vitesse, déterminer si les 2 bateaux se croiseront. De plus le bateau A est actuellement au point A et navigue selon la direction (AB). De même le bateau B2 est actuellement au point C et navigue selon la direction (CD). Coordonnées : A ={Exo_correction_boss[4][0]} ; B = {Exo_correction_boss[4][1]} ; C = {Exo_correction_boss[4][2]} ; D = {Exo_correction_boss[4][3]}"
+                            text_complet_consignes_boss = f"Un voilier se trouve dans le port de Sète et avant de partir un client veut connaître le volume d’huile que le paquebot peut transporter sachant qu’il possède une cargaison de 85 tonneaux de longueur :{Exo_correction_boss[8][4]} et de largeur :{Exo_correction_boss[8][5]} (nous affirmons que les tonneaux utilisés ont des côtés totalement droit et non arrondis. Après cela le bateau prend le large et reçoit des informations sur un autre bateau naviguant à la même vitesse, déterminer si les 2 bateaux se croiseront. De plus le bateau b1 est actuellement au point A et navigue selon la direction (AB). De même le bateau b2 est actuellement au point C et navigue selon la direction (CD). Coordonnées : A ={Exo_correction_boss[8][0]} ; B = {Exo_correction_boss[8][1]} ; C = {Exo_correction_boss[8][2]} ; D = {Exo_correction_boss[8][3]}"
 
                     elif c_boss==4:
                         Label_btn_suivant_boss_window ['state'] = DISABLED
                         # on affcihe les btns de réponses
-                        Label_btn_result_possible_1_boss = Button(Label_Frame_Reponse_Verif_boss_2, text=value_btn_1_boss, command=lambda:verif_reponse_boss(value_btn_1_boss,Exo_correction_boss[0],Label_btn_result_possible_1_boss,Label_btn_result_possible_2_boss,Label_btn_result_possible_3_boss))
+                        get_value_boss_1 = StringVar()
+                        Label_btn_result_possible_1_boss = Radiobutton(Label_Frame_Reponse_Verif_boss_2, text=value_btn_1_boss, value=value_btn_1_boss, variable=get_value_boss_1)
                         Label_btn_result_possible_1_boss.pack(side =TOP, padx = 5, pady = 5)
 
-                        Label_btn_result_possible_2_boss = Button(Label_Frame_Reponse_Verif_boss_2, text=value_btn_2_boss, command=lambda:verif_reponse_boss(value_btn_2_boss,Exo_correction_boss[0],Label_btn_result_possible_1_boss,Label_btn_result_possible_2_boss,Label_btn_result_possible_3_boss))
+                        Label_btn_result_possible_2_boss = Radiobutton(Label_Frame_Reponse_Verif_boss_2, text=value_btn_2_boss, value=value_btn_2_boss, variable=get_value_boss_1)
                         Label_btn_result_possible_2_boss.pack(side =TOP, padx = 5, pady = 5)
 
-                        Label_btn_result_possible_3_boss = Button(Label_Frame_Reponse_Verif_boss_2, text=value_btn_3_boss, command=lambda:verif_reponse_boss(value_btn_3_boss,Exo_correction_boss[0],Label_btn_result_possible_1_boss,Label_btn_result_possible_2_boss,Label_btn_result_possible_3_boss))
+                        Label_btn_result_possible_3_boss = Radiobutton(Label_Frame_Reponse_Verif_boss_2, text=value_btn_3_boss, value=value_btn_3_boss, variable=get_value_boss_1)
                         Label_btn_result_possible_3_boss.pack(side =TOP, padx= 5, pady = 5)
+
+
+                        get_value_boss_2 = StringVar()
+                        Label_btn_result_possible_1_2_boss = Radiobutton(Label_Frame_Reponse_Verif_boss_2_2, text=value_btn_1_2_boss, value = value_btn_1_2_boss, variable=get_value_boss_2)
+                        Label_btn_result_possible_1_2_boss.pack(side =TOP, padx = 5, pady = 5)
+
+                        Label_btn_result_possible_2_2_boss = Radiobutton(Label_Frame_Reponse_Verif_boss_2_2, text=value_btn_2_2_boss, value = value_btn_2_2_boss, variable=get_value_boss_2)
+                        Label_btn_result_possible_2_2_boss.pack(side =TOP, padx = 5, pady = 5)
+
+                        Label_btn_result_possible_3_2_boss = Radiobutton(Label_Frame_Reponse_Verif_boss_2_2, text=value_btn_3_2_boss, value = value_btn_3_2_boss, variable=get_value_boss_2)
+                        Label_btn_result_possible_3_2_boss.pack(side =TOP, padx= 5, pady = 5)
+
+
+
+                        Label_str_var_btn_verif_boss_infos = StringVar()
+                        Label_text_infos_selection_verif_boss = Label(Label_Frame_Reponse_Verif_boss, textvariable=Label_str_var_btn_verif_boss_infos, fg = "#9A0004", wraplength=150)
+                        Label_text_infos_selection_verif_boss.pack(side = BOTTOM, pady = 2)
+
+                        Label_btn_valider_boss_exo = Button(Label_Frame_Reponse_Verif_boss, text="Valider", command=lambda:verif_reponse_boss(Exo_correction_boss[0],Exo_correction_boss[1],Label_btn_result_possible_1_boss,Label_btn_result_possible_2_boss,Label_btn_result_possible_3_boss,Label_btn_result_possible_1_2_boss,Label_btn_result_possible_2_2_boss,Label_btn_result_possible_3_2_boss,Label_text_infos_selection_verif_boss , Label_btn_valider_boss_exo))
+                        Label_btn_valider_boss_exo.pack(side=BOTTOM, pady=5)
+
+
                     elif c_boss==5:
                         if erreur_boss == 0:
                             text_complet_consignes_boss = "Bravo ! Vous avez trouvé la bonne solution !"
@@ -1990,17 +2070,6 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                             time.sleep(0.01)
                         Label_btn_suivant_boss_window ['state'] = NORMAL
     
-                def verif_reponse_boss(reponse, correction,Label_btn_result_possible_1_boss,Label_btn_result_possible_2_boss,Label_btn_result_possible_3_boss):
-                    Label_btn_result_possible_1_boss.destroy()
-                    Label_btn_result_possible_2_boss.destroy()
-                    Label_btn_result_possible_3_boss.destroy()
-                    global erreur_boss
-                    erreur_boss = 0
-                    if reponse == correction:
-                        affiche_consigne_boss(Niveau)
-                    else:
-                        erreur_boss = 1
-                        affiche_consigne_boss(Niveau)
 
    
                 
@@ -2071,17 +2140,12 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
 
                 ###frame box de la listbox des indices
                 Label_Frame_box_listbox_indices_boss = Frame(Label_frame_indices_boss, bg = None)
-                Label_Frame_box_listbox_indices_boss.pack(side =TOP, pady= 5, padx = 5)
+                Label_Frame_box_listbox_indices_boss.pack(side =TOP,expand=True, fill='y', pady= 5, padx = 5)
                 #on crée la box pour les indices s'il sont demandé par l'utilisateur
                 global listbox_indices
-                listbox_indices = Text(Label_Frame_box_listbox_indices_boss, width =35,wrap="word",bg=None)
-                listbox_indices.pack(side=LEFT, fill=BOTH)
+                listbox_indices = scrolledtext.ScrolledText(Label_Frame_box_listbox_indices_boss, wrap='word', font=("Arial", 10), height=4, width=35)
+                listbox_indices.pack(side=LEFT, fill=BOTH, expand=True)
 
-                scrollbar_indices = Scrollbar(Label_Frame_box_listbox_indices_boss, orient=VERTICAL, command=listbox_indices.yview)
-                scrollbar_indices.pack(side=RIGHT, fill=Y)
-
-                listbox_indices.config(yscrollcommand=scrollbar_indices.set)
-                
                 listbox_indices.insert(END, "--Indices--" + "\n")
                 listbox_indices.insert(END, "\n")
                 listbox_indices.config(state=DISABLED)
@@ -2123,10 +2187,13 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                 print(Exo_correction_boss)
                 if Niveau ==4:
                     # on définit les trois valeur qui vont s'afficher dans les boutons
-                    value_btn_1_boss = Exo_correction_boss[1]
-                    value_btn_2_boss = Exo_correction_boss[2]
-                    value_btn_3_boss = Exo_correction_boss[3]
+                    value_btn_1_boss = Exo_correction_boss[2]
+                    value_btn_2_boss = Exo_correction_boss[3]
+                    value_btn_3_boss = Exo_correction_boss[4]
 
+                    value_btn_1_2_boss = Exo_correction_boss[5]
+                    value_btn_2_2_boss = Exo_correction_boss[6]
+                    value_btn_3_2_boss = Exo_correction_boss[7]
                 elif Niveau==8:
                     a = 1
                     #il faut load l'img et et selec le resultat            
@@ -2134,8 +2201,18 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                 ## Frame global qui contient la frame ave les trois valeur de réponse avec les cases à cocher et le bouton valider
                 Label_Frame_Reponse_Verif_boss = Frame(Label_frame_global_element_gauche_boss, bg= None)
                 Label_Frame_Reponse_Verif_boss.pack(side=TOP, fill='x', pady= 5, padx=5, anchor=CENTER)
-                Label_Frame_Reponse_Verif_boss_2 = Frame(Label_Frame_Reponse_Verif_boss, bg=None)
-                Label_Frame_Reponse_Verif_boss_2.pack(anchor = CENTER)
+
+                ##sous frame de cette frame principal qui conteint les frame btn
+                Label_Frame_box_2_frame_btn = Frame(Label_Frame_Reponse_Verif_boss, bg = None)
+                Label_Frame_box_2_frame_btn.pack(side=TOP, fill = BOTH, expand=True)
+                
+                #Frame avec les btn
+                Label_Frame_Reponse_Verif_boss_2 = Frame(Label_Frame_box_2_frame_btn, bg=None)
+                Label_Frame_Reponse_Verif_boss_2.pack(anchor = CENTER, side=LEFT, padx = 5)
+
+                #Frame avec les btn
+                Label_Frame_Reponse_Verif_boss_2_2 = Frame(Label_Frame_box_2_frame_btn, bg = None)
+                Label_Frame_Reponse_Verif_boss_2_2.pack(anchor=CENTER, side=RIGHT, padx = 5)
 
                 # Lie la fermeture de la fenêtre à la réinitialisation de boss_window
                 boss_window.protocol("WM_DELETE_WINDOW", lambda: reset_boss_window())
@@ -2693,7 +2770,7 @@ def desac_btn_2():
 
 
 global Niveau
-Niveau = 0
+Niveau = 4
 
 Lancement = Tk()
 Lancement.title("Maths-Quest | Lancement      © PLADEAU Quentin LUBAN Théo")

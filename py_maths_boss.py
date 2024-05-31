@@ -58,9 +58,9 @@ def choix_exo_niveau_boss(Niveau):
          norme_CI = sqrt((XI - XC)**2 + (YI - YC)**2)
 
          if norme_AI == norme_CI:
-               intersection = "Les deux bateaux vont s'entrechoquer ! "
+               intersection = "Les deux bateaux vont s'entrechoquer !"
          else:
-               intersection = "Les deux bateaux ne vont pas s'entrechoquer ! "
+               intersection = "Les deux bateaux ne vont pas s'entrechoquer !"
 
 
          largeur_barril = random.randint(25,80)
@@ -86,18 +86,30 @@ def choix_exo_niveau_boss(Niveau):
 
 
       # Formatage des résultats en chaînes de caractères
-      resultat = f"{valeur[0]} \nLe bateau b1 transporte un volume de {valeur[1]} L d'huile d'olive."
+      resultat = f"{valeur[0]}"
+
+      if valeur[0] == "Les deux bateaux vont s'entrechoquer !":
+         resultat2 =  "Les deux bateaux ne vont pas s'entrechoquer !"
+      else:
+         resultat2 =  "Les deux bateaux vont s'entrechoquer !"
+
+      resultat3 = f"La trajectoire des bateau ne se croise jamais !"
+
       print(resultat)
 
-      fausse_valeur = random.randint (-150, 150)
-      while -15 < fausse_valeur < 15:
-         fausse_valeur = random.randint (-150, 150)
-      resultat2 =  f"{valeur[0]} \nLe bateau b1 transporte un volume de {valeur[1] + fausse_valeur} L d'huile d'olive."
 
-      if valeur[0] == "Les deux bateaux vont s'entrechoquer ! ":
-         resultat3 =  f"Les deux bateaux ne vont pas s'entrechoquer ! \nLe bateau b1 transporte un volume de {valeur[1]} L d'huile d'olive."
-      else:
-         resultat3 =  f"Les deux bateaux vont s'entrechoquer ! \nLe bateau b1 transporte un volume de {valeur[1]} L d'huile d'olive."
+      resultat_2 = f"Le bateau b1 transporte un volume de {valeur[1]} L d'huile d'olive."
+
+
+      fausse_valeur = random.randint (-150, 150)
+      fausse_valeur2 = random.randint (-150, 150)
+      while (-15 < fausse_valeur < 15) and( -15 < fausse_valeur < 15):
+         fausse_valeur = random.randint (-150, 150)
+         fausse_valeur2 = random.randint (-150, 150)
+
+      resultat2_2 =  f"Le bateau b1 transporte un volume de {valeur[1] + fausse_valeur} L d'huile d'olive."
+
+      resultat3_2 =  f"Le bateau b1 transporte un volume de {valeur[1]+fausse_valeur2} L d'huile d'olive."
 
 
       A = valeur[2][0]
@@ -117,21 +129,33 @@ def choix_exo_niveau_boss(Niveau):
    L_result_possible_boss.append(resultat2)
    L_result_possible_boss.append(resultat3)
 
+   L_result_possible_boss2 = []
+   L_result_possible_boss2.append(resultat_2)
+   L_result_possible_boss2.append(resultat2_2)
+   L_result_possible_boss2.append(resultat3_2)
+   
    #on mélange 
    random.shuffle(L_result_possible_boss)
    btn1_value_boss = L_result_possible_boss[0]
    btn2_value_boss = L_result_possible_boss[1]
    btn3_value_boss = L_result_possible_boss[2]
 
-
+   random.shuffle(L_result_possible_boss2)
+   btn1_value_boss_2 = L_result_possible_boss2[0]
+   btn2_value_boss_2 = L_result_possible_boss2[1]
+   btn3_value_boss_2 = L_result_possible_boss2[2]
 
 
    #on crée la liste finale
    Liste_exo_all_boss = []
    Liste_exo_all_boss.append(resultat)
+   Liste_exo_all_boss.append(resultat_2)
    Liste_exo_all_boss.append(btn1_value_boss)
    Liste_exo_all_boss.append(btn2_value_boss)
    Liste_exo_all_boss.append(btn3_value_boss)
+   Liste_exo_all_boss.append(btn1_value_boss_2)
+   Liste_exo_all_boss.append(btn2_value_boss_2)
+   Liste_exo_all_boss.append(btn3_value_boss_2)
    if Niveau ==4:
       Liste_exo_all_boss.append(points)
 
