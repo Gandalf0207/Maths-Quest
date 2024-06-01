@@ -1513,7 +1513,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                             if c==1:
                                 insert_text("Wouf Wouf Wouf ? Wouf Wouf, Wouf. (Vous comprenez : “T’as oublié tout ce que j’ai dit ? Ça va te couter cher en croquettes mais je vais répéter, on peut ajouter (ou soustraire) un même nombre aux deux membres d'une égalité. \n    a = b équivaut à a + c = b + c \n    a = b  équivaut à a - c = b - c \nOn peut multiplier (ou diviser) les deux membres d'une égalité par un même nombre non nul. \n    a = b équivaut à a × c = b × c \n    a = b équivaut à   a/c = b/c(c ≠ 0) \npar exemple 5x + 2 = 17 donne 5x + 2 - 2 = 17 - 2 puis 5x/5 = 15/5 donc x = 3.")
                             elif c==2:
-                                insert_text("Je n'est plus d'os doré pour toi... Mais il te reste des croquettes ?")
+                                insert_text("Je n'ai plus d'os doré pour toi... Mais il te reste des croquettes ?")
 
                         elif Niveau ==1:
                             if c==1:
