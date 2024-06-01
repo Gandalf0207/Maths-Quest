@@ -185,6 +185,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                 if type_command =='exo':
                     if Niveau !=4 and Niveau !=8:
                         porte_enigme(Niveau)
+                        load_cours(Niveau, 1)
                     else:
                         boss_enigme(Niveau)
 
