@@ -2024,7 +2024,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                             insert_consignes_exo("Vous devez résoudre ce système à 2 inconnues en trouvant la valeur de x et y.")
                             formule_latex.make_formule(Exo_correction[0],Label_scrollbox_consignes_exo, 15, 0)
                         elif Niveau==5:
-                            insert_consignes_exo("Vous devez trouver les racines possible de ce polynôme du second degré.")
+                            insert_consignes_exo("Vous devez trouver la ou les solutions possibles de f(x) = 0 si il y en a.")
                             formule_latex.make_formule(Exo_correction[0],Label_scrollbox_consignes_exo, 15, 0)
                         elif Niveau==6:
                             insert_consignes_exo(f"Vous devez dériver la fonction f(x) suivante. Puis trouver l'équation de tangente pour x = {Exo_correction[5]}")
@@ -2569,7 +2569,7 @@ Pour plus de renseignements : https://github.com/Gandalf0207/Maths-Quest
         # quad un elment est fabriqué, pour l'afficher correctement
 
         global assemble_cle
-        assemble_cle = True
+        assemble_cle = False
 
 
 

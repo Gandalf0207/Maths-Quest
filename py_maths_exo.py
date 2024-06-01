@@ -211,13 +211,15 @@ def choix_exo_niveau(Niveau,Label_Frame_Canvas_formule_exo):
 
 
     elif Niveau == 5 :
+
         x1 =0.001
         x2 = 0.001
-
-        while x1 != round(x1,1) or x1 != round(x1, 2) or x2 != round(x2,1) or x2 != round(x2, 2):
+        x_simple = 0.001
+        good = True
+        while good == True:
 
             nb1 = random.randint(-7,7)
-            nb2 = random.randint(2,25)
+            nb2 =random.randint(2,25)
             nb3 = random.randint(2,10)
 
             while nb1 ==0 or nb1 ==-1 or nb1==1:
@@ -230,13 +232,22 @@ def choix_exo_niveau(Niveau,Label_Frame_Canvas_formule_exo):
             if delta > 0:
                 x1 = (-nb2 - sqrt(delta)) / (2*nb1)
                 x2 = (-nb2 + sqrt(delta)) / (2*nb1)
+                if (x1 == round(x1,1) or x1 == round(x1, 2)) and (x2 == round(x2,1) or x2 == round(x2, 2)):
+                    good = False
+            elif delta ==0:
+                x_simple = (-nb2) / (2*nb1)
+                if x_simple == round(x_simple, 1) or x_simple == round(x_simple,2):
+                    good = False
 
 
-
-        resultat = f"x1 = {x1} \nx2 = {x2}"
-        resultat2 = f"x1 = {x2} \nx2 = {x1}"
-        resultat3 = f"x1 = {x1+1} \nx2 = {x2}"
-
+        if delta > 0 :
+            resultat = f"x1 = {x1} \nx2 = {x2}"
+            resultat2 = f"x1 = {x2} \nx2 = {x1}"
+            resultat3 = f"x1 = {x1+1} \nx2 = {x2}"
+        elif delta ==0:
+            resultat = f"x = {x_simple}"
+            resultat2 = f"x = {x_simple*2}"
+            resultat3 = f"x = {x_simple-nb1}"
 
 
     elif Niveau ==6:
