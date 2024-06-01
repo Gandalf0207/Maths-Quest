@@ -2089,9 +2089,9 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                     global indices_give_2
 
                     L_indices_1 = [
-                        "Indices 1 boss 1 : ",
-                        "Indices 2 boss 1 : ",
-                        "Indices 3 boss 1 : ",
+                        "Indice 1 : Je te rappelle qu’un litre vaut 1dm3",
+                        "Indice 2 : Il faut commencer par déterminer les équations des droites (AB) et (CD) puis déterminer les coordonnées du point d’intersection entre ces deux droites.",
+                        "Indice 3 : Si les bateaux voguent à la même vitesse, ils parcourent donc la même distance en un temps donné. \nPour trouver la longueur d’un segment il faut utiliser la formule ",
                         "Vous avez utilisé tout les indices !"
                         ]
                     L_indices_2 = [
@@ -2104,7 +2104,10 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                     if Niveau ==4:
                         if indices_give_1 < 3:
                             ajouter_element_indices(L_indices_1[indices_give_1])
+                            if indices_give_1==2:
+                                formule_latex.make_formule(r"$ \sqrt{(xB-xA)^2 + (yB-yA)^2}$",listbox_indices, 14, 0)
                             indices_give_1 +=1
+
                         elif indices_give_1 == 3:
                             ajouter_element_indices(L_indices_1[indices_give_1])
                             Label_btn_get_indices.destroy()
@@ -2149,6 +2152,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                 listbox_indices.insert(END, "--Indices--" + "\n")
                 listbox_indices.insert(END, "\n")
                 listbox_indices.config(state=DISABLED)
+                listbox_indices.images = []
 
 
                 Label_btn_get_indices = Button(Label_frame_indices_boss,text="Obtenir un indice", command=lambda:Give_indices_boss(Niveau))
