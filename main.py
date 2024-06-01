@@ -538,9 +538,17 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
 
 
 
-            "cours 1 nv5",
-            "cours 2 nv5",
-            "cours 3 nv5",
+            "Un polynôme du second degré admet comme forme développée : P(x)= ax² + bx + c avec a, b et c des coefficients et a /= 0. Chaque polynôme admet une forme canonique sous la forme\n",
+
+            "Pour résoudre P(x) = 0 il faut déterminer le discriminant delta :",
+            "Si le delta > 0, P(x) admet deux solutions distinctes :\n ",
+            "Remarque : Il peut se factoriser par P(x)= a(x-x1)(x-x2)   \nSi delta = 0 alors il n’en admet qu’une unique dite double :",
+            "Remarque : Il se factorise par",
+            "Si delta < 0 il n’admet pas de solution et ne se factorise pas",
+
+            "Pour déterminer le signe du polynôme P(x), on doit utiliser le discriminant delta et alpha. \nLorsque delta > 0 : \nP(x) est du signe de a à l'extérieur des racines x1 et x2; c'est-à-dire sur les intervalles",
+            "il est du signe opposé à a entre les racines; c'est-à-dire sur l'intervalle",
+            "Lorsque delta = 0 : \n     P(x)  est toujours du signe de a sur R excepté à x = alpha où il est nulle.\nLorsque delta < 0 : \n     P(x) est toujours du signe de a \nVariations : \n     Lorsque a est positif la courbe représentative de P(x) décroît jusqu’à x=alpha puis croît. \n     Lorsque a est négatif la courbe croît jusqu’à x=alpha puis décroît.",
 
             "cours 1 nv6",
             "cours 2 nv6",
@@ -651,7 +659,42 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                     listbox.insert(END, "\n")
 
                 def load_cours_5():
-                    a = 1
+                    listbox.insert(END, "--Equation du second degré--" + "\n")
+                    listbox.insert(END, "\n")
+                    ajouter_element(Liste_cours[21])
+                    listbox.insert(END, "\n")
+                    formule_latex.make_formule(r"$ a( x - \alpha)^2 + \beta$",listbox, 14, 1) 
+                    formule_latex.make_formule(r"$ \alpha = \frac{-b}{2a}$",listbox, 14, 1) 
+                    formule_latex.make_formule(r"$ \beta = \frac{- \Delta}{4a}$",listbox, 14, 1) 
+                    formule_latex.make_formule(r"$ \Delta = b^2 - 4ac$",listbox, 14, 2)
+                    
+                    saut_2_lignes()
+
+                    ajouter_element(Liste_cours[22])
+                    ajouter_element(Liste_cours[23])
+                    listbox.insert(END, "\n")
+                    formule_latex.make_formule(r"$ x1 = \frac{-b - \sqrt{\Delta}}{2a}$",listbox, 14, 1) 
+                    formule_latex.make_formule(r"$ x2 = \frac{-b + \sqrt{\Delta}}{2a}$",listbox, 14, 1)
+                    ajouter_element(Liste_cours[24])
+                    formule_latex.make_formule(r"$ x = \alpha = \frac{-b}{2a}$",listbox, 14, 1) 
+                    ajouter_element(Liste_cours[25])     
+                    formule_latex.make_formule(r"$ a(x-\alpha)^2$",listbox, 14, 1) 
+                    ajouter_element(Liste_cours[26])
+
+                    saut_2_lignes()
+
+                    ajouter_element(Liste_cours[27])
+                    formule_latex.make_formule(r"$\left] -\infty, x1 \right[ \cup \left] x2, +\infty \right[.$",listbox, 14, 1) 
+                    ajouter_element(Liste_cours[28])
+                    formule_latex.make_formule(r"$\left] x1, x2 \right[.$",listbox, 14, 0)
+                    listbox.config(state=NORMAL)
+
+                    saut_2_lignes()
+                    listbox.insert(END, "\n")
+
+
+
+
                 def load_cours_6():
                     a = 1
                 def load_cours_7():
@@ -727,29 +770,20 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                     listbox.insert(END, "\n")
 
                 elif (Niveau ==6 and num_pnj==0) or (Niveau== 5 and num_pnj==1):
-                    listbox.insert(END, "--Equation du second degré--" + "\n")
-                    listbox.insert(END, "\n")
-                    for i in range(17,20):
-                        ajouter_element(Liste_cours[i])
-                    listbox.insert(END, "\n")
+                    
+                    load_cours_5()
 
                     if num_pnj==0:
+
                         listbox.insert(END, "--Dérivation--" + "\n")
                         listbox.insert(END, "\n")
 
+
+
                 elif (Niveau==7 and num_pnj==0) or (Niveau== 6 and num_pnj==1):
-                    listbox.insert(END, "--Equation du second degré--" + "\n")
-                    listbox.insert(END, "\n")
-                    for i in range(17,20):
-                        ajouter_element(Liste_cours[i])
-                    listbox.insert(END, "\n")
-
-                    listbox.insert(END, "--Dérivation--" + "\n")
-                    listbox.insert(END, "\n")
-                    for i in range(20,24):
-                        ajouter_element(Liste_cours[i])
-                    listbox.insert(END, "\n")
-
+                    load_cours_5()
+                    load_cours_6()
+                    
                     if num_pnj==0:
                         listbox.insert(END, "--Suite--" + "\n")
                         listbox.insert(END, "\n")
@@ -877,18 +911,38 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
 
 
 
-            #module pas encore fait
             elif Niveau ==5:
                 if num_pnj=="pnj1":
-                    ajouter_element(Liste_cours[17])
+                    ajouter_element(Liste_cours[21])
+                    listbox.insert(END, "\n")
+                    formule_latex.make_formule(r"$ a( x - \alpha)^2 + \beta$",listbox, 14, 1) 
+                    formule_latex.make_formule(r"$ \alpha = \frac{-b}{2a}$",listbox, 14, 1) 
+                    formule_latex.make_formule(r"$ \beta = \frac{- \Delta}{4a}$",listbox, 14, 1) 
+                    formule_latex.make_formule(r"$ \Delta = b^2 - 4ac$",listbox, 14, 2)
                     saut_2_lignes()
+
                 elif num_pnj=="pnj2":
-                    ajouter_element(Liste_cours[18])
+                    ajouter_element(Liste_cours[22])
+                    ajouter_element(Liste_cours[23])
+                    listbox.insert(END, "\n")
+                    formule_latex.make_formule(r"$ x1 = \frac{-b - \sqrt{\Delta}}{2a}$",listbox, 14, 1) 
+                    formule_latex.make_formule(r"$ x2 = \frac{-b + \sqrt{\Delta}}{2a}$",listbox, 14, 1)
+                    ajouter_element(Liste_cours[24])
+                    formule_latex.make_formule(r"$ x = \alpha = \frac{-b}{2a}$",listbox, 14, 1) 
+                    ajouter_element(Liste_cours[25])     
+                    formule_latex.make_formule(r"$ a(x-\alpha)^2$",listbox, 14, 1) 
+                    ajouter_element(Liste_cours[26])
                     saut_2_lignes()
+
                 elif num_pnj=="pnj3":
-                    ajouter_element(Liste_cours[19])
+                    ajouter_element(Liste_cours[27])
+                    formule_latex.make_formule(r"$\left] -\infty, x1 \right[ \cup \left] x2, +\infty \right[.$",listbox, 14, 1) 
+                    ajouter_element(Liste_cours[28])
+                    formule_latex.make_formule(r"$\left] x1, x2 \right[.$",listbox, 14, 2) 
+                    listbox.insert(END, "   ")
+
                     saut_2_lignes()
-            
+
             elif Niveau ==6:
                 if num_pnj=="pnj1":
                     ajouter_element(Liste_cours[20])
@@ -922,22 +976,24 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
 
 
 
-            def open_url(event):
-                webbrowser.open_new(r"https://youtu.be/B9NMxapgHtg?si=jWGVV_Wq8NYmuMfT")
-
             
-            #set u des lien nécessaire
-            # Marquage du texte pour le lien
-            start_index = "26.175"  # Position du début du lien dans le texte
-            end_index = "26.178"   # Position de la fin du lien dans le texte
 
-            # Application de la balise pour le lien
-            listbox.tag_add("link", start_index, end_index)
-            listbox.tag_config("link", foreground="blue", underline=1)
-            listbox.tag_bind("link", "<Enter>", lambda e: listbox.config(cursor="hand2"))
-            listbox.tag_bind("link", "<Leave>", lambda e: listbox.config(cursor=""))
-            listbox.tag_bind("link", "<Button-1>", open_url)
-                
+            if Niveau < 5:
+                def open_url(event):
+                    webbrowser.open_new(r"https://youtu.be/B9NMxapgHtg?si=jWGVV_Wq8NYmuMfT")
+
+                #set u des lien nécessaire
+                # Marquage du texte pour le lien
+                start_index = "26.175"  # Position du début du lien dans le texte
+                end_index = "26.178"   # Position de la fin du lien dans le texte
+
+                # Application de la balise pour le lien
+                listbox.tag_add("link", start_index, end_index)
+                listbox.tag_config("link", foreground="blue", underline=1)
+                listbox.tag_bind("link", "<Enter>", lambda e: listbox.config(cursor="hand2"))
+                listbox.tag_bind("link", "<Leave>", lambda e: listbox.config(cursor=""))
+                listbox.tag_bind("link", "<Button-1>", open_url)
+                    
             listbox.config(state=DISABLED)
 
 
@@ -1081,11 +1137,15 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
 
                         elif Niveau ==5:
                             if c==1:
-                                insert_text("")
+                                insert_text(" Salut ! Tu veux que je t’explique un truc vite fait ? Ça pourrait t’aider.")
                             elif c==2:
-                                insert_text("")
+                                insert_text("Un polynôme du second degré admet comme forme développée : P(x)= ax² + bx + c avec a, b et c des coefficients et a /= 0. Chaque polynôme admet une forme canonique sous la forme\n")
+                                formule_latex.make_formule(r"$ a( x - \alpha)^2 + \beta$",Label_texte_parole_discussion_pnj_scrolltext, 14, 1) 
+                                formule_latex.make_formule(r"$ \alpha = \frac{-b}{2a}$",Label_texte_parole_discussion_pnj_scrolltext, 14, 1) 
+                                formule_latex.make_formule(r"$ \beta = \frac{- \Delta}{4a}$",Label_texte_parole_discussion_pnj_scrolltext, 14, 1) 
+                                formule_latex.make_formule(r"$ \Delta = b^2 - 4ac$",Label_texte_parole_discussion_pnj_scrolltext, 14, 1) 
                             elif c==3:
-                                insert_text("")
+                                insert_text("Allez tiens merci de m’avoir écouté !")
 
                         elif Niveau ==6:
                             if c==1:
@@ -1155,11 +1215,20 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
 
                         elif Niveau ==5:
                             if c==1:
-                                insert_text("")
+                                insert_text("Wouf Wouf Wouf(x), Wouf Wouf Wouf Wouf ! Wouf(x) Wouf(x) Wouf(x) (Votre waf français est un peu rouillé mais vous comprenez : “Salut moi c’est Iggy ! Tu veux que je t’apprenne un truc qui vaut un tas de croquettes ? Apparemment pour résoudre P(x) = 0 il faudrait déterminer le discriminant delta, j’espère que tu connais la formule :")
                             elif c==2:
-                                insert_text("")
+                                insert_text("On m’a dit dans le chenil que si le delta > 0, P(x) admet deux solutions distinctes :\nPour trouver la première c’est")
+                                formule_latex.make_formule(r"$ x1 = \frac{-b - \sqrt{\Delta}}{2a}$",Label_texte_parole_discussion_pnj_scrolltext, 14, 1) 
+                                insert_text("et la deuxième c’est") 
+                                formule_latex.make_formule(r"$ x2 = \frac{-b + \sqrt{\Delta}}{2a}$",Label_texte_parole_discussion_pnj_scrolltext, 14, 2) 
+                                insert_text("Attention parce qu’il peut se factoriser par P(x)= a(x-x1)(x-x2)   \n\nPar contre si delta = 0 alors il n’en admet qu’une unique dite double : \net la solution c’est ")
+                                formule_latex.make_formule(r"$ x = \alpha = \frac{-b}{2a}$",Label_texte_parole_discussion_pnj_scrolltext, 14, 2) 
+                                insert_text("Et la il se factorise par ")
+                                formule_latex.make_formule(r"$ a(x-\alpha)^2$",Label_texte_parole_discussion_pnj_scrolltext, 14, 2) 
+                                insert_text("Mais alors la surprise si delta < 0 il n’admet pas de solution et ne se factorise pas")
+
                             elif c==3:
-                                insert_text("")
+                                insert_text("D’ailleurs t’aurais pas des croquettes contre mon os doré ?”)")
 
                         elif Niveau ==6:
                             if c==1:
@@ -1234,11 +1303,16 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
 
                         elif Niveau ==5:
                             if c==1:
-                                insert_text("")
+                                insert_text("Hein ?! Parle plus fort !! Oh bonjour mon petit jeunot, excuse moi je suis un peu dur d’oreille. Si tu comptes continuer tes voyages tu devrais te préparer à apprendre que pour déterminer le signe du polynôme P(x), on doit utiliser le discriminant delta et alpha.")
                             elif c==2:
-                                insert_text("")
+                                insert_text("Quand delta > 0, P(x) est du signe de a à l'extérieur des racines x1 et x2, c'est-à-dire sur les intervalles")
+                                formule_latex.make_formule(r"$\left] -\infty, x1 \right[ \cup \left] x2, +\infty \right[.$",Label_texte_parole_discussion_pnj_scrolltext, 14, 0) 
+                                insert_text("et donc il est du signe opposé à a entre les racines, c'est-à-dire sur l'intervalle")
+                                formule_latex.make_formule(r"$\left] x1, x2 \right[.$",Label_texte_parole_discussion_pnj_scrolltext, 14, 2) 
+                                insert_text("Mais quand delta = 0, P(x)  est toujours du signe de a sur R excepté à x = alpha où il est nulle. \n\nPar contre quand delta < 0, P(x) est toujours du signe de a\n\nAprès pour les variations c’est très simple, lorsque a est positif la courbe représentative de P(x) décroît jusqu’à x=alpha puis croît cependant lorsque a est négatif la courbe croît jusqu’à x=alpha puis décroît.")
+
                             elif c==3:
-                                insert_text("")
+                                insert_text("Avant de partir prends ce petit truc de mon mari, je ne sais pas à quoi ça sert alors peut être que toi si.")
 
                         elif Niveau ==6:
                             if c==1:
@@ -1410,9 +1484,13 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
 
                         elif Niveau ==5:
                             if c==1:
-                                insert_text("")
+                                insert_text("T’as oublié et tu veux que je répète ?")
                             elif c==2:
-                                insert_text("")
+                                insert_text("Alors écoute bien cette fois, un polynôme du second degré admet comme forme développée : P(x)= ax² + bx + c avec a, b et c des coefficients et a /= 0. Chaque polynôme admet une forme canonique sous la forme\n")
+                                formule_latex.make_formule(r"$ a( x - \alpha)^2 + \beta$",Label_texte_parole_discussion_pnj_scrolltext, 14, 1) 
+                                formule_latex.make_formule(r"$ \alpha = \frac{-b}{2a}$",Label_texte_parole_discussion_pnj_scrolltext, 14, 1) 
+                                formule_latex.make_formule(r"$ \beta = \frac{- \Delta}{4a}$",Label_texte_parole_discussion_pnj_scrolltext, 14, 1) 
+                                formule_latex.make_formule(r"$ \Delta = b^2 - 4ac$",Label_texte_parole_discussion_pnj_scrolltext, 14, 1) 
 
                         elif Niveau ==6:
                             if c==1:
@@ -1454,9 +1532,17 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
 
                         elif Niveau ==5:
                             if c==1:
-                                insert_text("")
+                                insert_text("Wouf Wouf Wouf ? Wouf Wouf, Wouf. (Vous comprenez : “T’as oublié tout ce que j’ai dit ? Ça va te couter cher en croquettes mais je vais répéter, apparemment pour résoudre P(x) = 0 il faudrait déterminer le discriminant delta, j’espère que tu connais la formule :")
                             elif c==2:
-                                insert_text("")
+                                insert_text("On m’a dit dans le chenil que si le delta > 0, P(x) admet deux solutions distinctes :\nPour trouver la première c’est")
+                                formule_latex.make_formule(r"$ x1 = \frac{-b - \sqrt{\Delta}}{2a}$",Label_texte_parole_discussion_pnj_scrolltext, 14, 1) 
+                                insert_text("et la deuxième c’est") 
+                                formule_latex.make_formule(r"$ x2 = \frac{-b + \sqrt{\Delta}}{2a}$",Label_texte_parole_discussion_pnj_scrolltext, 14, 2) 
+                                insert_text("Attention parce qu’il peut se factoriser par P(x)= a(x-x1)(x-x2)   \n\nPar contre si delta = 0 alors il n’en admet qu’une unique dite double : \net la solution c’est ")
+                                formule_latex.make_formule(r"$ x = \alpha = \frac{-b}{2a}$",Label_texte_parole_discussion_pnj_scrolltext, 14, 2) 
+                                insert_text("Et la il se factorise par ")
+                                formule_latex.make_formule(r"$ a(x-\alpha)^2$",Label_texte_parole_discussion_pnj_scrolltext, 14, 2) 
+                                insert_text("Mais alors la surprise si delta < 0 il n’admet pas de solution et ne se factorise pas")
 
                         elif Niveau ==6:
                             if c==1:
@@ -1502,9 +1588,13 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
 
                         elif Niveau ==5:
                             if c==1:
-                                insert_text("")
+                                insert_text("Comment ?! Encore toi ?! Tu veux que je réexplique ?! Alors cette fois retiens que pour déterminer le signe du polynôme P(x), on doit utiliser le discriminant delta et alpha.")
                             elif c==2:
-                                insert_text("")
+                                insert_text("Quand delta > 0, P(x) est du signe de a à l'extérieur des racines x1 et x2, c'est-à-dire sur les intervalles")
+                                formule_latex.make_formule(r"$\left] -\infty, x1 \right[ \cup \left] x2, +\infty \right[$",Label_texte_parole_discussion_pnj_scrolltext, 14, 0) 
+                                insert_text("et donc il est du signe opposé à a entre les racines, c'est-à-dire sur l'intervalle")
+                                formule_latex.make_formule(r"$\left] x1, x2 \right[ $",Label_texte_parole_discussion_pnj_scrolltext, 14, 2) 
+                                insert_text("Mais quand delta = 0, P(x)  est toujours du signe de a sur R excepté à x = alpha où il est nulle. \n\nPar contre quand delta < 0, P(x) est toujours du signe de a\n\nAprès pour les variations c’est très simple, lorsque a est positif la courbe représentative de P(x) décroît jusqu’à x=alpha puis croît cependant lorsque a est négatif la courbe croît jusqu’à x=alpha puis décroît.")
 
                         elif Niveau ==6:
                             if c==1:
@@ -1615,7 +1705,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                         elif Niveau ==3:
                             nom_du_pnj = "Mathémami :"
                         elif Niveau ==5:
-                            nom_du_pnj = ""
+                            nom_du_pnj = "Leilégalité :"
                         elif Niveau ==6:
                             nom_du_pnj = ""
                         elif Niveau ==7:
@@ -1631,7 +1721,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                         elif Niveau ==3:
                             nom_du_pnj = "Homme strict :"
                         elif Niveau ==5:
-                            nom_du_pnj = ""
+                            nom_du_pnj = "Iggy :"
                         elif Niveau ==6:
                             nom_du_pnj = ""
                         elif Niveau ==7:
@@ -1648,7 +1738,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                         elif Niveau ==3:
                             nom_du_pnj = "Marchand de tapis :"
                         elif Niveau ==5:
-                            nom_du_pnj = ""
+                            nom_du_pnj = "Mathémami :"
                         elif Niveau ==6:
                             nom_du_pnj = ""
                         elif Niveau ==7:
@@ -2335,16 +2425,16 @@ Pour plus de renseignements : https://github.com/Gandalf0207/Maths-Quest
         global pnj3_infos
         global pnj4_infos
         global pnj5_infos
-        pnj1_infos = True
-        pnj2_infos = True
-        pnj3_infos = True
-        pnj4_infos = True  
-        pnj5_infos = True
+        pnj1_infos = False
+        pnj2_infos = False
+        pnj3_infos = False
+        pnj4_infos = False  
+        pnj5_infos = False
 
         # quad un elment est fabriqué, pour l'afficher correctement
 
         global assemble_cle
-        assemble_cle = True
+        assemble_cle = False
 
 
 
@@ -2774,7 +2864,7 @@ def desac_btn_2():
 
 
 global Niveau
-Niveau = 4
+Niveau = 0
 
 Lancement = Tk()
 Lancement.title("Maths-Quest | Lancement      © PLADEAU Quentin LUBAN Théo")
