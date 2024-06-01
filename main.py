@@ -541,6 +541,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
 
 
 
+
             "Un polynôme du second degré admet comme forme développée : P(x)= ax² + bx + c avec a, b et c des coefficients et a /= 0. Chaque polynôme admet une forme canonique sous la forme\n",
 
             "Pour résoudre P(x) = 0 il faut déterminer le discriminant delta :",
@@ -553,11 +554,30 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
             "il est du signe opposé à a entre les racines; c'est-à-dire sur l'intervalle",
             "Lorsque delta = 0 : \n     P(x)  est toujours du signe de a sur R excepté à x = alpha où il est nulle.\nLorsque delta < 0 : \n     P(x) est toujours du signe de a \nVariations : \n     Lorsque a est positif la courbe représentative de P(x) décroît jusqu’à x=alpha puis croît. \n     Lorsque a est négatif la courbe croît jusqu’à x=alpha puis décroît.",
 
-            "cours 1 nv6",
-            "cours 2 nv6",
-            "cours 3 nv6",
-            "cours 4 nv6", 
+
+
+
+            "Le taux de variation d’une fonction f en un point a est une mesure de la rapidité avec laquelle f change près de a. On dit que f est dérivable en a si la limite suivante existe : ",
+            "Si cette limite existe, elle est appelée la dérivée de f en a et est notée f’(a)",
+
+            "La dérivée d'une fonction en un point donne la pente de la tangente à la courbe de la fonction en ce point. Elle se calcule grâce la formule T : y = f’(a)(x - a) + f(a) avec a un point de la courbe.",
             
+            "Dérivée d'une constante : Si",
+            ", alors ",
+            "Dérivée de",
+            ", alors ",
+            "Somme et Différence : Si",
+            ", alors ",
+            "Produit : Si",
+            ", alors ",
+            "Quotient : Si ",
+            ", alors ",
+
+            "Une dérivée peut servir à connaître les intervalles croissant et décroissant de la courbe, lorsque f’(x) > 0 alors f(x) est croissant et lorsque f’(x) < 0 alors f(x) est décroissant.", 
+            
+
+
+
             "cours 1 nv7",
             "cours 2 nv7",
             "cours 3 nv7",
@@ -664,6 +684,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                 def load_cours_5():
                     listbox.insert(END, "--Equation du second degré--" + "\n")
                     listbox.insert(END, "\n")
+
                     ajouter_element(Liste_cours[21])
                     listbox.insert(END, "\n")
                     formule_latex.make_formule(r"$ a( x - \alpha)^2 + \beta$",listbox, 14, 1) 
@@ -690,6 +711,8 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                     formule_latex.make_formule(r"$\left] -\infty, x1 \right[ \cup \left] x2, +\infty \right[.$",listbox, 14, 1) 
                     ajouter_element(Liste_cours[28])
                     formule_latex.make_formule(r"$\left] x1, x2 \right[.$",listbox, 14, 0)
+                    ajouter_element(Liste_cours[29])
+
                     listbox.config(state=NORMAL)
 
                     saut_2_lignes()
@@ -699,7 +722,51 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
 
 
                 def load_cours_6():
-                    a = 1
+                    listbox.insert(END, "--Dérivation--" + "\n")
+                    listbox.insert(END, "\n")
+
+                    ajouter_element(Liste_cours[30])
+                    formule_latex.make_formule(r"$ f'(a) = \lim_{h \to 0} \frac{f(a + h) - f(a)}{h} $",listbox, 14, 1) 
+                    ajouter_element(Liste_cours[31])
+                    saut_2_lignes()
+
+                    ajouter_element(Liste_cours[32])
+                    saut_2_lignes()
+
+                    ajouter_element(Liste_cours[33])
+                    formule_latex.make_formule(r"$f(x) =c$",listbox, 14, 0) 
+                    ajouter_element(Liste_cours[34])
+                    formule_latex.make_formule(r"$f'(x) = 0.$",listbox, 14, 1)
+
+                    ajouter_element(Liste_cours[35])
+                    formule_latex.make_formule(r"$x^n : f(x) = x^n$",listbox, 14, 0) 
+                    ajouter_element(Liste_cours[36])
+                    formule_latex.make_formule(r"$f'(x) = nx^{n-1}.$",listbox, 14, 1)
+
+                    ajouter_element(Liste_cours[37])
+                    formule_latex.make_formule(r"$f(x) = u+v$",listbox, 14, 0) 
+                    ajouter_element(Liste_cours[38])
+                    formule_latex.make_formule(r"$f'(x) = u'+v'$",listbox, 14, 1)
+
+                    ajouter_element(Liste_cours[39])
+                    formule_latex.make_formule(r"$f(x) = uv$",listbox, 14, 0)
+                    ajouter_element(Liste_cours[40])
+                    formule_latex.make_formule(r"$fu'v + uv'.$",listbox, 14, 1)
+
+                    ajouter_element(Liste_cours[41])
+                    formule_latex.make_formule(r"$f(x) = \frac{u}{v}$",listbox, 14, 0)
+                    ajouter_element(Liste_cours[42])
+                    formule_latex.make_formule(r"$f'(x) = \frac{u'v - uv'}{v^2}$",listbox, 14, 1)
+
+                    saut_2_lignes() 
+
+                    ajouter_element(Liste_cours[43])
+                    saut_2_lignes() 
+
+
+                    listbox.insert(END, "\n")
+
+
                 def load_cours_7():
 
                     a = 1
@@ -791,25 +858,13 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                         listbox.insert(END, "--Suite--" + "\n")
                         listbox.insert(END, "\n")
 
+
                 elif (Niveau==8 and num_pnj==0) or (Niveau== 7 and num_pnj==1):
-                    listbox.insert(END, "--Equation du second degré--" + "\n")
-                    listbox.insert(END, "\n")
-                    for i in range(17,20):
-                        ajouter_element(Liste_cours[i])
-                    listbox.insert(END, "\n")
-
-                    listbox.insert(END, "--Dérivation--" + "\n")
-                    listbox.insert(END, "\n")
-                    for i in range(20,24):
-                        ajouter_element(Liste_cours[i])
-                    listbox.insert(END, "\n")
-
-                    listbox.insert(END, "--Suite--" + "\n")
-                    listbox.insert(END, "\n")
-                    for i in range(24,29):
-                        ajouter_element(Liste_cours[i])
-                    listbox.insert(END, "\n")
+                    load_cours_5()
+                    load_cours_6()
+                    load_cours_7()
                 
+
                 listbox.config(state=DISABLED)
 
 
@@ -943,21 +998,52 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                     ajouter_element(Liste_cours[28])
                     formule_latex.make_formule(r"$\left] x1, x2 \right[.$",listbox, 14, 2) 
                     listbox.insert(END, "   ")
+                    ajouter_element(Liste_cours[29])
+
 
                     saut_2_lignes()
 
             elif Niveau ==6:
                 if num_pnj=="pnj1":
-                    ajouter_element(Liste_cours[20])
+                    ajouter_element(Liste_cours[30])
+                    formule_latex.make_formule(r"$ f'(a) = \lim_{h \to 0} \frac{f(a + h) - f(a)}{h} $",listbox, 14, 1) 
+                    ajouter_element(Liste_cours[31])
                     saut_2_lignes()
+
                 elif num_pnj=="pnj2":
-                    ajouter_element(Liste_cours[21])
+                    ajouter_element(Liste_cours[32])
                     saut_2_lignes()
+
                 elif num_pnj=="pnj3":
-                    ajouter_element(Liste_cours[22])
-                    saut_2_lignes()       
+                    ajouter_element(Liste_cours[33])
+                    formule_latex.make_formule(r"$f(x) =c$",listbox, 14, 0) 
+                    ajouter_element(Liste_cours[34])
+                    formule_latex.make_formule(r"$f'(x) = 0.$",listbox, 14, 1)
+
+                    ajouter_element(Liste_cours[35])
+                    formule_latex.make_formule(r"$x^n : f(x) = x^n$",listbox, 14, 0) 
+                    ajouter_element(Liste_cours[36])
+                    formule_latex.make_formule(r"$f'(x) = nx^{n-1}.$",listbox, 14, 1)
+
+                    ajouter_element(Liste_cours[37])
+                    formule_latex.make_formule(r"$f(x) = u+v$",listbox, 14, 0) 
+                    ajouter_element(Liste_cours[38])
+                    formule_latex.make_formule(r"$f'(x) = u'+v'$",listbox, 14, 1)
+
+                    ajouter_element(Liste_cours[39])
+                    formule_latex.make_formule(r"$f(x) = uv$",listbox, 14, 0)
+                    ajouter_element(Liste_cours[40])
+                    formule_latex.make_formule(r"$fu'v + uv'.$",listbox, 14, 1)
+
+                    ajouter_element(Liste_cours[41])
+                    formule_latex.make_formule(r"$f(x) = \frac{u}{v}$",listbox, 14, 0)
+                    ajouter_element(Liste_cours[42])
+                    formule_latex.make_formule(r"$f'(x) = \frac{u'v - uv'}{v^2}$",listbox, 14, 2)
+
+                    saut_2_lignes() 
+
                 elif num_pnj=="pnj4":
-                    ajouter_element(Liste_cours[23])
+                    ajouter_element(Liste_cours[43])
                     saut_2_lignes() 
 
             elif Niveau ==7:
@@ -1152,11 +1238,13 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
 
                         elif Niveau ==6:
                             if c==1:
-                                insert_text("")
+                                insert_text("Salut mon ptit jeune, t’as du croiser ma femme toi, je me trompe ? Mais trêve de mondanité je vais t’apprendre ce qu’est le taux de variation d’une fonction f en un point a, en réalité c’est une mesure de la rapidité avec laquelle f change près de a.")
                             elif c==2:
-                                insert_text("")
+                                insert_text("On dit que f est dérivable en a si la limite suivante existe : ")
+                                formule_latex.make_formule(r"$ f'(a) = \lim_{h \to 0} \frac{f(a + h) - f(a)}{h} $",Label_texte_parole_discussion_pnj_scrolltext, 14, 1) 
+                                insert_text("Si cette limite existe, elle est appelée la dérivée de f en a et est notée f’(a)")
                             elif c==3:
-                                insert_text("")
+                                insert_text("Tiens prends ça tu m’as bien écouté, allez roulez jeunesse.")
 
                         elif Niveau ==7:
                             if c==1:
@@ -1235,11 +1323,11 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
 
                         elif Niveau ==6:
                             if c==1:
-                                insert_text("")
+                                insert_text("Il fait chaud aujourd’hui non ? Tu préfères une glace ou une leçon ?")
                             elif c==2:
-                                insert_text("")
+                                insert_text("Alors va pour la leçon je vais t’apprendre que la dérivée d'une fonction en un point donne la pente de la tangente à la courbe de la fonction en ce point. Elle se calcule grâce la formule T : y = f’(a)(x - a) + f(a) avec a un point de la courbe.")
                             elif c==3:
-                                insert_text("")
+                                insert_text("Allez prends ça c’est pas une glace mais ça fera l’affaire.")
 
                         elif Niveau ==7:
                             if c==1:
@@ -1319,11 +1407,31 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
 
                         elif Niveau ==6:
                             if c==1:
-                                insert_text("")
+                                insert_text("Salut toi, tu savais qu’il y avait des cas qui ne changent jamais et donc super simple à mémoriser, regarde pour la dérivée d'une constante : ")
+                                formule_latex.make_formule(r"$f(x) =c$",Label_texte_parole_discussion_pnj_scrolltext, 14, 0) 
+                                insert_text("alors ")
+                                formule_latex.make_formule(r"$f'(x) = 0.$",Label_texte_parole_discussion_pnj_scrolltext, 14, 2)
                             elif c==2:
-                                insert_text("")
+                                insert_text("Celle de ")
+                                formule_latex.make_formule(r"$x^n : f(x) = x^n$",Label_texte_parole_discussion_pnj_scrolltext, 14, 0) 
+                                insert_text("alors ")
+                                formule_latex.make_formule(r"$f'(x) = nx^{n-1}.$",Label_texte_parole_discussion_pnj_scrolltext, 14, 2)
+
+                                insert_text("Alors qu’avec la somme et différence ça donne ceci : ")
+                                formule_latex.make_formule(r"$f(x) = u+v$",Label_texte_parole_discussion_pnj_scrolltext, 14, 0) 
+                                insert_text(", alors ")
+                                formule_latex.make_formule(r"$f'(x) = u'+v'$",Label_texte_parole_discussion_pnj_scrolltext, 14, 2)
+
                             elif c==3:
-                                insert_text("")
+                                insert_text("Ensuite un produit : ")
+                                formule_latex.make_formule(r"$f(x) = uv$",Label_texte_parole_discussion_pnj_scrolltext, 14, 0)
+                                insert_text(", alors ")
+                                formule_latex.make_formule(r"$fu'v + uv'.$",Label_texte_parole_discussion_pnj_scrolltext, 14, 2)
+
+                                insert_text("Et finalement le quotient : ")
+                                formule_latex.make_formule(r"$f(x) = \frac{u}{v}$",Label_texte_parole_discussion_pnj_scrolltext, 14, 0)
+                                insert_text(", alors ")
+                                formule_latex.make_formule(r"$f'(x) = \frac{u'v - uv'}{v^2}$",Label_texte_parole_discussion_pnj_scrolltext, 14, 2)
 
                         elif Niveau ==7:
                             if c==1:
@@ -1379,11 +1487,11 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
 
                         elif Niveau ==6:
                             if c==1:
-                                insert_text("")
+                                insert_text("Zalut toi, dit tu zavais qu’une dérivée peut zervir à connaître les zintervalles croizant et décroizant.")
                             elif c==2:
-                                insert_text("")
+                                insert_text("Lorzque f’(x) > 0 alors f(x) est croizant et lorzque f’(x) < 0 alors f(x) est décroizant.")
                             elif c==3:
-                                insert_text("")
+                                insert_text("Tiens ze croyais que z’était de la glace et ze m’en zuis mis partout.")
                         
                         elif Niveau ==7:
                             if c==1:
@@ -1497,10 +1605,11 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
 
                         elif Niveau ==6:
                             if c==1:
-                                insert_text("")
+                                insert_text("Alors toi aussi tu as besoin d’un sonotone comme ma femme ? Bon je vais te réexpliquer ce qu’est le taux de variation d’une fonction f en un point a, en réalité c’est une mesure de la rapidité avec laquelle f change près de a.")
                             elif c==2:
-                                insert_text("")
-
+                                insert_text("On dit que f est dérivable en a si la limite suivante existe : ")
+                                formule_latex.make_formule(r"$ f'(a) = \lim_{h \to 0} \frac{f(a + h) - f(a)}{h} $",Label_texte_parole_discussion_pnj_scrolltext, 14, 1) 
+                                insert_text("Si cette limite existe, elle est appelée la dérivée de f en a et est notée f’(a).")
                         elif Niveau ==7:
                             if c==1:
                                 insert_text("")
@@ -1549,9 +1658,9 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
 
                         elif Niveau ==6:
                             if c==1:
-                                insert_text("")
+                                insert_text("Tu voulais une glace en fait, désolé mais les enfants m’ont tout pris. Je peux te réexpliquer si tu veux pour compenser.")
                             elif c==2:
-                                insert_text("")
+                                insert_text("Alors écoute bien la dérivée d'une fonction en un point donne la pente de la tangente à la courbe de la fonction en ce point. Elle se calcule grâce la formule T : y = f’(a)(x - a) + f(a) avec a un point de la courbe.")
 
                         elif Niveau ==7:
                             if c==1:
@@ -1601,9 +1710,31 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
 
                         elif Niveau ==6:
                             if c==1:
-                                insert_text("")
+                                insert_text("Tu veux que te réexplique tout ce que j’ai dis ? Bon, ok mais écoute mieux cette fois, pour la dérivée d'une constante :")
+                                formule_latex.make_formule(r"$f(x) =c$",Label_texte_parole_discussion_pnj_scrolltext, 14, 0) 
+                                insert_text("alors ")
+                                formule_latex.make_formule(r"$f'(x) = 0.$",Label_texte_parole_discussion_pnj_scrolltext, 14, 2)
                             elif c==2:
-                                insert_text("")
+                                insert_text("Celle de ")
+                                formule_latex.make_formule(r"$x^n : f(x) = x^n$",Label_texte_parole_discussion_pnj_scrolltext, 14, 0) 
+                                insert_text("alors ")
+                                formule_latex.make_formule(r"$f'(x) = nx^{n-1}.$",Label_texte_parole_discussion_pnj_scrolltext, 14, 2)
+
+                                insert_text("Alors qu’avec la somme et différence ça donne ceci : ")
+                                formule_latex.make_formule(r"$f(x) = u+v$",Label_texte_parole_discussion_pnj_scrolltext, 14, 0) 
+                                insert_text(", alors ")
+                                formule_latex.make_formule(r"$f'(x) = u'+v'$",Label_texte_parole_discussion_pnj_scrolltext, 14, 2)
+
+                                insert_text("Ensuite un produit : ")
+                                formule_latex.make_formule(r"$f(x) = uv$",Label_texte_parole_discussion_pnj_scrolltext, 14, 0)
+                                insert_text(", alors ")
+                                formule_latex.make_formule(r"$fu'v + uv'.$",Label_texte_parole_discussion_pnj_scrolltext, 14, 2)
+
+                                insert_text("Et finalement le quotient : ")
+                                formule_latex.make_formule(r"$f(x) = \frac{u}{v}$",Label_texte_parole_discussion_pnj_scrolltext, 14, 0)
+                                insert_text(", alors ")
+                                formule_latex.make_formule(r"$f'(x) = \frac{u'v - uv'}{v^2}$",Label_texte_parole_discussion_pnj_scrolltext, 14, 2)
+
 
                         elif Niveau ==7:
                             if c==1:
@@ -1634,9 +1765,9 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
 
                         elif Niveau ==6:
                             if c==1:
-                                insert_text("")
+                                insert_text("Alors t’as rien n’écouté ? Ba ze vais te réexpliquer.")
                             elif c==2:
-                                insert_text("")
+                                insert_text("Une dérivée peut zervir à connaître les zintervalles croizant et décroizant, lorzque f’(x) > 0 alors f(x) est croizant et lorzque f’(x) < 0 alors f(x) est décroizant.")
 
                         elif Niveau ==7:
                             if c==1:
@@ -1710,7 +1841,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                         elif Niveau ==5:
                             nom_du_pnj = "Leilégalité :"
                         elif Niveau ==6:
-                            nom_du_pnj = ""
+                            nom_du_pnj = "Paπ :"
                         elif Niveau ==7:
                             nom_du_pnj = ""
 
@@ -1726,7 +1857,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                         elif Niveau ==5:
                             nom_du_pnj = "Iggy :"
                         elif Niveau ==6:
-                            nom_du_pnj = ""
+                            nom_du_pnj = "Marchand de glace :"
                         elif Niveau ==7:
                             nom_du_pnj = ""
                             
@@ -1743,7 +1874,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                         elif Niveau ==5:
                             nom_du_pnj = "Mathémami :"
                         elif Niveau ==6:
-                            nom_du_pnj = ""
+                            nom_du_pnj = "Cécilyndre :"
                         elif Niveau ==7:
                             nom_du_pnj = ""
                            
@@ -1756,7 +1887,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                         elif Niveau ==3:
                             nom_du_pnj = "Delta :"                        
                         elif Niveau ==6:
-                             nom_du_pnj = ""                   
+                             nom_du_pnj = "Titouan :"                   
                         elif Niveau ==7:
                              nom_du_pnj = ""                       
                        
@@ -2429,11 +2560,11 @@ Pour plus de renseignements : https://github.com/Gandalf0207/Maths-Quest
         global pnj3_infos
         global pnj4_infos
         global pnj5_infos
-        pnj1_infos = True
-        pnj2_infos = True
-        pnj3_infos = True
-        pnj4_infos = True  
-        pnj5_infos = True
+        pnj1_infos = False
+        pnj2_infos = False
+        pnj3_infos = False
+        pnj4_infos = False  
+        pnj5_infos = False
 
         # quad un elment est fabriqué, pour l'afficher correctement
 
@@ -2827,7 +2958,7 @@ Pour plus de renseignements : https://github.com/Gandalf0207/Maths-Quest
 
 
 global Niveau
-Niveau = 0
+Niveau = 6
 def parametre(Lancement, Label_Frame_courverture):
 
     def verif_lancement():
