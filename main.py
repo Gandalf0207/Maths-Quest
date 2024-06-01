@@ -43,6 +43,10 @@ Regle= None
 
 global f
 f = None
+
+global new_window_admin
+new_window_admin = None
+
 # Valeurs permettant de déterminer le nombre d'indices utilisé et de pouvoir afficher le résultats
 global indices_give_1
 global indices_give_2
@@ -67,6 +71,9 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
     global deplacement_perso
     deplacement_perso = True
 
+    global new_window_admin
+    new_window_admin = None
+
 
     #le "fenetre" correspond à la fenetre tk qui est en cours de loop
     # Le permir passage se sera la fenetre 'Lancement', puis les autres tours se sera les fenetres de 'Jeu'
@@ -76,6 +83,295 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
 
     Jeu = Tk()
     Jeu.config(bg = "#BBC4E3")
+
+
+
+    # La séquence de touches pour le code 'admin'
+    konami_code = ['a', 'd', 'm', 'i', 'n']
+    current_input = []
+
+    def check_konami_code(event):
+        # Ajouter la touche pressée à la séquence actuelle
+        current_input.append(event.char)
+        
+        # Vérifier si la séquence actuelle dépasse la longueur du Konami Code
+        if len(current_input) > len(konami_code):
+            current_input.pop(0)
+        
+        # Vérifier si la séquence actuelle correspond au Konami Code
+        if current_input == konami_code:
+            open_new_window()
+
+    def open_new_window():
+        global new_window_admin
+        if not new_window_admin or not new_window_admin.winfo_exists():
+
+            def check_command_admin(type_command):
+                global Niveau
+                global type_partie
+
+                global pnj1_infos
+                global pnj2_infos
+                global pnj3_infos
+                global pnj4_infos
+                global pnj5_infos
+
+                global assemble_cle
+
+                global type_partie
+
+                if type_command =="supnv":
+                    if Niveau <8:
+                        
+                        Niveau +=1
+                        Gestion_Jouer(Jeu, Niveau, type_partie)
+                    else:
+                        infos_label_admin.set("Vous êtes sur le dernier niveau possible, il n'existe aucun niveau supperieur !")
+                
+                if type_command=='infnv':
+                    if Niveau > 0:
+                        Niveau -=1
+                        Gestion_Jouer(Jeu, Niveau, type_partie)
+                    else:
+                        infos_label_admin.set("Vous êtes sur le premier niveau possible, il n'existe aucun niveau inférieur !")
+                
+
+                if type_command =='autre':
+
+                    p1 = var_pnj1_admin.get()
+                    p2 = var_pnj2_admin.get()
+                    p3 = var_pnj3_admin.get()
+                    p4 = var_pnj4_admin.get()
+                    p5 = var_pnj5_admin.get()
+                    assemble_cle_admin = var_cle_admin.get()
+
+                    if p1 == 0:
+                        pnj1_infos = False
+                    else:
+                        pnj1_infos = True
+
+                    if p2 == 0:
+                        pnj2_infos = False
+                    else:
+                        pnj2_infos = True
+
+                    if p3 == 0:
+                        pnj3_infos = False
+                    else:
+                        pnj3_infos = True
+
+                    if p4 == 0:
+                        pnj4_infos = False
+                    else:
+                        pnj4_infos = True
+
+                    if p5 == 0:
+                        pnj5_infos = False
+                    else:
+                        pnj5_infos = True
+
+                    if assemble_cle_admin ==0:
+                        assemble_cle = False
+                    else:
+                        assemble_cle = True
+
+                    load_inv(Niveau)
+
+
+                    #on ferme apres le valider
+                    new_window_admin.destroy()
+
+
+                if type_command =='exo':
+                    if Niveau !=4 and Niveau !=8:
+                        porte_enigme(Niveau)
+                    else:
+                        boss_enigme(Niveau)
+
+                    #on ferme apres le valider
+                    new_window_admin.destroy()
+
+                if type_command =="game":
+
+                    type1_admin = type1_admin_game_intvar.get()
+                    type2_admin = type2_admin_game_intvar.get()
+                    type3_admin = type3_admin_game_intvar.get()
+
+                    if type1_admin ==1:
+                        type_partie = 'seconde'
+                        Niveau = 0
+                        Gestion_Jouer(Jeu, Niveau, type_partie)
+                    elif type2_admin ==1:
+                        type_partie = 'premiere'
+                        Niveau = 5
+                        Gestion_Jouer(Jeu, Niveau, type_partie)
+                    elif type3_admin ==1:
+                        type_partie = 'all'
+                        Gestion_Jouer(Jeu, Niveau, type_partie)
+                    
+
+
+
+            def check_type_partie_admin_checkbutton_1():
+                type2_admin_game_intvar.set(0) 
+                type3_admin_game_intvar.set(0)
+            def check_type_partie_admin_checkbutton_2():
+                type1_admin_game_intvar.set(0)
+                type3_admin_game_intvar.set(0)
+            def check_type_partie_admin_checkbutton_3():
+                type1_admin_game_intvar.set(0)
+                type2_admin_game_intvar.set(0) 
+
+
+
+            new_window_admin = Toplevel()
+            new_window_admin.title("Maths-Quest | Admin Panel      © PLADEAU Quentin LUBAN Théo")
+
+
+            label_admin = Label(new_window_admin, text="Panel Admin")
+            label_admin.pack(pady=20, padx=20)
+
+            #frame global des element modifiable
+            Label_frame_pack_admin = Frame(new_window_admin, bg = None)
+            Label_frame_pack_admin.pack(expand=True, fill=BOTH, pady= 5, padx =5)
+
+            #frame perso par type elements
+            Label_frame_gestion_niveau_admin = Frame(Label_frame_pack_admin, bg = "#99A6D0")
+            Label_frame_gestion_niveau_admin.pack(side = LEFT, expand=True, fill=BOTH, pady = 5, padx = 5)
+
+            btn_niv_supp = Button(Label_frame_gestion_niveau_admin, text="Niveau sup", command=lambda:check_command_admin('supnv'))
+            btn_niv_supp.pack(padx = 5, pady = 5)
+
+            btn_niv_inf = Button(Label_frame_gestion_niveau_admin, text="Niveau inf", command=lambda:check_command_admin('infnv'))
+            btn_niv_inf.pack(padx = 5, pady = 5)
+
+            #frame get clé + cours des perso
+            Label_frame_gestion_perso_admin = Frame(Label_frame_pack_admin, bg = "#99A6D0")
+            Label_frame_gestion_perso_admin.pack(side = LEFT, expand=True, fill=BOTH, pady = 5, padx = 5)
+
+
+            if pnj1_infos == False:
+                var_pnj1_admin = IntVar(value=0)
+            else:
+                var_pnj1_admin = IntVar(value=1)
+
+            if pnj2_infos == False:
+                var_pnj2_admin = IntVar(value=0)
+            else:
+                var_pnj2_admin = IntVar(value=1)
+
+            if pnj3_infos == False:
+                var_pnj3_admin = IntVar(value=0)
+            else:
+                var_pnj3_admin = IntVar(value=1)
+
+            if pnj4_infos == False:
+                var_pnj4_admin = IntVar(value=0)
+            else:
+                var_pnj4_admin = IntVar(value=1)
+
+            if pnj5_infos == False:
+                var_pnj5_admin = IntVar(value=0)
+            else:
+                var_pnj5_admin = IntVar(value=1)
+
+            if assemble_cle == False:
+                var_cle_admin = IntVar(value=0)
+            else:
+                var_cle_admin = IntVar(value=1)
+
+
+            Label_checkbutton_pnj1_admin = Checkbutton(Label_frame_gestion_perso_admin, text="item, cours : pnj1", variable = var_pnj1_admin)
+            Label_checkbutton_pnj2_admin = Checkbutton(Label_frame_gestion_perso_admin, text="item, cours : pnj2", variable = var_pnj2_admin)
+            Label_checkbutton_pnj3_admin = Checkbutton(Label_frame_gestion_perso_admin, text="item, cours : pnj3", variable = var_pnj3_admin)
+            Label_checkbutton_pnj4_admin = Checkbutton(Label_frame_gestion_perso_admin, text="item, cours : pnj4", variable = var_pnj4_admin)
+            Label_checkbutton_pnj5_admin = Checkbutton(Label_frame_gestion_perso_admin, text="item, cours : pnj5", variable = var_pnj5_admin)
+
+            Label_checkbutton_assemble_cle_admin = Checkbutton(Label_frame_gestion_perso_admin, text="assemble_cle", variable = var_cle_admin)
+            
+            Label_checkbutton_pnj1_admin.pack(side=TOP, pady =2, padx = 5)
+            Label_checkbutton_pnj2_admin.pack(side=TOP, pady =2, padx = 5)
+            Label_checkbutton_pnj3_admin.pack(side=TOP, pady =2, padx = 5)
+            Label_checkbutton_pnj4_admin.pack(side=TOP, pady =2, padx = 5)
+            Label_checkbutton_pnj5_admin.pack(side=TOP, pady =2, padx = 5)
+
+            Label_checkbutton_assemble_cle_admin.pack(side=TOP, pady =2, padx = 5)
+
+            if Niveau ==0 or Niveau == 5: 
+                Label_checkbutton_pnj4_admin.config(state=DISABLED)
+                Label_checkbutton_pnj5_admin.config(state=DISABLED) 
+            elif Niveau == 1 or Niveau==6:
+                Label_checkbutton_pnj5_admin.config(state=DISABLED)
+            elif Niveau ==4 or Niveau ==8:
+                Label_checkbutton_pnj1_admin.config(state=DISABLED)
+                Label_checkbutton_pnj2_admin.config(state=DISABLED)
+                Label_checkbutton_pnj3_admin.config(state=DISABLED)
+                Label_checkbutton_pnj4_admin.config(state=DISABLED)
+                Label_checkbutton_pnj5_admin.config(state=DISABLED)
+                Label_checkbutton_assemble_cle_admin.config(state=DISABLED)
+
+
+            #frame box btn des exo / boss (ouverture porte)
+            Label_frame_exo_boss_porte_admin =  Frame(Label_frame_pack_admin, bg = "#99A6D0")
+            Label_frame_exo_boss_porte_admin.pack(side = LEFT, expand=True, fill=BOTH, pady = 5, padx = 5)
+
+            Label_btn_exo_boss_porte_admin = Button(Label_frame_exo_boss_porte_admin, text = "Exo / Boss : porte", command=lambda:check_command_admin('exo'))
+            Label_btn_exo_boss_porte_admin.pack(pady = 5, padx = 5)
+
+            #frame checkkbutton type partie choix
+            Label_frame_check_button_typepartie = Frame(Label_frame_pack_admin, bg = "#99A6D0")
+            Label_frame_check_button_typepartie.pack(side = LEFT, expand=True, fill=BOTH, pady = 5, padx = 5)
+
+            if type_partie =='seconde':
+                type1_admin_game_intvar = IntVar(value = 1)
+            else:
+                type1_admin_game_intvar = IntVar(value = 0)
+
+            if type_partie =='premiere':
+                type2_admin_game_intvar = IntVar(value = 1)
+            else:
+                type2_admin_game_intvar = IntVar(value = 0)
+            
+            if type_partie == 'all':
+                type3_admin_game_intvar = IntVar(value = 1)
+            else:
+                type3_admin_game_intvar = IntVar(value = 0)
+
+
+            type1_admin_game_checkbutton = Checkbutton(Label_frame_check_button_typepartie, variable = type1_admin_game_intvar, text = "partie : seconde", command =check_type_partie_admin_checkbutton_1 )
+            type2_admin_game_checkbutton = Checkbutton(Label_frame_check_button_typepartie, variable = type2_admin_game_intvar, text = "partie : premiere", command = check_type_partie_admin_checkbutton_2)
+            type3_admin_game_checkbutton = Checkbutton(Label_frame_check_button_typepartie, variable = type3_admin_game_intvar, text = "partie : all", command =check_type_partie_admin_checkbutton_3)
+
+            type1_admin_game_checkbutton.pack(side = TOP, pady = 2, padx = 5)
+            type2_admin_game_checkbutton.pack(side = TOP, pady = 2, padx = 5)
+            type3_admin_game_checkbutton.pack(side = TOP, pady = 2, padx = 5)
+
+            Label_infos_text_btn_type_partie_admin = Label(Label_frame_check_button_typepartie, text = "Attention, ce bouton reset l'avancé au début du type sélectionné sauf pour 'all',", wraplength = 100)
+            Label_infos_text_btn_type_partie_admin.pack(side =BOTTOM, padx = 4, pady = 5)
+
+            Label_btn_valider_type_partie_special_admin = Button(Label_frame_check_button_typepartie, text="Valid Type", command=lambda:check_command_admin('game'), fg = 'red')
+            Label_btn_valider_type_partie_special_admin.pack(side=BOTTOM, pady = 2, padx = 5)
+
+            
+            Label_valider_changements_admin = Button(new_window_admin, text="VALIDER", command=lambda:check_command_admin('autre'))
+            Label_valider_changements_admin.pack(pady= 5, padx = 5)
+
+
+
+
+            infos_label_admin = StringVar()
+            label_widget_infos_admin = Label(new_window_admin, textvariable = infos_label_admin, fg = "red", wraplength = 250)
+            label_widget_infos_admin.pack(side = BOTTOM, pady = 5, padx = 5)
+            new_window_admin.mainloop()
+
+    # Bind the key press event to the check_konami_code function
+    Jeu.bind("<Key>", check_konami_code)
+
+
+
+
+
+
 
     if type_partie =='all':
         tours = 9
@@ -471,6 +767,15 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                 canvas_inv.create_image(0,0, anchor = NW, image=Grande_cle)
 
             else:
+                canvas_inv.delete("all")
+                long_canvas_inv = 150
+                if Niveau ==1 or Niveau ==6:
+                    long_canvas_inv = 200
+                elif Niveau == 2 or Niveau ==3 or Niveau ==7:
+                    long_canvas_inv = 250
+
+                canvas_inv.config(width = long_canvas_inv, height = 50)
+
                 if pnj1_infos == False and pnj2_infos == False and pnj3_infos == False and pnj4_infos == False and pnj5_infos == False:
                     
                     if Niveau !=4 and Niveau!=8:
@@ -483,21 +788,38 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                             canvas_inv.create_image(150,0, anchor = NW, image=loot_vide_pnj4)
                             canvas_inv.create_image(200,0, anchor = NW, image=loot_vide_pnj5)
 
+                if Niveau !=4 and Niveau !=8:
+                    if pnj1_infos == True:
+                        canvas_inv.create_image(0,0, anchor = NW, image=loot_pnj1)
+                    else:
+                        canvas_inv.create_image(0,0, anchor = NW, image=loot_vide_pnj1)
 
-                if pnj1_infos == True:
-                    canvas_inv.create_image(0,0, anchor = NW, image=loot_pnj1)
+                    if pnj2_infos == True:
+                        canvas_inv.create_image(50,0, anchor = NW, image=loot_pnj2)
+                    else:
+                        canvas_inv.create_image(50,0, anchor = NW, image=loot_vide_pnj2)
 
-                if pnj2_infos == True:
-                    canvas_inv.create_image(50,0, anchor = NW, image=loot_pnj2)
+                    if pnj3_infos == True:
+                        canvas_inv.create_image(100,0, anchor = NW, image=loot_pnj3)
+                    else:
+                        canvas_inv.create_image(100,0, anchor = NW, image=loot_vide_pnj3)
 
-                if pnj3_infos == True:
-                    canvas_inv.create_image(100,0, anchor = NW, image=loot_pnj3)
-                
-                if pnj4_infos == True:
-                    canvas_inv.create_image(150,0, anchor = NW, image=loot_pnj4)
 
-                if pnj5_infos == True:
-                    canvas_inv.create_image(200,0, anchor = NW, image=loot_pnj5)
+                    if Niveau ==1 or Niveau ==6 or Niveau ==2 or Niveau ==3 or Niveau ==7:
+
+                        if pnj4_infos == True:
+                            canvas_inv.create_image(150,0, anchor = NW, image=loot_pnj4)
+                        else:
+                            canvas_inv.create_image(150,0, anchor = NW, image=loot_vide_pnj4)
+
+
+                        if Niveau ==2 or Niveau ==3 or Niveau ==7:
+                            if pnj5_infos == True:
+                                canvas_inv.create_image(200,0, anchor = NW, image=loot_pnj5)
+                            else:
+                                canvas_inv.create_image(200,0, anchor = NW, image=loot_vide_pnj5)
+
+
 
         def load_cours(Niveau, num_pnj):
             Liste_cours = [
@@ -2685,26 +3007,28 @@ Pour plus de renseignements : https://github.com/Gandalf0207/Maths-Quest
         Label_Frame_Inv_Cle.pack(side='bottom', padx=5, pady=5, fill='x')
 
         #On load l'inventaire de base 
-        long_canvas_inv = 150
-        if Niveau ==1 or Niveau ==6:
-            long_canvas_inv = 200
-        elif Niveau == 2 or Niveau ==3 or Niveau ==7:
-            long_canvas_inv = 250
+        # long_canvas_inv = 150
+        # if Niveau ==1 or Niveau ==6:
+        #     long_canvas_inv = 200
+        # elif Niveau == 2 or Niveau ==3 or Niveau ==7:
+        #     long_canvas_inv = 250
 
-        canvas_inv = Canvas(Label_Frame_Inv_Cle, width=long_canvas_inv, height=50, bg = "#7786BA")
+        canvas_inv = Canvas(Label_Frame_Inv_Cle, height=50, bg = "#7786BA")
 
-        if Niveau !=4 and Niveau !=8:
-            canvas_inv.create_image(0,0,anchor=NW, image = loot_vide_pnj1)
-            canvas_inv.create_image(50,0,anchor=NW, image = loot_vide_pnj2)
-            canvas_inv.create_image(100,0,anchor=NW, image = loot_vide_pnj3)
+        # if Niveau !=4 and Niveau !=8:
+        #     canvas_inv.create_image(0,0,anchor=NW, image = loot_vide_pnj1)
+        #     canvas_inv.create_image(50,0,anchor=NW, image = loot_vide_pnj2)
+        #     canvas_inv.create_image(100,0,anchor=NW, image = loot_vide_pnj3)
 
-            if Niveau == 1 or Niveau ==6:
-                canvas_inv.create_image(150,0,anchor=NW, image = loot_vide_pnj4)
-            elif Niveau ==2 or Niveau ==3 or Niveau ==7:
-                canvas_inv.create_image(150,0,anchor=NW, image = loot_vide_pnj4)
-                canvas_inv.create_image(200,0,anchor=NW, image = loot_vide_pnj5)
+        #     if Niveau == 1 or Niveau ==6:
+        #         canvas_inv.create_image(150,0,anchor=NW, image = loot_vide_pnj4)
+        #     elif Niveau ==2 or Niveau ==3 or Niveau ==7:
+        #         canvas_inv.create_image(150,0,anchor=NW, image = loot_vide_pnj4)
+        #         canvas_inv.create_image(200,0,anchor=NW, image = loot_vide_pnj5)
 
         canvas_inv.pack(pady=10)
+
+        load_inv(Niveau)
 
 
 
@@ -2902,7 +3226,7 @@ Pour plus de renseignements : https://github.com/Gandalf0207/Maths-Quest
 
         Merci beaucoup d'avoir joué à Maths-Quest ! Nous espérons que ce jeu vous a plu et vous a permis d'acquérir de nouvelles connaissances.
 
-        Ce projet a nécessité pas moins de 200 heures de travail, de réflexion et de développement. N'hésitez pas à nous faire part de vos avis concernant ce projet !
+        Ce projet a nécessité pas moins de 300 heures de travail, de réflexion et de développement. N'hésitez pas à nous faire part de vos avis concernant ce projet !
 
         Pour soutenir le projet / obtenir des informations : https://github.com/Gandalf0207/Maths-Quest
 
@@ -2958,7 +3282,7 @@ Pour plus de renseignements : https://github.com/Gandalf0207/Maths-Quest
 
 
 global Niveau
-Niveau = 6
+Niveau = 0
 def parametre(Lancement, Label_Frame_courverture):
 
     def verif_lancement():
@@ -3165,7 +3489,7 @@ Label_btn_lancement_config = Button(Label_Frame_courverture, text="Menu", comman
 Label_btn_lancement_config.pack(side= BOTTOM, pady=3)
 
 
-
 Lancement.mainloop()
+
 ##################################################################################################
 

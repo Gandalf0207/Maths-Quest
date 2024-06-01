@@ -1,19 +1,24 @@
 from tkinter import *
 
 def ac():
-    if intt.get() == 1:
-        inttt.set(0)
-    elif inttt.get() == 1:
         intt.set(0)
 
+def acc():
+    inttt.set(0)
+
+# Initialiser la fenêtre principale
 j = Tk()
 
+# Définir les variables pour les Checkbuttons
 intt = IntVar()
-b = Checkbutton(j, text="aaa", variable=intt, command=ac)
+inttt = IntVar()
+
+# Créer les Checkbuttons et lier la variable et la commande
+b = Checkbutton(j, text="aaa", variable=intt, command=acc)
 b.pack()
 
-inttt = IntVar()
-c = Checkbutton(j, text="aaa", variable=inttt, command=ac)
+c = Checkbutton(j, text="bbb", variable=inttt, command=ac)
 c.pack()
 
+# Lancer la boucle principale de l'interface graphique
 j.mainloop()
