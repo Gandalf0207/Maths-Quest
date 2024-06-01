@@ -3,6 +3,7 @@
 from tkinter import *
 from tkinter import ttk
 from tkinter import scrolledtext
+from tkinter import font, Toplevel
 import random
 import time 
 import webbrowser
@@ -40,6 +41,8 @@ boss_window= None
 global Regle
 Regle= None
 
+global f
+f = None
 # Valeurs permettant de déterminer le nombre d'indices utilisé et de pouvoir afficher le résultats
 global indices_give_1
 global indices_give_2
@@ -2821,102 +2824,215 @@ Pour plus de renseignements : https://github.com/Gandalf0207/Maths-Quest
 
 ##################################################################################################
 #ACCUEIL#
-def verif_lancement():
-    global type_partie
-    global Niveau
-    if Label_choix_partie_courte.get() ==1:
-        if Label_partie_courte_selection.get() == "seconde":
-            type_partie = 'seconde'
-            Gestion_Jouer(Lancement, Niveau, type_partie)
-        elif Label_partie_courte_selection.get() == "premiere":
-            type_partie = 'premiere'
-            Niveau = 5
-            Gestion_Jouer(Lancement, Niveau, type_partie)
-        else:
-            text_erreur_lancement.set("Vous devez sélectionner le niveau de votre partie courte !")
-    elif Label_choix_partie_long.get() ==1:
-        type_partie = 'all'
-        Gestion_Jouer(Lancement, Niveau, type_partie)
-    else:
-        text_erreur_lancement.set("Vous devez sélectionner le type de partie !")
-
-def desac_btn_1():
-    if Label_choix_partie_courte.get() ==1:
-        Label_choix_partie_long.set(0)
-        btn_long.config(state=DISABLED)
-        btn_court_seconde.config(state=NORMAL)
-        btn_court_premiere.config(state=NORMAL)
-    else:
-        btn_long.config(state=NORMAL)
-        btn_court_seconde.config(state=DISABLED)
-        btn_court_premiere.config(state=DISABLED)
-
-
-def desac_btn_2():
-    if Label_choix_partie_long.get() ==1:
-        Label_choix_partie_courte.set(0)
-        btn_court.config(state=DISABLED)
-        btn_court_seconde.config(state=DISABLED)
-        btn_court_premiere.config(state=DISABLED)
-    else:
-        btn_court.config(state=NORMAL)
-        btn_court_seconde.config(state=NORMAL)
-        btn_court_premiere.config(state=NORMAL)
 
 
 global Niveau
 Niveau = 0
+def parametre(Lancement, Label_Frame_courverture):
+
+    def verif_lancement():
+        global type_partie
+        global Niveau
+        if Label_choix_partie_courte.get() ==1:
+            if Label_partie_courte_selection.get() == "seconde":
+                type_partie = 'seconde'
+                Gestion_Jouer(Lancement, Niveau, type_partie)
+            elif Label_partie_courte_selection.get() == "premiere":
+                type_partie = 'premiere'
+                Niveau = 5
+                Gestion_Jouer(Lancement, Niveau, type_partie)
+            else:
+                text_erreur_lancement.set("Vous devez sélectionner le niveau de votre partie courte !")
+        elif Label_choix_partie_long.get() ==1:
+            type_partie = 'all'
+            Gestion_Jouer(Lancement, Niveau, type_partie)
+        else:
+            text_erreur_lancement.set("Vous devez sélectionner le type de partie !")
+
+    def desac_btn_1():
+        if Label_choix_partie_courte.get() ==1:
+            Label_choix_partie_long.set(0)
+            btn_long.config(state=DISABLED)
+            btn_court_seconde.config(state=NORMAL)
+            btn_court_premiere.config(state=NORMAL)
+        else:
+            btn_long.config(state=NORMAL)
+            btn_court_seconde.config(state=DISABLED)
+            btn_court_premiere.config(state=DISABLED)
+
+
+    def desac_btn_2():
+        if Label_choix_partie_long.get() ==1:
+            Label_choix_partie_courte.set(0)
+            btn_court.config(state=DISABLED)
+            btn_court_seconde.config(state=DISABLED)
+            btn_court_premiere.config(state=DISABLED)
+        else:
+            btn_court.config(state=NORMAL)
+            btn_court_seconde.config(state=NORMAL)
+            btn_court_premiere.config(state=NORMAL)
+
+    def check(btn):
+
+        global check_btn
+        if check_btn == False:
+            btn.config(state=NORMAL)
+            check_btn = True
+        else:
+            btn.config(state=DISABLED)
+            check_btn = False
+
+    global check_btn 
+    check_btn = False
+    
+
+    def condition_generale_utilisation():
+    
+        global f
+        if not f or not f.winfo_exists():
+            f = Toplevel()
+            f.title("Termes et conditions d'utilisation | Installation")
+
+
+
+            Label_titre = Label(f, text="Maths-Quest", fg = "#01548d", font=("Arial", 25))
+
+            Label_titre.pack(pady=10)
+
+
+            frame = Frame(f)
+            frame.pack(expand=True, fill='both', padx=20, pady=20)
+            
+            scroll_text = scrolledtext.ScrolledText(frame, wrap=WORD, width=60, height=20, font=("Arial", 10))
+            scroll_text.pack(expand=True, fill='both')
+
+            text_condition = """
+                    Termes et Conditions d'Utilisation
+
+                Merci d'utiliser ce jeu Python Maths-Quest, un projet créé avec passion pour l'amour des mathématiques et du partage de connaissances. Avant de continuer à utiliser ce logiciel, veuillez lire attentivement les conditions suivantes :
+
+                1. Droit d'auteur : Ce jeu est protégé par les lois sur le droit d'auteur et est la propriété intellectuelle de LUBAN Théo & PLADEAU Quentin. Tous les droits qui ne sont pas expressément accordés dans ces conditions sont réservés.
+
+                2. Utilisation personnelle : Ce jeu est destiné à un usage personnel et non commercial. Vous pouvez le partager avec des amis et des proches, mais toute distribution à des fins commerciales est strictement interdite sans autorisation préalable.
+
+                3. Règlementation française : En utilisant ce jeu, vous acceptez de vous conformer à toutes les lois et réglementations en vigueur en France concernant les droits d'auteur, la propriété intellectuelle et toute autre loi applicable.
+
+                4. Librairies open source : Ce jeu utilise des librairies open source telles que Python, Tkinter, Matplotlib, LaTeX, et d'autres. Nous reconnaissons et apprécions le travail des développeurs de ces librairies, et nous nous engageons à respecter les termes de leurs licences respectives. Les informations sur ces licences sont disponibles dans les fichiers correspondants du projet.
+                
+                5. Crédits : Nous tenons à remercier LUBAN Théo & PLADEAU Quentin pour leur contribution à ce projet. Leurs efforts ont été essentiels pour créer ce jeu. Nous apprécions également le soutien de ESCOUTE Cédric, qui a rendu ce projet possible.
+
+                6. Cadre de réalisation : Ce jeu a été développé dans le cadre [du cours de NSI de première]. Nous sommes reconnaissants envers ESCOUTE Cédric pour son soutien et l'enseignement de connaissances ayant servie au projet.
+
+                En utilisant ce jeu, vous acceptez ces termes et conditions. Si vous n'acceptez pas ces termes, veuillez ne pas utiliser ce logiciel. Ces termes et conditions peuvent être modifiés à tout moment sans préavis.
+
+                Pour toute question ou préoccupation concernant ces termes et conditions, veuillez contacter votre enseignant vous ayant transmit une copie du projet.      
+                """
+            scroll_text.insert(END, text_condition)
+            close_btn_f = Button(f, command=f.destroy, text="Fermer").pack(side=BOTTOM, pady = 5)
+            f.mainloop()
+
+    def surligne(event):
+        Label_text_check_button_condition.config(font=(label_font_family, label_font_size, "underline"))
+
+    def desurligne(event):
+        Label_text_check_button_condition.config(font=(label_font_family, label_font_size))
+
+
+
+
+
+
+    Label_Frame_courverture.destroy()
+
+    Lancement.title("Maths-Quest | Menu      © PLADEAU Quentin LUBAN Théo")
+
+
+    Label_titre_lancement = Label(Lancement, text="Maths-Quest",fg = "#01548d", font=("Arial", 25),bg = "#BBC4E3")
+    Label_titre_lancement.pack(pady = 10)
+
+    #frame global du choix
+    Frame_choix = Frame(Lancement, bg = '#99A6D0')
+    Frame_choix.pack(expand=True, fill='x', padx=5, pady=5)
+
+    Label_titre_choix_lancement = Label(Frame_choix, text="Choix du type de partie", anchor=CENTER, bg = "#99A6D0")
+    Label_titre_choix_lancement.pack(pady = 5, side=TOP)
+
+    ###frame partie gauche
+    Frame_choix_gauche = Frame(Frame_choix, bg=  None)
+    Frame_choix_gauche.pack(expand=True, fill='x', pady=5, padx=5, side=LEFT)
+
+    Label_choix_partie_courte = IntVar()
+    btn_court = Checkbutton(Frame_choix_gauche,variable = Label_choix_partie_courte, text="Courte", command=desac_btn_1)
+    btn_court.pack()
+
+    ##Frame pour le choix de partie courte
+    Frame_choix_courte_selection = Frame(Frame_choix_gauche, bg= None)
+    Frame_choix_courte_selection.pack(pady= 5 , padx = 5)
+
+    Label_partie_courte_selection = StringVar()
+    btn_court_seconde = Radiobutton(Frame_choix_courte_selection, text="Seconde", variable=Label_partie_courte_selection, value='seconde', state=DISABLED)
+    btn_court_seconde.pack(pady=5, padx=5)
+
+    btn_court_premiere = Radiobutton(Frame_choix_courte_selection, text="Première", variable=Label_partie_courte_selection, value='premiere', state=DISABLED)
+    btn_court_premiere.pack(pady=5, padx=5)
+
+    ###frame partie droite
+    Frame_choix_droite = Frame(Frame_choix, bg=  None)
+    Frame_choix_droite.pack(expand=True, fill=BOTH, pady=5, padx=5, side=RIGHT)
+
+    Label_choix_partie_long = IntVar()
+    btn_long = Checkbutton(Frame_choix_droite,variable = Label_choix_partie_long, text="Longue", command=desac_btn_2)
+    btn_long.pack()
+
+    Frame_ = Frame(Lancement, bg = '#99A6D0')
+    Frame_.pack(expand=True, fill=BOTH, side=BOTTOM)
+    
+
+    
+    btn = Button(Frame_, text="Jouer !",command=verif_lancement, state=DISABLED)
+    btn.pack( pady=20)
+
+    text_erreur_lancement = StringVar()
+    Label_text_erreur_lancement = Label(Frame_, textvariable=text_erreur_lancement,bg = "#99A6D0", wraplength = 200, justify='center', fg='#9A0004')
+    Label_text_erreur_lancement.pack()
+
+    # frame check button condition + text du check button en label pour pouvoir le cliquer
+    Label_frame_check_button_conditon_utilisation = Frame(Lancement,bg = "#99A6D0")
+    Label_frame_check_button_conditon_utilisation.pack(side = TOP, pady= 5 , padx = 5)
+    # Récupérer la police par défaut du Label_check_button_conditon
+    label_font = font.nametofont("TkDefaultFont")
+    label_font_family = label_font.actual()["family"]
+    label_font_size = label_font.actual()["size"]
+
+    Label_check_button_conditon = Checkbutton(Label_frame_check_button_conditon_utilisation, command=lambda:check(btn),  bg ="#99A6D0", cursor="hand2")
+    Label_check_button_conditon.pack(pady= 5,padx = 5, side = LEFT, anchor = N)
+
+    Label_text_check_button_condition = Label(Label_frame_check_button_conditon_utilisation,text = "J'ai pris connaissance et j'accepte les conditions et termes général d'utilisation du jeu Maths-Quest créé par LUBAN Théo & PLADEAU Quentin",wraplength=300,bg="#99A6D0", cursor="hand2",justify=LEFT,  )
+    Label_text_check_button_condition.pack(side = RIGHT, pady = 5, padx=5, anchor = N)
+    Label_text_check_button_condition.bind("<Button-1>", lambda e: condition_generale_utilisation())
+    Label_text_check_button_condition.bind("<Enter>", surligne)
+    Label_text_check_button_condition.bind("<Leave>", desurligne)
+
 
 Lancement = Tk()
 Lancement.title("Maths-Quest | Lancement      © PLADEAU Quentin LUBAN Théo")
-Lancement.geometry("350x400")
+# Lancement.geometry("350x400")
 Lancement.config(bg = "#BBC4E3")
+couverture = PhotoImage(file="Images/Autre/couverture.png")
 
-Label_titre_lancement = Label(Lancement, text="Maths-Quest",fg = "#01548d", font=("Arial", 25),bg = "#BBC4E3")
-Label_titre_lancement.pack(pady = 10)
+### frame qui contient le canva de la couverture
+Label_Frame_courverture = Frame(Lancement, bg = "#99A6D0" )
+Label_Frame_courverture.pack(expand=True)
 
-#frame global du choix
-Frame_choix = Frame(Lancement, bg = '#99A6D0')
-Frame_choix.pack(expand=True, fill='x', padx=5, pady=5)
+##canva de la courverture
+Label_canvas_courverture = Canvas(Label_Frame_courverture,width = 463, height = 652, bg = None)
+Label_canvas_courverture.pack(expand=True)
 
-Label_titre_choix_lancement = Label(Frame_choix, text="Choix du type de partie", anchor=CENTER, bg = "#99A6D0")
-Label_titre_choix_lancement.pack(pady = 5, side=TOP)
+Label_canvas_courverture.create_image(0,0,anchor =NW, image = couverture)
 
-###frame partie gauche
-Frame_choix_gauche = Frame(Frame_choix, bg=  None)
-Frame_choix_gauche.pack(expand=True, fill='x', pady=5, padx=5, side=LEFT)
+Label_btn_lancement_config = Button(Label_Frame_courverture, text="Menu", command=lambda:parametre(Lancement, Label_Frame_courverture))
+Label_btn_lancement_config.pack(side= BOTTOM, pady=3)
 
-Label_choix_partie_courte = IntVar()
-btn_court = Checkbutton(Frame_choix_gauche,variable = Label_choix_partie_courte, text="Courte", command=desac_btn_1)
-btn_court.pack()
-
-##Frame pour le choix de partie courte
-Frame_choix_courte_selection = Frame(Frame_choix_gauche, bg= None)
-Frame_choix_courte_selection.pack(pady= 5 , padx = 5)
-
-Label_partie_courte_selection = StringVar()
-btn_court_seconde = Radiobutton(Frame_choix_courte_selection, text="Seconde", variable=Label_partie_courte_selection, value='seconde', state=DISABLED)
-btn_court_seconde.pack(pady=5, padx=5)
-
-btn_court_premiere = Radiobutton(Frame_choix_courte_selection, text="Première", variable=Label_partie_courte_selection, value='premiere', state=DISABLED)
-btn_court_premiere.pack(pady=5, padx=5)
-
-###frame partie droite
-Frame_choix_droite = Frame(Frame_choix, bg=  None)
-Frame_choix_droite.pack(expand=True, fill=BOTH, pady=5, padx=5, side=RIGHT)
-
-Label_choix_partie_long = IntVar()
-btn_long = Checkbutton(Frame_choix_droite,variable = Label_choix_partie_long, text="Longue", command=desac_btn_2)
-btn_long.pack()
-
-Frame_ = Frame(Lancement, bg = '#99A6D0')
-Frame_.pack(expand=True, fill=BOTH)
-
-btn = ttk.Button(Frame_, text="Jouer !",command=verif_lancement).pack( pady=20)
-
-text_erreur_lancement = StringVar()
-Label_text_erreur_lancement = Label(Frame_, textvariable=text_erreur_lancement,bg = "#99A6D0", wraplength = 200, justify='center', fg='#9A0004')
-Label_text_erreur_lancement.pack()
 
 
 Lancement.mainloop()
