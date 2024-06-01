@@ -174,9 +174,9 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
 
         #exo 2 et 6 : volume + Derivation
         elif Niveau ==1 or Niveau ==6:
-            mur1 = PhotoImage(file="Images/Map/Maison_1.png")
-            mur2 = PhotoImage(file="Images/Map/Maison_2.png")
-            mur3 = PhotoImage(file="Images/Map/Arbre.png")
+            mur1 = PhotoImage(file="Images/Map/Arbre.png")
+            mur2 = PhotoImage(file="Images/Map/Maison_1.png")
+            mur3 = PhotoImage(file="Images/Map/Maison_2.png")
 
             pnj1 = PhotoImage(file = "Images/pnj/Papy/Papy_petit.png")
             pnj2 = PhotoImage(file = "Images/pnj/Cecylindre/Cecylindre_petit.png")
@@ -783,7 +783,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                 elif (Niveau==7 and num_pnj==0) or (Niveau== 6 and num_pnj==1):
                     load_cours_5()
                     load_cours_6()
-                    
+
                     if num_pnj==0:
                         listbox.insert(END, "--Suite--" + "\n")
                         listbox.insert(END, "\n")
@@ -1890,7 +1890,8 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                             insert_consignes_exo("Vous devez résoudre ce système à 2 inconnues en trouvant la valeur de x et y.")
                             formule_latex.make_formule(Exo_correction[0],Label_scrollbox_consignes_exo, 15, 0)
                         elif Niveau==5:
-                            insert_consignes_exo("Vous devez résoudre cet exo pas encore fait")
+                            insert_consignes_exo("Vous devez trouver les racines possible de ce polynôme du second degré.")
+                            formule_latex.make_formule(Exo_correction[0],Label_scrollbox_consignes_exo, 15, 0)
                         elif Niveau==6:
                             insert_consignes_exo(f"Vous devez dériver la fonction f(x) suivante. Puis trouver l'équation de tangente pour x = {Exo_correction[5]}")
                             formule_latex.make_formule(Exo_correction[0],Label_scrollbox_consignes_exo, 15, 0)
@@ -1966,7 +1967,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                 elif Niveau==3:
                     exo_nom ="Système à 2 inconnues"
                 elif Niveau ==5:
-                    exo_nom ="Polynome second degré (polynôme)"
+                    exo_nom ="Equation du second degré (polynôme)"
                 elif Niveau==6:
                     exo_nom ="Dérivation"
                 elif Niveau ==7:
@@ -2425,16 +2426,16 @@ Pour plus de renseignements : https://github.com/Gandalf0207/Maths-Quest
         global pnj3_infos
         global pnj4_infos
         global pnj5_infos
-        pnj1_infos = False
-        pnj2_infos = False
-        pnj3_infos = False
-        pnj4_infos = False  
-        pnj5_infos = False
+        pnj1_infos = True
+        pnj2_infos = True
+        pnj3_infos = True
+        pnj4_infos = True  
+        pnj5_infos = True
 
         # quad un elment est fabriqué, pour l'afficher correctement
 
         global assemble_cle
-        assemble_cle = False
+        assemble_cle = True
 
 
 
