@@ -2861,15 +2861,6 @@ Pour plus de renseignements : https://github.com/Gandalf0207/Maths-Quest
 
 
 
-
-
-        #fonction pass à supp dans version final
-        def pass_(event):
-            global Niveau
-            global type_partie
-            Niveau +=1
-            Gestion_Jouer(Jeu, Niveau, type_partie)
-
         # coordonnées
         global ordonne
         global abscisse
@@ -3047,11 +3038,8 @@ Pour plus de renseignements : https://github.com/Gandalf0207/Maths-Quest
 
         Jeu.bind("<Escape>", regle_infos_jeu)
 
-        Jeu.bind("<KeyPress-r>", pass_)
 
-        def app(event):
-            boss_enigme(Niveau)
-        Jeu.bind("<KeyPress-t>", app)
+
 
 
 
