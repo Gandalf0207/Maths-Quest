@@ -889,6 +889,12 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
             ", alors ",
             "Dérivée de",
             ", alors ",
+            "Dérivée de",
+            ", alors ",
+            "Dérivée de",
+            ", alors ",
+            "Dérivée de",
+            ", alors ",
             "Somme et Différence : Si",
             ", alors ",
             "Produit : Si",
@@ -1067,23 +1073,40 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                     formule_latex.make_formule(r"$f'(x) = nx^{n-1}.$",listbox, 14, 1)
 
                     ajouter_element(Liste_cours[37])
-                    formule_latex.make_formule(r"$f(x) = u+v$",listbox, 14, 0) 
+                    formule_latex.make_formule(r"$nx : f(x) = nx$",listbox, 14, 0) 
                     ajouter_element(Liste_cours[38])
-                    formule_latex.make_formule(r"$f'(x) = u'+v'$",listbox, 14, 1)
+                    formule_latex.make_formule(r"$f'(x) = n. $",listbox, 14, 1)
+
 
                     ajouter_element(Liste_cours[39])
-                    formule_latex.make_formule(r"$f(x) = uv$",listbox, 14, 0)
+                    formule_latex.make_formule(r"$ \frac{1}{x} : f(x) = \frac{1}{x}$",listbox, 14, 0) 
                     ajouter_element(Liste_cours[40])
-                    formule_latex.make_formule(r"$fu'v + uv'.$",listbox, 14, 1)
+                    formule_latex.make_formule(r"$f'(x) = \frac{-1}{x^2}.$",listbox, 14, 1)
+
 
                     ajouter_element(Liste_cours[41])
-                    formule_latex.make_formule(r"$f(x) = \frac{u}{v}$",listbox, 14, 0)
+                    formule_latex.make_formule(r"$ \sqrt{x} : f(x) = \sqrt{x}$",listbox, 14, 0) 
                     ajouter_element(Liste_cours[42])
-                    formule_latex.make_formule(r"$f'(x) = \frac{u'v - uv'}{v^2}$",listbox, 14, 1)
+                    formule_latex.make_formule(r"$f'(x) = \frac{1}{2 \sqrt{x}}.$",listbox, 14, 1)
+
+                    ajouter_element(Liste_cours[43])
+                    formule_latex.make_formule(r"$f(x) = u+v$",listbox, 14, 0) 
+                    ajouter_element(Liste_cours[44])
+                    formule_latex.make_formule(r"$f'(x) = u'+v'$",listbox, 14, 1)
+
+                    ajouter_element(Liste_cours[45])
+                    formule_latex.make_formule(r"$f(x) = uv$",listbox, 14, 0)
+                    ajouter_element(Liste_cours[46])
+                    formule_latex.make_formule(r"$fu'v + uv'.$",listbox, 14, 1)
+
+                    ajouter_element(Liste_cours[47])
+                    formule_latex.make_formule(r"$f(x) = \frac{u}{v}$",listbox, 14, 0)
+                    ajouter_element(Liste_cours[48])
+                    formule_latex.make_formule(r"$f'(x) = \frac{u'v - uv'}{v^2}$",listbox, 14, 2)
 
                     saut_2_lignes() 
 
-                    ajouter_element(Liste_cours[43])
+                    ajouter_element(Liste_cours[49])
                     saut_2_lignes() 
 
 
@@ -1349,18 +1372,33 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                     formule_latex.make_formule(r"$f'(x) = nx^{n-1}.$",listbox, 14, 1)
 
                     ajouter_element(Liste_cours[37])
-                    formule_latex.make_formule(r"$f(x) = u+v$",listbox, 14, 0) 
+                    formule_latex.make_formule(r"$nx : f(x) = nx$",listbox, 14, 0) 
                     ajouter_element(Liste_cours[38])
-                    formule_latex.make_formule(r"$f'(x) = u'+v'$",listbox, 14, 1)
+                    formule_latex.make_formule(r"$f'(x) = n. $",listbox, 14, 1)
 
                     ajouter_element(Liste_cours[39])
-                    formule_latex.make_formule(r"$f(x) = uv$",listbox, 14, 0)
+                    formule_latex.make_formule(r"$ \frac{1}{x} : f(x) = \frac{1}{x}$",listbox, 14, 0) 
                     ajouter_element(Liste_cours[40])
-                    formule_latex.make_formule(r"$fu'v + uv'.$",listbox, 14, 1)
+                    formule_latex.make_formule(r"$f'(x) = \frac{-1}{x^2}.$",listbox, 14, 1)
 
                     ajouter_element(Liste_cours[41])
-                    formule_latex.make_formule(r"$f(x) = \frac{u}{v}$",listbox, 14, 0)
+                    formule_latex.make_formule(r"$ \sqrt{x} : f(x) = \sqrt{x}$",listbox, 14, 0) 
                     ajouter_element(Liste_cours[42])
+                    formule_latex.make_formule(r"$f'(x) = \frac{1}{2 \sqrt{x}}.$",listbox, 14, 1)
+
+                    ajouter_element(Liste_cours[43])
+                    formule_latex.make_formule(r"$f(x) = u+v$",listbox, 14, 0) 
+                    ajouter_element(Liste_cours[44])
+                    formule_latex.make_formule(r"$f'(x) = u'+v'$",listbox, 14, 1)
+
+                    ajouter_element(Liste_cours[45])
+                    formule_latex.make_formule(r"$f(x) = uv$",listbox, 14, 0)
+                    ajouter_element(Liste_cours[46])
+                    formule_latex.make_formule(r"$fu'v + uv'.$",listbox, 14, 1)
+
+                    ajouter_element(Liste_cours[47])
+                    formule_latex.make_formule(r"$f(x) = \frac{u}{v}$",listbox, 14, 0)
+                    ajouter_element(Liste_cours[48])
                     formule_latex.make_formule(r"$f'(x) = \frac{u'v - uv'}{v^2}$",listbox, 14, 2)
 
                     saut_2_lignes() 
@@ -1740,12 +1778,30 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                                 insert_text("alors ")
                                 formule_latex.make_formule(r"$f'(x) = nx^{n-1}.$",Label_texte_parole_discussion_pnj_scrolltext, 14, 2)
 
+
+                                insert_text("Aussi celle de ")
+                                formule_latex.make_formule(r"$nx : f(x) = nx$",Label_texte_parole_discussion_pnj_scrolltext, 14, 0) 
+                                insert_text(", alors ")
+                                formule_latex.make_formule(r"$f'(x) = n. $",Label_texte_parole_discussion_pnj_scrolltext, 14, 2)
+
+                                insert_text("Ainsi que ")
+                                formule_latex.make_formule(r"$ \frac{1}{x} : f(x) = \frac{1}{x}$",Label_texte_parole_discussion_pnj_scrolltext, 14, 0) 
+                                insert_text(", alors ")
+                                formule_latex.make_formule(r"$f'(x) = \frac{-1}{x^2}.$",Label_texte_parole_discussion_pnj_scrolltext, 14, 2)
+
+
+                                insert_text("Même celle la ")
+                                formule_latex.make_formule(r"$ \sqrt{x} : f(x) = \sqrt{x}$",Label_texte_parole_discussion_pnj_scrolltext, 14, 0) 
+                                insert_text(", alors ")
+                                formule_latex.make_formule(r"$f'(x) = \frac{1}{2 \sqrt{x}}.$",Label_texte_parole_discussion_pnj_scrolltext, 14, 2)
+
+
+                            elif c==3:
                                 insert_text("Alors qu’avec la somme et différence ça donne ceci : ")
                                 formule_latex.make_formule(r"$f(x) = u+v$",Label_texte_parole_discussion_pnj_scrolltext, 14, 0) 
                                 insert_text(", alors ")
                                 formule_latex.make_formule(r"$f'(x) = u'+v'$",Label_texte_parole_discussion_pnj_scrolltext, 14, 2)
 
-                            elif c==3:
                                 insert_text("Ensuite un produit : ")
                                 formule_latex.make_formule(r"$f(x) = uv$",Label_texte_parole_discussion_pnj_scrolltext, 14, 0)
                                 insert_text(", alors ")
@@ -1755,6 +1811,9 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                                 formule_latex.make_formule(r"$f(x) = \frac{u}{v}$",Label_texte_parole_discussion_pnj_scrolltext, 14, 0)
                                 insert_text(", alors ")
                                 formule_latex.make_formule(r"$f'(x) = \frac{u'v - uv'}{v^2}$",Label_texte_parole_discussion_pnj_scrolltext, 14, 2)
+
+
+             
 
                         elif Niveau ==7:
                             if c==1:
@@ -2037,11 +2096,28 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                                 formule_latex.make_formule(r"$f(x) =c$",Label_texte_parole_discussion_pnj_scrolltext, 14, 0) 
                                 insert_text("alors ")
                                 formule_latex.make_formule(r"$f'(x) = 0.$",Label_texte_parole_discussion_pnj_scrolltext, 14, 2)
+
                             elif c==2:
                                 insert_text("Celle de ")
                                 formule_latex.make_formule(r"$x^n : f(x) = x^n$",Label_texte_parole_discussion_pnj_scrolltext, 14, 0) 
                                 insert_text("alors ")
                                 formule_latex.make_formule(r"$f'(x) = nx^{n-1}.$",Label_texte_parole_discussion_pnj_scrolltext, 14, 2)
+
+                                insert_text("Aussi celle de ")
+                                formule_latex.make_formule(r"$nx : f(x) = nx$",Label_texte_parole_discussion_pnj_scrolltext, 14, 0) 
+                                insert_text(", alors ")
+                                formule_latex.make_formule(r"$f'(x) = n. $",Label_texte_parole_discussion_pnj_scrolltext, 14, 2)
+
+                                insert_text("Ainsi que ")
+                                formule_latex.make_formule(r"$ \frac{1}{x} : f(x) = \frac{1}{x}$",Label_texte_parole_discussion_pnj_scrolltext, 14, 0) 
+                                insert_text(", alors ")
+                                formule_latex.make_formule(r"$f'(x) = \frac{-1}{x^2}.$",Label_texte_parole_discussion_pnj_scrolltext, 14, 2)
+
+
+                                insert_text("Même celle la ")
+                                formule_latex.make_formule(r"$ \sqrt{x} : f(x) = \sqrt{x}$",Label_texte_parole_discussion_pnj_scrolltext, 14, 0) 
+                                insert_text(", alors ")
+                                formule_latex.make_formule(r"$f'(x) = \frac{1}{2 \sqrt{x}}.$",Label_texte_parole_discussion_pnj_scrolltext, 14, 2)
 
                                 insert_text("Alors qu’avec la somme et différence ça donne ceci : ")
                                 formule_latex.make_formule(r"$f(x) = u+v$",Label_texte_parole_discussion_pnj_scrolltext, 14, 0) 
