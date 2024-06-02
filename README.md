@@ -30,7 +30,10 @@ Notre projet est composé de deux éléments principaux :
 Le jeu se présente donc sous la forme d'un GUI. Après le lancement du jeu, il vous suffit de vous déplacer sur la carte, à la recherche des personnages non joueurs qui seront là pour vous donner de petits objets, qui plus tard, une fois assemblés, vous permettront d'accéder aux niveaux supérieurs. Le jeu, au lancement, se présente sous deux formes : soit une partie courte (choix entre le niveau de mathématiques de première ou seconde) soit une partie longue (les deux niveaux combinés). Le jeu se termine par l'affrontement d'un boss (2 boss si la partie choisie est longue). Le boss vous pose un problème de maths et vous devez le résoudre. Pour vous aider : le cours que tous les PNJ vous auront donné ainsi que des indices disponibles au nombre de trois. Ce jeu est donc un outil éducatif autour des maths pour les élèves et équipes pédagogiques de première et seconde ou plus.
 
 #### Pas-à-pas :
-Exécutez le fichier "Maths-Quest.exe". Après son exécution, vous devriez voir cette fenêtre apparaître : ![Image de la fenetre au lancement]()
+Exécutez le fichier "Maths-Quest.exe". Après son exécution, vous devriez voir cette fenêtre apparaître :
+
+![Image de la fenetre au lancement](https://github.com/Gandalf0207/Maths-Quest/blob/main/Images/ReadMe/Fenetre_lancement_readme.png)
+
 Cliquez sur le bouton "Menu"
 Vous avez donc le choix entre 2 options :
 - Une partie courte :
@@ -40,18 +43,37 @@ Vous avez donc le choix entre 2 options :
   - Les deux programmes seront combinés
 
 Une fois votre choix fait, lisez attentivement les connsignes et termes de condition d'utilisations du jeu puis sélectionnez le bouton jouer pour lancer la partie.
-Vous arrivez sur une carte qui est générée aléatoirement. (insérer img map nv1). Votre but va être de vous déplacer à l'aide des flèches de votre clavier, afin d'aller à la rencontre des personnages non joueurs (PNJ) qui sont présents sur la carte. Chaque PNJ est unique et vous donnera non seulement une partie de cours de mathématiques mais également un objet qui, une fois assemblé, vous permettra d'ouvrir la porte pour accéder au niveau supérieur. Une fois que vous vous êtes déplacé jusqu'à un PNJ, vous pouvez presser la barre espace pour commencer la discussion avec le personnage. Appuyez sur le bouton suivant à chaque fin de dialogue pour passer au dialogue suivant. Pour obtenir l'objet et la partie du cours, il vous faut discuter jusqu'à la fin du dialogue. Si vous partez avant la fin, il faudra recommencer la discussion. Pour chaque PNJ, un objet différent est donné. Vous ne pouvez donc pas obtenir plusieurs objets d'un même PNJ/niveau. Vous pouvez, si vous le souhaitez, rediscuter avec un PNJ, ils sont sympas ;)
+Vous arrivez sur une carte qui est générée aléatoirement. 
 
-Dès que vous avez obtenu tous les objets des différents PNJ de la carte, vous pouvez observer votre cours complet dans la boîte latérale droite (insérer img box cours). Vous devez vous rendre au début du labyrinthe, l'endroit où vous êtes apparu pour pouvoir assembler la grande clé à partir de tous les objets que vous aurez obtenus. Une fois à côté de la table de fabrication, appuyez sur la touche "c". Vous avez donc fabriqué la grande clé, elle apparaît dans votre inventaire (insérer img inv grande clé nv1 & img craft table).
+![Image de la carte du niveau 1](https://github.com/Gandalf0207/Maths-Quest/blob/main/Images/ReadMe/Carte_nv1_readme.png)
 
-Vous devez maintenant vous rendre à la porte (insérer img porte map). Une fois à côté de la porte, appuyez sur la barre "espace" pour pouvoir déverrouiller la porte avec la grande clé que vous venez de fabriquer. Une fenêtre va s'ouvrir (la fenêtre peut demander un peu de temps au chargement, max 30s). C'est une fenêtre d'exercice en rapport avec le cours que vous pouvez consulter dans le menu latéral droit (boîte du cours). Veuillez donc lire les consignes et explications en haut de cette nouvelle fenêtre et cliquez sur suivant pour résoudre l'exercice. Une fois que vous avez résolu l'exercice et trouvé une réponse, un choix de trois réponses vous est proposé, vous devez cliquer sur la réponse que vous avez trouvée. Une réponse parmi les trois est juste.
+Votre but va être de vous déplacer à l'aide des flèches de votre clavier, afin d'aller à la rencontre des personnages non joueurs (PNJ) qui sont présents sur la carte. Chaque PNJ est unique et vous donnera non seulement une partie de cours de mathématiques mais également un objet qui, une fois assemblé, vous permettra d'ouvrir la porte pour accéder au niveau supérieur. Une fois que vous vous êtes déplacé jusqu'à un PNJ, vous pouvez presser la barre espace pour commencer la discussion avec le personnage. Appuyez sur le bouton suivant à chaque fin de dialogue pour passer au dialogue suivant. Pour obtenir l'objet et la partie du cours, il vous faut discuter jusqu'à la fin du dialogue. Si vous partez avant la fin, il faudra recommencer la discussion. Pour chaque PNJ, un objet différent est donné. Vous ne pouvez donc pas obtenir plusieurs objets d'un même PNJ/niveau. Vous pouvez, si vous le souhaitez, rediscuter avec un PNJ, ils sont sympas ;)
+
+Dès que vous avez obtenu tous les objets des différents PNJ de la carte, vous pouvez observer votre cours complet dans la boîte latérale droite.
+
+![Image cours niveau 1 boîte](https://github.com/Gandalf0207/Maths-Quest/blob/main/Images/ReadMe/Cours_readme.png) 
+
+Vous devez vous rendre au début du labyrinthe, l'endroit où vous êtes apparu pour pouvoir assembler la grande clé à partir de tous les objets que vous aurez obtenus. Une fois à côté de la table de fabrication, appuyez sur la touche "c". Vous avez donc fabriqué la grande clé, elle apparaît dans votre inventaire.
+
+| ![Image grande cle](https://github.com/Gandalf0207/Maths-Quest/blob/main/Images/ReadMe/Grande_cle_readme.png) | ![Image tableau de fabrication](https://github.com/Gandalf0207/Maths-Quest/blob/main/Images/ReadMe/Table_fabrication_readme.png) |
+|--------------------------------------------------------------------------------------------------------------:|----------------------------------------------------------------------------------------------------------------------------------|
+
+Vous devez maintenant vous rendre à la porte.
+
+![Image porte sur le Niveau 1](https://github.com/Gandalf0207/Maths-Quest/blob/main/Images/ReadMe/Porte_readme.png) 
+
+Une fois à côté de la porte, appuyez sur la barre "espace" pour pouvoir déverrouiller la porte avec la grande clé que vous venez de fabriquer. Une fenêtre va s'ouvrir (la fenêtre peut demander un peu de temps au chargement, max 30s). C'est une fenêtre d'exercice en rapport avec le cours que vous pouvez consulter dans le menu latéral droit (boîte du cours). Veuillez donc lire les consignes et explications en haut de cette nouvelle fenêtre et cliquez sur suivant pour résoudre l'exercice. Une fois que vous avez résolu l'exercice et trouvé une réponse, un choix de trois réponses vous est proposé, vous devez cliquer sur la réponse que vous avez trouvée. Une réponse parmi les trois est juste.
 - Si vous avez sélectionné la bonne réponse, cliquez sur suivant et vous passerez au niveau supérieur.
 - Si vous avez sélectionné la mauvaise réponse, cliquez également sur suivant jusqu'à ce que la fenêtre se ferme et vous pouvez recommencer l'énigme de la porte.
 A noter également que si vous fermez manuellement la fenêtre de l'énigme de la porte, vous devrez en réouvrir une nouvelle et recommencer l'énigme.
 
-Une fois le niveau supérieur atteint, vous pouvez recommencer ! Le cours va s'accumuler sur le menu latéral droit jusqu'au boss, où tout le cours en question vous sera nécessaire. Sur chaque niveau, un cours précis vous sera donné. Le nombre de PNJ est variable selon le niveau où vous vous trouvez. A noter également que entre chaque changement de niveau, un temps de latence peut etre important, cela est totalement normal, le script va générer des images 'latex' pour afficher le cours avec de jolie formule, affiché avec la plus proche des rigueur mathématique)
+Une fois le niveau supérieur atteint, vous pouvez recommencer ! Le cours va s'accumuler sur le menu latéral droit jusqu'au boss, où tout le cours en question vous sera nécessaire. Sur chaque niveau, un cours précis vous sera donné. Le nombre de PNJ est variable selon le niveau où vous vous trouvez. A noter également que entre chaque changement de niveau, un temps de latence peut etre important, cela est totalement normal, le script va générer des images 'latex' pour afficher le cours avec de jolie formule, affiché avec la plus proche des rigueur mathématique.
 
-Quand vous arrivez au niveau du boss, le principe est le même, vous devez vous déplacer jusqu'au boss puis presser la barre "espace" pour pouvoir l'affronter (img boss). Une nouvelle fenêtre va s'ouvrir et vous devrez résoudre un problème reprenant tous les exercices que vous avez eus jusqu'à présent. Des indices sont également à votre disposition, vous pouvez les obtenir en cliquant dessus (insérer img indices). A noter que chaque fois que vous utilisez un indice, vous descendez de score :
+Quand vous arrivez au niveau du boss, le principe est le même, vous devez vous déplacer jusqu'au boss puis presser la barre "espace" pour pouvoir l'affronter. Une nouvelle fenêtre va s'ouvrir et vous devrez résoudre un problème reprenant tous les exercices que vous avez eus jusqu'à présent. Des indices sont également à votre disposition, vous pouvez les obtenir en cliquant dessus.
+
+![Images indices](https://github.com/Gandalf0207/Maths-Quest/blob/main/Images/ReadMe/Indices_readme.png)
+
+A noter que chaque fois que vous utilisez un indice, vous descendez de score :
 - 0 Indice utilisé --> Médaille de diamant
 - 1 Indice utilisé --> Médaille d'or
 - 2 Indices utilisés --> Médaille d'argent
@@ -194,7 +216,7 @@ Une fois tous les éléments de l'installation faits, vous pouvez profiter du je
 #
 __© Tous droits réservés 2024__
 
-*by LUBAN Théo & PLADEAU Quentin*
+*by LUBAN Théo & PLADEAU Quentin with* :heart: 
 
 
 
