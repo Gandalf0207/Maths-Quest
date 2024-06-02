@@ -502,18 +502,33 @@ def Gestion_Jouer(fenetre, Niveau, type_partie): #Fonction parent (gestion de to
             mur3 = PhotoImage(file="Images/Map/Maison_2.png")
 
             pnj1 = PhotoImage(file = "Images/pnj/Papy/Papy_petit.png")
-            pnj2 = PhotoImage(file = "Images/pnj/Cecylindre/Cecylindre_petit.png")
-            pnj3 = PhotoImage(file = "Images/pnj/MarchandDeGlace/Marchand_de_glace_petit.png")
             pnj4 = PhotoImage(file = "Images/pnj/Titouan/Titouan_petit.png")
 
+            if Niveau ==1:
+                pnj2 = PhotoImage(file = "Images/pnj/Cecylindre/Cecylindre_petit.png")
+                pnj3 = PhotoImage(file = "Images/pnj/MarchandDeGlace/Marchand_de_glace_petit.png")
+
+                pnj2_moyen = PhotoImage(file="Images/pnj/Cecylindre/Cecylindre_moyen.png")
+                pnj3_moyen = PhotoImage(file="Images/pnj/MarchandDeGlace/Marchand_de_glace_moyen.png")
+
+                pnj2_grand = PhotoImage(file="Images/pnj/Cecylindre/Cecylindre_grand.png")
+                pnj3_grand = PhotoImage(file="Images/pnj/MarchandDeGlace/Marchand_de_glace_grand.png")
+
+            elif Niveau ==6:
+                pnj2 = PhotoImage(file = "Images/pnj/MarchandDeGlace/Marchand_de_glace_petit.png")
+                pnj3 = PhotoImage(file = "Images/pnj/Cecylindre/Cecylindre_petit.png")
+
+                pnj2_moyen = PhotoImage(file="Images/pnj/MarchandDeGlace/Marchand_de_glace_moyen.png")
+                pnj3_moyen = PhotoImage(file="Images/pnj/Cecylindre/Cecylindre_moyen.png")
+
+                pnj2_grand = PhotoImage(file="Images/pnj/MarchandDeGlace/Marchand_de_glace_grand.png")
+                pnj3_grand = PhotoImage(file="Images/pnj/Cecylindre/Cecylindre_grand.png")
+
+           
             pnj1_moyen = PhotoImage(file="Images/pnj/Papy/Papy_moyen.png")
-            pnj2_moyen = PhotoImage(file="Images/pnj/Cecylindre/Cecylindre_moyen.png")
-            pnj3_moyen = PhotoImage(file="Images/pnj/MarchandDeGlace/Marchand_de_glace_moyen.png")
             pnj4_moyen = PhotoImage(file="Images/pnj/Titouan/Titouan_moyen.png")
 
             pnj1_grand = PhotoImage(file="Images/pnj/Papy/Papy_grand.png")
-            pnj2_grand = PhotoImage(file="Images/pnj/Cecylindre/Cecylindre_grand.png")
-            pnj3_grand = PhotoImage(file="Images/pnj/MarchandDeGlace/Marchand_de_glace_grand.png")
             pnj4_grand = PhotoImage(file="Images/pnj/Titouan/Titouan_grand.png")
 
 
@@ -2250,7 +2265,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie): #Fonction parent (gestion de to
                         elif Niveau ==6:
                             nom_du_pnj = "Paπ :"
                         elif Niveau ==7:
-                            nom_du_pnj = ""
+                            nom_du_pnj = "Cana :"
 
                     elif pnj == "pnj2":
                         if Niveau ==0:
@@ -2266,7 +2281,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie): #Fonction parent (gestion de to
                         elif Niveau ==6:
                             nom_du_pnj = "Marchand de glace :"
                         elif Niveau ==7:
-                            nom_du_pnj = ""
+                            nom_du_pnj = "Homme strict :"
                             
                        
                     elif pnj == "pnj3":
@@ -2283,7 +2298,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie): #Fonction parent (gestion de to
                         elif Niveau ==6:
                             nom_du_pnj = "Cécilyndre :"
                         elif Niveau ==7:
-                            nom_du_pnj = ""
+                            nom_du_pnj = "Marchand de tapis :"
                            
                     elif pnj == "pnj4":
 
@@ -2296,7 +2311,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie): #Fonction parent (gestion de to
                         elif Niveau ==6:
                              nom_du_pnj = "Titouan :"                   
                         elif Niveau ==7:
-                             nom_du_pnj = ""                       
+                             nom_du_pnj = "Delta :"                       
                        
                     elif pnj == "pnj5":
                         if Niveau ==2:
@@ -2304,7 +2319,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie): #Fonction parent (gestion de to
                         elif Niveau ==3:
                             nom_du_pnj = "Capitaine d’un navire :"
                         elif Niveau ==7:
-                            nom_du_pnj = ""
+                            nom_du_pnj = "Capitaine d’un navire : "
 
                     return nom_du_pnj
                     
