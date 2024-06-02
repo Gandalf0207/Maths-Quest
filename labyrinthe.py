@@ -1,17 +1,38 @@
-import random
+#############################################################################################################################
 
-def mapmaker(longueur, largeur):
+### MATHS-QUEST ###
+# Pour toutes informations, veillez vous référer au dépot GitHub : https://github.com/Gandalf0207/Maths-Quest
 
-    if longueur %2==0:
+# © Tous droits réservé 2024
+#   PLADEAU Quentin & LUBAN Théo
+
+############################################################################################################################
+
+
+
+# DEBUT labyrinthe # 
+
+
+
+# Ce script permet de générer une carte aléatoirement à chaque demande duscript princiapl
+# Ce script est inspiré d'un algorinthe "Fusion aléatoire de chemins"
+
+# Importation du module nécessaire
+import random # Module de l'aléatoire
+
+#Fonction principal de gestion (appelé depuis le script principal)
+def mapmaker(longueur, largeur): # Paramètres : Dimensions de la carte
+
+    if longueur %2==0: # Set du cadrillage de base
         longueur +=1
 
-    if largeur %2==0:
+    if largeur %2==0: # Set du cadrillage de base
         largeur+=1
 
 
     L = []
-    # generation de la map
-    for haut in range(largeur):
+    # Generation de la map
+    for haut in range(largeur): # Création de la matrice dans la liste 
         l = []
 
         if haut%2 ==0:
@@ -27,7 +48,7 @@ def mapmaker(longueur, largeur):
             L.append(l)
 
 
-    # on setup les caractères aléatoirement (ASCII) dans les cases vide pour pouvoir générer le labyrinthe
+    # On setup les caractères aléatoirement (ASCII) dans les cases vide pour pouvoir générer le labyrinthe
     comp = 0
     for x in range(len(L)):
         for y in range(len(L[x])):
@@ -40,6 +61,7 @@ def mapmaker(longueur, largeur):
     # on choisit aléatoirement un mur dans la map (ors côté) 
     while go==True:
 
+        #check de s'il reste des cases non trouvé / non accessible par le joueur
         comparateur_1 = -1
         comparateur_2 = -1
         for x in range(len(L)):
@@ -54,7 +76,7 @@ def mapmaker(longueur, largeur):
 
 
 
-    # Choix des coordonné aléatoirement dans la map
+    # Choix des coordonnés aléatoirement dans la map
         x = random.randint(1,largeur-2)
         y = random.randint(1,longueur-2)
 
@@ -65,7 +87,7 @@ def mapmaker(longueur, largeur):
             cell_1 = L[x][y-1]
             cell_2 = L[x][y+1]
         else:
-            continue  # Skip this iteration as we cannot compare a cell with a wall       # ce bout de code a été réalisé avec copilot et légèrement modifier par moi 
+            continue 
 
 
         # on les compare et on agit en fonction
@@ -84,10 +106,26 @@ def mapmaker(longueur, largeur):
             cell_1 = cell_1
 
 
-    #on remplace les cases de passage par des espace vides pour ue meilleur vision
+    #on remplace les cases de passage par des espace vides pour une meilleur vision
     for x in range(len(L)):
         for y in range(len(L[x])):
             if L[x][y] != "■":
                 L[x][y] = " "
 
-    return L
+    return L # On retourne la carte généré aléatoirement, vide 
+
+
+
+# FIN labyrinthe #
+
+
+
+#############################################################################################################################
+
+### MATHS-QUEST ###
+# Pour toutes informations, veillez vous référer au dépot GitHub : https://github.com/Gandalf0207/Maths-Quest
+
+# © Tous droits réservé 2024
+#   PLADEAU Quentin & LUBAN Théo
+
+############################################################################################################################

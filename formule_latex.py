@@ -1,14 +1,36 @@
-from tkinter import *
-from tkinter import scrolledtext
-from PIL import Image, ImageTk
-import matplotlib.pyplot as plt
-from io import BytesIO
+#############################################################################################################################
+
+### MATHS-QUEST ###
+# Pour toutes informations, veillez vous référer au dépot GitHub : https://github.com/Gandalf0207/Maths-Quest
+
+# © Tous droits réservé 2024
+#   PLADEAU Quentin & LUBAN Théo
+
+############################################################################################################################
 
 
+
+# DEBUT formule_latex #
+
+
+
+# Ce script permet de généré, à partir de formule latex, une image ayant l'affichage des formule 'jolie', ce qui est le but du latex
+
+# Importation des modules nécessaire
+from tkinter import * # Module de GUI
+from tkinter import scrolledtext # Module de GUI
+from PIL import Image, ImageTk # Module de gestion d'images
+import matplotlib.pyplot as plt # Module mathématiques / graphiques
+from io import BytesIO # Module de conversion des images
+
+# Elément permetant, l'utilisation des dépendances latex, nécéssaires  à la création de ces images avec le bon affichage
 plt.rcParams['text.usetex'] = True
 
-def make_formule(eqt, label_de_la_box, fontsize, space):
-    def render_latex(text):
+#Fonction principal de gestion (appelé depuis le script principal)
+def make_formule(eqt, label_de_la_box, fontsize, space): # Paramètres : la formules, l'endroit ou l'image doit etre ajoutée, la taille de police, si un retour à la ligne est nécéssaire 
+
+    def render_latex(text): # Script généré par IA puis adapté, il permet la conversion en igmage de la taille de la formule le tout sans bords d'images
+        
         # Create a matplotlib figure with a tight layout
         fig, ax = plt.subplots()
         fig.patch.set_visible(False)
@@ -36,15 +58,30 @@ def make_formule(eqt, label_de_la_box, fontsize, space):
     # Render and insert LaTeX text with font size 10
     latex_text = eqt
     latex_image = render_latex(latex_text)
-    label_de_la_box.config(state=NORMAL)
-    label_de_la_box.image_create(END, image=latex_image)
-    if space==1:
+
+    label_de_la_box.config(state=NORMAL) # On rend la box accessible à l'écriture
+    label_de_la_box.image_create(END, image=latex_image) # On écrit 
+    if space==1: # Si des espace sont demandé , on en rajoute
         label_de_la_box.insert(END, "\n")
     elif space==2:
         label_de_la_box.insert(END, "\n\n")
-    label_de_la_box.config(state=DISABLED)
+    label_de_la_box.config(state=DISABLED) #On rend la box non modifiables par l'utilisateur 
+
     # Keep a reference to the image to prevent garbage collection
     label_de_la_box.images.append(latex_image)
 
 
 
+# FIN formule_latex #
+
+
+
+#############################################################################################################################
+
+### MATHS-QUEST ###
+# Pour toutes informations, veillez vous référer au dépot GitHub : https://github.com/Gandalf0207/Maths-Quest
+
+# © Tous droits réservé 2024
+#   PLADEAU Quentin & LUBAN Théo
+
+############################################################################################################################

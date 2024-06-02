@@ -121,7 +121,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                 global type_partie
 
                 if type_command =="supnv":
-                    if Niveau <8:
+                    if Niveau <9:
                         
                         Niveau +=1
                         Gestion_Jouer(Jeu, Niveau, type_partie)
@@ -3335,7 +3335,7 @@ def parametre(Lancement, Label_Frame_courverture):
         global f
         if not f or not f.winfo_exists():
             f = Toplevel()
-            f.title("Termes et conditions d'utilisation | Installation")
+            f.title("Maths-Quest | Termes et Conditons d'Utilisation      © PLADEAU Quentin LUBAN Théo")
 
 
 
@@ -3365,11 +3365,14 @@ def parametre(Lancement, Label_Frame_courverture):
                 
                 5. Crédits : Nous tenons à remercier LUBAN Théo & PLADEAU Quentin pour leur contribution à ce projet. Leurs efforts ont été essentiels pour créer ce jeu. Nous apprécions également le soutien de ESCOUTE Cédric, qui a rendu ce projet possible.
 
-                6. Cadre de réalisation : Ce jeu a été développé dans le cadre [du cours de NSI de première]. Nous sommes reconnaissants envers ESCOUTE Cédric pour son soutien et l'enseignement de connaissances ayant servie au projet.
+                6. Cadre de réalisation : Ce jeu a été développé dans le cadre du cours de NSI de première. Nous sommes reconnaissants envers ESCOUTE Cédric pour son soutien et l'enseignement de connaissances ayant servie au projet.
 
                 En utilisant ce jeu, vous acceptez ces termes et conditions. Si vous n'acceptez pas ces termes, veuillez ne pas utiliser ce logiciel. Ces termes et conditions peuvent être modifiés à tout moment sans préavis.
 
-                Pour toute question ou préoccupation concernant ces termes et conditions, veuillez contacter votre enseignant vous ayant transmit une copie du projet.      
+                Pour toute question ou préoccupation concernant ces termes et conditions, veuillez contacter votre enseignant vous ayant transmit une copie du projet ou bien vous référer à la liscence disponible sur le dépots GitHub du projet : https://github.com/Gandalf0207/Maths-Quest .      
+                
+    © Tous droits réservé 2024
+    PLADEAU Quentin & LUBAN Théo
                 """
             scroll_text.insert(END, text_condition)
             close_btn_f = Button(f, command=f.destroy, text="Fermer").pack(side=BOTTOM, pady = 5)
