@@ -94,11 +94,9 @@ Afin de pouvoir utiliser le jeu sans soucis, nous vous demandons de bien vouloir
   ```
  
   ##### Téléchargement des dépendances nécessaires au jeu :
-  Vous avez 2 possibilités de le faire :
   
-  - Vous pouvez exécuter simplement le script [Installateur_dépendances](Installateurs/Installateur_dependances.py).
-  - Vous pouvez installer manuellement les dépendances. Pour ce faire, ouvrez un terminal (cmd / powershell...) et entrez les commandes suivantes dans l'ordre donné.
-    Pour chacune des comande en rapport avec des dépendances Latex, une fenêtre peut s'ouvrir, il vous faut accpeter l'installation
+  - Vous devez installer manuellement les dépendances. Pour ce faire, ouvrez un invite de commande (cmd / powershell...) et entrez les commandes suivantes dans l'ordre donné.
+    Pour chacune des comandes en rapport avec des dépendances Latex, une fenêtre peut s'ouvrir, il vous faut accpeter l'installation.
 
   > Mettre à jour pip 
   ```
