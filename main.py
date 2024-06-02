@@ -204,10 +204,10 @@ def Gestion_Jouer(fenetre, Niveau, type_partie): #Fonction parent (gestion de to
 
                 if type_command =='exo': # on affiche l'exo du cours / boss du niveau actuel (bypass pour éviter de prendre toutes les fragments de clés...)
                     if Niveau !=4 and Niveau !=8:
-                        porte_enigme(Niveau) #on ouvre la fenetre
+                        porte_enigme() #on ouvre la fenetre
                         load_cours(Niveau, 1) # on load le cours
                     else:
-                        boss_enigme(Niveau) #on ouvre la fenetre
+                        boss_enigme() #on ouvre la fenetre
 
                     #on ferme apres la validation
                     new_window_admin.destroy()
@@ -698,27 +698,27 @@ def Gestion_Jouer(fenetre, Niveau, type_partie): #Fonction parent (gestion de to
                 #PNJ 1
                 if (L[ordonne-1][abscisse] == pnj_liste[0] or L[ordonne+1][abscisse]== pnj_liste[0] or L[ordonne][abscisse-1]== pnj_liste[0] or L[ordonne][abscisse+1]== pnj_liste[0]):
                     Label_text_possibilite_strvar.set("Appuie sur 'espace' pour me parler !")
-                    canvas_infos_possibilite_discussion.create_image(0,0,anchor=NW, image=pnj1)
+                    canvas_infos_possibilite_discussion.create_image(0,0,anchor=NW, image=pnj1_moyen)
 
                 #PNJ 2
                 elif (L[ordonne-1][abscisse] == pnj_liste[1] or L[ordonne+1][abscisse]== pnj_liste[1] or L[ordonne][abscisse-1]== pnj_liste[1] or L[ordonne][abscisse+1]== pnj_liste[1]):
                     Label_text_possibilite_strvar.set("Appuie sur 'espace' pour me parler !")
-                    canvas_infos_possibilite_discussion.create_image(0,0,anchor=NW, image=pnj2)
+                    canvas_infos_possibilite_discussion.create_image(0,0,anchor=NW, image=pnj2_moyen)
 
                 #PNJ3
                 elif (L[ordonne-1][abscisse] == pnj_liste[2] or L[ordonne+1][abscisse]== pnj_liste[2] or L[ordonne][abscisse-1]== pnj_liste[2] or L[ordonne][abscisse+1]== pnj_liste[2]):
                     Label_text_possibilite_strvar.set("Appuie sur 'espace' pour me parler !")
-                    canvas_infos_possibilite_discussion.create_image(0,0,anchor=NW, image=pnj3)
+                    canvas_infos_possibilite_discussion.create_image(0,0,anchor=NW, image=pnj3_moyen)
 
                 #PNJ4
                 elif (L[ordonne-1][abscisse] == pnj_liste[3] or L[ordonne+1][abscisse]== pnj_liste[3] or L[ordonne][abscisse-1]== pnj_liste[3] or L[ordonne][abscisse+1]== pnj_liste[3]):
                     Label_text_possibilite_strvar.set("Appuie sur 'escpace' pour me parler !")
-                    canvas_infos_possibilite_discussion.create_image(0,0,anchor=NW, image=pnj4)
+                    canvas_infos_possibilite_discussion.create_image(0,0,anchor=NW, image=pnj4_moyen)
 
                 #PNJ5
                 elif (L[ordonne-1][abscisse] == pnj_liste[4] or L[ordonne+1][abscisse]== pnj_liste[4] or L[ordonne][abscisse-1]== pnj_liste[4] or L[ordonne][abscisse+1]== pnj_liste[4]):
                     Label_text_possibilite_strvar.set("Appuie sur 'escpace' pour me parler !")
-                    canvas_infos_possibilite_discussion.create_image(0,0,anchor=NW, image=pnj5)
+                    canvas_infos_possibilite_discussion.create_image(0,0,anchor=NW, image=pnj5_moyen)
 
             else:
                 # affiche de l'aide possible en fonction de l'avancement du joueur
@@ -2360,7 +2360,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie): #Fonction parent (gestion de to
                 global assemble_cle
                 print(assemble_cle)
                 if assemble_cle == True:
-                    porte_enigme(Niveau)
+                    porte_enigme()
                     load_cours(Niveau, 1)
                 else:
                     Label_text_possibilite_strvar.set("Vous devez d'abord assemblé votre Clé pour pouvoir ouvrir la porte !")
@@ -2369,7 +2369,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie): #Fonction parent (gestion de to
 
             #check s'il y le boss à proximité :
             elif (L[ordonne-1][abscisse] == "boss" or L[ordonne+1][abscisse]== "boss" or L[ordonne][abscisse-1]== "boss" or L[ordonne][abscisse+1]== "boss"):
-                boss_enigme(Niveau)
+                boss_enigme()
 
             else:
                 canvas_infos_possibilite_discussion.delete('all')
@@ -2390,13 +2390,14 @@ def Gestion_Jouer(fenetre, Niveau, type_partie): #Fonction parent (gestion de to
 
 
         #Fonction de la porte avec verif nb fenetre et gestion de l'exo
-        def porte_enigme(Niveau):
+        def porte_enigme():
+            
             global second_window_probleme
 
 
             if not second_window_probleme or not second_window_probleme.winfo_exists():  # Vérifie si la deuxième fenêtre existe
-                def affiche_consigne(Niveau):
-
+                def affiche_consigne():
+                    global Niveau
                     #fonction pour afficher le text progressivement
                     def insert_consignes_exo(text_complet_consignes):
                         Label_btn_suivant_second_window ['state'] = DISABLED
@@ -2486,10 +2487,10 @@ def Gestion_Jouer(fenetre, Niveau, type_partie): #Fonction parent (gestion de to
                     global erreur
                     erreur = 0
                     if reponse == correction:
-                        affiche_consigne(Niveau)
+                        affiche_consigne()
                     else:
                         erreur = 1
-                        affiche_consigne(Niveau)
+                        affiche_consigne()
 
 
                 
@@ -2533,7 +2534,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie): #Fonction parent (gestion de to
                 Label_scrollbox_consignes_exo.insert(END, 'Clique sur suivant !')
                 Label_scrollbox_consignes_exo.images = [] # pour stocker les images latex 
 
-                Label_btn_suivant_second_window = Button(Label_Frame_Canvas_consignes_explication_btn, text="Suivant !", command=lambda:affiche_consigne(Niveau))
+                Label_btn_suivant_second_window = Button(Label_Frame_Canvas_consignes_explication_btn, text="Suivant !", command=affiche_consigne)
                 Label_btn_suivant_second_window.pack(side=TOP, anchor="e", pady=5, padx=5)
 
                 Label_Frame_Canvas_formule_exo = None
@@ -2579,8 +2580,9 @@ def Gestion_Jouer(fenetre, Niveau, type_partie): #Fonction parent (gestion de to
 
 
         #Fonction qui gère les deux salles de boss
-        def boss_enigme(Niveau):
+        def boss_enigme():
             global boss_window
+            global Niveau
 
             if not boss_window or not boss_window.winfo_exists():  # Vérifie si la deuxième fenêtre existe
 
@@ -2592,7 +2594,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie): #Fonction parent (gestion de to
                 elif Niveau ==8:
                     indices_give_2 = 0
 
-                def affiche_consigne_boss(Niveau):
+                def affiche_consigne_boss():
 
                     #fonction de verif des réponses choisies par l'utilisateur
                     def verif_reponse_boss(correction1, correction2 ,Label_btn_result_possible_1_boss,Label_btn_result_possible_2_boss,Label_btn_result_possible_3_boss,Label_btn_result_possible_1_2_boss,Label_btn_result_possible_2_2_boss,Label_btn_result_possible_3_2_boss,Label_text_infos_selection_verif_boss , Label_btn_valider_boss_exo):
@@ -2611,12 +2613,12 @@ def Gestion_Jouer(fenetre, Niveau, type_partie): #Fonction parent (gestion de to
                             if get_value_boss_1.get() == correction1 and get_value_boss_2.get() == correction2:
                                 Label_text_infos_selection_verif_boss.destroy()
                                 Label_btn_valider_boss_exo.destroy()
-                                affiche_consigne_boss(Niveau)
+                                affiche_consigne_boss()
                             else:
                                 erreur_boss = 1
                                 Label_text_infos_selection_verif_boss.destroy()
                                 Label_btn_valider_boss_exo.destroy()
-                                affiche_consigne_boss(Niveau)
+                                affiche_consigne_boss()
                         else:
                             Label_str_var_btn_verif_boss_infos.set("Vous devez sélectionner 1 réponse par colonne !") # infos si ne seule réponse est sélectionné
 
@@ -2690,8 +2692,8 @@ def Gestion_Jouer(fenetre, Niveau, type_partie): #Fonction parent (gestion de to
                             boss_window.destroy()
 
                     else:
-                        Niveau +=1
                         boss_window.destroy()
+                        Niveau +=1
                         Gestion_Jouer(Jeu, Niveau, type_partie)
 
                     
@@ -2821,7 +2823,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie): #Fonction parent (gestion de to
 
                 Label_scrollbox_consignes_boss.config(state = DISABLED)
 
-                Label_btn_suivant_boss_window = Button(Label_Frame_Canvas_consignes_explication_btn_boss, text="Suivant !", command=lambda:affiche_consigne_boss(Niveau))
+                Label_btn_suivant_boss_window = Button(Label_Frame_Canvas_consignes_explication_btn_boss, text="Suivant !", command=affiche_consigne_boss)
                 Label_btn_suivant_boss_window.pack(side=TOP, anchor="e", pady=5, padx=5)
 
                 ### frame qui contient le canvas qui affichera la formule
