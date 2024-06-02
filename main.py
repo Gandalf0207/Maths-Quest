@@ -883,7 +883,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie): #Fonction parent (gestion de to
 
 
 
-            "Un polynôme du second degré admet comme forme développée : P(x)= ax² + bx + c avec a, b et c des coefficients et a /= 0. Chaque polynôme admet une forme canonique sous la forme\n",
+            "Un polynôme du second degré admet comme forme développée : P(x)= ax² + bx + c avec a, b et c des coefficients et a \u2260 0. Chaque polynôme admet une forme canonique sous la forme\n",
 
             "Pour résoudre P(x) = 0 il faut déterminer le discriminant delta :",
             "Si le delta > 0, P(x) admet deux solutions distinctes :\n ",
@@ -1567,14 +1567,14 @@ def Gestion_Jouer(fenetre, Niveau, type_partie): #Fonction parent (gestion de to
 
                         elif Niveau ==1:
                             if c==1:
-                                insert_text("Tiens je parie que tu as croisé ma femme toi ! Eh oui je reconnais cet objet il est à moi mais trêve de plaisanterie je pense que si tu es la jeune aventurier c’est pour continuer ton périple.")
+                                insert_text("Tiens je parie que tu as croisé ma femme toi ! Eh oui je reconnais cet objet il est à moi mais trêve de plaisanterie je pense que si tu es là jeune aventurier c’est pour continuer ton périple.")
                             elif c==2:
                                 insert_text("Pour cela, il te faudra connaître la formule de l’aire d’un disque qui est π x rayon², je vais aussi t’apprendre l’aire d’un triangle est ")
                                 formule_latex.make_formule(r"$ \frac{(longueur \times largeur)}{2}$",Label_texte_parole_discussion_pnj_scrolltext, 14, 0) 
                                 insert_text(" et celle d’un carré ou d’un rectangle est longueur x largeur.")
 
                             elif c==3:
-                                insert_text("Tiens voila pour la suite, un bout de quelque chose dans l’ancien temps !")
+                                insert_text("Tiens voila pour la suite, un bout de quelque chose de l’ancien temps !")
 
                         elif Niveau ==2:
                             if c==1:
@@ -1596,7 +1596,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie): #Fonction parent (gestion de to
                             if c==1:
                                 insert_text(" Salut ! Tu veux que je t’explique un truc vite fait ? Ça pourrait t’aider.")
                             elif c==2:
-                                insert_text("Un polynôme du second degré admet comme forme développée : P(x)= ax² + bx + c avec a, b et c des coefficients et a /= 0. Chaque polynôme admet une forme canonique sous la forme\n")
+                                insert_text("Un polynôme du second degré admet comme forme développée : P(x)= ax² + bx + c avec a, b et c des coefficients et a \u2260 0. Chaque polynôme admet une forme canonique sous la forme\n")
                                 formule_latex.make_formule(r"$ a( x - \alpha)^2 + \beta$",Label_texte_parole_discussion_pnj_scrolltext, 14, 1) 
                                 formule_latex.make_formule(r"$ \alpha = \frac{-b}{2a}$",Label_texte_parole_discussion_pnj_scrolltext, 14, 1) 
                                 formule_latex.make_formule(r"$ \beta = \frac{- \Delta}{4a}$",Label_texte_parole_discussion_pnj_scrolltext, 14, 1) 
@@ -1960,7 +1960,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie): #Fonction parent (gestion de to
                             if c==1:
                                 insert_text("On s’recroise dit donc ! T’as oublié ce qu’j’ai dit ? Alors écoute bien j’vais répéter, de façon intuitive, une égalité fonctionne un peu comme une balance à deux plateaux \u2696: si on effectue une opération dans un membre, il faut réaliser la même opération dans l’autre membre pour garder l'équilibre.")
                             elif c==2:
-                                insert_text("Je t'ai déjà donné mon fragment de clé; bon courage dans ta quete !")
+                                insert_text("Je t'ai déjà donné mon fragment de clé; bon courage dans ta quête !")
 
                         elif Niveau ==1:
                             if c==1:
@@ -1986,7 +1986,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie): #Fonction parent (gestion de to
                             if c==1:
                                 insert_text("T’as oublié et tu veux que je répète ?")
                             elif c==2:
-                                insert_text("Alors écoute bien cette fois, un polynôme du second degré admet comme forme développée : P(x)= ax² + bx + c avec a, b et c des coefficients et a /= 0. Chaque polynôme admet une forme canonique sous la forme\n")
+                                insert_text("Alors écoute bien cette fois, un polynôme du second degré admet comme forme développée : P(x)= ax² + bx + c avec a, b et c des coefficients et a \u2260 0. Chaque polynôme admet une forme canonique sous la forme\n")
                                 formule_latex.make_formule(r"$ a( x - \alpha)^2 + \beta$",Label_texte_parole_discussion_pnj_scrolltext, 14, 1) 
                                 formule_latex.make_formule(r"$ \alpha = \frac{-b}{2a}$",Label_texte_parole_discussion_pnj_scrolltext, 14, 1) 
                                 formule_latex.make_formule(r"$ \beta = \frac{- \Delta}{4a}$",Label_texte_parole_discussion_pnj_scrolltext, 14, 1) 
@@ -2063,7 +2063,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie): #Fonction parent (gestion de to
                             if c==1:
                                 insert_text("ZzZ ZzZ… Ah ! Tu m’as fait peur, je suis vieille tu sais. Comment ? Tu veux que je réexplique ? Alors je vais te remontrer, quand tu résous une équation s’il y a des x des deux côtés essaie de tout mettre du même côté ce sera plus simple tu verras ! Par exemple : \n                3x + 2 = 5x + 3 \néquivaut à  3x + 2 - 5x = 5x + 3 - 5x \néquivaut à  -2x + 2 = 3 \net ainsi de suite")
                             elif c==2:
-                                insert_text("Je n'ai plus rien à te donner, bonne nuit !")
+                                insert_text("Je n'ai plus rien à te donner, bonne journée !")
 
                         elif Niveau ==1:
                             if c==1:
@@ -2423,10 +2423,10 @@ def Gestion_Jouer(fenetre, Niveau, type_partie): #Fonction parent (gestion de to
                         insert_consignes_exo("Toutes les parties du cours que vous avez collectées vous serviront pour répondre ! Vous pouvez les consulter ")
                     elif c_sw==3:
                         if Niveau ==0:
-                            insert_consignes_exo("Vous devez résoudre cette équation du premier degré en trouvant la valeur de x. Apres avoir résolu cette equation; selectionnez la bonne case et faites valider \n \n")
+                            insert_consignes_exo("Vous devez résoudre cette équation du premier degré en trouvant la valeur de x. Après avoir résolu cette equation; selectionnez la bonne case et faites valider \n \n")
                             formule_latex.make_formule(Exo_correction[0],Label_scrollbox_consignes_exo, 15, 0)
                         elif Niveau ==1:
-                            insert_consignes_exo(f"Vous devez résoudre ce calcul de volume, il vous faudra trouver le volume totale; selectionnez la bonne case et faites valider Attention; toutes les valerus donn&es sont en m etle résultat attendu en  m cube. Données : a = {Exo_correction[5][0]}; b ={Exo_correction[5][1]}; c ={Exo_correction[5][2]}; d ={Exo_correction[5][3]}; e ={Exo_correction[5][4]}; f ={Exo_correction[5][5]}; r ={Exo_correction[5][6]}")
+                            insert_consignes_exo(f"Vous devez résoudre ce calcul de volume, il vous faudra trouver le volume total; selectionnez la bonne case et faites valider. Attention; toutes les valeurs données sont en m et le résultat attendu en m cube. Données : a = {Exo_correction[5][0]}; b ={Exo_correction[5][1]}; c ={Exo_correction[5][2]}; d ={Exo_correction[5][3]}; e ={Exo_correction[5][4]}; f ={Exo_correction[5][5]}; r ={Exo_correction[5][6]}")
                         elif Niveau ==2:
                             insert_consignes_exo(f"Vous devez résoudre ce problème : A l'aide des coordonnées, déterminez l'équation réduite de (AB) et (CD). Voici les coordonnées des points : A = {Exo_correction[5][0]}; B ={Exo_correction[5][1]}; C ={Exo_correction[5][2]}; D ={Exo_correction[5][3]}")
                         elif Niveau==3:
@@ -2439,7 +2439,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie): #Fonction parent (gestion de to
                             insert_consignes_exo(f"Vous devez dériver la fonction f(x) suivante. Puis trouver l'équation de tangente pour x = {Exo_correction[5]}")
                             formule_latex.make_formule(Exo_correction[0],Label_scrollbox_consignes_exo, 15, 0)
                         elif Niveau==7:
-                            insert_consignes_exo(f"Vous devez la raison de cette suite et calculer la somme des {Exo_correction[5][3]} premiers termes. Voici les valeurs Uo = {Exo_correction[5][0]}; Uo = {Exo_correction[5][1]}; Uo = {Exo_correction[5][2]} de la suite.")
+                            insert_consignes_exo(f"Vous devez trouver la raison de cette suite et calculer la somme des {Exo_correction[5][3]} premiers termes. Voici les valeurs Uo = {Exo_correction[5][0]}; U1 = {Exo_correction[5][1]}; U2 = {Exo_correction[5][2]} de la suite.")
         
                     elif c_sw==4:
                         Label_btn_suivant_second_window ['state'] = DISABLED
@@ -2636,7 +2636,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie): #Fonction parent (gestion de to
                             text_complet_consignes_boss = "Toutes les parties du cours que vous avez collectées vous serviront pour répondre ! Vous pouvez les consulter "
                     elif c_boss==3:
                         if Niveau==4:
-                            text_complet_consignes_boss = f"Un voilier se trouve dans le port de Sète et avant de partir un client veut connaître le volume d’huile que le paquebot peut transporter sachant qu’il possède une cargaison de 85 tonneaux de longueur :{Exo_correction_boss[8][4]} et de largeur :{Exo_correction_boss[8][5]} (nous affirmons que les tonneaux utilisés ont des côtés totalement droit et non arrondis. Après cela le bateau prend le large et reçoit des informations sur un autre bateau naviguant à la même vitesse, déterminer si les 2 bateaux se croiseront. De plus le bateau b1 est actuellement au point A et navigue selon la direction (AB). De même le bateau b2 est actuellement au point C et navigue selon la direction (CD). Coordonnées : A ={Exo_correction_boss[8][0]} ; B = {Exo_correction_boss[8][1]} ; C = {Exo_correction_boss[8][2]} ; D = {Exo_correction_boss[8][3]}"
+                            text_complet_consignes_boss = f"Un voilier se trouve dans le port de Sète et avant de partir un client veut connaître le volume d’huile que le navire peut transporter sachant qu’il possède une cargaison de 85 tonneaux de longueur :{Exo_correction_boss[8][4]} et de largeur :{Exo_correction_boss[8][5]} (nous affirmons que les tonneaux utilisés ont des côtés totalement droit et non arrondis. Après cela le bateau prend le large et reçoit des informations sur un autre bateau naviguant à la même vitesse, déterminer si les 2 bateaux se croiseront. De plus le bateau b1 est actuellement au point A et navigue selon la direction (AB). De même le bateau b2 est actuellement au point C et navigue selon la direction (CD). Coordonnées : A ={Exo_correction_boss[8][0]} ; B = {Exo_correction_boss[8][1]} ; C = {Exo_correction_boss[8][2]} ; D = {Exo_correction_boss[8][3]}"
 
                     elif c_boss==4:
                         Label_btn_suivant_boss_window ['state'] = DISABLED
