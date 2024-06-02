@@ -14,17 +14,17 @@
 
 
 
-# Importation des modules nécessaire
+# Importation des modules nécessaires
 import random  # Module de l'aléatoire
 from math import * # Module math
 
-import matplotlib.pyplot as plt # Module, de génération de figue mathématique
+import matplotlib.pyplot as plt # Module de génération de figures mathématiques
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg # Elément spécifique du module pour générer la figure
 
-#Fonction principal de gestion (appelé depuis le script principal)
-def choix_exo_niveau(Niveau,Label_Frame_Canvas_formule_exo): # Paramètres niveau actuel, la box dans laquelle il faut afficher la figure si 'est nécéssaire
+#Fonction principal de gestion (appelée depuis le script principal)
+def choix_exo_niveau(Niveau,Label_Frame_Canvas_formule_exo): # Paramètres niveau actuel, la box dans laquelle il faut afficher la figure si c'est nécéssaire
     
-    # Petit fonction
+    # Petite fonction
     def pgcd(a,b):
         # pgcd(a,b): calcul du 'Plus Grand Commun Diviseur' entre les 2 nombres entiers a et b
         while b != 0:
@@ -44,12 +44,12 @@ def choix_exo_niveau(Niveau,Label_Frame_Canvas_formule_exo): # Paramètres nivea
             nb2 = random.randint(2,20)
             nb3 = random.randint(2,20)
             nb4 = random.randint(2,20)
-            #Pour éviter des divisons par zéro est des éléments = à zéro
+            #Pour éviter des divisons par zéro et des éléments = à zéro
             if nb1 == nb4:
                 while nb1 == nb4:
                     nb4=random.randint(2,20)
 
-            #equation latex qui sera ensuite affiché 
+            #equation latex qui sera ensuite affichée 
             eqt = r"$ \Leftrightarrow %sx - %s = %s + %sx $" %(nb1, nb2, nb3, nb4)
             
             nb = nb2 + nb3
@@ -79,7 +79,7 @@ def choix_exo_niveau(Niveau,Label_Frame_Canvas_formule_exo): # Paramètres nivea
     elif Niveau ==1:
         eqt = "Aucune equation nécéssaire" #Aucune équation est nécéssaire pour cette exercice
 
-        # Génération + calculs des volumes
+        # Génération + calcul des volumes
         a = random.randint(5,15)
         b = random.randint(25,50)
         c = b/4
@@ -107,7 +107,7 @@ def choix_exo_niveau(Niveau,Label_Frame_Canvas_formule_exo): # Paramètres nivea
 
         v_chateau = v_gros_rectangle+v_petit_rectangle+v_cyl_1+v_cyl_2+(v_cone*2)
         
-        L_valeurs  = [a, b, c, d, e, f, r] # on retourne les valeurs nécéssaires au joueurs pour calculer
+        L_valeurs  = [a, b, c, d, e, f, r] # on retourne les valeurs nécéssaires au joueur pour calculer
         resultat = round(v_chateau,2) # formatage des résultats
         resultat2 = round((v_chateau + a),2)
         resultat3 = round((v_chateau - b),2)
@@ -126,7 +126,7 @@ def choix_exo_niveau(Niveau,Label_Frame_Canvas_formule_exo): # Paramètres nivea
             YC = random.randint(-10,10)
             YD = random.randint(-10,10)
 
-            #calculs avec conditon pour éviter les erruer, et obtenir des valeurs correctes (meme principe que le script du fichier py_maths_boss)
+            #calculs avec conditon pour éviter les erreurs, et obtenir des valeurs correctes (meme principe que le script du fichier py_maths_boss)
             m1 = 0.01
             while m1 != round(m1,1):
                 XA = random.randint(-10,10)
@@ -141,7 +141,7 @@ def choix_exo_niveau(Niveau,Label_Frame_Canvas_formule_exo): # Paramètres nivea
                     m1 = (B[1]- A[1]) / (B[0] - A[0])
                 p1 = A[1] - (m1*A[0]) 
 
-            #calculs avec conditon pour éviter les erruer, et obtenir des valeurs correctes  (meme principe que le script du fichier py_maths_boss)
+            #calculs avec conditon pour éviter les erreurs, et obtenir des valeurs correctes (meme principe que le script du fichier py_maths_boss)
             m2 = 0.01
             while m2 != round(m2,1):
 
@@ -178,28 +178,28 @@ def choix_exo_niveau(Niveau,Label_Frame_Canvas_formule_exo): # Paramètres nivea
         D = valeur[7]
         points = [A, B, C, D]
 
-        # Créez un graphique Matplotlib
+        # Créer un graphique Matplotlib
         fig, ax = plt.subplots()
         compteur_pts = 0
         l_pts = ["A","B","C","D"]
         for x, y in points:
             
             ax.scatter(x, y, color='blue', marker='o', label=f"({x}, {y})")
-            ax.text(x, y, f"({x}, {y})", ha='center', va='bottom')  # Ajoutez l'étiquette
+            ax.text(x, y, f"({x}, {y})", ha='center', va='bottom')  # Ajouter l'étiquette
             ax.text(x, y-0.3, l_pts[compteur_pts], ha='center', va='top') # Ajout nom des points
             compteur_pts+=1
 
-        # Supprimez les axes
-        ax.axis('off')  # Ajoutez cette ligne pour masquer les axes
+        # Supprimer les axes
+        ax.axis('off')  # Ajouter cette ligne pour masquer les axes
 
-        # Affichez le graphique dans le canvas Tkinter
+        # Afficher le graphique dans le canvas Tkinter
         canvas_widget = FigureCanvasTkAgg(fig, master=Label_Frame_Canvas_formule_exo)
         canvas_widget.draw()
         canvas_widget.get_tk_widget().pack()
 
 
     elif Niveau ==3: 
-        #Script pour les systèpme à 2 inconnues
+        #Script pour les systèmes à 2 inconnues
         value_x = 0
         value_y = 0
 
@@ -212,7 +212,7 @@ def choix_exo_niveau(Niveau,Label_Frame_Canvas_formule_exo): # Paramètres nivea
             nb5 = random.randint(1,3)
             nb6 = random.randint(-50,50)
             eqt = r"$\left\{ \begin{array}{lr} %sx + %sy & = %s \\ %sx - %sy & = %s \end{array} \right.$"%(nb1,nb2,nb3,nb4,nb5,nb6) # equation en latex
-            for x in range(-50,50): # modèle de brute force pour trouver un système et les valeurs pssible pour les 2 équations
+            for x in range(-50,50): # modèle de brute force pour trouver un système et les valeurs possible pour les 2 équations
                 for y in range(-50,50):
                     if x*nb1 + y*nb2 == nb3 and x*nb4 - nb5*y == nb6:
                         print(f"{nb1}x + {nb2}y = {nb3}")
@@ -299,7 +299,7 @@ def choix_exo_niveau(Niveau,Label_Frame_Canvas_formule_exo): # Paramètres nivea
                 num6 = random.randint(3, 10)
 
             if choix_derive == 1:
-                #dérivé 1 
+                #dérivée 1 
                 eqt = r"$f(x) = x^{%s} + \frac{x^%s}{%sx} - %sx$"%(num5, num1, num4, num6)
                 deriv1 = num5 * (num_resolve**(num5-1))
                 u = num_resolve**num1
@@ -312,7 +312,7 @@ def choix_exo_niveau(Niveau,Label_Frame_Canvas_formule_exo): # Paramètres nivea
                 f_prime = deriv1 + deriv2 - deriv3
         
             else:
-                #dérivé 2
+                #dérivée 2
                 eqt = r"$f(x) = \sqrt{x} + %sx - %sx^{%s}$"%( num5, num4, num1)
 
                 deriv1 = (1) / (2*(sqrt(num_resolve)))
@@ -330,12 +330,12 @@ def choix_exo_niveau(Niveau,Label_Frame_Canvas_formule_exo): # Paramètres nivea
 
     elif Niveau ==7:
 
-        #script generation des suite 
+        #script generation des suites
         U0 = random.randint(-10,10)
         r = random.randint(-10,10)
         n = random.randint(4,15)
 
-        while U0 == 0 or r == 0: #on évite les values == 0
+        while U0 == 0 or r == 0: #on évite les valeurs == 0
             U0 = random.randint(-10,10)
             r = random.randint(-10,10)
 
@@ -351,7 +351,7 @@ def choix_exo_niveau(Niveau,Label_Frame_Canvas_formule_exo): # Paramètres nivea
             somme_suite = U0*((1-(r**n))/(1-r))
 
 
-        infos_suite = [U0, U1, U2, n] #infosq comme les 3 premier terme pour déterminer le type de suite  + le nombre de terme attendu pour la somme 
+        infos_suite = [U0, U1, U2, n] #info comme les 3 premiers termes pour déterminer le type de suite  + le nombre de terme attendu pour la somme 
 
         # formatage des résultats 
         resultat = f"{somme_suite}"
@@ -362,7 +362,7 @@ def choix_exo_niveau(Niveau,Label_Frame_Canvas_formule_exo): # Paramètres nivea
         
 
 
-    #On load tout les elements de réponse :  eqt / resultat vrai / les trois résultat dont 2 faux
+    #On load tout les elements de réponse :  eqt / resultat vrai / les trois résultats dont 2 faux
     L_result_possible = []
     L_result_possible.append(resultat)
     L_result_possible.append(resultat2)
@@ -388,9 +388,9 @@ def choix_exo_niveau(Niveau,Label_Frame_Canvas_formule_exo): # Paramètres nivea
     elif Niveau ==2:
         Liste_exo_all.append(points) # ajout des coordonnées
     elif Niveau==6:
-        Liste_exo_all.append(num_resolve) # ajout valeur de x por dériver et touver le résultat
+        Liste_exo_all.append(num_resolve) # ajout valeur de x pour dériver et touver le résultat
     elif Niveau ==7:
-        Liste_exo_all.append(infos_suite) # ajout des infos comme les n termes
+        Liste_exo_all.append(infos_suite) # ajout des infos comme les "n" termes
 
 
 

@@ -14,19 +14,19 @@
 
 
 
-#Ce script permet la réalisation des calculs et la création des différnts résultats qui seront nécéssire pour les questions des niveaux 'boss' 
+#Ce script permet la réalisation de calculs et la création de différents résultats qui seront nécéssaires pour les questions des niveaux 'boss' 
 
-# Importation des modules nécessaire
+# Importation des modules nécessaires
 import random # Module de l'aléatoire
 from math import * # Module math
 
-#Fonction principal de gestion (appelé depuis le script principal)
+#Fonction principal de gestion (appelée depuis le script principal)
 def choix_exo_niveau_boss(Niveau): # Paramètres : Niveau actuel
 
 
-   if Niveau ==4: # Si le niveau ==4 : l'exo sera : calcul de points d'intersection et longuer de segments, avec des calculs de volumes
+   if Niveau ==4: # Si le niveau ==4 : l'exo sera : calcul de points d'intersections et longueur des segments, avec des calculs de volumes
 
-      #fonction de lancement / relancement si les calculs ne sont pas aux normes attendu 
+      #fonction de lancement / relancement si les calculs ne sont pas aux normes attendues
       def reload_function():
          XI = 0.0001 # Set des valeurs initiales pour pouvoir rentrer dans la boucle
          YI = 0.0001
@@ -35,7 +35,7 @@ def choix_exo_niveau_boss(Niveau): # Paramètres : Niveau actuel
                # Calcul coef dirrecteur de l'équation réduite sous la forme mx + p
                m1 = 0.01 # Set valeur initiale pour rentrer dans la boucle
                while m1 != round(m1,1):
-                  XA = random.randint(-10,10) # Création des valeurs aléatoire
+                  XA = random.randint(-10,10) # Création de valeurs aléatoires
                   XB = random.randint(-10,10)
                   YA = random.randint(-10,10)
                   YB = random.randint(-10,10)
@@ -51,7 +51,7 @@ def choix_exo_niveau_boss(Niveau): # Paramètres : Niveau actuel
                m2 = 0.01 # Set valeur initiale pour rentrer dans la boucle
                while m2 != round(m2,1):
 
-                  XC = random.randint(-10,10) # Création des valeurs aléatoire
+                  XC = random.randint(-10,10) # Création de valeurs aléatoires
                   XD = random.randint(-10,10)
                   YC = random.randint(-10,10)
                   YD = random.randint(-10,10)
@@ -105,7 +105,7 @@ def choix_exo_niveau_boss(Niveau): # Paramètres : Niveau actuel
 
 
 
-      # Formatage des résultats en chaînes de caractères + création de fausses réponse pour le qcm
+      # Formatage des résultats en chaînes de caractères + création de fausses réponses pour le qcm
 
       # qcm 1 
       resultat = f"{valeur[0]}"
@@ -144,7 +144,7 @@ def choix_exo_niveau_boss(Niveau): # Paramètres : Niveau actuel
 
 
 
-   #On load tout les éléments de réponse :  eqt / resultat vrai / les trois résultat dont 2 faux
+   #On load tout les éléments de réponse :  eqt / resultat vrai / les trois résultats dont 2 faux
    # qcm1
    L_result_possible_boss = []
    L_result_possible_boss.append(resultat)
@@ -175,14 +175,14 @@ def choix_exo_niveau_boss(Niveau): # Paramètres : Niveau actuel
    Liste_exo_all_boss = []
    Liste_exo_all_boss.append(resultat) # vrai résultat toujours en 1er dans l'exo des boss
    Liste_exo_all_boss.append(resultat_2) # vrai résultat 2 toujours en 2e dans l'exo des boss
-   Liste_exo_all_boss.append(btn1_value_boss)   # les valeurs mélangés pour les 2 qcm 
-   Liste_exo_all_boss.append(btn2_value_boss)   # les valeurs mélangés pour les 2 qcm 
-   Liste_exo_all_boss.append(btn3_value_boss)   # les valeurs mélangés pour les 2 qcm 
-   Liste_exo_all_boss.append(btn1_value_boss_2) # les valeurs mélangés pour les 2 qcm
-   Liste_exo_all_boss.append(btn2_value_boss_2) # les valeurs mélangés pour les 2 qcm
-   Liste_exo_all_boss.append(btn3_value_boss_2) # les valeurs mélangés pour les 2 qcm
+   Liste_exo_all_boss.append(btn1_value_boss)   # les valeurs mélangées pour les 2 qcm 
+   Liste_exo_all_boss.append(btn2_value_boss)   # les valeurs mélangées pour les 2 qcm 
+   Liste_exo_all_boss.append(btn3_value_boss)   # les valeurs mélangées pour les 2 qcm 
+   Liste_exo_all_boss.append(btn1_value_boss_2) # les valeurs mélangées pour les 2 qcm
+   Liste_exo_all_boss.append(btn2_value_boss_2) # les valeurs mélangées pour les 2 qcm
+   Liste_exo_all_boss.append(btn3_value_boss_2) # les valeurs mélangées pour les 2 qcm
    if Niveau ==4:
-      Liste_exo_all_boss.append(points) # la listes des coordonnées de poit pour le niveau 4
+      Liste_exo_all_boss.append(points) # la liste des coordonnées de points pour le niveau 4
 
 
 
