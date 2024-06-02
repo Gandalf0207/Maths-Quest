@@ -1,37 +1,53 @@
-### EN FONCTION DU NIVEAU IL FAUT SET UP LA GENERATION / CUSTOM / TEXT DES PNJ ET ITEMS ###
+#############################################################################################################################
 
-from tkinter import *
-from tkinter import ttk
-from tkinter import scrolledtext
-from tkinter import font, Toplevel
-import random
-import time 
-import webbrowser
+### MATHS-QUEST ###
+# Pour toutes informations, veillez vous référer au dépot GitHub : https://github.com/Gandalf0207/Maths-Quest
 
-from matplotlib.figure import Figure
-from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
-import matplotlib.pyplot as plt
+# © Tous droits réservé 2024
+#   PLADEAU Quentin & LUBAN Théo
+
+############################################################################################################################
 
 
+
+# DEBUT main # 
+
+
+
+# Ce script est le fichier principal, il executer toutes les fonctions fait appel à autres fichier secondaire pour récupérer les informations nécéssaires
+
+
+# Importantion des modules
+from tkinter import * # Module de GUI
+from tkinter import scrolledtext # Module de GUI
+from tkinter import font, Toplevel # Module de GUI
+import random # Module de l'aléatoire
+import time  # Module du temps
+import webbrowser # Module pour ouvrir dans le navigateur
+
+from matplotlib.figure import Figure # Module de graphique
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg # Module de graphique
+import matplotlib.pyplot as plt # Module de graphique
+
+
+# Importation des scripts secondaire
 import labyrinthe
 import custom_labyrinthe
 import py_maths_exo
 import py_maths_boss
 import formule_latex
 
+# Elément permetant, l'utilisation des dépendances latex, nécéssaires  à la création de ces images avec le bon affichage
 plt.rcParams['text.usetex'] = True
 
 
-### Pour avoir une certaine sécurité lors de la récupération des fragements de clé; il a fallut faire en sorte
-# de ne pourvoir ouvrir qu'une seule fenetre à la fois pour eviter de donner plus de fragments de clé que prévus
-# nous avons donc utilisé l'ia pour apprendre et comprendre comment fonctionne le protocole utilisé... ###
+### Pour avoir une certaine sécurité lors de la récupération des fragements de clé ou autre; il a fallut faire en sorte
+# de ne pourvoir ouvrir qu'une seule fenetre à la fois. Il est donc impossible, d'ouvrir plus de 1 fois la meme fenetre en meme temps
 
-### C'est pourquoi il est possible de voir des commentaires : #code ia
-# Cela signifie que cette partie du code n'a pas été réalisée uniquement par nous meme....
+# Variable pour suivre l'état de la deuxième fenêtre en fonction des elements
 global Label_btn_suivant_discussion_pnj
 Label_btn_suivant_discussion_pnj = None
 
-# Variable pour suivre l'état de la deuxième fenêtre pour les problèmes de la porte
 global second_window_probleme
 second_window_probleme= None
 
@@ -47,18 +63,20 @@ f = None
 global new_window_admin
 new_window_admin = None
 
+
+
 # Valeurs permettant de déterminer le nombre d'indices utilisé et de pouvoir afficher le résultats
 global indices_give_1
 global indices_give_2
 indices_give_1 = 0
 indices_give_2 = 0
 
-def Gestion_Jouer(fenetre, Niveau, type_partie):
+def Gestion_Jouer(fenetre, Niveau, type_partie): #Fonction parent (gestion de tout le script), elle est reload por changer de niveau 
 
+    # Variable pour suivre l'état de la deuxième fenêtre en fonction des elements
     global Label_btn_suivant_discussion_pnj
     Label_btn_suivant_discussion_pnj = None
 
-    # Variable pour suivre l'état de la deuxième fenêtre pour les problèmes de la porte
     global second_window_probleme
     second_window_probleme= None
 
@@ -75,12 +93,11 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
     new_window_admin = None
 
 
-    #le "fenetre" correspond à la fenetre tk qui est en cours de loop
-    # Le permir passage se sera la fenetre 'Lancement', puis les autres tours se sera les fenetres de 'Jeu'
-    # Ce fonctionnement permet de faire tourner le programme pour le nombre de niveaux disponible !
+    #on détruit la fenetre précédente
     fenetre.destroy()
 
 
+    #création de la fenetre
     Jeu = Tk()
     Jeu.config(bg = "#BBC4E3")
 
@@ -103,10 +120,11 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
             open_new_window()
 
     def open_new_window():
-        global new_window_admin
+        global new_window_admin # check pour ne pas ouvrir 2 fois la meme fenetre
         if not new_window_admin or not new_window_admin.winfo_exists():
 
-            def check_command_admin(type_command):
+            def check_command_admin(type_command): # fonction qui en fonction du paramètre, va executer lesd éléments admin sélectionnés
+                #on recup les global modifiables
                 global Niveau
                 global type_partie
 
@@ -120,24 +138,25 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
 
                 global type_partie
 
-                if type_command =="supnv":
+                if type_command =="supnv": # on passe au niveau supérieur
                     if Niveau <9:
                         
                         Niveau +=1
-                        Gestion_Jouer(Jeu, Niveau, type_partie)
+                        Gestion_Jouer(Jeu, Niveau, type_partie) #reload pour passer au niveau suivant
                     else:
-                        infos_label_admin.set("Vous êtes sur le dernier niveau possible, il n'existe aucun niveau supperieur !")
+                        infos_label_admin.set("Vous êtes sur le dernier niveau possible, il n'existe aucun niveau supperieur !") # infos si dernier niveau
                 
-                if type_command=='infnv':
+                if type_command=='infnv': # on passe au niveau inférieur
                     if Niveau > 0:
                         Niveau -=1
-                        Gestion_Jouer(Jeu, Niveau, type_partie)
+                        Gestion_Jouer(Jeu, Niveau, type_partie) # reload  pour passer au niveau inférieur
                     else:
-                        infos_label_admin.set("Vous êtes sur le premier niveau possible, il n'existe aucun niveau inférieur !")
+                        infos_label_admin.set("Vous êtes sur le premier niveau possible, il n'existe aucun niveau inférieur !") # infos si premier niveau
                 
 
-                if type_command =='autre':
-
+                if type_command =='autre': # obtention des clé et de l'assemblage de la clé
+                    
+                    # on récupère les valeurs des checkbutton cochés ou non
                     p1 = var_pnj1_admin.get()
                     p2 = var_pnj2_admin.get()
                     p3 = var_pnj3_admin.get()
@@ -145,6 +164,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                     p5 = var_pnj5_admin.get()
                     assemble_cle_admin = var_cle_admin.get()
 
+                    #on fonction des valeurs, on donne ou non les fragments clés + assemble clé
                     if p1 == 0:
                         pnj1_infos = False
                     else:
@@ -182,22 +202,23 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                     new_window_admin.destroy()
 
 
-                if type_command =='exo':
+                if type_command =='exo': # on affiche l'exo du cours / boss du niveau actuel (bypass pour éviter de prendre toutes les fragments clé....)
                     if Niveau !=4 and Niveau !=8:
-                        porte_enigme(Niveau)
-                        load_cours(Niveau, 1)
+                        porte_enigme(Niveau) #on ouvre la fenetre
+                        load_cours(Niveau, 1) # on load le cours
                     else:
-                        boss_enigme(Niveau)
+                        boss_enigme(Niveau) #on ouvre la fenetre
 
                     #on ferme apres le valider
                     new_window_admin.destroy()
 
-                if type_command =="game":
+                if type_command =="game": # changement du type partie (nombre de niveau ...)
 
-                    type1_admin = type1_admin_game_intvar.get()
+                    type1_admin = type1_admin_game_intvar.get() # on récupère les valeurs sélectionnées (checkbutton)
                     type2_admin = type2_admin_game_intvar.get()
                     type3_admin = type3_admin_game_intvar.get()
-
+                    
+                    #on execute en fonction la focntion reaload et on reset au début du type sélectionné, sauf pour 'all'
                     if type1_admin ==1:
                         type_partie = 'seconde'
                         Niveau = 0
@@ -212,7 +233,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                     
 
 
-
+            #fonction pour supprimer la sélection des autres checkbutton pour le choix de type de partie (coché / décoché)
             def check_type_partie_admin_checkbutton_1():
                 type2_admin_game_intvar.set(0) 
                 type3_admin_game_intvar.set(0)
@@ -224,33 +245,34 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                 type2_admin_game_intvar.set(0) 
 
 
-
+            #fenetre panel admin 
             new_window_admin = Toplevel()
-            new_window_admin.title("Maths-Quest | Admin Panel      © PLADEAU Quentin LUBAN Théo")
+            new_window_admin.title("Maths-Quest | Admin Panel      © PLADEAU Quentin LUBAN Théo") # titre (haut)
 
 
-            label_admin = Label(new_window_admin, text="Panel Admin")
+            label_admin = Label(new_window_admin, text="Panel Admin") # Titre
             label_admin.pack(pady=20, padx=20)
 
-            #frame global des element modifiable
+            #frame global des element modifiable (contient les petite frames)
             Label_frame_pack_admin = Frame(new_window_admin, bg = None)
             Label_frame_pack_admin.pack(expand=True, fill=BOTH, pady= 5, padx =5)
 
-            #frame perso par type elements
+            #sous - frame par type elements
             Label_frame_gestion_niveau_admin = Frame(Label_frame_pack_admin, bg = "#99A6D0")
             Label_frame_gestion_niveau_admin.pack(side = LEFT, expand=True, fill=BOTH, pady = 5, padx = 5)
 
-            btn_niv_supp = Button(Label_frame_gestion_niveau_admin, text="Niveau sup", command=lambda:check_command_admin('supnv'))
+            btn_niv_supp = Button(Label_frame_gestion_niveau_admin, text="Niveau sup", command=lambda:check_command_admin('supnv')) # btn niveau sup
             btn_niv_supp.pack(padx = 5, pady = 5)
 
-            btn_niv_inf = Button(Label_frame_gestion_niveau_admin, text="Niveau inf", command=lambda:check_command_admin('infnv'))
+            btn_niv_inf = Button(Label_frame_gestion_niveau_admin, text="Niveau inf", command=lambda:check_command_admin('infnv')) # btn niveau inf
             btn_niv_inf.pack(padx = 5, pady = 5)
 
-            #frame get clé + cours des perso
+            #sous - frame get clé + cours des perso
             Label_frame_gestion_perso_admin = Frame(Label_frame_pack_admin, bg = "#99A6D0")
             Label_frame_gestion_perso_admin.pack(side = LEFT, expand=True, fill=BOTH, pady = 5, padx = 5)
 
 
+            # en fonction du type des variables, on affiche si on possèdes les elemnts ou non (check / non check)
             if pnj1_infos == False:
                 var_pnj1_admin = IntVar(value=0)
             else:
@@ -281,7 +303,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
             else:
                 var_cle_admin = IntVar(value=1)
 
-
+            #les check button 
             Label_checkbutton_pnj1_admin = Checkbutton(Label_frame_gestion_perso_admin, text="item, cours : pnj1", variable = var_pnj1_admin)
             Label_checkbutton_pnj2_admin = Checkbutton(Label_frame_gestion_perso_admin, text="item, cours : pnj2", variable = var_pnj2_admin)
             Label_checkbutton_pnj3_admin = Checkbutton(Label_frame_gestion_perso_admin, text="item, cours : pnj3", variable = var_pnj3_admin)
@@ -298,6 +320,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
 
             Label_checkbutton_assemble_cle_admin.pack(side=TOP, pady =2, padx = 5)
 
+            # désactivation dees éléments quand il ne sont pas présents sur le niveau en question
             if Niveau ==0 or Niveau == 5: 
                 Label_checkbutton_pnj4_admin.config(state=DISABLED)
                 Label_checkbutton_pnj5_admin.config(state=DISABLED) 
@@ -312,17 +335,18 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                 Label_checkbutton_assemble_cle_admin.config(state=DISABLED)
 
 
-            #frame box btn des exo / boss (ouverture porte)
+            #sous - frame box btn des exo / boss (ouverture porte)
             Label_frame_exo_boss_porte_admin =  Frame(Label_frame_pack_admin, bg = "#99A6D0")
             Label_frame_exo_boss_porte_admin.pack(side = LEFT, expand=True, fill=BOTH, pady = 5, padx = 5)
 
             Label_btn_exo_boss_porte_admin = Button(Label_frame_exo_boss_porte_admin, text = "Exo / Boss : porte", command=lambda:check_command_admin('exo'))
             Label_btn_exo_boss_porte_admin.pack(pady = 5, padx = 5)
 
-            #frame checkkbutton type partie choix
+            #sous - frame checkkbutton type partie choix
             Label_frame_check_button_typepartie = Frame(Label_frame_pack_admin, bg = "#99A6D0")
             Label_frame_check_button_typepartie.pack(side = LEFT, expand=True, fill=BOTH, pady = 5, padx = 5)
 
+            # en fonction du type des variables, on affiche le type de partie acuel (coché" / décoché)
             if type_partie =='seconde':
                 type1_admin_game_intvar = IntVar(value = 1)
             else:
@@ -338,7 +362,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
             else:
                 type3_admin_game_intvar = IntVar(value = 0)
 
-
+            #les check button 
             type1_admin_game_checkbutton = Checkbutton(Label_frame_check_button_typepartie, variable = type1_admin_game_intvar, text = "partie : seconde", command =check_type_partie_admin_checkbutton_1 )
             type2_admin_game_checkbutton = Checkbutton(Label_frame_check_button_typepartie, variable = type2_admin_game_intvar, text = "partie : premiere", command = check_type_partie_admin_checkbutton_2)
             type3_admin_game_checkbutton = Checkbutton(Label_frame_check_button_typepartie, variable = type3_admin_game_intvar, text = "partie : all", command =check_type_partie_admin_checkbutton_3)
@@ -347,6 +371,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
             type2_admin_game_checkbutton.pack(side = TOP, pady = 2, padx = 5)
             type3_admin_game_checkbutton.pack(side = TOP, pady = 2, padx = 5)
 
+            # infos 
             Label_infos_text_btn_type_partie_admin = Label(Label_frame_check_button_typepartie, text = "Attention, ce bouton reset l'avancé au début du type sélectionné sauf pour 'all',", wraplength = 100)
             Label_infos_text_btn_type_partie_admin.pack(side =BOTTOM, padx = 4, pady = 5)
 
@@ -373,7 +398,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
 
 
 
-
+    #comparaison pour lancer les bon niveaux / résultats en fonction du type sélectionné
     if type_partie =='all':
         tours = 9
     elif type_partie =='seconde':
@@ -381,7 +406,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
     elif type_partie == 'premiere':
         tours = 9
 
-    if Niveau < tours:
+    if Niveau < tours: # titre de la fenetre en fonction de l'avancée
         if Niveau==4 or Niveau ==8:
             Jeu.title(f"Maths-Quest | Niveau Boss       © PLADEAU Quentin LUBAN Théo")
         else:
@@ -397,7 +422,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
         L = custom_labyrinthe.Custom_Map(L, longueur, largeur, Niveau)
 
 
-        #On load les img pour pouvoir les afficher
+        #On load les img pour pouvoir les afficher (img générale)
 
         porte = PhotoImage(file="Images/Autre/porte_petit.png")
         porte_moyen = PhotoImage(file="Images/Autre/porte_moyen.png")
@@ -412,7 +437,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
         Volume_nv1 = PhotoImage(file="Images/Exercices/volume.png")
         exo_boss_portdesete = PhotoImage(file="Images/Exercices/boss_exo.png")
 
-        #en fonction du niveau, on choisit les murs / les pnjs
+        #en fonction du niveau, on choisit les murs / les pnjs / les loots
 
         if Niveau ==0 or Niveau ==5:
                 Grande_cle = PhotoImage(file="Images/Objets/Cle_1_repare.png")
@@ -454,7 +479,6 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                 loot_pnj5 = PhotoImage(file="Images/Objets/Kit_de_nettoyage.png")
 
 
-        #exo 1 et 5 : 1er degré + 2nd degré 
         if Niveau ==0 or Niveau == 5:
             mur1 = PhotoImage(file="Images/Map/Water.png")
             mur2 = PhotoImage(file="Images/Map/Water_rock.png")
@@ -472,7 +496,6 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
             pnj2_grand = PhotoImage(file="Images/pnj/Iggy/Iggy_grand.png")
             pnj3_grand = PhotoImage(file="Images/pnj/Mathemami/Mathemami_grand.png")
 
-        #exo 2 et 6 : volume + Derivation
         elif Niveau ==1 or Niveau ==6:
             mur1 = PhotoImage(file="Images/Map/Arbre.png")
             mur2 = PhotoImage(file="Images/Map/Maison_1.png")
@@ -494,7 +517,6 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
             pnj4_grand = PhotoImage(file="Images/pnj/Titouan/Titouan_grand.png")
 
 
-        # exo 3 et 7: fonction affiche tangente pente + Suite
         elif Niveau ==2 or Niveau ==3 or Niveau==7:
             mur1 = PhotoImage(file="Images/Map/Wall1.png")
             mur2 = PhotoImage(file="Images/Map/Wall2.png")
@@ -504,7 +526,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                 pnj1 = PhotoImage(file = "Images/pnj/Cana/Cana_petit.png")
                 pnj1_moyen = PhotoImage(file="Images/pnj/Cana/Cana_moyen.png")
                 pnj1_grand = PhotoImage(file="Images/pnj/Cana/Cana_grand.png")
-            elif Niveau ==3 or Niveau ==7: #set du nv 7 ici en tempo des vrai perso
+            elif Niveau ==3 or Niveau ==7:
                 pnj1 = PhotoImage(file = "Images/pnj/Mathemami/Mathemami_petit.png")
                 pnj1_moyen = PhotoImage(file="Images/pnj/Mathemami/Mathemami_moyen.png")
                 pnj1_grand = PhotoImage(file="Images/pnj/Mathemami/Mathemami_grand.png")
@@ -536,25 +558,20 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
             pnj_boss_moyen = PhotoImage(file = "Images/pnj/Boss/Boss_moyen.png")
 
 
-
-
-
-        #On affiche dans le terminal pour check
-        for i in range(len(L)):
-            print(*L[i], sep=" ")
         
         #Fonction qui gère le déplacement du personnage; MAJ de la map tkinter, les interractions avec les pnj
-        def deplacement(event):
+        def deplacement(event): 
             
             global ordonne
             global abscisse
             global deplacement_perso
 
-            touche = event.keysym
-            check = ["■" ,"\U0001F6AA", "¤", "boss"]
+            touche = event.keysym # on recup la touche
+            check = ["■" ,"\U0001F6AA", "¤", "boss"] #list de verif
             pnj_liste = ["pnj1", "pnj2", "pnj3", "pnj4", "pnj5"]
 
 
+            #pour chaque touche, il a des vérifs pour se déplacer, et check les actions possibles
 
             if touche == "Up":
                 if ordonne-1 > 0 and L[ordonne-1][abscisse] not in check :
@@ -565,7 +582,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                     if (L[ordonne-1][abscisse] in pnj_liste) and (L[ordonne-2][abscisse] not in check) and (L[ordonne-2][abscisse] not in pnj_liste):
                         ordonne-=2
                     elif L[ordonne-1][abscisse] in pnj_liste :
-                        print("C'est un PNJ")
+                        pass
                     else:
                         ordonne-=1
                     
@@ -580,7 +597,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
 
 
                 else :
-                    print("C'est un mur !")
+                    pass
 
 
             elif touche=="Left" :
@@ -592,7 +609,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                     if (L[ordonne][abscisse-1] in pnj_liste) and (L[ordonne][abscisse-2] not in check ) and (L[ordonne][abscisse-2] not in pnj_liste):
                         abscisse-=2
                     elif L[ordonne][abscisse-1] in pnj_liste :
-                        print("C'est un PNJ")
+                        pass
                     else:
                         abscisse-=1
 
@@ -605,7 +622,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                         L[ordonne][abscisse] = canvas.create_image(24*abscisse, 24*ordonne, anchor=NW, image=Perso)
                         deplacement_perso = True
                 else :
-                    print("C'est un mur !")
+                    pass
 
 
             elif touche=="Down" :
@@ -617,7 +634,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                     if (L[ordonne+1][abscisse] in pnj_liste) and (L[ordonne+2][abscisse] not in check) and (L[ordonne+2][abscisse] not in pnj_liste):
                         ordonne+=2
                     elif L[ordonne+1][abscisse] in pnj_liste :
-                        print("C'est un PNJ")
+                        pass
                     else:
                         ordonne+=1
 
@@ -630,7 +647,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                         L[ordonne][abscisse] = canvas.create_image(24*abscisse, 24*ordonne, anchor=NW, image=Perso)
                         deplacement_perso = True
                 else :
-                    print("C'est un mur !")
+                    pass
 
 
             elif touche=="Right" :
@@ -642,7 +659,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                     if (L[ordonne][abscisse+1] in pnj_liste) and (L[ordonne][abscisse+2] not in check) and (L[ordonne][abscisse+2] not in pnj_liste):
                         abscisse+=2
                     elif L[ordonne][abscisse+1] in pnj_liste :
-                        print("C'est un PNJ")
+                        pass
                     else:
                         abscisse+=1
 
@@ -656,12 +673,9 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                         deplacement_perso = True
 
                 else :
-                    print("C'est un mur !")
+                    pass
 
-
-            print("Abscisse : ", abscisse)
-            print("Ordonne : ", ordonne)
-
+            # nettoyage
             canvas_infos_possibilite_discussion.delete('all')
 
             #verif si table de craft dispo et si oui on affiche le msg d'information
@@ -707,7 +721,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                     canvas_infos_possibilite_discussion.create_image(0,0,anchor=NW, image=pnj5)
 
             else:
-
+                # affcihe de l'aide possible en fonction de l'avancement du joeur
                 if Niveau ==0 or Niveau ==5:
                     if pnj1_infos == False or pnj2_infos == False or pnj3_infos == False:
                         Label_text_possibilite_strvar.set("Objectif : Récupérer tous les fragments de clés !")
@@ -733,6 +747,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                         Label_text_possibilite_strvar.set("Objectif : Affronter le BOSS")
 
 
+                #clear  + affiche l'image d'idée pour les indices pour l'avancement
                 canvas_infos_possibilite_discussion.delete('all')
                 canvas_infos_possibilite_discussion.create_image(0,0,anchor=NW, image = idee)
 
@@ -762,11 +777,13 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
 
             global assemble_cle
 
+            # on affiche la clé si la condition est respectée
             if assemble_cle == True:
                 canvas_inv.delete("all")
                 canvas_inv.config(width = 150, height = 50)
                 canvas_inv.create_image(0,0, anchor = NW, image=Grande_cle)
-
+            
+            # on affiche le reste de l'inventaire en fonction de l'avancement et de ce que le joueur possède
             else:
                 canvas_inv.delete("all")
                 long_canvas_inv = 150
@@ -821,8 +838,9 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                                 canvas_inv.create_image(200,0, anchor = NW, image=loot_vide_pnj5)
 
 
-
+        #fonction pour afficher le cours 
         def load_cours(Niveau, num_pnj):
+            #full cours bloc
             Liste_cours = [
             "De façon intuitive, une égalité fonctionne un peu comme une balance à deux plateaux \u2629 : si on effectue une opération dans un des membres, il faut réaliser la même opération dans l’autre pour garder l'équilibre.",
             "Quelques propriétés : On peut ajouter (ou soustraire) un même nombre aux deux membres d'une égalité. \n    a = b équivaut à a + c = b + c\n    a = b  équivaut à a - c = b - c \nOn peut multiplier (ou diviser) les deux membres d'une égalité par un même nombre non nul. \n    a = b équivaut à a × c = b × c \n    a = b équivaut à   a/c = b/c(c ≠ 0) \nExemple :  \n5x + 2 = 17 \n5x + 2 - 2 = 17 - 2 \n5x/5 = 15/5 \nx = 3",
@@ -915,14 +933,14 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
     
             ]
 
-            def ajouter_element(Texte): #Une partie de la gestion du code de la liste box provient d'internet
+            def ajouter_element(Texte): # afficher le cours dans la box de cours
                 global listbox
                 element = Texte.strip()
                 listbox.config(state=NORMAL)
                 if element:
                     listbox.insert(END, element)
 
-            def saut_2_lignes():
+            def saut_2_lignes(): # fonction pour ajouter des espaces 
                 global listbox
                 listbox.insert(END, "\n")
                 listbox.insert(END, "\n")
@@ -934,6 +952,8 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
             #partie load du premier chargement
             if num_pnj ==0 or num_pnj==1:
 
+
+                #chargement de toutes les fonction qui permettent d'afficher les niveau de cours
                 def load_cours_1():
                     listbox.insert(END, "--Equation du 1er degré--" + "\n")
                     listbox.insert(END, "\n")
@@ -950,7 +970,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                     listbox.insert(END, "\n")
 
                     ajouter_element(Liste_cours[3])
-                    formule_latex.make_formule(r"$ \frac{(longueur \times largeur)}{2}$",listbox, 14, 0) 
+                    formule_latex.make_formule(r"$ \frac{(longueur \times largeur)}{2}$",listbox, 14, 0) #element latex qui fait appel au ficher en question
                     ajouter_element(Liste_cours[4])
                     saut_2_lignes()
 
@@ -1004,11 +1024,8 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                         if i!=17 and i!=20:
                             saut_2_lignes()
 
-
-
-
-
                     listbox.insert(END, "\n")
+
 
                 def load_cours_5():
                     listbox.insert(END, "--Equation du second degré--" + "\n")
@@ -1046,7 +1063,6 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
 
                     saut_2_lignes()
                     listbox.insert(END, "\n")
-
 
 
 
@@ -1115,13 +1131,14 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
 
                 def load_cours_7():
 
-                    a = 1
+                    a = 1 # à faire
 
 
 
                 if num_pnj==0:
                     global listbox
 
+                    #creation de la box du cours
                     listbox = scrolledtext.ScrolledText(Label_Frame_Cours_Affiche, width =35,wrap="word",bg=None, font=("Arial",10))
                     listbox.pack(side=LEFT, fill=BOTH, expand=True)
 
@@ -1129,6 +1146,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                     listbox.images = []
 
                 elif num_pnj==1:
+                    #on clear la box
                     listbox.config(state=NORMAL)
                     listbox.delete(1.0,END)
                     listbox.config(state=DISABLED)
@@ -1136,15 +1154,14 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
 
 
                 #chargement pour le reload de la fonction global quand on change de niveau
-                #pour eviterd'ecrire à deux fois le meme code de 200 ligne; des optimisation sont faite 
+                #pour eviter d'ecrire à deux fois le meme code de 200 ligne; des optimisation sont faite 
                 #ces optimisations consistent en conditions  : 
                 #    - pour reload au changement de niveau
                 #    - pour reload et mettre en ordre le cours au moment de passer la porte
                 listbox.config(state=NORMAL)
 
-                #chargment des img si on a des img dans la partie cours
-                #photo img.......
 
+                #chargement du cours au realod / quand on passe à l'exo pour remettre dans l'ordre le cours 
                 if (Niveau ==0 and num_pnj==0):
                     listbox.insert(END, "--Equation du 1er degré--" + "\n")
                     listbox.insert(END, "\n")
@@ -1186,15 +1203,11 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                     listbox.insert(END, "\n")
 
                 elif (Niveau ==6 and num_pnj==0) or (Niveau== 5 and num_pnj==1):
-                    
                     load_cours_5()
 
                     if num_pnj==0:
-
                         listbox.insert(END, "--Dérivation--" + "\n")
                         listbox.insert(END, "\n")
-
-
 
                 elif (Niveau==7 and num_pnj==0) or (Niveau== 6 and num_pnj==1):
                     load_cours_5()
@@ -1215,7 +1228,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
 
 
 
-            # Pour chaque pnj qui donnera son cours : 
+            # Pour chaque pnj qui donnera son cours, on l'affiche : 
             listbox.config(state=NORMAL)
 
             if Niveau ==0:
@@ -1407,7 +1420,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                     ajouter_element(Liste_cours[43])
                     saut_2_lignes() 
 
-            elif Niveau ==7:
+            elif Niveau ==7: # a faire 
                 if num_pnj=="pnj1":
                     ajouter_element(Liste_cours[24])
                     saut_2_lignes()
@@ -1429,13 +1442,13 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
             
 
             if Niveau < 5:
-                def open_url(event):
+                def open_url(event): # ouvirr le lien dans le navigateur
                     webbrowser.open_new(r"https://youtu.be/B9NMxapgHtg?si=jWGVV_Wq8NYmuMfT")
 
                 #set u des lien nécessaire
                 # Marquage du texte pour le lien
-                start_index = "26.175"  # Position du début du lien dans le texte
-                end_index = "26.178"   # Position de la fin du lien dans le texte
+                start_index = "26.160"  # Position du début du lien dans le texte
+                end_index = "26.163"   # Position de la fin du lien dans le texte
 
                 # Application de la balise pour le lien
                 listbox.tag_add("link", start_index, end_index)
@@ -1447,6 +1460,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
             listbox.config(state=DISABLED)
 
 
+        # foncion pour la table de fabrication
         def table_craft(event):
             global pnj1_infos
             global pnj2_infos
@@ -1456,14 +1470,16 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
 
             global assemble_cle
 
-
+            # nettoyage
             canvas_infos_possibilite_discussion.delete('all')
             canvas_infos_possibilite_discussion.create_image(0,0,anchor=NW, image=idee)
-             
+            
+            # on l'on sde trouve à coté de latbleau et que nous possédonc tout les élements nécéssaire, on peut fabriquer la clé
             if L[ordonne][abscisse-1] == "¤":
 
                 if assemble_cle == False:
-
+                    
+                    #on affche dans l'aide les infos si c'est déjà fabriqué ou non
                     if Niveau ==0 or Niveau ==5:
                         if pnj1_infos == True and pnj2_infos == True and pnj3_infos == True:
                             assemble_cle = True
@@ -1508,9 +1524,10 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
 
 
 
-
+        #fonction de gestio des dialogues avec les pnj
         def parler_pnj(event):
 
+            # fonction pour afficher progressivmeent les dialogues
             def affiche_prog(pnj, pnj_infos, Niveau):
 
 
@@ -1525,16 +1542,6 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                         Label_texte_parole_discussion_pnj_scrolltext.update()
                         time.sleep(0.01)
                     Label_btn_suivant_discussion_pnj['state'] = NORMAL
-
-
-
-                    # global Label_texte_parole_discussion_pnj_scrolltext
-                    # text_complet = Texte.strip()
-                    # Label_texte_parole_discussion_pnj_scrolltext.config(state=NORMAL)
-                    # if text_complet:
-                    #     Label_texte_parole_discussion_pnj_scrolltext.insert(END, text_complet)
-                    # Label_texte_parole_discussion_pnj_scrolltext.config(state=DISABLED)
-
 
 
 
@@ -2227,6 +2234,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
 
             # check si on se trouve bien dans une zone avec pnj quand la fonction est chargée  
             if (L[ordonne-1][abscisse] in pnj_List or L[ordonne+1][abscisse] in pnj_List or L[ordonne][abscisse-1] in pnj_List or L[ordonne][abscisse+1] in pnj_List ):
+                #fonction pour afficher le nom du pnj
                 def nom_pnj_actuel(pnj, Niveau):
                     if pnj == "pnj1":
                         if Niveau ==0:
@@ -2389,6 +2397,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
             if not second_window_probleme or not second_window_probleme.winfo_exists():  # Vérifie si la deuxième fenêtre existe
                 def affiche_consigne(Niveau):
 
+                    #fonction pour afficher le text progressivement
                     def insert_consignes_exo(text_complet_consignes):
                         Label_btn_suivant_second_window ['state'] = DISABLED
                         for i in range(len(text_complet_consignes)):
@@ -2407,6 +2416,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                     global c_sw
                     c_sw  += 1
                     
+                    #text global + text en fonction de l'exo
                     if c_sw==1:
                         insert_consignes_exo("Pour pouvoir tourner la clé et ainsi dévérouiller la porte, vous devez résoudre cette exercice ! ")
                     elif c_sw==2:
@@ -2466,7 +2476,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
 
 
 
-    
+                #fonction de verif qui donne la possibilité de passer au niveau suivant ou non 
                 def verif_reponse_sw(reponse, correction,Label_btn_result_possible_1,Label_btn_result_possible_2,Label_btn_result_possible_3):
                     Label_btn_result_possible_1.destroy()
                     Label_btn_result_possible_2.destroy()
@@ -2491,6 +2501,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                 Label_Frame_global_second_window = Frame(second_window_probleme, bg = "#BBC4E3")
                 Label_Frame_global_second_window.pack(expand=True, fill="both")
 
+                # nom de l'exo qui s'affichera sur la page de l'exo
                 if Niveau ==0:
                     exo_nom = "Equation du premier degré"
                 elif Niveau==1:
@@ -2510,7 +2521,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                 Label_text_infos_type_exo.pack(anchor="nw",side= TOP, pady=5, padx=5)
 
 
-                ###frame qui conteintdra toutes les consignes / explications et le btn suivant
+                ###frame qui conteindra toutes les consignes / explications et le btn suivant
                 Label_Frame_Canvas_consignes_explication_btn = Frame(Label_Frame_global_second_window, bg="#99A6D0")
                 Label_Frame_Canvas_consignes_explication_btn.pack(side=TOP, expand=True, fill=BOTH, pady= 5, padx=5)
 
@@ -2518,7 +2529,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                 Label_scrollbox_consignes_exo = scrolledtext.ScrolledText(Label_Frame_Canvas_consignes_explication_btn, wrap='word', font=("Arial", 10), height=4)
                 Label_scrollbox_consignes_exo.pack(side=LEFT, fill=BOTH, expand=True, pady= 5, padx = 5)
                 Label_scrollbox_consignes_exo.insert(END, 'Clique sur suivant !')
-                Label_scrollbox_consignes_exo.images = []
+                Label_scrollbox_consignes_exo.images = [] # pour stocker les images latex 
 
                 Label_btn_suivant_second_window = Button(Label_Frame_Canvas_consignes_explication_btn, text="Suivant !", command=lambda:affiche_consigne(Niveau))
                 Label_btn_suivant_second_window.pack(side=TOP, anchor="e", pady=5, padx=5)
@@ -2526,7 +2537,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                 Label_Frame_Canvas_formule_exo = None
 
                 if Niveau ==1 or Niveau ==2:
-                    ### frame qui contient le canvas qui affichera une ilage au besoins
+                    ### frame qui contient le canvas qui affichera une image au besoins
                     Label_Frame_Canvas_formule_exo = Frame(Label_Frame_global_second_window, bg="#99A6D0")
                     Label_Frame_Canvas_formule_exo.pack(side=TOP, fill='y', pady= 5, padx=5)
 
@@ -2557,6 +2568,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                 # Lie la fermeture de la fenêtre à la réinitialisation de second_window_probleme
                 second_window_probleme.protocol("WM_DELETE_WINDOW", lambda: reset_second_window())
         
+        #fonction pour fermer cette fenetre
         def reset_second_window():
             global second_window_probleme
             if second_window_probleme:
@@ -2564,7 +2576,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
             second_window_probleme= None
 
 
-        #Fonction qui gère les deuxsalles de boss
+        #Fonction qui gère les deux salles de boss
         def boss_enigme(Niveau):
             global boss_window
 
@@ -2579,6 +2591,8 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                     indices_give_2 = 0
 
                 def affiche_consigne_boss(Niveau):
+
+                    #fonction de vrif des réponses choisies par l'utilisateur
                     def verif_reponse_boss(correction1, correction2 ,Label_btn_result_possible_1_boss,Label_btn_result_possible_2_boss,Label_btn_result_possible_3_boss,Label_btn_result_possible_1_2_boss,Label_btn_result_possible_2_2_boss,Label_btn_result_possible_3_2_boss,Label_text_infos_selection_verif_boss , Label_btn_valider_boss_exo):
 
                         global erreur_boss
@@ -2602,7 +2616,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                                 Label_btn_valider_boss_exo.destroy()
                                 affiche_consigne_boss(Niveau)
                         else:
-                            Label_str_var_btn_verif_boss_infos.set("Vous devez sélectionner 1 réponse par colonne !")
+                            Label_str_var_btn_verif_boss_infos.set("Vous devez sélectionner 1 réponse par colonne !") # infos si ne seule réponse est sélectionné
 
 
                     global erreur_boss
@@ -2613,6 +2627,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
 
                     text_complet_consignes_boss = ""
 
+                    #text des consinges pour le boss
                     if c_boss==1:
                             text_complet_consignes_boss = "Pour pouvoir tourner la clé et ainsi dévérouiller la porte, vous devez résoudre cette exercice ! "
                     elif c_boss==2:
@@ -2623,7 +2638,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
 
                     elif c_boss==4:
                         Label_btn_suivant_boss_window ['state'] = DISABLED
-                        # on affcihe les btns de réponses
+                        # on affiche les btns de réponses
                         get_value_boss_1 = StringVar()
                         Label_btn_result_possible_1_boss = Radiobutton(Label_Frame_Reponse_Verif_boss_2, text=value_btn_1_boss, value=value_btn_1_boss, variable=get_value_boss_1)
                         Label_btn_result_possible_1_boss.pack(side =TOP, padx = 5, pady = 5)
@@ -2646,11 +2661,12 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                         Label_btn_result_possible_3_2_boss.pack(side =TOP, padx= 5, pady = 5)
 
 
-
+                        #label du text infos
                         Label_str_var_btn_verif_boss_infos = StringVar()
                         Label_text_infos_selection_verif_boss = Label(Label_Frame_Reponse_Verif_boss, textvariable=Label_str_var_btn_verif_boss_infos, fg = "#9A0004", wraplength=150)
                         Label_text_infos_selection_verif_boss.pack(side = BOTTOM, pady = 2)
 
+                        #bouton de validation
                         Label_btn_valider_boss_exo = Button(Label_Frame_Reponse_Verif_boss, text="Valider", command=lambda:verif_reponse_boss(Exo_correction_boss[0],Exo_correction_boss[1],Label_btn_result_possible_1_boss,Label_btn_result_possible_2_boss,Label_btn_result_possible_3_boss,Label_btn_result_possible_1_2_boss,Label_btn_result_possible_2_2_boss,Label_btn_result_possible_3_2_boss,Label_text_infos_selection_verif_boss , Label_btn_valider_boss_exo))
                         Label_btn_valider_boss_exo.pack(side=BOTTOM, pady=5)
 
@@ -2697,9 +2713,10 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
 
    
                 
+                #fonction pour donner les indices et les compter
                 def Give_indices_boss(Niveau):
                     
-                    def ajouter_element_indices(Texte_): #Une partie de la gestion du code de la liste box provient d'internet
+                    def ajouter_element_indices(Texte_): # jout des indices dans la box des indices sur demande
                         global listbox_indices
                         element_ = Texte_.strip()
                         listbox_indices.config(state=NORMAL)
@@ -2709,9 +2726,11 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                         listbox_indices.config(state=DISABLED)
 
 
-                    global indices_give_1
+                    global indices_give_1 # on recup les valeurs
                     global indices_give_2
 
+
+                    #box des indices en stock
                     L_indices_1 = [
                         "Indice 1 : Je te rappelle qu’un litre vaut 1dm3",
                         "Indice 2 : Il faut commencer par déterminer les équations des droites (AB) et (CD) puis déterminer les coordonnées du point d’intersection entre ces deux droites.",
@@ -2725,6 +2744,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                         "Vous avez utilisé tout les indices !"
                         ]
 
+                    #en fonction du niveau, on donne les indices
                     if Niveau ==4:
                         if indices_give_1 < 3:
                             ajouter_element_indices(L_indices_1[indices_give_1])
@@ -2773,6 +2793,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
                 listbox_indices = scrolledtext.ScrolledText(Label_Frame_box_listbox_indices_boss, wrap='word', font=("Arial", 10), height=4, width=35)
                 listbox_indices.pack(side=LEFT, fill=BOTH, expand=True)
 
+                #on ajoute le titre de la box des indices
                 listbox_indices.insert(END, "--Indices--" + "\n")
                 listbox_indices.insert(END, "\n")
                 listbox_indices.config(state=DISABLED)
@@ -2807,13 +2828,15 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
 
                 #canvas avec l'image
                 Label_canvas_boss_image = Canvas(Label_Frame_Canvas_formule_boss, width = 400, height = 283)
-                Label_canvas_boss_image.create_image(0,0,anchor=NW, image = exo_boss_portdesete)
                 Label_canvas_boss_image.pack()
 
                 # on recupère la correction et les valeur nécéssaire à la consignes
                 Exo_correction_boss = py_maths_boss.choix_exo_niveau_boss(Niveau)
                 print(Exo_correction_boss)
                 if Niveau ==4:
+                    #on affiche l'image du problème
+                    Label_canvas_boss_image.create_image(0,0,anchor=NW, image = exo_boss_portdesete)
+
                     # on définit les trois valeur qui vont s'afficher dans les boutons
                     value_btn_1_boss = Exo_correction_boss[2]
                     value_btn_2_boss = Exo_correction_boss[3]
@@ -2853,7 +2876,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie):
 
 
 
-
+        #fenetre avec les règles
         def regle_infos_jeu(event):
             global Regle 
 
@@ -2915,7 +2938,7 @@ Exemple de PNJ :
 
                 scroll_text_regles_help.insert(END, text_regles_help)
 
-                image__0 = PhotoImage(file="Images/pnj/Iggy/Iggy_petit.png")  # Remplacez par le chemin de votre image
+                image__0 = PhotoImage(file="Images/pnj/Iggy/Iggy_petit.png") 
                 image__1 = PhotoImage(file="Images/pnj/MarchandDeGlace/Marchand_de_glace_petit.png")
                 image__2 = PhotoImage(file="Images/pnj/CapitaineDunNavire/Capitaine_dun_navire_petit.png")
                 
@@ -3026,6 +3049,8 @@ Pour plus de renseignements : https://github.com/Gandalf0207/Maths-Quest
         canvas_infos_possibilite_discussion.pack(anchor="c", side=LEFT, padx=15)
         Label_text_possibilite_strvar = StringVar()
         canvas_infos_possibilite_discussion.create_image(0,0, anchor=NW, image=idee)
+
+        #set de la base de l'objectif au chagement
         if Niveau ==0 or Niveau ==5:
             Label_text_possibilite_strvar.set("Objectif : Récupérer tous les fragments de clés !")
         elif Niveau ==1 or Niveau ==6:
@@ -3074,28 +3099,10 @@ Pour plus de renseignements : https://github.com/Gandalf0207/Maths-Quest
         Label_Frame_Inv_Cle = Frame(Label_Frame_Cours_cle, bg='#99A6D0')
         Label_Frame_Inv_Cle.pack(side='bottom', padx=5, pady=5, fill='x')
 
-        #On load l'inventaire de base 
-        # long_canvas_inv = 150
-        # if Niveau ==1 or Niveau ==6:
-        #     long_canvas_inv = 200
-        # elif Niveau == 2 or Niveau ==3 or Niveau ==7:
-        #     long_canvas_inv = 250
-
         canvas_inv = Canvas(Label_Frame_Inv_Cle, height=50, bg = "#7786BA")
-
-        # if Niveau !=4 and Niveau !=8:
-        #     canvas_inv.create_image(0,0,anchor=NW, image = loot_vide_pnj1)
-        #     canvas_inv.create_image(50,0,anchor=NW, image = loot_vide_pnj2)
-        #     canvas_inv.create_image(100,0,anchor=NW, image = loot_vide_pnj3)
-
-        #     if Niveau == 1 or Niveau ==6:
-        #         canvas_inv.create_image(150,0,anchor=NW, image = loot_vide_pnj4)
-        #     elif Niveau ==2 or Niveau ==3 or Niveau ==7:
-        #         canvas_inv.create_image(150,0,anchor=NW, image = loot_vide_pnj4)
-        #         canvas_inv.create_image(200,0,anchor=NW, image = loot_vide_pnj5)
-
         canvas_inv.pack(pady=10)
 
+        #on load l'inv de base
         load_inv(Niveau)
 
 
@@ -3121,9 +3128,10 @@ Pour plus de renseignements : https://github.com/Gandalf0207/Maths-Quest
 
 
     elif Niveau == tours:
+        #fenetre des médailles / résultats
         def text_choix_medaille(type_partie_ , nb_check):
 
-
+            #text de victoirE
             L_Text_resultat_medaille = [
                 "Médailles Diamond Bravo, vous avez utilisé 0 indices ! blablabla",
                 "Médailles glod Très bien, vous avez utilisé 1 indices ! blablabla",
@@ -3131,6 +3139,7 @@ Pour plus de renseignements : https://github.com/Gandalf0207/Maths-Quest
                 "Médailles Bronze, vous avez utilisé 3 indices ! blablabla",
             ]
 
+            #On affiche la ligne qui correspond aux elements
             if type_partie_=='seconde':
                 text_medaille.set(L_Text_resultat_medaille[indices_give_1])
             elif type_partie_=='premiere':
@@ -3141,11 +3150,13 @@ Pour plus de renseignements : https://github.com/Gandalf0207/Maths-Quest
                 elif nb_check ==1:
                     text2_medaille.set(L_Text_resultat_medaille[indices_give_2])
 
+        #def qui fait acceder au crédtits, avec un reload
         def acces_credits():
             global Niveau
             Niveau +=1
             Gestion_Jouer(Jeu,Niveau,type_partie)
 
+        #en fonction du type de partie et du nombres d'indices utilisés, on load les elements qui correspondent
         if type_partie=='seconde':
             if indices_give_1 ==0:
                 img_resultat =  PhotoImage(file="Images/Medailles/diamond.png") 
@@ -3183,8 +3194,10 @@ Pour plus de renseignements : https://github.com/Gandalf0207/Maths-Quest
             elif indices_give_2 ==2:
                 img_resultat2 = PhotoImage(file = "Images/Medailles/silver.png")
             elif indices_give_2 ==3:
-                img_resultat2 = PhotoImage(file = "Images/Medailles/bronze.png")  
+                img_resultat2 = PhotoImage(file = "Images/Medailles/bronze.png") 
 
+
+        #titre de la fenetre (haut)
         Jeu.title("Maths-Quest | Résultats       © PLADEAU Quentin LUBAN Théo")
         Label_titre_resultat_partie = Label(Jeu, text = 'Résultats',bg = '#BBC4E3')
         Label_titre_resultat_partie.pack(pady=10)
@@ -3193,10 +3206,10 @@ Pour plus de renseignements : https://github.com/Gandalf0207/Maths-Quest
         Label_Frame_global_resultat = Frame(Jeu, bg = '#BBC4E3')
         Label_Frame_global_resultat.pack(expand=True, fill=BOTH, pady= 5, padx = 5)
 
-        Label_btn_suivant = Button(Jeu,text="Crédits", command=acces_credits)
+        Label_btn_suivant = Button(Jeu,text="Crédits", command=acces_credits) # bt, pour passer aux crédits
         Label_btn_suivant.pack(side=BOTTOM, pady=5)
 
-        Jeu.protocol("WM_DELETE_WINDOW", acces_credits)
+        Jeu.protocol("WM_DELETE_WINDOW", acces_credits) #quand la fenetre est fermé par la croix on passe au crédits
 
         if type_partie !='all':
             #Frame avec les elements des resulat (sous frame)
@@ -3273,7 +3286,7 @@ Pour plus de renseignements : https://github.com/Gandalf0207/Maths-Quest
 
     else:
 
-
+        # titre de la fenetre quand on passe sur les crédits
         Jeu.title("Maths-Quest | Crédits  © PLADEAU Quentin LUBAN Théo")
 
         Label_Titre_Credits = Label(Jeu, text = "Crédits", font=("Arial", 15), bg = '#BBC4E3')
@@ -3286,6 +3299,7 @@ Pour plus de renseignements : https://github.com/Gandalf0207/Maths-Quest
         scroll_text_credits = scrolledtext.ScrolledText(frame_credits, wrap=WORD, width=60, height=20, font=("Arial", 10))
         scroll_text_credits.pack(expand=True, fill='both')
 
+        #texte des crédits
         text_credits = """
         Maths-Quest
 
@@ -3337,19 +3351,23 @@ Pour plus de renseignements : https://github.com/Gandalf0207/Maths-Quest
         btn_fin = Button(Jeu, text="Fermer", command=Jeu.destroy)
         btn_fin.pack(pady=5)
     
-    Jeu.mainloop()
+
+    Jeu.mainloop() # loop de la fenetre
 
 
 
 
-##################################################################################################
+#################################################
 #ACCUEIL#
 
 
 global Niveau
 Niveau = 0
-def parametre(Lancement, Label_Frame_courverture):
 
+#fonction parametre pour choix du typ de parie
+def parametre(Lancement, Label_Frame_courverture): 
+
+    #chek avant de lancer le jeu + indication si le lancement n'est pas possible
     def verif_lancement():
         global type_partie
         global Niveau
@@ -3369,6 +3387,7 @@ def parametre(Lancement, Label_Frame_courverture):
         else:
             text_erreur_lancement.set("Vous devez sélectionner le type de partie !")
 
+    #mise à jour des btn check_button accessible ou non en fonction que ce que le jouer choisie comme type de partie
     def desac_btn_1():
         if Label_choix_partie_courte.get() ==1:
             Label_choix_partie_long.set(0)
@@ -3380,7 +3399,7 @@ def parametre(Lancement, Label_Frame_courverture):
             btn_court_seconde.config(state=DISABLED)
             btn_court_premiere.config(state=DISABLED)
 
-
+    #mise à jour des btn check_button accessible ou non en fonction que ce que le jouer choisie comme type de partie
     def desac_btn_2():
         if Label_choix_partie_long.get() ==1:
             Label_choix_partie_courte.set(0)
@@ -3392,6 +3411,7 @@ def parametre(Lancement, Label_Frame_courverture):
             btn_court_seconde.config(state=NORMAL)
             btn_court_premiere.config(state=NORMAL)
 
+    #fonction de chekc sur les consignes et terme d'utilisation pour activer /désactiver le btn pour jouer
     def check(btn):
 
         global check_btn
@@ -3405,11 +3425,12 @@ def parametre(Lancement, Label_Frame_courverture):
     global check_btn 
     check_btn = False
     
-
+    #fonction qui ouvre la fenetre des consignes et terme d'utilisation
     def condition_generale_utilisation():
     
         global f
-        if not f or not f.winfo_exists():
+        if not f or not f.winfo_exists(): #check si la fenetre est deja existante pour eviter d'en ouvrir plusieurs à la fois
+            #element de la fenetre
             f = Toplevel()
             f.title("Maths-Quest | Termes et Conditons d'Utilisation      © PLADEAU Quentin LUBAN Théo")
 
@@ -3454,6 +3475,8 @@ def parametre(Lancement, Label_Frame_courverture):
             close_btn_f = Button(f, command=f.destroy, text="Fermer").pack(side=BOTTOM, pady = 5)
             f.mainloop()
 
+
+    #Fonction de mise en page au survol du text pour le souligner (text des consignes d'utilisation) 
     def surligne(event):
         Label_text_check_button_condition.config(font=(label_font_family, label_font_size, "underline"))
 
@@ -3464,9 +3487,11 @@ def parametre(Lancement, Label_Frame_courverture):
 
 
 
-
+    #on détruit la couverture, pour pouvoir afficher les element suivants
     Label_Frame_courverture.destroy()
+    
 
+    #element de parametres
     Lancement.title("Maths-Quest | Menu      © PLADEAU Quentin LUBAN Théo")
 
 
@@ -3511,7 +3536,7 @@ def parametre(Lancement, Label_Frame_courverture):
     Frame_.pack(expand=True, fill=BOTH, side=BOTTOM)
     
 
-    
+    #btn jour pour lancer la partie
     btn = Button(Frame_, text="Jouer !",command=verif_lancement, state=DISABLED)
     btn.pack( pady=20)
 
@@ -3537,6 +3562,8 @@ def parametre(Lancement, Label_Frame_courverture):
     Label_text_check_button_condition.bind("<Leave>", desurligne)
 
 
+
+#toute première fenetre pour ouvrir la fenetre du jeu, avec les infos sur le jeu + couverture
 Lancement = Tk()
 Lancement.title("Maths-Quest | Lancement      © PLADEAU Quentin LUBAN Théo")
 # Lancement.geometry("350x400")
@@ -3561,3 +3588,18 @@ Lancement.mainloop()
 
 ##################################################################################################
 
+
+
+# FIN main # 
+
+
+
+#############################################################################################################################
+
+### MATHS-QUEST ###
+# Pour toutes informations, veillez vous référer au dépot GitHub : https://github.com/Gandalf0207/Maths-Quest
+
+# © Tous droits réservé 2024
+#   PLADEAU Quentin & LUBAN Théo
+
+############################################################################################################################
