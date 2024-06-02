@@ -2439,7 +2439,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie): #Fonction parent (gestion de to
                             insert_consignes_exo(f"Vous devez dériver la fonction f(x) suivante. Puis trouver l'équation de tangente pour x = {Exo_correction[5]}")
                             formule_latex.make_formule(Exo_correction[0],Label_scrollbox_consignes_exo, 15, 0)
                         elif Niveau==7:
-                            insert_consignes_exo("Vous devez résoudre cet exo pas encore fait")
+                            insert_consignes_exo(f"Vous devez la raison de cette suite et calculer la somme des {Exo_correction[5][3]} premiers termes. Voici les valeurs Uo = {Exo_correction[5][0]}; Uo = {Exo_correction[5][1]}; Uo = {Exo_correction[5][2]} de la suite.")
         
                     elif c_sw==4:
                         Label_btn_suivant_second_window ['state'] = DISABLED
@@ -2452,6 +2452,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie): #Fonction parent (gestion de to
 
                         Label_btn_result_possible_3 = Button(Label_Frame_Reponse_Verif_2, text=value_btn_3, command=lambda:verif_reponse_sw(value_btn_3,Exo_correction[1],Label_btn_result_possible_1,Label_btn_result_possible_2,Label_btn_result_possible_3))
                         Label_btn_result_possible_3.pack(side = LEFT, padx= 25, pady = 5)
+
                     elif c_sw==5:
                         if erreur == 0:
                             insert_consignes_exo("Bravo ! Vous avez trouvé la bonne solution !")

@@ -328,6 +328,36 @@ def choix_exo_niveau(Niveau,Label_Frame_Canvas_formule_exo): # Paramètres nivea
         resultat2 = f"f'({num_resolve}) = {f_prime+num1}"
         resultat3 = f"f'({num_resolve}) = {f_prime+num6}"
 
+    elif Niveau ==7:
+
+        #script generation des suite 
+        U0 = random.randint(-10,10)
+        r = random.randint(-10,10)
+        n = random.randint(4,15)
+
+        while U0 == 0 or r == 0: #on évite les values == 0
+            U0 = random.randint(-10,10)
+            r = random.randint(-10,10)
+
+        if random.randint(0,1) == 0 : # suite SA
+            U1 = U0 + r
+            U2 = U1 + r
+            eqt = "Aucune équation nécéssaire"
+            somme_suite = (n/2)*(2*U0+(n-1)*r)
+        else : #suite SG
+            U1 = U0*r
+            U2 = U0*(r**2)
+            eqt = "Aucune équation nécéssaire"
+            somme_suite = U0*((1-(r**n))/(1-r))
+
+
+        infos_suite = [U0, U1, U2, n] #infosq comme les 3 premier terme pour déterminer le type de suite  + le nombre de terme attendu pour la somme 
+
+        # formatage des résultats 
+        resultat = f"{somme_suite}"
+        resultat2 = f"{somme_suite-1000}"
+        resultat3 = f"{somme_suite+(U0*r**3)}"
+
 
         
 
@@ -359,6 +389,8 @@ def choix_exo_niveau(Niveau,Label_Frame_Canvas_formule_exo): # Paramètres nivea
         Liste_exo_all.append(points) # ajout des coordonnées
     elif Niveau==6:
         Liste_exo_all.append(num_resolve) # ajout valeur de x por dériver et touver le résultat
+    elif Niveau ==7:
+        Liste_exo_all.append(infos_suite) # ajout des infos comme les n termes
 
 
 
