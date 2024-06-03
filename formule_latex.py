@@ -25,6 +25,7 @@ from io import BytesIO # Module de conversion des images
 
 # Elément permettant l'utilisation des dépendances latex nécéssaires à la création des images avec le bon affichage
 plt.rcParams['text.usetex'] = True
+plt.rcParams['text.latex.preamble'] = r'\usepackage{amsmath}'
 
 #Fonction principale de gestion (appelée depuis le script principal)
 def make_formule(eqt, label_de_la_box, fontsize, space): # Paramètres : la formule, l'endroit où l'image doit etre ajoutée, la taille de police, si un retour à la ligne est nécéssaire 

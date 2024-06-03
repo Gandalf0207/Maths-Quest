@@ -39,7 +39,7 @@ import formule_latex
 
 # Élément permettant l'utilisation des dépendances latex, nécéssaires  à la création des images avec le bon affichage
 plt.rcParams['text.usetex'] = True
-
+plt.rcParams['text.latex.preamble'] = r'\usepackage{amsmath}'
 
 ### Pour avoir une certaine sécurité lors de la récupération des fragements de clé ou autre; il a fallut faire en sorte
 # de ne pourvoir ouvrir qu'une seule fenetre à la fois. Il est donc impossible, d'ouvrir plus de 1 fois la meme fenetre en meme temps
@@ -940,12 +940,35 @@ def Gestion_Jouer(fenetre, Niveau, type_partie): #Fonction parent (gestion de to
 
 
 
-            "cours 1 nv7",
-            "cours 2 nv7",
-            "cours 3 nv7",
-            "cours 4 nv7",
-            "cours 5 nv7",
-    
+
+            "Une suite est une liste ordonnée de nombres, on la définit souvent par : une relation de récurrence avec le terme n+1 noté ",
+            "en fonction du terme n noté ",
+            "Avec l’expression de récurrence, il est nécessaire de connaître un terme de la suite (par exemple U0 ou U1 etc…) pour calculer les autres. Ou une formule explicite qui permet d’exprimer directement le terme ",
+            "en fonction de l’indice n.",
+
+            "Dans une suite arithmétique le terme ",
+            "se calcule à l’aide du terme précédent ",
+            "auquel on additionne ou on retranche une constante nommée raison, notée r.\nLa relation de récurrence de la suite se note : ",
+            "avec U0 le premier terme de la suite. \nLa formule explicite de la suite se note : ",
+            "Exemple de la suite ",
+            "de premier terme U0 = 1 et de raison r =2 :\nForme de récurrence : ",
+            "Formule explicite : ",
+
+            "Dans une suite géométrique le terme ",
+            "se calcule à l’aide du terme précédent ",
+            "auquel on multiplie une constante (la raison), notée q. \nLa relation de récurrence de la suite se note :  ",
+            "avec",
+            "le premier terme de la suite. \nLa formule explicite de la suite se note : ",
+            "Exemple de la suite ",
+            " de premier terme V0 = 0.5 et de raison q =1,7: \nForme de récurrence : ",
+            "Formule explicite : ",
+
+            "Pour reconnaître si une suite est une suite arithmétique on peut vérifier si la différence ",
+            "est constante pour tout entier naturel n, ce qui donnera la raison par la même occasion.",
+
+            "La somme des n premiers termes d’une suite arithmétique se calcule avec la formule : ",
+            "La somme des n premiers termes d’une suite géométrique se calcule avec la formule : ",
+
             ]
 
             def ajouter_element(Texte): # afficher le cours dans la box de cours
@@ -1145,8 +1168,65 @@ def Gestion_Jouer(fenetre, Niveau, type_partie): #Fonction parent (gestion de to
 
 
                 def load_cours_7():
+                    listbox.insert(END, "--Suite--" + "\n")
+                    listbox.insert(END, "\n")
 
-                    a = 1 # à faire
+                    ajouter_element(Liste_cours[50])
+                    formule_latex.make_formule(r"$  U_{n+1}  $",listbox, 14, 0) 
+                    ajouter_element(Liste_cours[51])
+                    formule_latex.make_formule(r"$  U_{n}.$",listbox, 14, 0) 
+                    ajouter_element(Liste_cours[52])
+                    formule_latex.make_formule(r"$  U_{n}.$",listbox, 14, 0) 
+                    ajouter_element(Liste_cours[53])
+                    saut_2_lignes()
+
+                    ajouter_element(Liste_cours[54])
+                    formule_latex.make_formule(r"$  U_{n+1}  $",listbox, 14, 0) 
+                    ajouter_element(Liste_cours[55])
+                    formule_latex.make_formule(r"$  U_{n}$",listbox, 14, 0) 
+                    ajouter_element(Liste_cours[56])
+                    formule_latex.make_formule(r"$  U_{n+1} = U_{n} + r $",listbox, 14, 0) 
+                    ajouter_element(Liste_cours[57])
+                    formule_latex.make_formule(r"$  U_{n} = U_{0} + n \times r $",listbox, 14, 1) 
+                    ajouter_element(Liste_cours[58])
+                    formule_latex.make_formule(r"$  U_{n}$",listbox, 14, 0) 
+                    ajouter_element(Liste_cours[59])
+                    formule_latex.make_formule(r"$  U_{n+1} = U_{n} + 2$",listbox, 14, 1) 
+                    ajouter_element(Liste_cours[60])
+                    formule_latex.make_formule(r"$  U_{n} = 1 + 2n$",listbox, 14, 0) 
+                    ajouter_element(" ")
+                    saut_2_lignes()
+
+                    ajouter_element(Liste_cours[61])
+                    formule_latex.make_formule(r"$V_{n+1}$",listbox, 14, 0)
+                    ajouter_element(Liste_cours[62])
+                    formule_latex.make_formule(r"$V_{n}$",listbox, 14, 0)
+                    ajouter_element(Liste_cours[63])
+                    formule_latex.make_formule(r"$V_{n+1} = V{n} \times q $",listbox, 14, 0)
+                    ajouter_element(Liste_cours[64])
+                    formule_latex.make_formule(r"$V_{0} $",listbox, 14, 0)
+                    ajouter_element(Liste_cours[65])
+                    formule_latex.make_formule(r"$V_{n} = V_{0} \times q^{n} $",listbox, 14, 1)
+                    ajouter_element(Liste_cours[66])
+                    formule_latex.make_formule(r"$V_{0}$",listbox, 14, 0)
+                    ajouter_element(Liste_cours[67])
+                    formule_latex.make_formule(r"$V_{n+1} = V{n} \times 1.7 $",listbox, 14, 1)
+                    ajouter_element(Liste_cours[68])
+                    formule_latex.make_formule(r"$V_{n} = 0.5 \times 1.7^{n} $",listbox, 14, 0)
+                    ajouter_element(" ")
+                    saut_2_lignes()
+
+                    ajouter_element(Liste_cours[69])
+                    formule_latex.make_formule(r"$ U_{n+1} - U_{n}$",listbox, 14, 0) 
+                    ajouter_element(Liste_cours[70])
+                    saut_2_lignes() 
+
+                    ajouter_element(Liste_cours[71])
+                    formule_latex.make_formule(r"$S_{n} = \text{nombre de terme} \times \frac{\text{premier terme + dernier terme}}{2}$",listbox, 14, 1) 
+                    ajouter_element(Liste_cours[72])
+                    formule_latex.make_formule(r"$S_{n} = \text{premier terme} \times \frac{1 - \text{raison}^{\text{nombre de termes}}}{1 - \text{raison}}$",listbox, 14, 0) 
+                    ajouter_element(" ")
+                    saut_2_lignes()
 
 
 
@@ -1435,21 +1515,69 @@ def Gestion_Jouer(fenetre, Niveau, type_partie): #Fonction parent (gestion de to
                     ajouter_element(Liste_cours[43])
                     saut_2_lignes() 
 
-            elif Niveau ==7: # a faire 
+
+            elif Niveau ==7: 
+
                 if num_pnj=="pnj1":
-                    ajouter_element(Liste_cours[24])
+                    ajouter_element(Liste_cours[50])
+                    formule_latex.make_formule(r"$  U_{n+1}  $",listbox, 14, 0) 
+                    ajouter_element(Liste_cours[51])
+                    formule_latex.make_formule(r"$  U_{n}.$",listbox, 14, 0) 
+                    ajouter_element(Liste_cours[52])
+                    formule_latex.make_formule(r"$  U_{n}.$",listbox, 14, 0) 
+                    ajouter_element(Liste_cours[53])
                     saut_2_lignes()
+
                 elif num_pnj=="pnj2":
-                    ajouter_element(Liste_cours[25])
+                    ajouter_element(Liste_cours[54])
+                    formule_latex.make_formule(r"$  U_{n+1}  $",listbox, 14, 0) 
+                    ajouter_element(Liste_cours[55])
+                    formule_latex.make_formule(r"$  U_{n}$",listbox, 14, 0) 
+                    ajouter_element(Liste_cours[56])
+                    formule_latex.make_formule(r"$  U_{n+1} = U_{n} + r $",listbox, 14, 0) 
+                    ajouter_element(Liste_cours[57])
+                    formule_latex.make_formule(r"$  U_{n} = U_{0} + n \times r $",listbox, 14, 1) 
+                    ajouter_element(Liste_cours[58])
+                    formule_latex.make_formule(r"$  U_{n}$",listbox, 14, 0) 
+                    ajouter_element(Liste_cours[59])
+                    formule_latex.make_formule(r"$  U_{n+1} = U_{n} + 2$",listbox, 14, 1) 
+                    ajouter_element(Liste_cours[60])
+                    formule_latex.make_formule(r"$  U_{n} = 1 + 2n$",listbox, 14, 0) 
+                    ajouter_element(" ")
                     saut_2_lignes()
+
                 elif num_pnj=="pnj3":
-                    ajouter_element(Liste_cours[26])
-                    saut_2_lignes()       
+                    ajouter_element(Liste_cours[61])
+                    formule_latex.make_formule(r"$V_{n+1}$",listbox, 14, 0)
+                    ajouter_element(Liste_cours[62])
+                    formule_latex.make_formule(r"$V_{n}$",listbox, 14, 0)
+                    ajouter_element(Liste_cours[63])
+                    formule_latex.make_formule(r"$V_{n+1} = V{n} \times q $",listbox, 14, 0)
+                    ajouter_element(Liste_cours[64])
+                    formule_latex.make_formule(r"$V_{0} $",listbox, 14, 0)
+                    ajouter_element(Liste_cours[65])
+                    formule_latex.make_formule(r"$V_{n} = V_{0} \times q^{n} $",listbox, 14, 1)
+                    ajouter_element(Liste_cours[66])
+                    formule_latex.make_formule(r"$V_{0}$",listbox, 14, 0)
+                    ajouter_element(Liste_cours[67])
+                    formule_latex.make_formule(r"$V_{n+1} = V{n} \times 1.7 $",listbox, 14, 1)
+                    ajouter_element(Liste_cours[68])
+                    formule_latex.make_formule(r"$V_{n} = 0.5 \times 1.7^{n} $",listbox, 14, 0)
+                    ajouter_element(" ")
+                    saut_2_lignes()
+
                 elif num_pnj=="pnj4":
-                    ajouter_element(Liste_cours[27])
+                    ajouter_element(Liste_cours[69])
+                    formule_latex.make_formule(r"$ U_{n+1} - U_{n}$",listbox, 14, 0) 
+                    ajouter_element(Liste_cours[70])
                     saut_2_lignes() 
+                    
                 elif num_pnj=="pnj5":
-                    ajouter_element(Liste_cours[28])
+                    ajouter_element(Liste_cours[71])
+                    formule_latex.make_formule(r"$S_{n} = \text{nombre de terme} \times \frac{\text{premier terme + dernier terme}}{2}$",listbox, 14, 1) 
+                    ajouter_element(Liste_cours[72])
+                    formule_latex.make_formule(r"$S_{n} = \text{premier terme} \times \frac{1 - \text{raison}^{\text{nombre de termes}}}{1 - \text{raison}}$",listbox, 14, 0) 
+                    ajouter_element(" ")
                     saut_2_lignes()
 
 
@@ -1859,11 +1987,25 @@ def Gestion_Jouer(fenetre, Niveau, type_partie): #Fonction parent (gestion de to
 
                         elif Niveau ==7:
                             if c==1:
-                                insert_text("")
+                                insert_text("Salut à toi jeune aventurier. Alors si aujourd'hui je me permets de te parler, c'est pour une raison très simple. Savais-tu que 95 % de la population détient 5 % des richesses ? Alors je ne te garantie pas d’en faire partie mais au moins de partir sur de vraies bases ! Il faut que tu te poses les bonnes questions. Il faut savoir que dans une suite géométrique le terme ")
+                                formule_latex.make_formule(r"$V_{n+1}$",Label_texte_parole_discussion_pnj_scrolltext, 14, 0)
+                                insert_text("se calcule à l’aide du terme précédent ")
+                                formule_latex.make_formule(r"$V_{n}$",Label_texte_parole_discussion_pnj_scrolltext, 14, 0)
+                                insert_text("auquel on multiplie une constante (la raison), notée q.")
                             elif c==2:
-                                insert_text("")
+                                insert_text("Donc la relation de récurrence de la suite se note : ")
+                                formule_latex.make_formule(r"$V_{n+1} = V{n} \times q $",Label_texte_parole_discussion_pnj_scrolltext, 14, 0)
+                                insert_text("avec V0 le premier terme de la suite.\nAprès la formule explicite de la suite se note : ")
+                                formule_latex.make_formule(r"$V_{n} = V_{0} \times q^{n} $",Label_texte_parole_discussion_pnj_scrolltext, 14, 1)
+                                insert_text("Exemple de la suite Vn de premier terme ")
+                                formule_latex.make_formule(r"$V_{0} = 0.5 $",Label_texte_parole_discussion_pnj_scrolltext, 14, 0)
+                                insert_text("et de raison q = 1.7 : \nDu coup voila la forme de récurrence : ")
+                                formule_latex.make_formule(r"$V_{n+1} = V{n} \times 1.7 $",Label_texte_parole_discussion_pnj_scrolltext, 14, 1)
+                                insert_text("Et la formule explicite : ")
+                                formule_latex.make_formule(r"$V_{n} = 0.5 \times 1.7^{n} $",Label_texte_parole_discussion_pnj_scrolltext, 14, 0)
+
                             elif c==3:
-                                insert_text("")
+                                insert_text("Oublie pas ou tu te fermera des portes toute ta vie !")
 
 
                         if c == 4:
@@ -1919,11 +2061,15 @@ def Gestion_Jouer(fenetre, Niveau, type_partie): #Fonction parent (gestion de to
                         
                         elif Niveau ==7:
                             if c==1:
-                                insert_text("")
+                                insert_text("Salut toi, dit tu voudrais pas savoir reconnaître si une suite est arithmétique ou géométrique ? Alors écoute bien, pour reconnaître si une suite est une suite arithmétique on peut vérifier si la différence ")
+                                formule_latex.make_formule(r"$ U_{n+1} - U_{n}$",Label_texte_parole_discussion_pnj_scrolltext, 14, 0) 
+                                insert_text("est constante pour tout entier naturel n, ce qui donnera la raison par la même occasion.")
                             elif c==2:
-                                insert_text("")
+                                insert_text("Pour reconnaître si une suite est une suite géométrique on peut vérifier si le rapport")
+                                formule_latex.make_formule(r"$ \frac{V_{n+1}}{U_{n}}$",Label_texte_parole_discussion_pnj_scrolltext, 14, 0) 
+                                insert_text("est constant pour tout entier naturel n, ce qui donnera la raison par la même occasion.")
                             elif c==3:
-                                insert_text("")
+                                insert_text("Tiens je te donne ça, c’est un peu inutile pour moi ^^.")
 
                         if c == 4:
                             canvas_tete_pnj_grand.delete("all")
@@ -1964,11 +2110,14 @@ def Gestion_Jouer(fenetre, Niveau, type_partie): #Fonction parent (gestion de to
 
                         elif Niveau ==7:
                             if c==1:
-                                insert_text("")
+                                insert_text("Salut marin d’eau douce, je vais t’apprendre à calculer la somme des n premiers termes d’une suite. Alors pour la somme des n premiers termes d’une suite arithmétique il faut utiliser la formule : ")
+                                formule_latex.make_formule(r"$S_{n} = \text{nombre de terme} \times \frac{\text{premier terme + dernier terme}}{2}$",Label_texte_parole_discussion_pnj_scrolltext, 14, 1) 
                             elif c==2:
-                                insert_text("")
+                                insert_text("Pour la somme des n premiers termes d’une suite géométrique il faut la formule :")
+                                formule_latex.make_formule(r"$S_{n} = \text{premier terme} \times \frac{1 - \text{raison}^{\text{nombre de termes}}}{1 - \text{raison}}$",Label_texte_parole_discussion_pnj_scrolltext, 14, 1) 
+
                             elif c==3:
-                                insert_text("")
+                                insert_text("Tiens moussaillon ça t’apprendra à monter les échelons !")
                         
                         if c == 4:
                             canvas_tete_pnj_grand.delete("all")
@@ -2199,9 +2348,24 @@ def Gestion_Jouer(fenetre, Niveau, type_partie): #Fonction parent (gestion de to
 
                         elif Niveau ==7:
                             if c==1:
-                                insert_text("")
+                                insert_text("Alors jeune aventurier tu veux que je te réexplique comment la vie fonctionne ? Pour comprendre faut que tu saches que dans une suite géométrique le terme ")
+                                formule_latex.make_formule(r"$V_{n+1}$",Label_texte_parole_discussion_pnj_scrolltext, 14, 0)
+                                insert_text("se calcule à l’aide du terme précédent ")
+                                formule_latex.make_formule(r"$V_{n}$",Label_texte_parole_discussion_pnj_scrolltext, 14, 0)
+                                insert_text("auquel on multiplie une constante (la raison), notée q.")
                             elif c==2:
-                                insert_text("")
+                                insert_text("Donc la relation de récurrence de la suite se note : ")
+                                formule_latex.make_formule(r"$V_{n+1} = V{n} \times q $",Label_texte_parole_discussion_pnj_scrolltext, 14, 0)
+                                insert_text("avec V0 le premier terme de la suite.\nAprès la formule explicite de la suite se note : ")
+                                formule_latex.make_formule(r"$V_{n} = V_{0} \times q^{n} $",Label_texte_parole_discussion_pnj_scrolltext, 14, 1)
+                                insert_text("Exemple de la suite Vn de premier terme ")
+                                formule_latex.make_formule(r"$V_{0} = 0.5 $",Label_texte_parole_discussion_pnj_scrolltext, 14, 0)
+                                insert_text("et de raison q = 1.7 : \nDu coup voila la forme de récurrence : ")
+                                formule_latex.make_formule(r"$V_{n+1} = V{n} \times 1.7 $",Label_texte_parole_discussion_pnj_scrolltext, 14, 1)
+                                insert_text("Et la formule explicite : ")
+                                formule_latex.make_formule(r"$V_{n} = 0.5 \times 1.7^{n} $",Label_texte_parole_discussion_pnj_scrolltext, 14, 1)
+                                insert_text("Alors tu entrevois la vraie vie maintenant ?")
+
 
                     #pnj 4 alternatif
                     elif pnj == "pnj4":
@@ -2232,9 +2396,14 @@ def Gestion_Jouer(fenetre, Niveau, type_partie): #Fonction parent (gestion de to
 
                         elif Niveau ==7:
                             if c==1:
-                                insert_text("")
+                                insert_text("Tu as oublié ? Je vais te réexpliquer alors écoute bien, pour reconnaître si une suite est une suite arithmétique on peut vérifier si la différence ")
+                                formule_latex.make_formule(r"$ U_{n+1} - U_{n}$",Label_texte_parole_discussion_pnj_scrolltext, 14, 0) 
+                                insert_text("est constante pour tout entier naturel n, ce qui donnera la raison par la même occasion.")
                             elif c==2:
-                                insert_text("")
+                                insert_text("Pour reconnaître si une suite est une suite géométrique on peut vérifier si le rapport")
+                                formule_latex.make_formule(r"$ \frac{V_{n+1}}{U_{n}}$",Label_texte_parole_discussion_pnj_scrolltext, 14, 0) 
+                                insert_text("est constant pour tout entier naturel n, ce qui donnera la raison par la même occasion.")
+
 
                     #pnj 5 alternatif
                     elif pnj == "pnj5":
@@ -2254,9 +2423,11 @@ def Gestion_Jouer(fenetre, Niveau, type_partie): #Fonction parent (gestion de to
 
                         elif Niveau ==7:
                             if c==1:
-                                insert_text("")
+                                insert_text("Alors t’as le mal de mer pour oublier si vite ? Bon je vais te réexpliquer écoute bien cette fois, pour calculer la somme des n premiers termes d’une suite arithmétique il faut utiliser la formule : ")
+                                formule_latex.make_formule(r"$S_{n} = \text{nombre de terme} \times \frac{\text{premier terme + dernier terme}}{2}$",Label_texte_parole_discussion_pnj_scrolltext, 14, 1) 
                             elif c==2:
-                                insert_text("")
+                                insert_text("Pour la somme des n premiers termes d’une suite géométrique il faut la formule : ")
+                                formule_latex.make_formule(r"$S_{n} = \text{premier terme} \times \frac{1 - \text{raison}^{\text{nombre de termes}}}{1 - \text{raison}}$",Label_texte_parole_discussion_pnj_scrolltext, 14, 1) 
 
                         
                     if c == 3 : 

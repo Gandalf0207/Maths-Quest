@@ -39,6 +39,7 @@ def installateur():
     subprocess.run(["mpm", "--install", "geometry"], shell=True)
     subprocess.run(["mpm", "--install", "underscore"], shell=True)
     subprocess.run(["mpm", "--install", "zhmetrics"], shell=True)
+    subprocess.run(["mpm", "--install", "amsmath"], shell=True)
 
 
 # Fonction de vérification d'acceptation des Termes et Consignes d'utilisation
