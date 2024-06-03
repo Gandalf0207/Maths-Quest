@@ -999,7 +999,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie): #Fonction parent (gestion de to
                     saut_2_lignes()
 
                     ajouter_element(Liste_cours[8])
-                    formule_latex.make_formule(r"$ \frac{4}{(3\pi \times r^2)}$",listbox, 14, 0) 
+                    formule_latex.make_formule(r"$ \frac{4}{(3\pi \times r^3)}$",listbox, 14, 0) 
                     ajouter_element("    ")
                     saut_2_lignes()
 
@@ -1283,7 +1283,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie): #Fonction parent (gestion de to
 
                 elif num_pnj=="pnj4":
                     ajouter_element(Liste_cours[8])
-                    formule_latex.make_formule(r"$ \frac{4}{(3\pi \times r^2)}$",listbox, 14, 0) 
+                    formule_latex.make_formule(r"$ \frac{4}{(3\pi \times r^3)}$",listbox, 14, 0) 
                     ajouter_element("   ")
                     saut_2_lignes()
 
@@ -1869,7 +1869,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie): #Fonction parent (gestion de to
                                 insert_text("Zalut monzieur dis tu zavais qu’il pozait des zénigmes à la porte ?")
                             elif c==2:
                                 insert_text("Je zais pas ze qu’il y a là bas mais au cas où ze vais t’apprendre à calculer le volume d’une zphère. Il zuffit de faire .")
-                                formule_latex.make_formule(r"$ \frac{4}{(3\pi \times r^2)}$",Label_texte_parole_discussion_pnj_scrolltext, 14, 0) 
+                                formule_latex.make_formule(r"$ \frac{4}{(3\pi \times r^3)}$",Label_texte_parole_discussion_pnj_scrolltext, 14, 0) 
                             elif c==3:
                                 insert_text("Tient au fait z’arrête pas de m’en mettre partout.")
 
@@ -2170,7 +2170,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie): #Fonction parent (gestion de to
                                 insert_text("T’as pas réussi à passer la porte ?")
                             elif c==2:
                                 insert_text("Alors ze vais te réexpliquer, pour calculer le volume d’une zphère il zuffit de faire ")
-                                formule_latex.make_formule(r"$ \frac{4}{(3\pi \times r^2)}$",Label_texte_parole_discussion_pnj_scrolltext, 14, 0) 
+                                formule_latex.make_formule(r"$ \frac{4}{(3\pi \times r^3)}$",Label_texte_parole_discussion_pnj_scrolltext, 14, 0) 
 
                         elif Niveau ==2:
                             if c==1:
