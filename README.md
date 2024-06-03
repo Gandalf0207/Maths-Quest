@@ -150,6 +150,9 @@ Afin de pouvoir utiliser le jeu sans soucis, nous vous demandons de bien vouloir
   ```
   mpm --install zhmetrics
   ```
+  > Installation extension LaTeX : amsmath
+  ```
+  mpm --install amsmath
 
 <br>
 
