@@ -42,7 +42,7 @@ Vous avez donc le choix entre 2 options :
 - Une partie longue :
   - Les deux programmes seront combinés
 
-Une fois votre choix fait, lisez attentivement les connsignes et termes de condition d'utilisations du jeu puis sélectionnez le bouton jouer pour lancer la partie.
+Une fois votre choix fait, lisez attentivement les consignes et termes de conditions d'utilisations du jeu puis sélectionnez le bouton jouer pour lancer la partie.
 Vous arrivez sur une carte qui est générée aléatoirement. 
 
 ![Image de la carte du niveau 1](https://github.com/Gandalf0207/Maths-Quest/blob/main/Images/ReadMe/Carte_nv1_readme.png)
@@ -67,7 +67,7 @@ Une fois à côté de la porte, appuyez sur la barre "espace" pour pouvoir déve
 - Si vous avez sélectionné la mauvaise réponse, cliquez également sur suivant jusqu'à ce que la fenêtre se ferme et vous pouvez recommencer l'énigme de la porte.
 A noter également que si vous fermez manuellement la fenêtre de l'énigme de la porte, vous devrez en réouvrir une nouvelle et recommencer l'énigme.
 
-Une fois le niveau supérieur atteint, vous pouvez recommencer ! Le cours va s'accumuler sur le menu latéral droit jusqu'au boss, où tout le cours en question vous sera nécessaire. Sur chaque niveau, un cours précis vous sera donné. Le nombre de PNJ est variable selon le niveau où vous vous trouvez. A noter également que entre chaque changement de niveau, un temps de latence peut etre important, cela est totalement normal, le script va générer des images 'latex' pour afficher le cours avec de jolie formule, affiché avec la plus proche des rigueur mathématique.
+Une fois le niveau supérieur atteint, vous pouvez recommencer ! Le cours va s'accumuler sur le menu latéral droit jusqu'au boss, où tout le cours en question vous sera nécessaire. Sur chaque niveau, un cours précis vous sera donné. Le nombre de PNJ est variable selon le niveau où vous vous trouvez. A noter également qu'entre chaque changement de niveau, un temps de latence peut être important, cela est totalement normal, le script va générer des images 'latex' pour afficher le cours avec de jolie formule, affichée avec la plus proche des rigueurs mathématiques.
 
 Quand vous arrivez au niveau du boss, le principe est le même, vous devez vous déplacer jusqu'au boss puis presser la barre "espace" pour pouvoir l'affronter. Une nouvelle fenêtre va s'ouvrir et vous devrez résoudre un problème reprenant tous les exercices que vous avez eus jusqu'à présent. Des indices sont également à votre disposition, vous pouvez les obtenir en cliquant dessus.
 
@@ -92,7 +92,7 @@ Votre score sera affiché à la fin de votre partie.
 > Le jeu et le système d'installation ont été développés pour les machines utilisant Windows 10 et plus.
 > Si vous utilisez des versions antérieures ou encore un autre système d'exploitation (Linux / MacOS), veillez à ce que chaque élément d'installation soit compatible, téléchargez les éléments en compatibilité avec votre machine.
 
-Afin de pouvoir utiliser le jeu sans soucis, nous vous demandons de bien vouloir suivre pas-à-pas l'installation décrite ci-dessous du projet.
+Afin de pouvoir utiliser le jeu sans soucis, nous vous demandons de bien vouloir suivre pas-à-pas l'installation du projet décrite ci-dessous.
 
 #### 2 modes d'installation :
 - Si vous avez reçu par votre professeur un dossier contenant les éléments nécessaires à l'installation, veuillez suivre le PDF d'installation donné avec.
@@ -109,7 +109,7 @@ Afin de pouvoir utiliser le jeu sans soucis, nous vous demandons de bien vouloir
 
   ##### Clône du repositorie GitHub:
   - Veillez à redémarrer votre machine si nécessaire pour permettre à votre système de bien intégrer l'installation des logiciels précédents. Après cela, il vous faut installer différentes dépendances nécessaires au bon fonctionnement du jeu.
-  Après avoir installer les 4 fichiers executables, vous devez récupérer le projet. Pour ce faire, dans votre invite de commande, exécutez la commande ci-dessous :
+  Après avoir installé les 4 fichiers executables, vous devez récupérer le projet. Pour ce faire, dans votre invite de commande, exécutez la commande ci-dessous :
 
   > Clone du dossier contenant le jeu
   ```
@@ -119,7 +119,7 @@ Afin de pouvoir utiliser le jeu sans soucis, nous vous demandons de bien vouloir
   ##### Téléchargement des dépendances nécessaires au jeu :
   
   - Vous devez installer manuellement les dépendances. Pour ce faire, ouvrez un invite de commande (cmd / powershell...) et entrez les commandes suivantes dans l'ordre donné.
-    Pour chacune des comandes en rapport avec des dépendances Latex, une fenêtre peut s'ouvrir, il vous faut accpeter l'installation.
+    Pour chacune des comandes en rapport avec des dépendances Latex, une fenêtre peut s'ouvrir, il vous faut accepter l'installation.
 
   > Mettre à jour pip 
   ```
@@ -165,7 +165,7 @@ Afin de pouvoir utiliser le jeu sans soucis, nous vous demandons de bien vouloir
 > Si vous utilisez une ancienne version de Windows ou bien que vous rencontrez toujours une erreur avec Visual C++ x64, installez également [Visual C++ x86](https://learn.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist?view=msvc-170).
 
 > [!TIP]
-> Lorsque vous exécutez une commande **git clone**, assurez-vous que l'emplacement où vous êtes est le bon pour cloner le dossier. La commande **Git clone** n'est possible seulement si vous avez télécharger et installer le .exe git. De plus, si vous possédez déjà un  clone ou un dossier possédant le même nom que le projet dans le dossier destination du clône, le clône ne pourra avoir lieu.
+> Lorsque vous exécutez une commande **git clone**, assurez-vous que l'emplacement où vous êtes est le bon pour cloner le dossier. La commande **Git clone** est possible seulement si vous avez téléchargé et installé le .exe git. De plus, si vous possédez déjà un clone ou un dossier possédant le même nom que le projet dans le dossier destination du clône, le clône ne pourra avoir lieu.
 
 > [!WARNING]
 > Veuillez faire attention au lieu d'installation des logiciels, et si nécessaire vous octroyer les droits en les ajoutant dans le **PATH**.
@@ -175,7 +175,7 @@ Afin de pouvoir utiliser le jeu sans soucis, nous vous demandons de bien vouloir
 
 <br> </br>
 ### Jouer :
-Une fois tous les éléments de l'installation faits, vous pouvez profiter du jeu ! Pour le lancer, éxécuter le fichier "Maths-Quest.exe"
+Une fois tous les éléments de l'installation faits, vous pouvez profiter du jeu ! Pour le lancer, éxécutez le fichier "Maths-Quest.exe"
 
   ##### Les déplacements : 
   - Haut --> Touche '↑'
