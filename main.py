@@ -537,11 +537,11 @@ def Gestion_Jouer(fenetre, Niveau, type_partie): #Fonction parent (gestion de to
             mur2 = PhotoImage(file="Images/Map/Wall2.png")
             mur3 = PhotoImage(file="Images/Map/Wall3.png")
 
-            if Niveau ==2:
+            if Niveau ==2 or Niveau ==7:
                 pnj1 = PhotoImage(file = "Images/pnj/Cana/Cana_petit.png")
                 pnj1_moyen = PhotoImage(file="Images/pnj/Cana/Cana_moyen.png")
                 pnj1_grand = PhotoImage(file="Images/pnj/Cana/Cana_grand.png")
-            elif Niveau ==3 or Niveau ==7:
+            elif Niveau ==3:
                 pnj1 = PhotoImage(file = "Images/pnj/Mathemami/Mathemami_petit.png")
                 pnj1_moyen = PhotoImage(file="Images/pnj/Mathemami/Mathemami_moyen.png")
                 pnj1_grand = PhotoImage(file="Images/pnj/Mathemami/Mathemami_grand.png")
@@ -1631,11 +1631,17 @@ def Gestion_Jouer(fenetre, Niveau, type_partie): #Fonction parent (gestion de to
 
                         elif Niveau ==7:
                             if c==1:
-                                insert_text("")
+                                insert_text("Miaou, Miaou Meow ! Miaou miaou Meow, Miaou Meow. Meow, Miaou Miaou. (Votre Miaou français est encore plus rouillé que votre waf mais vous comprenez : “Salut toi, tu voudrais que dans ma grande bonté je t’offre un renseignement ?")
                             elif c==2:
-                                insert_text("")
+                                insert_text("Bon j’accepte alors écoute bien, une suite est une liste ordonnée de nombres, on la définit souvent par : une relation de récurrence avec le terme n+1 noté ")
+                                formule_latex.make_formule(r"$  U_{n+1}  $",Label_texte_parole_discussion_pnj_scrolltext, 14, 0) 
+                                insert_text("en fonction du terme n noté ")
+                                formule_latex.make_formule(r"$  U_{n}.$",Label_texte_parole_discussion_pnj_scrolltext, 14, 0) 
+                                insert_text("Avec l’expression de récurrence, il est nécessaire de connaître un terme de la suite (par exemple U0 ou U1 etc…) pour calculer les autres. Ou une formule explicite qui permet d’exprimer directement le terme ")
+                                formule_latex.make_formule(r"$  U_{n}.$",Label_texte_parole_discussion_pnj_scrolltext, 14, 0) 
+                                insert_text(" en fonction de l’indice n.”)")
                             elif c==3:
-                                insert_text("")
+                                insert_text("Un objet se trouvant par terre attire votre regard et vous le prenez.")
 
                         if c == 4:
                             canvas_tete_pnj_grand.delete("all")
@@ -1714,11 +1720,25 @@ def Gestion_Jouer(fenetre, Niveau, type_partie): #Fonction parent (gestion de to
 
                         elif Niveau ==7:
                             if c==1:
-                                insert_text("")
+                                insert_text("Bonjour la jeunesse, je vais t’expliquer un truc utile dans la vie, dans une suite arithmétique le terme ")
+                                formule_latex.make_formule(r"$  U_{n+1}  $",Label_texte_parole_discussion_pnj_scrolltext, 14, 0) 
+                                insert_text("se calcule à l’aide du terme précédent ")
+                                formule_latex.make_formule(r"$  U_{n}$",Label_texte_parole_discussion_pnj_scrolltext, 14, 0) 
+                                insert_text("auquel on additionne ou on retranche une constante nommée raison, notée r.")
                             elif c==2:
-                                insert_text("")
+                                insert_text("La relation de récurrence de la suite se note : ")
+                                formule_latex.make_formule(r"$  U_{n+1} = U_{n} + r $",Label_texte_parole_discussion_pnj_scrolltext, 14, 0) 
+                                insert_text("avec U0, le premier terme de la suite.\n\nLa formule explicite de la suite se note : ")
+                                formule_latex.make_formule(r"$  U_{n} = U_{0} + n \times r $",Label_texte_parole_discussion_pnj_scrolltext, 14, 0) 
                             elif c==3:
-                                insert_text("")
+                                insert_text("Tiens un petit exemple avec la suite")
+                                formule_latex.make_formule(r"$  U_{n}$",Label_texte_parole_discussion_pnj_scrolltext, 14, 0) 
+                                insert_text("de premier terme U0 = 1 et de raison r =2 : \nForme de récurrence :")
+                                formule_latex.make_formule(r"$  U_{n+1} = U_{n} + 2$",Label_texte_parole_discussion_pnj_scrolltext, 14, 2) 
+                                insert_text("Formule explicite :")
+                                formule_latex.make_formule(r"$  U_{n} = 1 + 2n$",Label_texte_parole_discussion_pnj_scrolltext, 14, 2) 
+
+                                insert_text("Tiens mon bon, prends cet objet tu le mérites.")
 
                         if c == 4:
                             canvas_tete_pnj_grand.delete("all")
@@ -2016,9 +2036,15 @@ def Gestion_Jouer(fenetre, Niveau, type_partie): #Fonction parent (gestion de to
                                 insert_text("Si cette limite existe, elle est appelée la dérivée de f en a et est notée f’(a).")
                         elif Niveau ==7:
                             if c==1:
-                                insert_text("")
+                                insert_text("Meow Miaou !! Meow, Miaou Meow Miaou Miaou. Miaou Miaou Meow. Meow… (Vous comprenez : “Alors tu reviens me voir, pour abuser de ma bonté, mais je refuse cette fois ci de te redire qu’une suite est une liste ordonnée de nombres, on la définit souvent par : une relation de récurrence avec le terme n+1 noté ")
+                                formule_latex.make_formule(r"$  U_{n+1}  $",Label_texte_parole_discussion_pnj_scrolltext, 14, 0) 
+                                insert_text("en fonction du terme n noté ")
+                                formule_latex.make_formule(r"$  U_{n}.$",Label_texte_parole_discussion_pnj_scrolltext, 14, 0) 
                             elif c==2:
-                                insert_text("")
+                                insert_text("Avec l’expression de récurrence, il est nécessaire de connaître un terme de la suite (par exemple U0 ou U1 etc…) pour calculer les autres. Ou une formule explicite qui permet d’exprimer directement le terme ")
+                                formule_latex.make_formule(r"$  U_{n}.$",Label_texte_parole_discussion_pnj_scrolltext, 14, 0) 
+                                insert_text(" en fonction de l’indice n.”)")
+
 
                     #pnj 2 alternatif
                     elif pnj == "pnj2":
@@ -2068,9 +2094,23 @@ def Gestion_Jouer(fenetre, Niveau, type_partie): #Fonction parent (gestion de to
 
                         elif Niveau ==7:
                             if c==1:
-                                insert_text("")
+                                insert_text("Tu n’as pas bien écouté ?! Je suis déçu, je vais te réexpliquer mais attention il n’y aura pas de prochaine fois. Dans une suite arithmétique le terme ")
+                                formule_latex.make_formule(r"$  U_{n+1}  $",Label_texte_parole_discussion_pnj_scrolltext, 14, 0) 
+                                insert_text("se calcule à l’aide du terme précédent ")
+                                formule_latex.make_formule(r"$  U_{n}$",Label_texte_parole_discussion_pnj_scrolltext, 14, 0) 
+                                insert_text("auquel on additionne ou on retranche une constante nommée raison, notée r.")
                             elif c==2:
-                                insert_text("")
+                                insert_text("La relation de récurrence de la suite se note : ")
+                                formule_latex.make_formule(r"$  U_{n+1} = U_{n} + r $",Label_texte_parole_discussion_pnj_scrolltext, 14, 0) 
+                                insert_text("avec U0, le premier terme de la suite.\n\nLa formule explicite de la suite se note : ")
+                                formule_latex.make_formule(r"$  U_{n} = U_{0} + n \times r $",Label_texte_parole_discussion_pnj_scrolltext, 14, 2) 
+                                insert_text("Tiens un petit exemple avec la suite")
+                                formule_latex.make_formule(r"$  U_{n}$",Label_texte_parole_discussion_pnj_scrolltext, 14, 0) 
+                                insert_text("de premier terme U0 = 1 et de raison r =2 : \nForme de récurrence :")
+                                formule_latex.make_formule(r"$  U_{n+1} = U_{n} + 2$",Label_texte_parole_discussion_pnj_scrolltext, 14, 2) 
+                                insert_text("Formule explicite :")
+                                formule_latex.make_formule(r"$  U_{n} = 1 + 2n$",Label_texte_parole_discussion_pnj_scrolltext, 14, 0) 
+
 
                     #pnj 3 alternatif
                     elif pnj == "pnj3":
