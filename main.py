@@ -569,8 +569,8 @@ def Gestion_Jouer(fenetre, Niveau, type_partie): #Fonction parent (gestion de to
             mur2 = PhotoImage(file="Images/Map/Wall_red_with_symbols.png")
             mur3 = PhotoImage(file="Images/Map/Wall_red_flower.png")
 
-            pnj_boss_ = PhotoImage(file = "Images/pnj/Boss/Boss_petit.png")
-            pnj_boss_moyen = PhotoImage(file = "Images/pnj/Boss/Boss_moyen.png")
+            pnj_boss_ = PhotoImage(file = "Images/pnj/Boss/Boss_yoda.png")
+            pnj_boss_moyen = PhotoImage(file = "Images/pnj/Boss/Boss_yoda_icon.png")
 
 
         
@@ -1571,7 +1571,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie): #Fonction parent (gestion de to
                     formule_latex.make_formule(r"$ U_{n+1} - U_{n}$",listbox, 14, 0) 
                     ajouter_element(Liste_cours[70])
                     saut_2_lignes() 
-                    
+
                 elif num_pnj=="pnj5":
                     ajouter_element(Liste_cours[71])
                     formule_latex.make_formule(r"$S_{n} = \text{nombre de terme} \times \frac{\text{premier terme + dernier terme}}{2}$",listbox, 14, 1) 
