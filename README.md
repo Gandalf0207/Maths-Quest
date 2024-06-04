@@ -128,7 +128,7 @@ Afin de pouvoir utiliser le jeu sans soucis, nous vous demandons de bien vouloir
   ```
   > Installation de la dépendance : matplotlib
   ```
-  pip install matplotlib
+  python -m pip install matplotlib
   ```
   > Installation extension LaTeX : type1cm.sty
   ```
