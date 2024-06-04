@@ -144,6 +144,50 @@ def choix_exo_niveau_boss(Niveau): # Paramètres : Niveau actuel
 
 
 
+
+   if Niveau ==8: # Si le niveau ==8 : l'exo sera : calculs du volume max (dérivé ) + calculs prix (suites SG)
+
+      #brique de lait exo
+      a = random.randint(14,46) # random de la valeur de la longueur de la feille
+      while a%2 != 0 :
+         a = random.randint(14,46)
+
+      y_max = 0
+      x_max = 0
+      for x in range(int(a/2 + 1)) : # calcul dérivée + max volume avec comparaison en brute force
+         if (x*(a**2))/2 - 2*a*(x**2) + 2*(x**3) > y_max :
+            x_max = x
+            y_max = (x*(a**2))/2 - 2*a*(x**2) + 2*(x**3)
+
+      #conversion en litre
+      v_l = y_max/1000
+
+      #formatage résultats
+      add_value = random.randint(-5,5)
+      while add_value ==0:
+         add_value = random.randint(-5,5)
+      resultat = f"{round(v_l,2)} Litres"
+      resultat2 = f"{round(y_max,2)} Litres"
+      resultat3 = f"{round(v_l + add_value,2)} Litres"
+
+
+      #Suite
+
+      #exo suite SG avec calcul en fonction du nb d'année (n) et du % d'inflation
+      U0 = 1.20
+      r = 1+(random.randint(10,80)/1000)
+      n = random.randint(5,10)
+      Un = U0*(r**n)
+
+      resultat_2 = f"{round(Un,2)} €"
+      resultat2_2= f"{round(Un*2,2)} €"
+      resultat3_2 = f"{round(Un+U0,2)} €"
+
+
+      infos = [a,r,n] # liste avec les infos données à l'utilisateur
+
+
+
    #On load tout les éléments de réponse :  eqt / resultat vrai / les trois résultats dont 2 faux
    # qcm1
    L_result_possible_boss = []
@@ -183,6 +227,8 @@ def choix_exo_niveau_boss(Niveau): # Paramètres : Niveau actuel
    Liste_exo_all_boss.append(btn3_value_boss_2) # les valeurs mélangées pour les 2 qcm
    if Niveau ==4:
       Liste_exo_all_boss.append(points) # la liste des coordonnées de points pour le niveau 4
+   elif Niveau ==8:
+      Liste_exo_all_boss.append(infos) # la liste des infos 
 
 
 

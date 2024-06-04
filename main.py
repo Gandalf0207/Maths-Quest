@@ -436,6 +436,8 @@ def Gestion_Jouer(fenetre, Niveau, type_partie): #Fonction parent (gestion de to
 
         Volume_nv1 = PhotoImage(file="Images/Exercices/volume.png")
         exo_boss_portdesete = PhotoImage(file="Images/Exercices/boss_exo.png")
+        exo_boss_briquedelait = PhotoImage(file="Images/Exercices/boss_exo2.png")
+        indice2_boss2 = PhotoImage(file="Images/Exercices/indice2_boss2.png")
 
         #en fonction du niveau, on choisit les murs / les pnjs / les loots
 
@@ -2852,6 +2854,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie): #Fonction parent (gestion de to
                     global erreur_boss
                     global c_boss
                     global type_partie
+                    global Niveau
 
                     c_boss  += 1
 
@@ -2865,7 +2868,9 @@ def Gestion_Jouer(fenetre, Niveau, type_partie): #Fonction parent (gestion de to
                     elif c_boss==3:
                         if Niveau==4:
                             text_complet_consignes_boss = f"Un voilier se trouve dans le port de Sète et avant de partir un client veut connaître le volume d’huile que le navire peut transporter sachant qu’il possède une cargaison de 85 tonneaux de longueur :{Exo_correction_boss[8][4]} et de largeur :{Exo_correction_boss[8][5]} (nous affirmons que les tonneaux utilisés ont des côtés totalement droit et non arrondis. Après cela le bateau prend le large et reçoit des informations sur un autre bateau naviguant à la même vitesse, déterminer si les 2 bateaux se croiseront. De plus le bateau b1 est actuellement au point A et navigue selon la direction (AB). De même le bateau b2 est actuellement au point C et navigue selon la direction (CD). Coordonnées : A ={Exo_correction_boss[8][0]} ; B = {Exo_correction_boss[8][1]} ; C = {Exo_correction_boss[8][2]} ; D = {Exo_correction_boss[8][3]}"
-
+                        elif Niveau ==8:
+                            text_complet_consignes_boss = f"Un fabriquant envisage la production de briques de lait en carton. Au départ, il dispose d’une feuille carrée en carton dans laquelle on a retiré deux bandes de même largeur. Le côté de la feuille carrée mesure {Exo_correction_boss[8][0]} cm et on désigne par x la largeur des bandes découpées en centimètres. Trouver le volume en litre maximal dans cette brique à lait en fonction de x\n\nTrouver ensuite le prix de la brique au bout de {Exo_correction_boss[8][2]} ans sachant qu'il subit une inflation de {Exo_correction_boss[8][1]} % et que le prix d'origine était 1.20€ "
+ 
                     elif c_boss==4:
                         Label_btn_suivant_boss_window ['state'] = DISABLED
                         # on affiche les btns de réponses
@@ -2968,9 +2973,9 @@ def Gestion_Jouer(fenetre, Niveau, type_partie): #Fonction parent (gestion de to
                         "Vous avez utilisé tout les indices !"
                         ]
                     L_indices_2 = [
-                        "Indices 1 boss 2 : ",
-                        "Indices 2 boss 2 : ",
-                        "Indices 3 boss 2 : ",
+                        "Indices 1 : Essayez de trouver la fonction du volume de la brique. \nRappel : Le volume se calcule avec la formule aire de la base x hauteur",
+                        "Indices 2 : ",
+                        "Indices 3 : Pensez à dériver votre fonction !",
                         "Vous avez utilisé tout les indices !"
                         ]
 
@@ -2991,6 +2996,10 @@ def Gestion_Jouer(fenetre, Niveau, type_partie): #Fonction parent (gestion de to
                     elif Niveau == 8:
                         if indices_give_2 < 3:
                             ajouter_element_indices(L_indices_2[indices_give_2])
+                            if indices_give_2==1:
+                                listbox_indices.config(state=NORMAL)
+                                listbox_indices.image_create(END, image=indice2_boss2)
+                                listbox_indices.config(state=DISABLED)
                             indices_give_2 +=1
                         elif indices_give_2 ==3:
                             ajouter_element_indices(L_indices_2[indices_give_2])
@@ -3057,7 +3066,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie): #Fonction parent (gestion de to
                 Label_Frame_Canvas_formule_boss.pack(side=TOP, fill='y', pady= 5, padx=5)
 
                 #canvas avec l'image
-                Label_canvas_boss_image = Canvas(Label_Frame_Canvas_formule_boss, width = 400, height = 283)
+                Label_canvas_boss_image = Canvas(Label_Frame_Canvas_formule_boss, )
                 Label_canvas_boss_image.pack()
 
                 # on recupère la correction et les valeurs nécéssaires à la consigne
@@ -3065,19 +3074,25 @@ def Gestion_Jouer(fenetre, Niveau, type_partie): #Fonction parent (gestion de to
                 print(Exo_correction_boss)
                 if Niveau ==4:
                     #on affiche l'image du problème
+                    Label_canvas_boss_image.configure(width = 400, height = 283)
                     Label_canvas_boss_image.create_image(0,0,anchor=NW, image = exo_boss_portdesete)
 
-                    # on définit les trois valeurs qui vont s'afficher dans les boutons
-                    value_btn_1_boss = Exo_correction_boss[2]
-                    value_btn_2_boss = Exo_correction_boss[3]
-                    value_btn_3_boss = Exo_correction_boss[4]
 
-                    value_btn_1_2_boss = Exo_correction_boss[5]
-                    value_btn_2_2_boss = Exo_correction_boss[6]
-                    value_btn_3_2_boss = Exo_correction_boss[7]
                 elif Niveau==8:
-                    a = 1
-                    #il faut load l'img et selec le resultat            
+                    #on affiche l'image du problème
+                    Label_canvas_boss_image.configure(width = 400, height = 171)
+                    Label_canvas_boss_image.create_image(0,0,anchor=NW, image = exo_boss_briquedelait)   
+
+
+
+                # on définit les trois valeurs qui vont s'afficher dans les boutons
+                value_btn_1_boss = Exo_correction_boss[2]
+                value_btn_2_boss = Exo_correction_boss[3]
+                value_btn_3_boss = Exo_correction_boss[4]
+
+                value_btn_1_2_boss = Exo_correction_boss[5]
+                value_btn_2_2_boss = Exo_correction_boss[6]
+                value_btn_3_2_boss = Exo_correction_boss[7]
 
                 ## Frame global qui contient la frame ave les trois valeurs de réponse avec les cases à cocher et le bouton valider
                 Label_Frame_Reponse_Verif_boss = Frame(Label_frame_global_element_gauche_boss, bg= None)
@@ -3253,7 +3268,7 @@ Pour plus de renseignements : https://github.com/Gandalf0207/Maths-Quest
                 elif L[x][y] == "pnj4":
                     canvas.create_image(24*y, 24*x, anchor=NW, image=pnj4)
                 elif L[x][y] == "pnj5":
-                    canvas.create_image(24*y, 24*x, anchor=NW, image=pnj4)
+                    canvas.create_image(24*y, 24*x, anchor=NW, image=pnj5)
                 elif L[x][y] == "\U0001F6AA":
                     canvas.create_image(24*y, 24*x, anchor=NW, image=porte)
                 elif L[x][y] == "○":
