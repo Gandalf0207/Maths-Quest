@@ -248,7 +248,7 @@ def choix_exo_niveau(Niveau,Label_Frame_Canvas_formule_exo): # Paramètres nivea
             while nb1 ==0 or nb1 ==-1 or nb1==1: # on évite les valeurs non utilisables
                 nb1 = random.randint(-15,15)
 
-            eqt = r"$P(x) = (%sx)^2 + %sx + %s$"%(nb1, nb2, nb3) # formule latex
+            eqt = r"$P(x) = %sx{^2} + %sx + %s$"%(nb1, nb2, nb3) # formule latex
 
             delta = nb2**2 - (4*nb1*nb3) # calcul delta
 
