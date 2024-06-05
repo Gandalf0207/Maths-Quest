@@ -1018,7 +1018,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie): #Fonction parent (gestion de to
                     saut_2_lignes()
 
                     ajouter_element(Liste_cours[6])
-                    formule_latex.make_formule(r"$ \frac{(\pi \times rayon^2)}{3}$",listbox, 14, 0) 
+                    formule_latex.make_formule(r"$ \frac{(\pi \times rayon^2 \times \text{hauteur})}{3}$",listbox, 14, 0) 
                     ajouter_element(Liste_cours[7])
                     formule_latex.make_formule(r"$ \frac{V_{prisme}}{3}$",listbox, 14, 0) 
                     saut_2_lignes()
@@ -1356,7 +1356,7 @@ def Gestion_Jouer(fenetre, Niveau, type_partie): #Fonction parent (gestion de to
 
                 elif num_pnj=="pnj3":
                     ajouter_element(Liste_cours[6])
-                    formule_latex.make_formule(r"$ \frac{(\pi \times rayon^2)}{3}$",listbox, 14, 0) 
+                    formule_latex.make_formule(r"$ \frac{(\pi \times rayon^2 \times \text{hauteur})}{3}$",listbox, 14, 0) 
                     ajouter_element(Liste_cours[7])
                     formule_latex.make_formule(r"$ \frac{V_{prisme}}{3}$",listbox, 14, 0) 
                     ajouter_element("   ")
@@ -2586,7 +2586,6 @@ def Gestion_Jouer(fenetre, Niveau, type_partie): #Fonction parent (gestion de to
             # check s'il y a la porte à proximité
             elif (L[ordonne-1][abscisse] == "\U0001F6AA" or L[ordonne+1][abscisse]== "\U0001F6AA" or L[ordonne][abscisse-1]== "\U0001F6AA" or L[ordonne][abscisse+1]== "\U0001F6AA"):
                 global assemble_cle
-                print(assemble_cle)
                 if assemble_cle == True:
                     porte_enigme()
                     load_cours(Niveau, 1)
@@ -2780,7 +2779,6 @@ def Gestion_Jouer(fenetre, Niveau, type_partie): #Fonction parent (gestion de to
 
                 # on recupère la formule et la correction
                 Exo_correction = py_maths_exo.choix_exo_niveau(Niveau,Label_Frame_Canvas_formule_exo)
-                print(Exo_correction)
 
 
 
@@ -3071,7 +3069,6 @@ def Gestion_Jouer(fenetre, Niveau, type_partie): #Fonction parent (gestion de to
 
                 # on recupère la correction et les valeurs nécéssaires à la consigne
                 Exo_correction_boss = py_maths_boss.choix_exo_niveau_boss(Niveau)
-                print(Exo_correction_boss)
                 if Niveau ==4:
                     #on affiche l'image du problème
                     Label_canvas_boss_image.configure(width = 400, height = 283)

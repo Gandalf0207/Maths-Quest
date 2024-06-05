@@ -168,7 +168,6 @@ def choix_exo_niveau(Niveau,Label_Frame_Canvas_formule_exo): # Paramètres nivea
 
         # Formatage des résultats en chaînes de caractères
         resultat = f"Equation réduite de (AB) : {valeur[0]}x + {valeur[1]} \n Equation réduite de (CD) : {valeur[2]}x + {valeur[3]}"
-        print(resultat)
 
         resultat2 =  f"Equation réduite de (AB) : {valeur[1]}x + {valeur[0]} \n Equation réduite de (CD) : {valeur[3]}x + {valeur[2]}"
         resultat3 =  f"Equation réduite de (AB) : {valeur[2]}x + {valeur[3]} \n Equation réduite de (CD) : {valeur[0]}x + {valeur[1]}"
@@ -215,11 +214,9 @@ def choix_exo_niveau(Niveau,Label_Frame_Canvas_formule_exo): # Paramètres nivea
             for x in range(-50,50): # modèle de brute force pour trouver un système et les valeurs possible pour les 2 équations
                 for y in range(-50,50):
                     if x*nb1 + y*nb2 == nb3 and x*nb4 - nb5*y == nb6:
-                        print(f"{nb1}x + {nb2}y = {nb3}")
-                        print(f"{nb4}x - {nb5}y = {nb6}")
+
                         value_x = x
                         value_y = y
-                        print(f"x = {x}, y = {y}")
                         go = False
                 
 
@@ -227,7 +224,6 @@ def choix_exo_niveau(Niveau,Label_Frame_Canvas_formule_exo): # Paramètres nivea
 
         # Formatage des résultats en chaînes de caractères
         resultat = f"x = {value_x} | y = {value_y}"
-        print(resultat)
         resultat2 = f"x = {value_x+nb1} | y = {value_y-nb2}"
         resultat3 = f"x = {value_x-nb4} | y = {value_y+nb5}"
 
@@ -324,7 +320,6 @@ def choix_exo_niveau(Niveau,Label_Frame_Canvas_formule_exo): # Paramètres nivea
 
         # Formatage des résultats en chaînes de caractères
         resultat = f"f'({num_resolve}) = {f_prime}"
-        print(resultat)
         resultat2 = f"f'({num_resolve}) = {f_prime+num1}"
         resultat3 = f"f'({num_resolve}) = {f_prime+num6}"
 
