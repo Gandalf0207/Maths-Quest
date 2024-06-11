@@ -263,7 +263,7 @@ def choix_exo_niveau(Niveau,Label_Frame_Canvas_formule_exo): # Paramètres nivea
         #formatage des résultats
         if delta > 0 :
             resultat = f"x1 = {x1} \nx2 = {x2}"
-            resultat2 = f"x1 = {x2} \nx2 = {x1}"
+            resultat2 = f"x1 = {x2*3} \nx2 = {x1*2}"
             resultat3 = f"x1 = {x1+1} \nx2 = {x2}"
         elif delta ==0:
             resultat = f"x = {x_simple}"
@@ -279,7 +279,7 @@ def choix_exo_niveau(Niveau,Label_Frame_Canvas_formule_exo): # Paramètres nivea
 
         while f_prime != round(f_prime,1) and f_prime != round(f_prime,2):
             num_resolve = random.randint(1,8) # génération des valeurs aléatoirement
-            num1 = random.randint(-3, 3)
+            num1 = random.randint(1, 3)
             num2 = random.randint(-20, 20)
             num3 = random.randint(-20, 20)
             num4 = random.randint(2, 4)
@@ -288,7 +288,7 @@ def choix_exo_niveau(Niveau,Label_Frame_Canvas_formule_exo): # Paramètres nivea
 
 
             while num1 == 0 or num2 == 0 or num3==0 or num4 == 0 or num1==num6:
-                num1 = random.randint(-3,3)  # génération des valeurs aléatoirement
+                num1 = random.randint(1,3)  # génération des valeurs aléatoirement
                 num2 = random.randint(-20, 20)
                 num3 = random.randint(-20, 20)
                 num4 = random.randint(2, 4)
